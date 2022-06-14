@@ -95,7 +95,7 @@ For later updates, the above procedure is not necessary. Just do the following:
 ## Changelog
 <!--
 	Placeholder for the next version (at the beginning of the line):
-### **WORK IN PROGRESS**
+### 0.0.3 (2022-06-14)
 -->
 
 ### 0.0.2 (2022-06-14)

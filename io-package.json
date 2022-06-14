@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "energiefluss",
-        "version": "0.0.1",
+        "version": "0.0.3",
         "news": {
+            "0.0.3": {
+                "en": "->",
+                "de": "->",
+                "ru": "->",
+                "pt": "->",
+                "nl": "->",
+                "fr": "->",
+                "it": "->",
+                "es": "->",
+                "pl": "->",
+                "zh-cn": "->"
+            },
             "0.0.1": {
                 "en": "initial release",
                 "de": "Erstveröffentlichung",
