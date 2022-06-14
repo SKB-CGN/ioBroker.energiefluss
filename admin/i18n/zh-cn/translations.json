@@ -27,6 +27,7 @@
     "grid_feed": "电网馈入：",
     "option1": "选项1",
     "option2": "选项2",
+    "other": "其他",
     "production": "生产：",
     "production and consuming": "生产和使用",
     "recalculate": "从 W 计算值（以 kW 为单位）",
