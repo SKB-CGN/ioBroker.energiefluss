@@ -1,0 +1,201 @@
+<html>
+
+<head>
+
+	<!-- Load ioBroker scripts and styles-->
+	<link rel="stylesheet" type="text/css" href="../../css/adapter.css" />
+	<link rel="stylesheet" type="text/css" href="../../lib/css/materialize.css">
+
+	<script type="text/javascript" src="../../lib/js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="../../socket.io/socket.io.js"></script>
+
+	<script type="text/javascript" src="../../js/translate.js"></script>
+	<script type="text/javascript" src="../../lib/js/materialize.js"></script>
+	<script type="text/javascript" src="../../js/adapter-settings.js"></script>
+
+	<!-- Load our own files -->
+	<script type="text/javascript" src="words.js"></script>
+
+	<script type="text/javascript">
+		// This will be called by the admin adapter when the settings page loads
+		function load(settings, onChange) {
+			// example: select elements with id=key and class=value and insert value
+			if (!settings) return;
+			$('.value').each(function () {
+				var $key = $(this);
+				var id = $key.attr('id');
+				if ($key.attr('type') === 'checkbox') {
+					// do not call onChange direct, because onChange could expect some arguments
+					$key.prop('checked', settings[id])
+						.on('change', () => onChange());
+				} else {
+					// do not call onChange direct, because onChange could expect some arguments
+					$key.val(settings[id])
+						.on('change', () => onChange())
+						.on('keyup', () => onChange());
+				}
+			});
+			onChange(false);
+			// reinitialize all the Materialize labels on the page if you are dynamically adding inputs:
+			if (M) M.updateTextFields();
+		}
+
+		// This will be called by the admin adapter when the user presses the save button
+		function save(callback) {
+			// example: select elements with class=value and build settings object
+			var obj = {};
+			$('.value').each(function () {
+				var $this = $(this);
+				if ($this.attr('type') === 'checkbox') {
+					obj[$this.attr('id')] = $this.prop('checked');
+				} else if ($this.attr('type') === 'number') {
+					obj[$this.attr('id')] = parseFloat($this.val());
+				} else {
+					obj[$this.attr('id')] = $this.val();
+				}
+			});
+			callback(obj);
+		}
+	</script>
+
+</head>
+
+<body>
+
+	<div class="m adapter-container">
+		<div class="row">
+			<div class="row">
+				<div class="input-field col s6">
+					<img src="energiefluss.png" class="logo">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s12">
+					<h6 class="title translate" data-lang="production and consuming">production and usage
+					</h6>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s4">
+					<input class="value" id="production" type="text" />
+					<label for="production" class="translate" data-lang="production">Production state:</label>
+					<span class="translate" data-lang="ex_production">Data point of your photovoltaic
+						production</span>
+				</div>
+				<div class="input-field col s4">
+					<input class="value" id="consumption" type="text" />
+					<label for="consumption" class="translate" data-lang="consumption">Consumption state:</label>
+					<span class="translate" data-lang="ex_consumption">Data point of your house consumption</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s12">
+					<h6 class="title translate" data-lang="grid feed in settings">Grid Feed-in and Consuming</h6>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s4">
+					<input class="value" id="grid_feed" type="text" />
+					<label for="grid_feed" class="translate" data-lang="grid_feed">Grid feed-in:</label>
+					<span class="translate" data-lang="ex_grid_feed">Data point of your grid feeder<br><br>(This is
+						usually a
+						negative
+						and positive condition. If the state is different, please check the box and specify the
+						other
+						state on)</span>
+				</div>
+				<div class="input-field col s4">
+					<input class="value" id="grid_consuming" type="text" />
+					<label for="grid_consuming" class="translate" data-lang="grid_consumption">Grid consuming</label>
+					<span class="translate" data-lang="ex_grid_consumption">Data point of your grid consumption</span>
+				</div>
+				<div class="input-field col s4">
+					<input id="grid_different" class="value" type="checkbox" />
+					<label for="grid_different" class="translate" data-lang="cb_grid_different">Use different states
+						for grid feed-in and
+						consuming</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s12">
+					<h6 class="title translate" data-lang="battery_charge">Battery charging and
+						discharging</h6>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s4">
+					<input class="value" id="battery_charge" type="text" />
+					<label for="battery_charge" class="translate" data-lang="battery_charge_state">Charge
+						battery:</label>
+					<span class="translate" data-lang="ex_battery_charge">Data point of your battery charge
+						state<br><br>(This is
+						usually a
+						negative
+						and positive condition. If the state is different, please check the box and specify the
+						other
+						state on)</span>
+				</div>
+				<div class="input-field col s4">
+					<input class="value" id="battery_discharge" type="text" />
+					<label for="battery_discharge" class="translate" data-lang="battery_discharge">Discharge
+						battery:</label>
+					<span class="translate" data-lang="ex_battery_discharge">Data point for discharging your
+						battery</span>
+				</div>
+				<div class="input-field col s4">
+					<input id="battery_different" class="value" type="checkbox" />
+					<label for="battery_different" class="translate" data-lang="cb_battery_different">Use different
+						states for Battery charge
+						and discharge</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s4">
+					<input class="value" id="battery_percent" type="text" />
+					<label for="battery_percent" class="translate" data-lang="battery_percent">accu level:</label>
+					<span class="translate" data-lang="ex_battery_percent">data point of your battery charge-level
+						in %</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s12">
+					<h6 class="title translate" data-lang="car charge">charge car</h6>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s4">
+					<input class="value" id="car_charge" type="text" />
+					<label for="car_charge" class="translate" data-lang="car_charge_energy">Car charge
+						state:</label>
+					<span class="translate" data-lang="ex_car_charge">Data point for charging your car</span>
+				</div>
+				<div class="input-field col s4">
+					<input class="value" id="car_percent" type="text" />
+					<label for="car_percent" class="translate" data-lang="car_battery_charge">Car accu level
+						state:</label>
+					<span class="translate" data-lang="ex_car_battery">Data point of your car accu in %</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s12">
+					<h6 class="title translate" data-lang="miscellaneous">Miscellaneous</h6>
+				</div>
+				<div class="row">
+					<div class="input-field col s4">
+						<input class="value" id="unit" type="text" />
+						<label for="unit" class="translate" data-lang="unit">Unit:</label>
+						<span class="translate" data-lang="ex_unit">Unit (W or kW) for displaying</span>
+					</div>
+					<div class="input-field col s4">
+						<input id="recalculate" class="value" type="checkbox" />
+						<label for="recalculate" class="translate" data-lang="recalculate">Calculate values from W in
+							kW</label>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+
+</html>

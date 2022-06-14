@@ -1,0 +1,110 @@
+{
+    "common": {
+        "name": "energiefluss",
+        "version": "0.0.1",
+        "news": {
+            "0.0.1": {
+                "en": "initial release",
+                "de": "Erstveröffentlichung",
+                "ru": "Начальная версия",
+                "pt": "lançamento inicial",
+                "nl": "Eerste uitgave",
+                "fr": "Première version",
+                "it": "Versione iniziale",
+                "es": "Versión inicial",
+                "pl": "Pierwsze wydanie",
+                "zh-cn": "首次出版"
+            }
+        },
+        "title": "energiefluss",
+        "titleLang": {
+            "en": "Energiefluss",
+            "de": "Energiefluss",
+            "ru": "Энергифлусс",
+            "pt": "Energiefluss",
+            "nl": "Energiefluss",
+            "fr": "Energiefluss",
+            "it": "Flusso di energia",
+            "es": "Energiefluss",
+            "pl": "Energiefluss",
+            "zh-cn": "精力充沛"
+        },
+        "desc": {
+            "en": "It provides an animated energy-flow for solar-panels, battery-charging, house-consumption, grid feed-in and car-charging.",
+            "de": "Es stellt einen animierten Energiefluss für Photovoltaik, Batterie, Hausverbrauch, Einspeisung und Auto-Ladung bereit.",
+            "ru": "Es stellt einen animierten Energiefluss für Photovoltaik, Batterie, Hausverbrauch, Einspeisung und Auto-Ladung bereit.",
+            "pt": "Es stellt einen animierten Energiefluss für Photovoltaik, Batterie, Hausverbrauch, Einspeisung und Auto-Ladung bereit.",
+            "nl": "Es stellt einen animierten Energiefluss für Photovoltaik, Batterie, Hausverbrauch, Einspeisung en Auto-Ladung bereit.",
+            "fr": "Es stellt einen animierten Energiefluss für Photovoltaik, Batterie, Hausverbrauch, Einspeisung und Auto-Ladung bereit.",
+            "it": "Es stellt einen animierten Energiefluss für Photovoltaik, Batterie, Hausverbrauch, Einspeisung und Auto-Ladung beit.",
+            "es": "Es stellt einen animierten Energiefluss für Photovoltaik, Batterie, Hausverbrauch, Einspeisung und Auto-Ladung bereit.",
+            "pl": "Es stellt einen animierten Energiefluss für Photovoltaik, Batterie, Hausverbrauch, Einspeisung und Auto-Ladung bereit.",
+            "zh-cn": "Es stellt einen animierten Energiefluss für Photovoltaik, Batterie, Hausverbrauch, Einspeisung und Auto-Ladung bereit。"
+        },
+        "authors": [
+            "SKB <info@skb-web.de>"
+        ],
+        "keywords": [
+            "energy",
+            "energy-flow",
+            "energie",
+            "energiefluss"
+        ],
+        "license": "MIT",
+        "platform": "Javascript/Node.js",
+        "main": "main.js",
+        "icon": "energiefluss.png",
+        "enabled": true,
+        "extIcon": "https://raw.githubusercontent.com/SKB-CGN/ioBroker.energiefluss/main/admin/energiefluss.png",
+        "readme": "https://github.com/SKB-CGN/ioBroker.energiefluss/blob/main/README.md",
+        "loglevel": "info",
+        "mode": "daemon",
+        "type": "visualization",
+        "compact": true,
+        "localLink": "%web_protocol%://%ip%:%web_port%/energiefluss/index.html",
+        "connectionType": "local",
+        "dataSource": "poll",
+        "materialize": true,
+        "materializeTab": true,
+        "adminTab": {
+            "singleton": true,
+            "name": {
+                "en": "Energiefluss",
+                "de": "Energiefluss",
+                "ru": "Энергифлусс",
+                "pt": "Energiefluss",
+                "nl": "Energiefluss",
+                "fr": "Energiefluss",
+                "it": "Flusso di energia",
+                "es": "Energiefluss",
+                "pl": "Energiefluss",
+                "zh-cn": "精力充沛"
+            },
+            "link": "",
+            "fa-icon": "info"
+        },
+        "supportCustoms": true,
+        "dependencies": [
+            {
+                "js-controller": ">=2.0.0"
+            }
+        ]
+    },
+    "native": {
+        "unit": "kW",
+        "production": "",
+        "consumption": "",
+        "recalculate": false,
+        "grid_feed": "",
+        "grid_consuming": "",
+        "grid_different": "",
+        "battery_percent": "",
+        "battery_charge": "",
+        "battery_discharge": "",
+        "battery_different": "",
+        "car_charge": "",
+        "car_percent": ""
+    },
+    "objects": [],
+    "instanceObjects": []
+}
