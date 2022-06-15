@@ -1,6 +1,6 @@
 {
   "name": "iobroker.energiefluss",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "It provides an animated energy-flow for solar-panels, battery-charging, house-consumption, grid feed-in and car-charging.",
   "author": {
     "name": "SKB",
