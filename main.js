@@ -268,7 +268,7 @@ class Energiefluss extends utils.Adapter {
 			circle_uses.push('<use class="elm_house shadow" xlink:href="#home_present"/> <use class="text_inside_circle" xlink:href="#text_house"/> <use class="value_inside_circle text_house" xlink:href="#text_house_value"/> <use xlink:href="#icon_house"/>');
 		}
 		if (valuesObj['production'] != undefined) {
-			if (valuesObj['consumption'] > 0) {
+			if (valuesObj['consumption'] > 0 && valuesObj['production'] > 0) {
 				line_animation.push('<use class="consumption_animation" xlink:href="#solar_to_house" />');
 			}
 			circle_defs.push('<circle id="solar_present" cx="250" cy="52" r="50" /><path id="icon_solar" transform="translate(238,8)" class="icon_color" d="M4,2H20A2,2 0 0,1 22,4V14A2,2 0 0,1 20,16H15V20H18V22H13V16H11V22H6V20H9V16H4A2,2 0 0,1 2,14V4A2,2 0 0,1 4,2M4,4V8H11V4H4M4,14H11V10H4V14M20,14V10H13V14H20M20,4H13V8H20V4Z" /><text text-anchor="middle" id="text_solar" x="250" y="79">Erzeugung</text><text text-anchor="middle" id="text_solar_value" x="250" y="54">' + valuesObj['production'] + ' ' + unit + '</text>');
