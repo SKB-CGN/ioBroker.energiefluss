@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "energiefluss",
-        "version": "0.0.11",
+        "version": "0.0.12",
         "news": {
+            "0.0.12": {
+                "en": "added line animation",
+                "de": "linie animation",
+                "ru": "добавлена анимация линии",
+                "pt": "animação de linha adicionada",
+                "nl": "vertaling:",
+                "fr": "animation de ligne ajoutée",
+                "it": "animazione della linea",
+                "es": "línea de animación",
+                "pl": "animacja linii",
+                "zh-cn": "增减"
+            },
             "0.0.11": {
                 "en": "fixed some bugs",
                 "de": "einige fehler behoben",
