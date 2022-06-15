@@ -23,21 +23,27 @@ Installation �ber die Github Katze in ioBroker m�glich
 	Placeholder for the next version (at the beginning of the line):
 	## **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+- fixed solar and grid line animation
+
 ### 0.0.16 (2022-06-15)
 - Fixed uncaught Error
 - Changed translation for checkbox in admin
+
 ### 0.0.13 (2022-06-15)
 - Added checkbox for reversing Grid-feed and Grid-consuming
+
 ### 0.0.12 (2022-06-15)
 - added line animation
+
 ### 0.0.11 (2022-06-15)
 - fixed some bugs
 
 ### 0.0.3 (2022-06-14)
-* (SKB) fixed some bugs
+* fixed some bugs
 
 ### 0.0.2 (2022-06-14)
-* (SKB) initial release
+* initial release
 
 ## License
 MIT License
