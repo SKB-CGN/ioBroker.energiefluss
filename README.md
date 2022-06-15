@@ -23,6 +23,8 @@ Installation über die Github Katze in ioBroker möglich
 	Placeholder for the next version (at the beginning of the line):
 	## **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+- Added checkbox for reversing Grid-feed and Grid-consuming
 ### 0.0.12 (2022-06-15)
 - added line animation
 ### 0.0.11 (2022-06-15)
