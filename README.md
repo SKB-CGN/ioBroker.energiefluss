@@ -13,17 +13,17 @@
 
 ## energiefluss adapter for ioBroker
 
-Es stellt einen animierten Energiefluss für Photovoltaik, Batterie, Hausverbrauch, Einspeisung und Auto-Ladung bereit.
+Es stellt einen animierten Energiefluss fï¿½r Photovoltaik, Batterie, Hausverbrauch, Einspeisung und Auto-Ladung bereit.
 
 ## Installation
-Installation über die Github Katze in ioBroker möglich
+Installation ï¿½ber die Github Katze in ioBroker mï¿½glich
 
 ## Changelog
 <!--
 	Placeholder for the next version (at the beginning of the line):
 	## **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**)
+### 0.0.15 (2022-06-15))
 - Fixed uncaught Error
 - Changed translation for checkbox in admin
 ### 0.0.13 (2022-06-15)

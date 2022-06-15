@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "energiefluss",
-        "version": "0.0.14",
+        "version": "0.0.15",
         "news": {
+            "0.0.15": {
+                "en": "Fixed uncaught Error\nChanged translation for checkbox in admin",
+                "de": "Fehler behoben\nGeänderte Übersetzung für Checkbox in admin",
+                "ru": "Исправлена непонятная ошибка\nИзмененный перевод для checkbox в admin",
+                "pt": "Erro corrigido não atingido\nTradução alterada para caixa de seleção em admin",
+                "nl": "Vertaling:\nVertaald voor checkbox in administratie",
+                "fr": "Correction d'une erreur\nTraduction modifiée pour checkbox dans admin",
+                "it": "Errore non preso fisso\nTraduzione modificata per casella di controllo in admin",
+                "es": "Error no registrado fijo\nTraducción modificada para checkbox en admin",
+                "pl": "Fixed Erroror (ang.)\nZmienił translację dla skrzynki w adminach",
+                "zh-cn": "九. 固定弹\n装箱的更换"
+            },
             "0.0.14": {
                 "en": "Fixed uncaught Error\nChanged translation for checkbox in admin",
                 "de": "Fehler behoben\nGeänderte Übersetzung für Checkbox in admin",
