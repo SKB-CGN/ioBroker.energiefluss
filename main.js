@@ -18,6 +18,7 @@ let consumption;
 let grid_feed;
 let grid_consuming;
 let grid_different;
+let grid_reverse;
 let battery_percent;
 let battery_charge;
 let battery_discharge;
@@ -58,6 +59,7 @@ class Energiefluss extends utils.Adapter {
 			grid_feed = this.config.grid_feed;
 			grid_consuming = this.config.grid_consuming;
 			grid_different = this.config.grid_different;
+			grid_reverse = this.config.grid_reverse ? true : false;
 			battery_percent = this.config.battery_percent;
 			battery_charge = this.config.battery_charge;
 			battery_discharge = this.config.battery_discharge;
@@ -275,15 +277,27 @@ class Energiefluss extends utils.Adapter {
 		if (valuesObj['grid_feed'] != undefined && grid_different === false) {
 			let tmpGridValue = valuesObj['grid_feed'].split(' ');
 			let gridValue = tmpGridValue[0];
+			if (grid_reverse) {
+				if (gridValue > 0) {
+					line_animation.push('<use class="consumption_animation" xlink:href="#grid_to_house" />');
+				}
+				if (gridValue < 0) {
+					// Display as positive
+					gridValue = gridValue * -1;
+					line_animation.push('<use class="consumption_animation" xlink:href="#solar_to_grid" />');
+				}
+			} else {
+				if (gridValue > 0) {
+					line_animation.push('<use class="consumption_animation" xlink:href="#solar_to_grid" />');
+				}
+				if (gridValue < 0) {
+					// Display as positive
+					gridValue = gridValue * -1;
+					line_animation.push('<use class="consumption_animation" xlink:href="#grid_to_house" />');
+				}
+			}
 			// Feeding the grid
-			if (gridValue > 0) {
-				line_animation.push('<use class="consumption_animation" xlink:href="#solar_to_grid" />');
-			}
-			if (gridValue < 0) {
-				// Display as positive & change animation
-				gridValue = gridValue * -1;
-				line_animation.push('<use class="consumption_animation" xlink:href="#grid_to_house" />');
-			}
+
 			gridValue = gridValue + ' ' + unit;
 
 			circle_defs.push('<circle id="grid_present" cx="250" cy="448" r="50" /><path id="icon_grid" transform="translate(238,406)" class="icon_color" d="M8.28,5.45L6.5,4.55L7.76,2H16.23L17.5,4.55L15.72,5.44L15,4H9L8.28,5.45M18.62,8H14.09L13.3,5H10.7L9.91,8H5.38L4.1,10.55L5.89,11.44L6.62,10H17.38L18.1,11.45L19.89,10.56L18.62,8M17.77,22H15.7L15.46,21.1L12,15.9L8.53,21.1L8.3,22H6.23L9.12,11H11.19L10.83,12.35L12,14.1L13.16,12.35L12.81,11H14.88L17.77,22M11.4,15L10.5,13.65L9.32,18.13L11.4,15M14.68,18.12L13.5,13.64L12.6,15L14.68,18.12Z" /><text text-anchor="middle" id="text_grid" x="250" y="478">Netz</text><text text-anchor="middle" id="text_grid_value" x="250" y="453">' + gridValue + '</text>');
