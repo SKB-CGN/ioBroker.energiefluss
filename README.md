@@ -95,8 +95,12 @@ For later updates, the above procedure is not necessary. Just do the following:
 ## Changelog
 <!--
 	Placeholder for the next version (at the beginning of the line):
-### 0.0.4 (2022-06-15)
+	## **WORK IN PROGRESS**
+-->
+
+### **WORK IN PROGRESS**
 - fixed some bugs
+
 ### 0.0.3 (2022-06-14)
 * (SKB) fixed some bugs
 
