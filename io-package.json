@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "energiefluss",
-        "version": "0.0.12",
+        "version": "0.0.13",
         "news": {
+            "0.0.13": {
+                "en": "Added checkbox for reversing Grid-feed and Grid-consuming",
+                "de": "Kontrollkästchen für die Umkehrung von Grid-Feed und Grid-raubend",
+                "ru": "Добавлен чекбокс для разворота Grid-feed и Grid-take",
+                "pt": "Adicionado caixa de seleção para reverter Grid-feed e Grid- consumindo",
+                "nl": "Vermeldde cheques voor het terugkeren van Grid-voeding en Grid-consumeren",
+                "fr": "Ajout d'une case pour renverser Grid-feed et Grid-",
+                "it": "Aggiunta casella di controllo per invertire Grid-feed e Grid-consumo",
+                "es": "Caja de verificación adicional para invertir la alimentación de la red y el consumo de la rejilla",
+                "pl": "Added checkbox for rewersing Grid-feed and Grid-consuming food",
+                "zh-cn": "取消Gridfeed和Grid-消费的检查箱"
+            },
             "0.0.12": {
                 "en": "added line animation",
                 "de": "linie animation",

@@ -16,14 +16,14 @@
 Es stellt einen animierten Energiefluss fÃ¼r Photovoltaik, Batterie, Hausverbrauch, Einspeisung und Auto-Ladung bereit.
 
 ## Installation
-Installation über die Github Katze in ioBroker möglich
+Installation ï¿½ber die Github Katze in ioBroker mï¿½glich
 
 ## Changelog
 <!--
 	Placeholder for the next version (at the beginning of the line):
 	## **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.0.13 (2022-06-15)
 - Added checkbox for reversing Grid-feed and Grid-consuming
 ### 0.0.12 (2022-06-15)
 - added line animation
