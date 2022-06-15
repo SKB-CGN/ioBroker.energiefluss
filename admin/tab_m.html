@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Energiefluss</title>
+    <script src="../../lib/js/jquery-3.2.1.min.js"></script>
+    <script src="../../socket.io/socket.io.js"></script>
+    <script src="conn.js"></script>
+    <script type="text/javascript">
+        // config
+        let html;
+        servConn.namespace = 'energiefluss.0';
+        let objID = servConn.namespace + '.HTML';
+        var loaded = false;
+
+        var states = [];
+        servConn.init({
+            connLink: window.location.href.substr(0, window.location.href.indexOf('/', 8))
+        }, {
+            onConnChange: function (isConnected) {
+                if (isConnected) {
+                    console.log('connected');
+                    servConn.getStates(function (err, _states) {
+                        var count = 0;
+                        for (var id in states) {
+                            count++;
+                        }
+                        if (count > 0) {
+                            console.log('Received ' + count + ' states.');
+                            console.log('Polling active!');
+                            html = states[objID].val;
+                            $('#loading').addClass('hidden');
+                            updateHTML();
+                        }
+                        states = _states;
+                    });
+                } else {
+                    console.log('disconnected');
+                }
+            },
+            onRefresh: function () {
+                window.location.reload();
+            },
+            onUpdate: function (id, state) {
+                setTimeout(function () {
+                    states[id] = state;
+                    if (id == objID) {
+                        html = states[id].val;
+                        updateHTML();
+                    }
+                }, 0);
+            },
+            onError: function (err) {
+                window.alert(_('Cannot execute %s for %s, because of insufficient permissions', err.command,
+                    err.arg), _('Insufficient permissions'), 'alert', 600);
+            }
+        });
+
+        function updateHTML() {
+            $("#html_display").html(html);
+        }
+    </script>
+    <style>
+        #loading {
+            width: 100%;
+            padding: 50px;
+            height: 100%;
+            position: fixed;
+            background-color: rgba(170, 170, 170, 0.9);
+            z-index: 101;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .hidden {
+            display: none !important
+        }
+    </style>
+</head>
+
+<body>
+    <div id="loading">Loading States..</div>
+    <div id="html_display"></div>
+</body>
+
+</html>
