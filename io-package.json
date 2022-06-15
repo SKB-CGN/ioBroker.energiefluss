@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "energiefluss",
-        "version": "0.0.10",
+        "version": "0.0.11",
         "news": {
+            "0.0.11": {
+                "en": "fixed some bugs",
+                "de": "einige fehler behoben",
+                "ru": "исправили некоторые ошибки",
+                "pt": "corrigiu alguns bugs",
+                "nl": "_",
+                "fr": "correction de quelques bugs",
+                "it": "fissi alcuni bug",
+                "es": "arreglar algunos errores",
+                "pl": "uszkodził jakiś błęd",
+                "zh-cn": "固定的几桶"
+            },
             "0.0.10": {
                 "en": "fixed some bugs",
                 "de": "einige fehler behoben",
