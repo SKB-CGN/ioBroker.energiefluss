@@ -1,5 +1,4 @@
 {
-    "Other": "",
     "battery_charge": "Akku laden und entladen",
     "battery_charge_state": "Akku aufladen:",
     "battery_discharge": "Batterie entladen:",
@@ -9,7 +8,7 @@
     "car_charge_energy": "Ladezustand des Autos:",
     "cb_battery_different": "Verwenden Sie unterschiedliche Zustände zum Laden und Entladen der Batterie",
     "cb_grid_different": "Verwenden Sie unterschiedliche Zustände für Netzeinspeisung und Verbrauch",
-    "cb_grid_reverse": "Verwenden Sie negativ für den Verbrauch und positiv für die Netzeinspeisung<br>(Standard ist: positiv für den Verbrauch und negativ für die Netzeinspeisung)",
+    "cb_grid_reverse": "Verwenden Sie positiv für den Verbrauch und negativ für die Netzeinspeisung<br>(Standard ist: negativ für den Verbrauch und positiv für die Netzeinspeisung)",
     "consumption": "Verbrauch:",
     "energiefluss adapter settings": "Adaptereinstellungen für energiefluss",
     "ex_battery_charge": "Datenpunkt zum Laden Ihres Akkus <br><br>(Dies ist normalerweise ein negativer und ein positiver Zustand. Wenn der Zustand unterschiedlich ist, aktivieren Sie das Kontrollkästchen und geben Sie den anderen Zustand an.)",
@@ -26,8 +25,6 @@
     "grid_consuming": "Netzverbrauchszustand",
     "grid_consumption": "Netzverbrauch:",
     "grid_feed": "Netzeinspeisung:",
-    "option1": "",
-    "option2": "",
     "other": "Sonstiges",
     "production": "Produktion:",
     "production and consuming": "Produktion und Nutzung",

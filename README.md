@@ -23,6 +23,9 @@ Installation �ber die Github Katze in ioBroker m�glich
 	Placeholder for the next version (at the beginning of the line):
 	## **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+- Fixed uncaught Error
+- Changed translation for checkbox in admin
 ### 0.0.13 (2022-06-15)
 - Added checkbox for reversing Grid-feed and Grid-consuming
 ### 0.0.12 (2022-06-15)

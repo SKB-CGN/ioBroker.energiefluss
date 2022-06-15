@@ -275,8 +275,7 @@ class Energiefluss extends utils.Adapter {
 			circle_uses.push('<use class="elm_solar shadow" xlink:href="#solar_present" /><use class="text_inside_circle" xlink:href="#text_solar" /><use class="value_inside_circle text_solar" xlink:href="#text_solar_value" /><use xlink:href="#icon_solar" />');
 		}
 		if (valuesObj['grid_feed'] != undefined && grid_different === false) {
-			let tmpGridValue = valuesObj['grid_feed'].split(' ');
-			let gridValue = tmpGridValue[0];
+			let gridValue = valuesObj['grid_feed'];
 			if (grid_reverse) {
 				if (gridValue > 0) {
 					line_animation.push('<use class="consumption_animation" xlink:href="#grid_to_house" />');
@@ -306,10 +305,8 @@ class Energiefluss extends utils.Adapter {
 
 		// User has defined to used different States for consuming from and feeding to the grid
 		if (grid_different === true) {
-			let tmpGridFeedValue = valuesObj['grid_feed'].split(' ');
-			let tmpGridConsumeValue = valuesObj['grid_consuming'].split(' ');
-			let gridConsumeValue = tmpGridConsumeValue[0];
-			let gridFeedValue = tmpGridFeedValue[0];
+			let gridConsumeValue = valuesObj['grid_consuming'];
+			let gridFeedValue = valuesObj['grid_feed'];
 			let gridValue = 0 + ' ' + unit;
 
 			if (gridConsumeValue > 0 && gridFeedValue === 0) {

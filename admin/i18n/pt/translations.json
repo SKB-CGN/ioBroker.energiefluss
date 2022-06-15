@@ -1,5 +1,4 @@
 {
-    "Other": "",
     "battery_charge": "Carga e descarga da bateria",
     "battery_charge_state": "Carga da bateria:",
     "battery_discharge": "Descarregue a bateria:",
@@ -9,7 +8,7 @@
     "car_charge_energy": "Estado da carga do carro:",
     "cb_battery_different": "Use diferentes estados para carga e descarga da bateria",
     "cb_grid_different": "Use diferentes estados para alimentação e consumo da grade",
-    "cb_grid_reverse": "Use negativo para consumo e positivo para alimentação de grade<br>(O padrão é: positivo para consumo e negativo para alimentação de grade)",
+    "cb_grid_reverse": "Use positivo para consumo e negativo para alimentação de grade<br>(O padrão é: negativo para consumo e positivo para alimentação de grade)",
     "consumption": "consumo:",
     "energiefluss adapter settings": "Configurações do adaptador para energyfluss",
     "ex_battery_charge": "Ponto de dados para carregar sua bateria <br><br>(Esta é geralmente uma condição negativa e positiva. Se o estado for diferente, marque a caixa e especifique o outro estado)",
@@ -26,8 +25,6 @@
     "grid_consuming": "Estado de consumo de grade",
     "grid_consumption": "Consumo de rede:",
     "grid_feed": "Alimentação da grade:",
-    "option1": "",
-    "option2": "",
     "other": "Outro",
     "production": "Produção:",
     "production and consuming": "produção e uso",

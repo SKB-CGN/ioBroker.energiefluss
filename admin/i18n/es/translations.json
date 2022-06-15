@@ -1,5 +1,4 @@
 {
-    "Other": "",
     "battery_charge": "batería Carga y descarga",
     "battery_charge_state": "Cargar batería:",
     "battery_discharge": "Descargar batería:",
@@ -9,7 +8,7 @@
     "car_charge_energy": "Estado de carga del coche:",
     "cb_battery_different": "Use diferentes estados para la carga y descarga de la batería",
     "cb_grid_different": "Utilice diferentes estados para la alimentación y el consumo de la red.",
-    "cb_grid_reverse": "Use negativo para el consumo y positivo para la entrada a la red<br>(El valor predeterminado es: positivo para el consumo y negativo para la entrada a la red)",
+    "cb_grid_reverse": "Utilice positivo para el consumo y negativo para la entrada a la red<br>(El valor predeterminado es: negativo para el consumo y positivo para la entrada a la red)",
     "consumption": "consumo:",
     "energiefluss adapter settings": "Configuración del adaptador para energiefluss",
     "ex_battery_charge": "Punto de datos para cargar su batería <br><br>(Esta suele ser una condición negativa y positiva. Si el estado es diferente, marque la casilla y especifique el otro estado en)",
@@ -26,8 +25,6 @@
     "grid_consuming": "Estado de consumo de red",
     "grid_consumption": "Consumo de red:",
     "grid_feed": "Alimentación de red:",
-    "option1": "",
-    "option2": "",
     "other": "Otro",
     "production": "producción:",
     "production and consuming": "producción y uso",

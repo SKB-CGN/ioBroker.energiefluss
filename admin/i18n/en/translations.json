@@ -1,5 +1,4 @@
 {
-    "Other": "",
     "battery_charge": "battery Charge and discharge",
     "battery_charge_state": "Charge battery:",
     "battery_discharge": "Discharge battery:",
@@ -9,7 +8,7 @@
     "car_charge_energy": "Car charge state:",
     "cb_battery_different": "Use different states for Battery charge and discharge",
     "cb_grid_different": "Use different states for grid feeding and consumption",
-    "cb_grid_reverse": "Use negative for consumption and positive for grid feed in<br>(Default is: positive for consumption and negative for grid feed in)",
+    "cb_grid_reverse": "Use positive for consumption and negative for grid feed in<br>(Default is: negative for consumption and positive for grid feed in)",
     "consumption": "consumption:",
     "energiefluss adapter settings": "Adapter settings for energiefluss",
     "ex_battery_charge": "Data point for charging your battery <br><br>(This is usually a negative and positive condition. If the state is different, please check the box and specify the other state on)",
@@ -26,8 +25,6 @@
     "grid_consuming": "Grid consuming state",
     "grid_consumption": "Grid consuming:",
     "grid_feed": "Grid feed-in:",
-    "option1": "",
-    "option2": "",
     "other": "Other",
     "production": "production:",
     "production and consuming": "production and usage",

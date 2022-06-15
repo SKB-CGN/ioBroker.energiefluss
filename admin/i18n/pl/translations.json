@@ -1,5 +1,4 @@
 {
-    "Other": "",
     "battery_charge": "Ładowanie i rozładowanie baterii",
     "battery_charge_state": "Naładuj baterię:",
     "battery_discharge": "Rozładuj baterię:",
@@ -9,7 +8,7 @@
     "car_charge_energy": "Stan naładowania samochodu:",
     "cb_battery_different": "Użyj różnych stanów do ładowania i rozładowania baterii",
     "cb_grid_different": "Użyj różnych stanów do zasilania i zużycia sieci",
-    "cb_grid_reverse": "Użyj wartości ujemnej dla zużycia i dodatniej dla zasilania sieci<br>(Domyślnie: dodatnia dla zużycia i ujemna dla zasilania sieciowego)",
+    "cb_grid_reverse": "Użyj wartości dodatniej dla zużycia i ujemnej dla zasilania sieciowego<br>(Domyślnie: ujemne dla zużycia i dodatnie dla zasilania sieciowego)",
     "consumption": "konsumpcja:",
     "energiefluss adapter settings": "Ustawienia adaptera dla energiefluss",
     "ex_battery_charge": "Punkt danych do ładowania baterii <br><br>(Jest to zwykle stan ujemny i dodatni. Jeśli stan jest inny, zaznacz pole i określ inny stan włączony)",
@@ -26,8 +25,6 @@
     "grid_consuming": "Stan korzystania z sieci",
     "grid_consumption": "Zużycie siatki:",
     "grid_feed": "Zasilanie sieci:",
-    "option1": "",
-    "option2": "",
     "other": "Inny",
     "production": "produkcja:",
     "production and consuming": "produkcja i użytkowanie",

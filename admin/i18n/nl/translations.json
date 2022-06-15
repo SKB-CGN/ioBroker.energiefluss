@@ -1,5 +1,4 @@
 {
-    "Other": "",
     "battery_charge": "batterij Opladen en ontladen",
     "battery_charge_state": "Batterij opladen:",
     "battery_discharge": "Ontlaad batterij:",
@@ -9,7 +8,7 @@
     "car_charge_energy": "Laadstatus auto:",
     "cb_battery_different": "Gebruik verschillende statussen voor het opladen en ontladen van de batterij",
     "cb_grid_different": "Gebruik verschillende statussen voor netvoeding en verbruik",
-    "cb_grid_reverse": "Gebruik negatief voor verbruik en positief voor teruglevering<br>(Standaard is: positief voor verbruik en negatief voor teruglevering)",
+    "cb_grid_reverse": "Gebruik positief voor verbruik en negatief voor teruglevering<br>(Standaard is: negatief voor verbruik en positief voor teruglevering)",
     "consumption": "consumptie:",
     "energiefluss adapter settings": "Adapterinstellingen voor energiefluss",
     "ex_battery_charge": "Gegevenspunt voor het opladen van uw batterij <br><br>(Dit is meestal een negatieve en positieve toestand. Als de staat anders is, vink dan het vakje aan en specificeer de andere staat op)",
@@ -26,8 +25,6 @@
     "grid_consuming": "Netverbruikende staat:",
     "grid_consumption": "Netverbruik:",
     "grid_feed": "Netvoeding:",
-    "option1": "",
-    "option2": "",
     "other": "Ander",
     "production": "productie:",
     "production and consuming": "productie en gebruik",
