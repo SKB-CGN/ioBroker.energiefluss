@@ -166,31 +166,31 @@ class Energiefluss extends utils.Adapter {
 		// Check the corresponding state for changes
 		// Production
 		if (id == production) {
-			valuesObj['production'] = recalculate ? this.recalculateValue(state.val) + unit : state.val + unit;
+			valuesObj['production'] = recalculate ? this.recalculateValue(state.val) : state.val;
 		}
 		if (id == consumption) {
-			valuesObj['consumption'] = recalculate ? this.recalculateValue(state.val) + unit : state.val + unit;
+			valuesObj['consumption'] = recalculate ? this.recalculateValue(state.val) : state.val;
 		}
 		if (id == grid_feed) {
-			valuesObj['grid_feed'] = recalculate ? this.recalculateValue(state.val) + unit : state.val + unit;
+			valuesObj['grid_feed'] = recalculate ? this.recalculateValue(state.val) : state.val;
 		}
 		if (id == grid_consuming) {
-			valuesObj['grid_consuming'] = recalculate ? this.recalculateValue(state.val) + unit : state.val + unit;
+			valuesObj['grid_consuming'] = recalculate ? this.recalculateValue(state.val) : state.val;
 		}
 		if (id == battery_percent) {
-			valuesObj['battery_percent'] = state.val + "%";
+			valuesObj['battery_percent'] = state.val;
 		}
 		if (id == battery_charge) {
-			valuesObj['battery_charge'] = recalculate ? this.recalculateValue(state.val) + unit : state.val + unit;
+			valuesObj['battery_charge'] = recalculate ? this.recalculateValue(state.val) : state.val;
 		}
 		if (id == battery_discharge) {
-			valuesObj['battery_discharge'] = recalculate ? this.recalculateValue(state.val) + unit : state.val + unit;
+			valuesObj['battery_discharge'] = recalculate ? this.recalculateValue(state.val) : state.val;
 		}
 		if (id == car_charge) {
-			valuesObj['car_charge'] = recalculate ? this.recalculateValue(state.val) + unit : state.val + unit;
+			valuesObj['car_charge'] = recalculate ? this.recalculateValue(state.val) : state.val;
 		}
 		if (id == car_percent) {
-			valuesObj['car_percent'] = state.val + "%";
+			valuesObj['car_percent'] = state.val;
 		}
 
 		/*
@@ -241,12 +241,10 @@ class Energiefluss extends utils.Adapter {
 				if (err) {
 					this.log.error(err);
 				} else {
-					if (stateValue) {
-						if (!key.includes("percent")) {
-							tmpObj[key] = recalculate ? this.recalculateValue(stateValue.val) + unit : stateValue.val + unit;
-						} else {
-							tmpObj[key] = stateValue.val + '%';
-						}
+					if (!key.includes("percent")) {
+						tmpObj[key] = recalculate ? this.recalculateValue(stateValue.val) : stateValue.val;
+					} else {
+						tmpObj[key] = stateValue.val;
 					}
 				}
 			});
@@ -264,11 +262,14 @@ class Energiefluss extends utils.Adapter {
 		let html_head = '<!DOCTYPE html><html lang="en"><head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width,initial-scale=1.0"> <title>Energiefluss</title> <style>/* border consuming */ svg{height: auto; width: 95%;}circle{stroke-width: 4px; fill: none; /* fill: transparent;*/}.path{stroke-width: 4px; fill: none;}.icon_color{opacity: 0.7;}circle{stroke-width: 2px; fill: white;}.bg{/* stroke: #efeff0; */ stroke: #000000; stroke-dasharray: 1000; opacity: 0.7;}.elm_solar{stroke: #ffce4a;}.text_solar{fill: #ffce4a;}.elm_house{stroke: #00b5dd;}.text_house{fill: #00b5dd;}.elm_car{stroke: #c5902e;}.text_car{fill: #c5902e;}.elm_battery{stroke: #a1d343;}.text_battery{fill: #a1d343;}.elm_grid{stroke: #61687a;}.text_grid{fill: #61687a;}.text_inside_circle{font: 10px sans-serif; opacity: 0.7;}.value_inside_circle{font: 14px sans-serif;}.value_inside_circle_small{font: 10px sans-serif;}.consumption_animation{animation: cons 4s infinite steps(21); stroke: #ffce4a; stroke-dasharray: 4 12 4 12 4 120; stroke-linecap: round;}@keyframes cons{0%{stroke-dashoffset: 368;}100%{stroke-dashoffset: 32;}}body{background: white;}.shadow {-webkit-filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, .7));filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, .7));}</style></head><body> <svg viewBox="0 0 510 510" width="510" height="510">';
 		/* Build all circles */
 		if (valuesObj['consumption'] != undefined) {
-			circle_defs.push('<circle id="home_present" cx="448" cy="250" r="50"/> <path id="icon_house" transform="translate(436,207)" class="icon_color" d="M0,21V10L7.5,5L15,10V21H10V14H5V21H0M24,2V21H17V8.93L16,8.27V6H14V6.93L10,4.27V2H24M21,14H19V16H21V14M21,10H19V12H21V10M21,6H19V8H21V6Z"/> <text text-anchor="middle" id="text_house" x="450" y="280">Verbrauch</text> <text text-anchor="middle" id="text_house_value" x="450" y="255">' + valuesObj['consumption'] + '</text>');
+			circle_defs.push('<circle id="home_present" cx="448" cy="250" r="50"/> <path id="icon_house" transform="translate(436,207)" class="icon_color" d="M0,21V10L7.5,5L15,10V21H10V14H5V21H0M24,2V21H17V8.93L16,8.27V6H14V6.93L10,4.27V2H24M21,14H19V16H21V14M21,10H19V12H21V10M21,6H19V8H21V6Z"/> <text text-anchor="middle" id="text_house" x="450" y="280">Verbrauch</text> <text text-anchor="middle" id="text_house_value" x="450" y="255">' + valuesObj['consumption'] + ' ' + unit + '</text>');
 			circle_uses.push('<use class="elm_house shadow" xlink:href="#home_present"/> <use class="text_inside_circle" xlink:href="#text_house"/> <use class="value_inside_circle text_house" xlink:href="#text_house_value"/> <use xlink:href="#icon_house"/>');
 		}
 		if (valuesObj['production'] != undefined) {
-			circle_defs.push('<circle id="solar_present" cx="250" cy="52" r="50" /><path id="icon_solar" transform="translate(238,8)" class="icon_color" d="M4,2H20A2,2 0 0,1 22,4V14A2,2 0 0,1 20,16H15V20H18V22H13V16H11V22H6V20H9V16H4A2,2 0 0,1 2,14V4A2,2 0 0,1 4,2M4,4V8H11V4H4M4,14H11V10H4V14M20,14V10H13V14H20M20,4H13V8H20V4Z" /><text text-anchor="middle" id="text_solar" x="250" y="79">Erzeugung</text><text text-anchor="middle" id="text_solar_value" x="250" y="54">' + valuesObj['production'] + '</text>');
+			if (valuesObj['consumption'] > 0) {
+				line_animation.push('<use class="consumption_animation" xlink:href="#solar_to_house" />');
+			}
+			circle_defs.push('<circle id="solar_present" cx="250" cy="52" r="50" /><path id="icon_solar" transform="translate(238,8)" class="icon_color" d="M4,2H20A2,2 0 0,1 22,4V14A2,2 0 0,1 20,16H15V20H18V22H13V16H11V22H6V20H9V16H4A2,2 0 0,1 2,14V4A2,2 0 0,1 4,2M4,4V8H11V4H4M4,14H11V10H4V14M20,14V10H13V14H20M20,4H13V8H20V4Z" /><text text-anchor="middle" id="text_solar" x="250" y="79">Erzeugung</text><text text-anchor="middle" id="text_solar_value" x="250" y="54">' + valuesObj['production'] + ' ' + unit + '</text>');
 			circle_uses.push('<use class="elm_solar shadow" xlink:href="#solar_present" /><use class="text_inside_circle" xlink:href="#text_solar" /><use class="value_inside_circle text_solar" xlink:href="#text_solar_value" /><use xlink:href="#icon_solar" />');
 		}
 		if (valuesObj['grid_feed'] != undefined && grid_different === false) {
@@ -288,10 +289,7 @@ class Energiefluss extends utils.Adapter {
 			circle_defs.push('<circle id="grid_present" cx="250" cy="448" r="50" /><path id="icon_grid" transform="translate(238,406)" class="icon_color" d="M8.28,5.45L6.5,4.55L7.76,2H16.23L17.5,4.55L15.72,5.44L15,4H9L8.28,5.45M18.62,8H14.09L13.3,5H10.7L9.91,8H5.38L4.1,10.55L5.89,11.44L6.62,10H17.38L18.1,11.45L19.89,10.56L18.62,8M17.77,22H15.7L15.46,21.1L12,15.9L8.53,21.1L8.3,22H6.23L9.12,11H11.19L10.83,12.35L12,14.1L13.16,12.35L12.81,11H14.88L17.77,22M11.4,15L10.5,13.65L9.32,18.13L11.4,15M14.68,18.12L13.5,13.64L12.6,15L14.68,18.12Z" /><text text-anchor="middle" id="text_grid" x="250" y="478">Netz</text><text text-anchor="middle" id="text_grid_value" x="250" y="453">' + gridValue + '</text>');
 			circle_uses.push('<use class="elm_grid shadow" xlink:href="#grid_present" /><use class="text_inside_circle" xlink:href="#text_grid" /><use class="value_inside_circle text_grid" xlink:href="#text_grid_value" /><use xlink:href="#icon_grid" />');
 		}
-		if (valuesObj['car_charge'] != undefined) {
-			circle_defs.push('<circle id="car_present" cx="448" cy="448" r="50" /><path id="icon_car" transform="translate(436,406)" class="icon_color" d="M18.92 2C18.72 1.42 18.16 1 17.5 1H6.5C5.84 1 5.29 1.42 5.08 2L3 8V16C3 16.55 3.45 17 4 17H5C5.55 17 6 16.55 6 16V15H18V16C18 16.55 18.45 17 19 17H20C20.55 17 21 16.55 21 16V8L18.92 2M6.85 3H17.14L18.22 6.11H5.77L6.85 3M19 13H5V8H19V13M7.5 9C8.33 9 9 9.67 9 10.5S8.33 12 7.5 12 6 11.33 6 10.5 6.67 9 7.5 9M16.5 9C17.33 9 18 9.67 18 10.5S17.33 12 16.5 12C15.67 12 15 11.33 15 10.5S15.67 9 16.5 9M7 20H11V18L17 21H13V23L7 20Z" /><text text-anchor="middle" id="text_car" x="450" y="478">Auto</text><text text-anchor="middle" id="text_car_value" x="450" y="453">' + valuesObj['car_charge'] + '</text>');
-			circle_uses.push('<use class="elm_car shadow" xlink:href="#car_present" /><use class="text_inside_circle" xlink:href="#text_car" /><use class="value_inside_circle text_car" xlink:href="#text_car_value" /><use xlink:href="#icon_car" />');
-		}
+
 		// User has defined to used different States for consuming from and feeding to the grid
 		if (grid_different === true) {
 			let tmpGridFeedValue = valuesObj['grid_feed'].split(' ');
@@ -314,18 +312,68 @@ class Energiefluss extends utils.Adapter {
 			circle_uses.push('<use class="elm_grid shadow" xlink:href="#grid_present" /><use class="text_inside_circle" xlink:href="#text_grid" /><use class="value_inside_circle text_grid" xlink:href="#text_grid_value" /><use xlink:href="#icon_grid" />');
 		}
 
+		if (valuesObj['car_charge'] != undefined) {
+			if (valuesObj['car_charge'] > 0) {
+				line_animation.push('<use class="consumption_animation" xlink:href="#house_to_car" />');
+			}
+			circle_defs.push('<circle id="car_present" cx="448" cy="448" r="50" /><path id="icon_car" transform="translate(436,406)" class="icon_color" d="M18.92 2C18.72 1.42 18.16 1 17.5 1H6.5C5.84 1 5.29 1.42 5.08 2L3 8V16C3 16.55 3.45 17 4 17H5C5.55 17 6 16.55 6 16V15H18V16C18 16.55 18.45 17 19 17H20C20.55 17 21 16.55 21 16V8L18.92 2M6.85 3H17.14L18.22 6.11H5.77L6.85 3M19 13H5V8H19V13M7.5 9C8.33 9 9 9.67 9 10.5S8.33 12 7.5 12 6 11.33 6 10.5 6.67 9 7.5 9M16.5 9C17.33 9 18 9.67 18 10.5S17.33 12 16.5 12C15.67 12 15 11.33 15 10.5S15.67 9 16.5 9M7 20H11V18L17 21H13V23L7 20Z" /><text text-anchor="middle" id="text_car" x="450" y="478">Auto</text><text text-anchor="middle" id="text_car_value" x="450" y="453">' + valuesObj['car_charge'] + ' ' + unit + '</text>');
+			circle_uses.push('<use class="elm_car shadow" xlink:href="#car_present" /><use class="text_inside_circle" xlink:href="#text_car" /><use class="value_inside_circle text_car" xlink:href="#text_car_value" /><use xlink:href="#icon_car" />');
+		}
+
 		if (valuesObj['car_percent'] != undefined) {
-			circle_defs.push('<text text-anchor="middle" id="text_car_percent" x="450" y="466">' + valuesObj['car_percent'] + '</text>');
+			circle_defs.push('<text text-anchor="middle" id="text_car_percent" x="450" y="466">' + valuesObj['car_percent'] + '%</text>');
 			circle_uses.push('<use class="value_inside_circle_small text_car" xlink:href="#text_car_percent" />');
 		}
 
-		if (valuesObj['battery_charge'] != undefined) {
-			circle_defs.push('<circle id="battery_present" cx="52" cy="250" r="50" /><path id="icon_battery" transform="translate(40,207)" class="icon_color" d="M16 20H8V6H16M16.67 4H15V2H9V4H7.33C6.6 4 6 4.6 6 5.33V20.67C6 21.4 6.6 22 7.33 22H16.67C17.41 22 18 21.41 18 20.67V5.33C18 4.6 17.4 4 16.67 4M15 16H9V19H15V16M15 7H9V10H15V7M15 11.5H9V14.5H15V11.5Z" /><text text-anchor="middle" id="text_battery" x="52" y="280">Batterie</text><text text-anchor="middle" id="text_battery_value" x="52" y="255">' + valuesObj['battery_charge'] + '</text>');
+		if (valuesObj['car_charge'] != undefined && valuesObj['consumption'] === undefined) {
+			if (valuesObj['car_charge'] > 0) {
+				line_animation.push('<use class="consumption_animation" xlink:href="#house_to_car" />');
+			}
+			circle_defs.push('<circle id="home_present" cx="448" cy="250" r="50"/> <path id="icon_house" transform="translate(436,207)" class="icon_color" d="M0,21V10L7.5,5L15,10V21H10V14H5V21H0M24,2V21H17V8.93L16,8.27V6H14V6.93L10,4.27V2H24M21,14H19V16H21V14M21,10H19V12H21V10M21,6H19V8H21V6Z"/>');
+			circle_uses.push('<use class="elm_house shadow" xlink:href="#home_present"/><use xlink:href="#icon_house"/>');
+		}
+
+		if (valuesObj['battery_charge'] != undefined && battery_different === false) {
+			let tmpBatteryValue = valuesObj['battery_charge'].split(' ');
+			let batteryValue = tmpBatteryValue[0];
+			// Feeding the grid
+			if (batteryValue > 0) {
+				line_animation.push('<use class="consumption_animation" xlink:href="#solar_to_battery" />');
+			}
+			if (batteryValue < 0) {
+				// Display as positive & change animation
+				batteryValue = batteryValue * -1;
+				line_animation.push('<use class="consumption_animation" xlink:href="#battery_to_house" />');
+			}
+			batteryValue = batteryValue + ' ' + unit;
+			circle_defs.push('<circle id="battery_present" cx="52" cy="250" r="50" /><path id="icon_battery" transform="translate(40,207)" class="icon_color" d="M16 20H8V6H16M16.67 4H15V2H9V4H7.33C6.6 4 6 4.6 6 5.33V20.67C6 21.4 6.6 22 7.33 22H16.67C17.41 22 18 21.41 18 20.67V5.33C18 4.6 17.4 4 16.67 4M15 16H9V19H15V16M15 7H9V10H15V7M15 11.5H9V14.5H15V11.5Z" /><text text-anchor="middle" id="text_battery" x="52" y="280">Batterie</text><text text-anchor="middle" id="text_battery_value" x="52" y="255">' + batteryValue + '</text>');
 			circle_uses.push('<use class="elm_battery shadow" xlink:href="#battery_present" /><use class="text_inside_circle" xlink:href="#text_battery" /><use class="value_inside_circle text_battery" xlink:href="#text_battery_value" /><use xlink:href="#icon_battery" />');
 		}
 
+		// User has defined to used different States for consuming from and feeding to the grid
+		if (battery_different === true) {
+			let tmpBatteryChargeValue = valuesObj['battery_charge'].split(' ');
+			let tmpBatteryDischargeValue = valuesObj['battery_discharge'].split(' ');
+			let batteryChargeValue = tmpBatteryChargeValue[0];
+			let batteryDischargeValue = tmpBatteryDischargeValue[0];
+			let batteryValue = 0 + ' ' + unit;
+
+			if (batteryChargeValue > 0 && batteryDischargeValue === 0) {
+				line_animation.push('<use class="consumption_animation" xlink:href="#solar_to_battery" />');
+				batteryValue = batteryChargeValue + ' ' + unit;
+			}
+
+			if (batteryDischargeValue > 0 && batteryChargeValue === 0) {
+				line_animation.push('<use class="consumption_animation" xlink:href="#battery_to_house" />');
+				batteryValue = batteryDischargeValue + ' ' + unit;
+			}
+
+			circle_defs.push('<circle id="grid_present" cx="250" cy="448" r="50" /><path id="icon_grid" transform="translate(238,406)" class="icon_color" d="M8.28,5.45L6.5,4.55L7.76,2H16.23L17.5,4.55L15.72,5.44L15,4H9L8.28,5.45M18.62,8H14.09L13.3,5H10.7L9.91,8H5.38L4.1,10.55L5.89,11.44L6.62,10H17.38L18.1,11.45L19.89,10.56L18.62,8M17.77,22H15.7L15.46,21.1L12,15.9L8.53,21.1L8.3,22H6.23L9.12,11H11.19L10.83,12.35L12,14.1L13.16,12.35L12.81,11H14.88L17.77,22M11.4,15L10.5,13.65L9.32,18.13L11.4,15M14.68,18.12L13.5,13.64L12.6,15L14.68,18.12Z" /><text text-anchor="middle" id="text_grid" x="250" y="478">Netz</text><text text-anchor="middle" id="text_grid_value" x="250" y="453">' + batteryValue + '</text>');
+			circle_uses.push('<use class="elm_grid shadow" xlink:href="#grid_present" /><use class="text_inside_circle" xlink:href="#text_grid" /><use class="value_inside_circle text_grid" xlink:href="#text_grid_value" /><use xlink:href="#icon_grid" />');
+		}
+
 		if (valuesObj['battery_percent'] != undefined) {
-			circle_defs.push('<text text-anchor="middle" id="text_battery_percent" x="52" y="268">' + valuesObj['battery_percent'] + '</text>');
+			circle_defs.push('<text text-anchor="middle" id="text_battery_percent" x="52" y="268">' + valuesObj['battery_percent'] + '%</text>');
 			circle_uses.push('<use class="value_inside_circle_small text_battery" xlink:href="#text_battery_percent" />');
 		}
 
@@ -351,14 +399,17 @@ class Energiefluss extends utils.Adapter {
 			line_defs.push('<path id="solar_to_grid" d="M 250,102 v 295" class="path" />');
 			line_uses.push('<use class="bg" xlink:href="#solar_to_grid" />');
 		}
-		if (valuesObj['consumption'] != undefined && valuesObj['car_charge'] != undefined) {
+		if ((valuesObj['consumption'] != undefined && valuesObj['car_charge'] != undefined) || (valuesObj['car_charge'] != undefined && valuesObj['consumption'] === undefined)) {
 			line_defs.push('<path id="house_to_car" d="M 448,300 v 97" class="path" />');
 			line_uses.push('<use class="bg" xlink:href="#house_to_car" />');
 		}
-
-		if (valuesObj['battery_charge'] != undefined && valuesObj['consumption'] != undefined && valuesObj['production'] && (valuesObj['grid_feed'] != undefined || valuesObj['grid_consuming'] != undefined)) {
-			line_defs.push('<path id="solar_to_battery" d="M 230,98 v 132 l 0,0 h -132" class="path" /><path id="battery_to_house" d="M 102,250 h 295" class="path" /><path id="grid_to_battery" d="M 230,402 v -132 l 0,0 h -132" class="path" />');
-			line_uses.push('<use class="bg" xlink:href="#solar_to_battery" /><use class="bg" xlink:href="#battery_to_house" /><use class="bg" xlink:href="#grid_to_battery" />');
+		if (valuesObj['battery_charge'] != undefined && valuesObj['grid_feed'] != undefined) {
+			line_defs.push('<path id="solar_to_battery" d="M 230,98 v 132 l 0,0 h -132" class="path" /><path id="grid_to_battery" d="M 230,402 v -132 l 0,0 h -132" class="path" />');
+			line_uses.push('<use class="bg" xlink:href="#solar_to_battery" /><use class="bg" xlink:href="#grid_to_battery" />');
+		}
+		if (valuesObj['battery_charge'] != undefined && valuesObj['consumption'] != undefined) {
+			line_defs.push('<path id="battery_to_house" d="M 102,250 h 295" class="path" />');
+			line_uses.push('<use class="bg" xlink:href="#battery_to_house" />');
 		}
 
 

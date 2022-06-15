@@ -2,132 +2,62 @@
 <html lang="en">
 
 <head>
-    <title>iRobot Roomba</title>
-
-    <link rel="stylesheet" type="text/css" href="../../css/adapter.css" />
-    <link rel="stylesheet" type="text/css" href="../../lib/css/materialize.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
+    <title>Energiefluss</title>
     <script src="../../lib/js/jquery-3.2.1.min.js"></script>
     <script src="../../socket.io/socket.io.js"></script>
     <script src="conn.js"></script>
+    <script type="text/javascript">
+        // config
+        let html;
+        servConn.namespace = 'energiefluss.0';
+        let objID = servConn.namespace + '.HTML';
+        var loaded = false;
 
-    <script src="../../lib/js/materialize.js"></script>
-    <script>
-        var socketConnected;
-        var show = 'current';
-        var current = {};
-        var _STATES;
-        $(window).on('load', function () {
-            var history = [];
-            var title = 'mission_<missions.current.id>_<missions.current.startedDateTime>.png';
-
-            // config
-            servConn.namespace = 'energiefluss.0';
-
-            // collect states
-            var states = [];
-            $('[data-state]').each(function (i, state) {
-                if ($(this).attr('data-state') !== '')
-                    states.push(servConn.namespace + '.' + $(this).attr('data-state'));
-            });
-
-            var loaded = false;
-            var unique = [...new Set(states)];
-            var elements;
-            var max = 0;
-
-            // connect socket
-            var value;
-            servConn.init({
-                connLink: window.location.href.substr(0, window.location.href.indexOf('/', 8))
-            }, {
-                onConnChange: function (socketConnected) {
-                    console.log('Socket ' + (socketConnected ? 'connected' : 'disconnected') + '!');
-
-                    // retrieve states
-                    var updateData = setTimeout(function getData() {
-                        if (socketConnected && show == 'current') {
-                            servConn.getStates(function (err, _states) {
-                                var count = 0;
-                                for (var id in _states) {
-                                    count++;
-                                }
-                                console.log('Received ' + count + ' states.');
-                                states = _states;
-                            });
-                            /*
-                            servConn.getStates(unique, function (err, _states) {
-                                elements = Object.values(_states).filter((obj) =>
-                                    obj.val !== undefined);
-                                max = elements.length > max ? elements.length : max;
-                                $('#loading').text('Loaded ' + max + ' of ' + unique
-                                    .length + ' States..');
-
-                                if (!loaded && unique.length !=
-                                    max
-                                ) // filters non-existing states (which don't have ".val"-index)
-                                    return;
-
-                                loaded = true;
-                                $('#loading').addClass('hidden');
-
-                                _STATES = _states;
-
-                                for (var key in _states) {
-                                    if (key === servConn.namespace +
-                                        '.missions.history') {
-                                        value = _states[key] && _states[key].val ?
-                                            JSON.parse(_states[key].val) : [];
-                                        history = value;
-                                    } else
-                                        value = _states[key] && _states[key].val ?
-                                        _states[key].val : '';
-
-                                    if (title.indexOf('<') > -1 && !Array.isArray(
-                                            value))
-                                        title = title.replace(RegExp('<' + key
-                                                .replace(servConn.namespace + '.',
-                                                    '') + '>', 'g'), value
-                                            .toString().replace(/ /g, '_').replace(
-                                                /:/g, '-'));
-
-                                    setValue(key, value);
-                                    current[key.replace(servConn.namespace + '.',
-                                        '')] = value;
-                                }
-                            });
-                            */
+        var states = [];
+        servConn.init({
+            connLink: window.location.href.substr(0, window.location.href.indexOf('/', 8))
+        }, {
+            onConnChange: function (isConnected) {
+                if (isConnected) {
+                    console.log('connected');
+                    servConn.getStates(objID, (error, states) => {
+                        var count = 0;
+                        for (var id in states) {
+                            count++;
                         }
-
-                        updateData = setTimeout(getData, 2000);
-                    }, 1000);
-
-                    //title = title.replace(RegExp('<[a-zA-Z0-9\.]*>', 'gi'), '');
-                }
-            });
-
-            // paste value to document
-            function setValue(id, value) {
-                if (states.indexOf(id) > -1) {
-                    var elements = $('[data-state="' + id.replace(servConn.namespace + '.', '') + '"]');
-                    var tag;
-
-                    elements.each(function (i, element) {
-                        element = $(element);
-                        tag = element.prop('tagName');
-
-                        switch (tag) {
-                            // add any other information
-                            default:
-                                element.text(value);
-                                break;
+                        if (count > 0) {
+                            console.log('Received ' + count + ' states.');
+                            console.log('Polling active!');
+                            html = states[objID].val;
+                            $('#loading').addClass('hidden');
+                            updateHTML();
                         }
                     });
+                } else {
+                    console.log('disconnected');
                 }
+            },
+            onRefresh: function () {
+                window.location.reload();
+            },
+            onUpdate: function (id, state) {
+                setTimeout(function () {
+                    states[id] = state;
+                    if (id == objID) {
+                        html = states[id].val;
+                        updateHTML();
+                    }
+                }, 0);
+            },
+            onError: function (err) {
+                window.alert(_('Cannot execute %s for %s, because of insufficient permissions', err.command,
+                    err.arg), _('Insufficient permissions'), 'alert', 600);
             }
         });
-        // -->
+
+        function updateHTML() {
+            $("#html_display").html(html);
+        }
     </script>
     <style>
         #loading {
@@ -140,20 +70,16 @@
             color: #333;
             font-weight: bold;
         }
+
+        .hidden {
+            display: none !important
+        }
     </style>
 </head>
 
 <body>
     <div id="loading">Loading States..</div>
-    <div class="m adapter-container">
-
-        <div class="row" data-show="current">
-            <div class="col s2">
-                <div data-state="html"></div>
-            </div>
-        </div>
-
-    </div>
+    <div id="html_display"></div>
 </body>
 
 </html>

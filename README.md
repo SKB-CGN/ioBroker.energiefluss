@@ -97,7 +97,8 @@ For later updates, the above procedure is not necessary. Just do the following:
 	Placeholder for the next version (at the beginning of the line):
 	## **WORK IN PROGRESS**
 -->
-
+### **WORK IN PROGRESS**
+- added line animation
 ### 0.0.11 (2022-06-15)
 - fixed some bugs
 
