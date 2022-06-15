@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "energiefluss",
-        "version": "0.0.16",
+        "version": "0.0.17",
         "news": {
+            "0.0.17": {
+                "en": "fixed solar and grid line animation",
+                "de": "feste solar- und netzanimation",
+                "ru": "фиксированная анимация солнечной и сетки",
+                "pt": "animação de linha solar e grade fixa",
+                "nl": "vertaling:",
+                "fr": "animation de ligne solaire et de réseau fixe",
+                "it": "animazione di linea solare e griglia",
+                "es": "solar fijo y línea de red de animación",
+                "pl": "przestrzeń słoneczna i sieć",
+                "zh-cn": "固定太阳能和电线"
+            },
             "0.0.16": {
                 "en": "Fixed uncaught Error\nChanged translation for checkbox in admin",
                 "de": "Fehler behoben\nGeänderte Übersetzung für Checkbox in admin",

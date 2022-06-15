@@ -23,7 +23,7 @@ Installation �ber die Github Katze in ioBroker m�glich
 	Placeholder for the next version (at the beginning of the line):
 	## **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.0.17 (2022-06-16)
 - fixed solar and grid line animation
 
 ### 0.0.16 (2022-06-15)
