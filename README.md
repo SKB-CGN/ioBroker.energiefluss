@@ -23,7 +23,7 @@ Installation �ber die Github Katze in ioBroker m�glich
 	Placeholder for the next version (at the beginning of the line):
 	## **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.0.14 (2022-06-15)
 - Fixed uncaught Error
 - Changed translation for checkbox in admin
 ### 0.0.13 (2022-06-15)
