@@ -345,8 +345,7 @@ class Energiefluss extends utils.Adapter {
 		}
 
 		if (valuesObj['battery_charge'] != undefined && battery_different === false) {
-			let tmpBatteryValue = valuesObj['battery_charge'].split(' ');
-			let batteryValue = tmpBatteryValue[0];
+			let batteryValue = valuesObj['battery_charge'];
 			// Feeding the grid
 			if (batteryValue > 0) {
 				line_animation.push('<use class="consumption_animation" xlink:href="#solar_to_battery" />');
@@ -363,10 +362,8 @@ class Energiefluss extends utils.Adapter {
 
 		// User has defined to used different States for consuming from and feeding to the grid
 		if (battery_different === true) {
-			let tmpBatteryChargeValue = valuesObj['battery_charge'].split(' ');
-			let tmpBatteryDischargeValue = valuesObj['battery_discharge'].split(' ');
-			let batteryChargeValue = tmpBatteryChargeValue[0];
-			let batteryDischargeValue = tmpBatteryDischargeValue[0];
+			let batteryChargeValue = valuesObj['battery_charge'];
+			let batteryDischargeValue = valuesObj['battery_discharge'];
 			let batteryValue = 0 + ' ' + unit;
 
 			if (batteryChargeValue > 0 && batteryDischargeValue === 0) {
