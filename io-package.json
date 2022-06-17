@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "energiefluss",
-        "version": "0.0.17",
+        "version": "0.0.18",
         "news": {
+            "0.0.18": {
+                "en": "changed alignment of View (height and width are not dynamically sized)\nsupport for transparent background, if loaded in iframe",
+                "de": "geänderte Ausrichtung der Ansicht (Höhe und Breite sind nicht dynamisch dimensioniert)\nunterstützung für transparenten hintergrund, wenn in iframe geladen",
+                "ru": "измененное выравнивание View (высота и ширина не динамически размерированы)\nподдержка прозрачного фона, если загружено в iframe",
+                "pt": "alinhamento alterado de Vista (altura e largura não são dinamicamente dimensionadas)\nsuporte para fundo transparente, se carregado no iframe",
+                "nl": "verandering van View (height en breedte) zijn niet dynamisch groot\nondersteuning voor transparante achtergrond, als geladen in alsrame",
+                "fr": "changement d'alignement de vue (la hauteur et la largeur ne sont pas de taille dynamique)\nsupport pour fond transparent, si chargé dans iframe",
+                "it": "cambiato allineamento di Vista (altezza e larghezza non sono dinamicamente dimensionati)\nsupporto per sfondo trasparente, se caricato in iframe",
+                "es": "cambio de alineación de la vista (altura y ancho no son de tamaño dinámico)\nsoporte para fondo transparente, si se carga en iframe",
+                "pl": "zmienione są charakterystyki i szerokości nie są dynamicznie zróżnicowane\npopieranie przezroczystego tła, jeśli załadowane są w iframe",
+                "zh-cn": "改变View(英雄和妻子不动态)的协调\n对透明背景的支持,如果在一框架内装载"
+            },
             "0.0.17": {
                 "en": "fixed solar and grid line animation",
                 "de": "feste solar- und netzanimation",
