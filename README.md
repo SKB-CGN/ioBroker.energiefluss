@@ -30,7 +30,7 @@ Installation über die Github Katze in ioBroker möglich
 	Placeholder for the next version (at the beginning of the line):
 	## **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.0.20 (2022-06-17)
 - changed alignment if no battery is present to save space on the left
 
 ### 0.0.19 (2022-06-17)

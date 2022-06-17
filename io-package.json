@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "energiefluss",
-        "version": "0.0.19",
+        "version": "0.0.20",
         "news": {
+            "0.0.20": {
+                "en": "changed alignment if no battery is present to save space on the left",
+                "de": "geänderte ausrichtung, wenn keine batterie vorhanden ist, um platz auf der linken seite zu sparen",
+                "ru": "измененное выравнивание, если нет батареи присутствует, чтобы сохранить пространство слева",
+                "pt": "alinhamento alterado se nenhuma bateria está presente para economizar espaço na esquerda",
+                "nl": "verandering als er geen batterij aanwezig is om ruimte te redden aan de linkerkant",
+                "fr": "changement d'alignement si aucune batterie n'est présente pour sauver de l'espace à gauche",
+                "it": "cambiato allineamento se nessuna batteria è presente per risparmiare spazio sulla sinistra",
+                "es": "cambio de alineación si no hay batería presente para ahorrar espacio en la izquierda",
+                "pl": "zmieniono dopasowanie, jeśli żadna bateria nie jest obecnym, aby ocalić przestrzeń na lewo",
+                "zh-cn": "如果没有电池,就可改变协调,以挽救左边的空间。"
+            },
             "0.0.19": {
                 "en": "changed alignment of View (height and width are not dynamically sized)\nsupport for transparent background, if loaded in iframe\nchanged incompatible TAG in HTML",
                 "de": "geänderte Ausrichtung der Ansicht (Höhe und Breite sind nicht dynamisch dimensioniert)\nunterstützung für transparenten hintergrund, wenn in iframe geladen\ninkompatible TAG in HTML geändert",
