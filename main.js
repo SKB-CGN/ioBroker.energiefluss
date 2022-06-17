@@ -427,7 +427,7 @@ class Energiefluss extends utils.Adapter {
 
 		// Put definitions together
 		/* Lines */
-		let defs_html = '<dev>';
+		let defs_html = '<defs>';
 		line_defs.forEach(function (id, i) {
 			defs_html = defs_html + id;
 		});
@@ -435,7 +435,7 @@ class Energiefluss extends utils.Adapter {
 		circle_defs.forEach(function (id, i) {
 			defs_html = defs_html + id;
 		});
-		defs_html = defs_html + '</dev>';
+		defs_html = defs_html + '</defs>';
 
 		// Put uses together
 		/* Lines */

@@ -23,9 +23,10 @@ Installation �ber die Github Katze in ioBroker m�glich
 	Placeholder for the next version (at the beginning of the line):
 	## **WORK IN PROGRESS**
 -->
-### 0.0.18 (2022-06-17)
+### **WORK IN PROGRESS**
 - changed alignment of View (height and width are not dynamically sized)
 - support for transparent background, if loaded in iframe
+- changed incompatible TAG in HTML
 
 ### 0.0.17 (2022-06-16)
 - fixed solar and grid line animation
