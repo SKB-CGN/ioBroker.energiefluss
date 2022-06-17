@@ -8,7 +8,7 @@
 ![Current version in stable repository](https://iobroker.live/badges/energiefluss-stable.svg)
 [![Dependency Status](https://img.shields.io/david/SKB-CGN/iobroker.energiefluss.svg)](https://david-dm.org/SKB-CGN/iobroker.energiefluss)
 
-![GitHub](https://img.shields.io/github/license/iobroker-community-adapters/iobroker.shelly?style=flat-square)
+![GitHub](https://img.shields.io/github/license/SKB-CGN/iobroker.energiefluss?style=flat-square)
 ![GitHub repo size](https://img.shields.io/github/repo-size/SKB-CGN/iobroker.energiefluss?logo=github&style=flat-square)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/SKB-CGN/iobroker.energiefluss?logo=github&style=flat-square)
 ![GitHub last commit](https://img.shields.io/github/last-commit/SKB-CGN/iobroker.energiefluss?logo=github&style=flat-square)
