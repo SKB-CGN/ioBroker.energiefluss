@@ -18,12 +18,12 @@
 
 **Tests:** ![Test and Release](https://github.com/SKB-CGN/ioBroker.energiefluss/workflows/Test%20and%20Release/badge.svg)
 
-## energiefluss adapter for ioBroker
+## Energiefluss adapter for ioBroker
 
-Es stellt einen animierten Energiefluss f�r Photovoltaik, Batterie, Hausverbrauch, Einspeisung und Auto-Ladung bereit.
+Es stellt einen animierten Energiefluss fr Photovoltaik, Batterie, Hausverbrauch, Einspeisung und Auto-Ladung bereit.
 
 ## Installation
-Installation �ber die Github Katze in ioBroker m�glich
+Installation über die Github Katze in ioBroker möglich
 
 ## Changelog
 <!--
