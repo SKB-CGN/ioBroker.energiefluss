@@ -30,7 +30,7 @@ Installation über die Github Katze in ioBroker möglich
 	Placeholder for the next version (at the beginning of the line):
 	## **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.0.21 (2022-06-17)
 - corrected admin Tab
 
 ### 0.0.20 (2022-06-17)

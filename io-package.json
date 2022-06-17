@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "energiefluss",
-        "version": "0.0.20",
+        "version": "0.0.21",
         "news": {
+            "0.0.21": {
+                "en": "corrected admin Tab",
+                "de": "berichtigt admin Tab",
+                "ru": "исправлено admin Tab",
+                "pt": "guia de administração corrigida",
+                "nl": "admin Tab",
+                "fr": "administrateur corrigé",
+                "it": "scheda di amministrazione corretta",
+                "es": "admin corregido Tab",
+                "pl": "administrative Tab",
+                "zh-cn": "更正"
+            },
             "0.0.20": {
                 "en": "changed alignment if no battery is present to save space on the left",
                 "de": "geänderte ausrichtung, wenn keine batterie vorhanden ist, um platz auf der linken seite zu sparen",
