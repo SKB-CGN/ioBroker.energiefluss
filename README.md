@@ -1,11 +1,18 @@
 ![Logo](admin/energiefluss.png)
+
 # ioBroker.energiefluss
 
-[![NPM version](https://img.shields.io/npm/v/iobroker.energiefluss.svg)](https://www.npmjs.com/package/iobroker.energiefluss)
+[![NPM version](https://img.shields.io/npm/v/iobroker.energiefluss?style=flat-square)](https://www.npmjs.com/package/iobroker.energiefluss)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.energiefluss.svg)](https://www.npmjs.com/package/iobroker.energiefluss)
 ![Number of Installations](https://iobroker.live/badges/energiefluss-installed.svg)
 ![Current version in stable repository](https://iobroker.live/badges/energiefluss-stable.svg)
 [![Dependency Status](https://img.shields.io/david/SKB-CGN/iobroker.energiefluss.svg)](https://david-dm.org/SKB-CGN/iobroker.energiefluss)
+
+![GitHub](https://img.shields.io/github/license/iobroker-community-adapters/iobroker.shelly?style=flat-square)
+![GitHub repo size](https://img.shields.io/github/repo-size/SKB-CGN/iobroker.energiefluss?logo=github&style=flat-square)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/SKB-CGN/iobroker.energiefluss?logo=github&style=flat-square)
+![GitHub last commit](https://img.shields.io/github/last-commit/SKB-CGN/iobroker.energiefluss?logo=github&style=flat-square)
+![GitHub issues](https://img.shields.io/github/issues/SKB-CGN/iobroker.energiefluss?logo=github&style=flat-square)
 
 [![NPM](https://nodei.co/npm/iobroker.energiefluss.png?downloads=true)](https://nodei.co/npm/iobroker.energiefluss/)
 
