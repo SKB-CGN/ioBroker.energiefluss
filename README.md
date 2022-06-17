@@ -23,7 +23,7 @@ Installation �ber die Github Katze in ioBroker m�glich
 	Placeholder for the next version (at the beginning of the line):
 	## **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.0.19 (2022-06-17)
 - changed alignment of View (height and width are not dynamically sized)
 - support for transparent background, if loaded in iframe
 - changed incompatible TAG in HTML
