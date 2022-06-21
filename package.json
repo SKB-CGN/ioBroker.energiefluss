@@ -2,10 +2,7 @@
   "name": "iobroker.energiefluss",
   "version": "0.0.21",
   "description": "It provides an animated energy-flow for solar-panels, battery-charging, house-consumption, grid feed-in and car-charging.",
-  "author": {
-    "name": "SKB",
-    "email": "info@skb-web.de"
-  },
+  "author": "SKB <info@skb-web.de>",
   "homepage": "https://github.com/SKB-CGN/ioBroker.energiefluss",
   "license": "MIT",
   "keywords": [
@@ -16,7 +13,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/SKB-CGN/ioBroker.energiefluss"
+    "url": "git+https://github.com/SKB-CGN/ioBroker.energiefluss.git"
   },
   "dependencies": {
     "@iobroker/adapter-core": "^2.6.0"
@@ -65,5 +62,8 @@
   "bugs": {
     "url": "https://github.com/SKB-CGN/ioBroker.energiefluss/issues"
   },
-  "readmeFilename": "README.md"
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  }
 }

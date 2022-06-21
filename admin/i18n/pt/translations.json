@@ -7,6 +7,7 @@
     "car_battery_charge": "Estado do nível da bateria do carro:",
     "car_charge_energy": "Estado da carga do carro:",
     "cb_battery_different": "Use diferentes estados para carga e descarga da bateria",
+    "cb_calculate_consumption": "Cálculo de Consumo via 'Produção' + 'Grade'",
     "cb_grid_different": "Use diferentes estados para alimentação e consumo da grade",
     "cb_grid_reverse": "Use positivo para consumo e negativo para alimentação de grade<br>(O padrão é: negativo para consumo e positivo para alimentação de grade)",
     "consumption": "consumo:",

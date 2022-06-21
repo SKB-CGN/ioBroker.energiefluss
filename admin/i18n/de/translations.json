@@ -7,6 +7,7 @@
     "car_battery_charge": "Ladezustand Autoakku:",
     "car_charge_energy": "Ladezustand des Autos:",
     "cb_battery_different": "Verwenden Sie unterschiedliche Zustände zum Laden und Entladen der Batterie",
+    "cb_calculate_consumption": "Verbrauchsberechnung über 'Erzeugung' + 'Netz'",
     "cb_grid_different": "Verwenden Sie unterschiedliche Zustände für Netzeinspeisung und Verbrauch",
     "cb_grid_reverse": "Verwenden Sie positiv für den Verbrauch und negativ für die Netzeinspeisung<br>(Standard ist: negativ für den Verbrauch und positiv für die Netzeinspeisung)",
     "consumption": "Verbrauch:",

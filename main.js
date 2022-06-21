@@ -25,6 +25,7 @@ let battery_discharge;
 let battery_different;
 let car_charge;
 let car_percent;
+let calculate_consumption
 let recalculate = false;
 let valuesObj = {};
 let configObj = {};
@@ -66,6 +67,7 @@ class Energiefluss extends utils.Adapter {
 			battery_different = this.config.battery_different;
 			car_charge = this.config.car_charge;
 			car_percent = this.config.car_percent;
+			calculate_consumption = this.config.calculate_consumption;
 
 			recalculate = this.config.recalculate ? true : false;
 			this.log.info("Starting Energiefluss Adapter");
@@ -87,8 +89,6 @@ class Energiefluss extends utils.Adapter {
 
 			// Load all Data once before subscribing
 			valuesObj = await this.getInitialValues(configObj);
-
-			this.log.debug("Initial Values: " + JSON.stringify(valuesObj));
 
 			// Build array for subscribing to states
 			subscribeArray = Object.values(configObj);
@@ -119,6 +119,7 @@ class Energiefluss extends utils.Adapter {
 			// Or, if you really must, you can also watch all states. Don't do this if you don't need to. Otherwise this will cause a lot of unnecessary load on the system:
 			// this.subscribeStates("*");
 			this.log.info("Adapter started and listening to " + subscribeArray.length + " States");
+			this.log.debug("Initial Values: " + JSON.stringify(valuesObj));
 		} else {
 			this.log.warn("No production datapoint set");
 		}
@@ -195,6 +196,13 @@ class Energiefluss extends utils.Adapter {
 			valuesObj['car_percent'] = state.val;
 		}
 
+		if (calculate_consumption) {
+			let prodValue = valuesObj['production'];
+			let gridValue = valuesObj['grid_feed'];
+			valuesObj['consumption'] = recalculate ? this.recalculateValue(parseFloat(prodValue) + parseFloat(gridValue)) : (parseFloat(prodValue) + parseFloat(gridValue));
+		}
+
+		this.log.debug("States changed: " + JSON.stringify(valuesObj));
 		/*
 		if (state) {
 			// The state was changed
@@ -240,16 +248,13 @@ class Energiefluss extends utils.Adapter {
 			const [key, value] = entry;
 			//values = values + this.getForeignStateAsync(value);
 			this.getForeignState(value, (err, stateValue) => {
-				if (err) {
-					this.log.error(err);
+				if (!key.includes("percent")) {
+					tmpObj[key] = recalculate ? this.recalculateValue(stateValue.val) : stateValue.val;
 				} else {
-					if (!key.includes("percent")) {
-						tmpObj[key] = recalculate ? this.recalculateValue(stateValue.val) : stateValue.val;
-					} else {
-						tmpObj[key] = stateValue.val;
-					}
+					tmpObj[key] = stateValue.val;
 				}
 			});
+
 		});
 		return tmpObj;
 	}

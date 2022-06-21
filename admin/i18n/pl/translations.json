@@ -7,6 +7,7 @@
     "car_battery_charge": "Stan akumulatora samochodu:",
     "car_charge_energy": "Stan naładowania samochodu:",
     "cb_battery_different": "Użyj różnych stanów do ładowania i rozładowania baterii",
+    "cb_calculate_consumption": "Obliczanie zużycia za pomocą opcji „Produkcja” + „Siatka”",
     "cb_grid_different": "Użyj różnych stanów do zasilania i zużycia sieci",
     "cb_grid_reverse": "Użyj wartości dodatniej dla zużycia i ujemnej dla zasilania sieciowego<br>(Domyślnie: ujemne dla zużycia i dodatnie dla zasilania sieciowego)",
     "consumption": "konsumpcja:",

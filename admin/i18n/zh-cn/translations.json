@@ -7,6 +7,7 @@
     "car_battery_charge": "汽车Accu级别状态：",
     "car_charge_energy": "汽车充电状态：",
     "cb_battery_different": "对电池充电和放电使用不同的状态",
+    "cb_calculate_consumption": "通过“生产”+“网格”计算消耗",
     "cb_grid_different": "使用不同的状态进行电网馈电和消耗",
     "cb_grid_reverse": "对消耗使用正数，对电网馈入使用负数<br>（默认为：消耗为负数，对电网馈入使用正数）",
     "consumption": "消耗：",

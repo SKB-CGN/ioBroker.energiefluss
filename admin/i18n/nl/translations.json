@@ -7,6 +7,7 @@
     "car_battery_charge": "Auto accu niveau staat:",
     "car_charge_energy": "Laadstatus auto:",
     "cb_battery_different": "Gebruik verschillende statussen voor het opladen en ontladen van de batterij",
+    "cb_calculate_consumption": "Verbruikscalculatie via 'Productie' + 'Net'",
     "cb_grid_different": "Gebruik verschillende statussen voor netvoeding en verbruik",
     "cb_grid_reverse": "Gebruik positief voor verbruik en negatief voor teruglevering<br>(Standaard is: negatief voor verbruik en positief voor teruglevering)",
     "consumption": "consumptie:",

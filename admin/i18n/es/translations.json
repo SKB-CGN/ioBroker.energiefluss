@@ -7,6 +7,7 @@
     "car_battery_charge": "Estado del nivel de la batería del coche:",
     "car_charge_energy": "Estado de carga del coche:",
     "cb_battery_different": "Use diferentes estados para la carga y descarga de la batería",
+    "cb_calculate_consumption": "Cálculo de Consumo vía 'Producción' + 'Grid'",
     "cb_grid_different": "Utilice diferentes estados para la alimentación y el consumo de la red.",
     "cb_grid_reverse": "Utilice positivo para el consumo y negativo para la entrada a la red<br>(El valor predeterminado es: negativo para el consumo y positivo para la entrada a la red)",
     "consumption": "consumo:",
