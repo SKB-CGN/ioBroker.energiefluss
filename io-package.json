@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "energiefluss",
-        "version": "0.0.21",
+        "version": "0.0.22",
         "news": {
+            "0.0.22": {
+                "en": "implemented function, to calculate house consumption, if no house-consumption state is available",
+                "de": "implementierte funktion zur berechnung des hausverbrauchs, wenn kein hausverbrauchszustand verfügbar ist",
+                "ru": "реализованная функция, для расчета потребления дома, если нет состояния дома-потребления доступно",
+                "pt": "função implementada, para calcular o consumo de casa, se nenhum estado de consumo de casa está disponível",
+                "nl": "gevolgde functie, om huisconsumptie te berekenen, als er geen huisconsumptie beschikbaar is",
+                "fr": "fonction mise en œuvre, pour calculer la consommation de maison, si aucun état de consommation de maison n'est disponible",
+                "it": "funzione implementata, per calcolare il consumo di casa, se non è disponibile uno stato di consumo di casa",
+                "es": "función implementada, para calcular el consumo de la casa, si no hay estado de consumo de la casa",
+                "pl": "zaimplementowana funkcja, aby obliczyć konsumpcję domów, jeśli nie istnieje żadna z państw konsumenckich",
+                "zh-cn": "实施的职能是计算住房消费,如果没有住房消费状况。"
+            },
             "0.0.21": {
                 "en": "corrected admin Tab",
                 "de": "berichtigt admin Tab",
