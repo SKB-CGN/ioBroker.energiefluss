@@ -30,7 +30,7 @@ Installation ueber die Github Katze in ioBroker moeglich
 	Placeholder for the next version (at the beginning of the line):
 	## **WORK IN PROGRESS**
 -->
-### 0.1.0-0 (2022-06-24)
+### **WORK IN PROGRESS**
 - added possibility for changing the colors (text and circles)
 
 ### 0.0.22 (2022-06-21)
