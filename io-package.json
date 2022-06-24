@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "energiefluss",
-        "version": "0.2.0",
+        "version": "0.2.1",
         "news": {
+            "0.2.1": {
+                "en": "fixed failed log output",
+                "de": "fehlgeschlagene protokollausgabe",
+                "ru": "фиксированный неудачный выход журнала",
+                "pt": "saída de log de falha fixa",
+                "nl": "vertaling:",
+                "fr": "sortie du journal raté",
+                "it": "uscita di registro non riuscita fissa",
+                "es": "salida de registro fallada",
+                "pl": "wadliwość",
+                "zh-cn": "固定的伐木产出"
+            },
             "0.2.0": {
                 "en": "Added new State for car charger connected and color option",
                 "de": "Hinzugefügt neue Staat für Auto-Ladegerät angeschlossen und Farbe Option",
@@ -220,18 +232,6 @@
                 "zh-cn": "固定的几桶"
             },
             "0.0.5": {
-                "en": "fixed some bugs",
-                "de": "einige fehler behoben",
-                "ru": "исправили некоторые ошибки",
-                "pt": "corrigiu alguns bugs",
-                "nl": "_",
-                "fr": "correction de quelques bugs",
-                "it": "fissi alcuni bug",
-                "es": "arreglar algunos errores",
-                "pl": "uszkodził jakiś błęd",
-                "zh-cn": "固定的几桶"
-            },
-            "0.0.4": {
                 "en": "fixed some bugs",
                 "de": "einige fehler behoben",
                 "ru": "исправили некоторые ошибки",
