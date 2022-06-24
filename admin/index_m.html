@@ -15,6 +15,8 @@
 
 	<!-- Load our own files -->
 	<script type="text/javascript" src="words.js"></script>
+	<script src="jquery.minicolors.js"></script>
+	<link rel="stylesheet" href="jquery.minicolors.css">
 
 	<script type="text/javascript">
 		// This will be called by the admin adapter when the settings page loads
@@ -38,6 +40,9 @@
 			onChange(false);
 			// reinitialize all the Materialize labels on the page if you are dynamically adding inputs:
 			if (M) M.updateTextFields();
+			$('.color').each(function () {
+				$(this).minicolors();
+			});
 		}
 
 		// This will be called by the admin adapter when the user presses the save button
@@ -57,6 +62,17 @@
 			callback(obj);
 		}
 	</script>
+	<style>
+		body {
+			width: 100vw;
+		}
+
+		.minicolors-swatch {
+			top: 15px !important;
+			left: 70px !important;
+			;
+		}
+	</style>
 
 </head>
 
@@ -64,6 +80,15 @@
 
 	<div class="m adapter-container">
 		<div class="row">
+			<div class="col s12">
+				<ul class="tabs">
+					<li class="tab col s4"><a href="#tab-main" class="translate active">Main settings</a></li>
+					<li class="tab col s4"><a href="#tab-color" class="translate" data-lang="color-settings">Color
+							settings</a></li>
+				</ul>
+			</div>
+		</div>
+		<div id="tab-main" class="col s12">
 			<div class="row">
 				<div class="input-field col s6">
 					<img src="energiefluss.png" class="logo">
@@ -90,7 +115,8 @@
 				<div class="input-field col s4">
 					<input id="calculate_consumption" class="value" type="checkbox" />
 					<label for="calculate_consumption" class="translate"
-						data-lang="cb_calculate_consumption">Consumption Calculation via 'Production' + 'Grid'</label>
+						data-lang="cb_calculate_consumption">Consumption
+						Calculation via 'Production' + 'Grid'</label>
 				</div>
 			</div>
 			<div class="row">
@@ -191,22 +217,133 @@
 				<div class="col s12">
 					<h6 class="title translate" data-lang="other">Other</h6>
 				</div>
-				<div class="row">
-					<div class="input-field col s4">
-						<input class="value" id="unit" type="text" />
-						<label for="unit" class="translate" data-lang="unit">Unit:</label>
-						<span class="translate" data-lang="ex_unit">Unit (W or kW) for displaying</span>
-					</div>
-					<div class="input-field col s4">
-						<input id="recalculate" class="value" type="checkbox" />
-						<label for="recalculate" class="translate" data-lang="recalculate">Calculate values from W in
-							kW</label>
-					</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s4">
+					<input class="value" id="unit" type="text" />
+					<label for="unit" class="translate" data-lang="unit">Unit:</label>
+					<span class="translate" data-lang="ex_unit">Unit (W or kW) for displaying</span>
+				</div>
+				<div class="input-field col s4">
+					<input id="recalculate" class="value" type="checkbox" />
+					<label for="recalculate" class="translate" data-lang="recalculate">Calculate values from W in
+						kW</label>
 				</div>
 			</div>
 		</div>
+		<div id="tab-color" class="col s12">
+			<div class="row">
+				<div class="col s12">
+					<h6 class="title translate" data-lang="house">house</h6>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s5">
+					<input class="value color" id="color_house" type="text" />
+					<span class="translate" data-lang="color_house">color of the circle around the house (default:
+						#00b5dd)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="color_house_text" type="text" />
+					<span class="translate" data-lang="color_house_text">color of the text inside the circle of the
+						house (default:
+						#00b5dd)</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s12">
+					<h6 class="title translate" data-lang="grid">grid</h6>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s5">
+					<input class="value color" id="color_grid" type="text" />
+					<span class="translate" data-lang="color_grid">color of the circle around the grid feed (default:
+						#61687a)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="color_grid_text" type="text" />
+					<span class="translate" data-lang="color_grid_text">color of the text inside the circle of the net
+						feed-in
+						(default: #61687a)</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s12">
+					<h6 class="title translate" data-lang="production">solar production</h6>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s5">
+					<input class="value color" id="color_production" type="text" />
+					<span class="translate" data-lang="color_production">color of the circle around the solar production
+						(default:
+						#ffce4a)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="color_production_text" type="text" />
+					<span class="translate" data-lang="color_production_text">color of the text inside the circle of the
+						solar
+						production (default: #ffce4a)</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s12">
+					<h6 class="title translate" data-lang="car">car</h6>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s5">
+					<input class="value color" id="color_car" type="text" />
+					<span class="translate" data-lang="color_car">color of the circle around the car (default:
+						#c5902e)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="color_car_text" type="text" />
+					<span class="translate" data-lang="color_car_text">color of the text inside the circle of the car
+						(default: #c5902e)</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s12">
+					<h6 class="title translate" data-lang="battery">battery</h6>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s5">
+					<input class="value color" id="color_battery" type="text" />
+					<span class="translate" data-lang="color_battery">color of the circle around the battery (default:
+						#a1d343)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="color_battery_text" type="text" />
+					<span class="translate" data-lang="color_battery_text">color of the text inside the circle of the
+						car
+						(default: #a1d343)</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s12">
+					<h6 class="title translate" data-lang="lines_and_animations">lines and animations</h6>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s5">
+					<input class="value color" id="color_lines" type="text" />
+					<span class="translate" data-lang="color_lines">color of the lines (default: #000000 - has
+						transparency effect)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="color_animation" type="text" />
+					<span class="translate" data-lang="color_animation">color of the animation on the lines (default:
+						#ffce4a)</span>
+				</div>
+			</div>
+			<div class="row" style="height:120px;">
+				<span>&nbsp;</span>
+			</div>
+		</div>
 	</div>
-
 </body>
 
 </html>

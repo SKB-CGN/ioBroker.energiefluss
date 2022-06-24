@@ -319,7 +319,19 @@
         "battery_discharge": "",
         "battery_different": "",
         "car_charge": "",
-        "car_percent": ""
+        "car_percent": "",
+        "color_house": "#00b5dd",
+        "color_house_text": "#00b5dd",
+        "color_grid": "#61687a",
+        "color_grid_text": "#61687a",
+        "color_production": "#ffce4a",
+        "color_production_text": "#ffce4a",
+        "color_car": "#c5902e",
+        "color_car_text": "#c5902e",
+        "color_battery": "#a1d343",
+        "color_battery_text": "#a1d343",
+        "color_lines": "#000000",
+        "color_animation": "#ffce4a"
     },
     "objects": [],
     "instanceObjects": []

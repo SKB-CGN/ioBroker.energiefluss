@@ -31,6 +31,20 @@ let valuesObj = {};
 let configObj = {};
 let subscribeArray = new Array();
 
+/* color for runtime */
+let color_house;
+let color_house_text;
+let color_grid;
+let color_grid_text;
+let color_production;
+let color_production_text;
+let color_car;
+let color_car_text;
+let color_battery;
+let color_battery_text;
+let color_lines;
+let color_animation;
+
 class Energiefluss extends utils.Adapter {
 
 	/**
@@ -68,6 +82,20 @@ class Energiefluss extends utils.Adapter {
 			car_charge = this.config.car_charge;
 			car_percent = this.config.car_percent;
 			calculate_consumption = this.config.calculate_consumption;
+
+			// Colors
+			color_house = this.config.color_house;
+			color_house_text = this.config.color_house_text;
+			color_grid = this.config.color_grid;
+			color_grid_text = this.config.color_grid_text;
+			color_production = this.config.color_production;
+			color_production_text = this.config.color_production_text;
+			color_car = this.config.color_car;
+			color_car_text = this.config.color_car_text;
+			color_battery = this.config.color_battery;
+			color_battery_text = this.config.color_battery_text;
+			color_lines = this.config.color_lines;
+			color_animation = this.config.color_animation;
 
 			recalculate = this.config.recalculate ? true : false;
 			this.log.info("Starting Energiefluss Adapter");
@@ -271,7 +299,7 @@ class Energiefluss extends utils.Adapter {
 		if ((valuesObj['battery_charge'] === undefined || valuesObj['battery_discharge'] === undefined) && valuesObj['battery_percent'] === undefined) {
 			no_battery = 'nobatt';
 		}
-		let html_head = '<!DOCTYPE html><html lang="en"><head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width,initial-scale=1.0"> <title>Energiefluss</title> <style>svg{height: 100%; width: 95%;}circle{stroke-width: 4px; fill: none; /* fill: transparent;*/}.path{stroke-width: 4px; fill: none;}.icon_color{opacity: 0.7;}circle{stroke-width: 2px; fill: white;}.bg{/* stroke: #efeff0; */ stroke: #000000; stroke-dasharray: 1000; opacity: 0.7;}.elm_solar{stroke: #ffce4a;}.text_solar{fill: #ffce4a;}.elm_house{stroke: #00b5dd;}.text_house{fill: #00b5dd;}.elm_car{stroke: #c5902e;}.text_car{fill: #c5902e;}.elm_battery{stroke: #a1d343;}.text_battery{fill: #a1d343;}.elm_grid{stroke: #61687a;}.text_grid{fill: #61687a;}.text_inside_circle{font: 10px sans-serif; opacity: 0.7;}.value_inside_circle{font: 14px sans-serif;}.value_inside_circle_small{font: 10px sans-serif;}.consumption_animation{animation: cons 4s infinite steps(21); stroke: #ffce4a; stroke-dasharray: 4 12 4 12 4 120; stroke-linecap: round;}@keyframes cons{0%{stroke-dashoffset: 368;}100%{stroke-dashoffset: 32;}}html,body {background: transparent;height: 96vh;width: 96vw;}.shadow {-webkit-filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, .7));filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, .7));} .nobatt {margin-left: -9em;}</style></head>'
+		let html_head = '<!DOCTYPE html><html lang="en"><head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width,initial-scale=1.0"> <title>Energiefluss</title> <style>svg{height: 100%; width: 95%;}circle{stroke-width: 4px; fill: none; }.path{stroke-width: 4px; fill: none;}.icon_color{opacity: 0.7;}circle{stroke-width: 2px; fill: white;}.line{stroke:' + color_lines + '; stroke-dasharray: 1000; opacity: 0.7;}.elm_solar{stroke: ' + color_production + ';}.text_solar{fill: ' + color_production_text + ';}.elm_house{stroke: ' + color_house + ';}.text_house{fill: ' + color_house_text + ';}.elm_car{stroke: ' + color_car + ';}.text_car{fill:' + color_car_text + ';}.elm_battery{stroke: ' + color_battery + ';}.text_battery{fill:' + color_battery_text + ';}.elm_grid{stroke:' + color_grid + ';}.text_grid{fill:' + color_grid_text + ';}.text_inside_circle{font: 10px sans-serif; opacity: 0.7;}.value_inside_circle{font: 14px sans-serif;}.value_inside_circle_small{font: 10px sans-serif;}.consumption_animation{animation: cons 4s infinite steps(21); stroke:' + color_animation + '; stroke-dasharray: 4 12 4 12 4 120; stroke-linecap: round;}@keyframes cons{0%{stroke-dashoffset: 368;}100%{stroke-dashoffset: 32;}}html,body {background: transparent;height: 96vh;width: 96vw;}.shadow {-webkit-filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, .7));filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, .7));} .nobatt {margin-left: -9em;}</style></head>'
 		html_head = html_head + '<body> <svg viewBox="0 0 510 510" width="510" height="510" class="' + no_battery + '">';
 		/* Build all circles */
 		if (valuesObj['consumption'] != undefined) {
@@ -408,33 +436,29 @@ class Energiefluss extends utils.Adapter {
 		/* Build all lines */
 		if (valuesObj['production'] != undefined && valuesObj['consumption'] != undefined) {
 			line_defs.push('<path id="solar_to_house" d="M 270,98 v 132 l 0,0 h 132" class="path"/>');
-			line_uses.push('<use class="bg" xlink:href="#solar_to_house"/>');
+			line_uses.push('<use class="line" xlink:href="#solar_to_house"/>');
 		}
 		if (valuesObj['consumption'] != undefined && (valuesObj['grid_feed'] != undefined || valuesObj['grid_consuming'] != undefined)) {
 			line_defs.push('<path id="grid_to_house" d="M 270,402 v -132 l 0,0 h 132" class="path" />');
-			line_uses.push('<use class="bg" xlink:href="#grid_to_house" />');
+			line_uses.push('<use class="line" xlink:href="#grid_to_house" />');
 		}
 		if (valuesObj['production'] != undefined && (valuesObj['grid_feed'] != undefined || valuesObj['grid_consuming'] != undefined)) {
 			line_defs.push('<path id="solar_to_grid" d="M 250,102 v 295" class="path" />');
-			line_uses.push('<use class="bg" xlink:href="#solar_to_grid" />');
+			line_uses.push('<use class="line" xlink:href="#solar_to_grid" />');
 		}
 		if ((valuesObj['consumption'] != undefined && valuesObj['car_charge'] != undefined) || (valuesObj['car_charge'] != undefined && valuesObj['consumption'] === undefined)) {
 			line_defs.push('<path id="house_to_car" d="M 448,300 v 97" class="path" />');
-			line_uses.push('<use class="bg" xlink:href="#house_to_car" />');
+			line_uses.push('<use class="line" xlink:href="#house_to_car" />');
 		}
 		if (valuesObj['battery_charge'] != undefined && valuesObj['grid_feed'] != undefined) {
 			line_defs.push('<path id="solar_to_battery" d="M 230,98 v 132 l 0,0 h -132" class="path" /><path id="grid_to_battery" d="M 230,402 v -132 l 0,0 h -132" class="path" />');
-			line_uses.push('<use class="bg" xlink:href="#solar_to_battery" /><use class="bg" xlink:href="#grid_to_battery" />');
+			line_uses.push('<use class="line" xlink:href="#solar_to_battery" /><use class="line" xlink:href="#grid_to_battery" />');
 		}
 		if (valuesObj['battery_charge'] != undefined && valuesObj['consumption'] != undefined) {
 			line_defs.push('<path id="battery_to_house" d="M 102,250 h 295" class="path" />');
-			line_uses.push('<use class="bg" xlink:href="#battery_to_house" />');
+			line_uses.push('<use class="line" xlink:href="#battery_to_house" />');
 		}
 
-
-		//let def_production = '<circle id="grid_present" cx="250" cy="448" r="50"/> <path id="icon_grid" transform="translate(238,406)" class="icon_color" d="M8.28,5.45L6.5,4.55L7.76,2H16.23L17.5,4.55L15.72,5.44L15,4H9L8.28,5.45M18.62,8H14.09L13.3,5H10.7L9.91,8H5.38L4.1,10.55L5.89,11.44L6.62,10H17.38L18.1,11.45L19.89,10.56L18.62,8M17.77,22H15.7L15.46,21.1L12,15.9L8.53,21.1L8.3,22H6.23L9.12,11H11.19L10.83,12.35L12,14.1L13.16,12.35L12.81,11H14.88L17.77,22M11.4,15L10.5,13.65L9.32,18.13L11.4,15M14.68,18.12L13.5,13.64L12.6,15L14.68,18.12Z"/> <text text-anchor="middle" id="text_grid" x="250" y="478">Netz</text> <text text-anchor="middle" id="text_grid_value" x="250" y="453">' + valuesObj['production'] + '</text> <path id="solar_to_grid" d="M 250,102 v 295" class="path"/> <path id="grid_to_house" d="M 270,402 v -132 l 0,0 h 132" class="path"/> <path id="grid_to_battery" d="M 230,402 v -132 l 0,0 h -132" class="path"/>';
-
-		//let html_standard = '<use class="elm_house" xlink:href="#home_present"/> <use class="elm_solar" xlink:href="#solar_present"/> <use class="elm_grid" xlink:href="#grid_present"/> <use class="bg" xlink:href="#solar_to_grid"/> <use class="bg" xlink:href="#solar_to_house"/> <use class="bg" xlink:href="#grid_to_house"/> <use xlink:href="#icon_house"/> <use xlink:href="#icon_solar"/> <use xlink:href="#icon_grid"/> <use class="text_inside_circle" xlink:href="#text_house"/> <use class="value_inside_circle text_house" xlink:href="#text_house_value"/> <use class="text_inside_circle" xlink:href="#text_solar"/> <use class="value_inside_circle text_solar" xlink:href="#text_solar_value"/> <use class="text_inside_circle" xlink:href="#text_grid"/> <use class="value_inside_circle text_grid" xlink:href="#text_grid_value"/>';
 
 		// Put definitions together
 		/* Lines */
