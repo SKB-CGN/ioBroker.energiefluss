@@ -25,6 +25,7 @@ let battery_discharge;
 let battery_different;
 let car_charge;
 let car_percent;
+let car_plugged;
 let calculate_consumption
 let recalculate = false;
 let valuesObj = {};
@@ -40,6 +41,7 @@ let color_production;
 let color_production_text;
 let color_car;
 let color_car_text;
+let color_car_plugged;
 let color_battery;
 let color_battery_text;
 let color_lines;
@@ -81,6 +83,7 @@ class Energiefluss extends utils.Adapter {
 			battery_different = this.config.battery_different;
 			car_charge = this.config.car_charge;
 			car_percent = this.config.car_percent;
+			car_plugged = this.config.car_plugged;
 			calculate_consumption = this.config.calculate_consumption;
 
 			// Colors
@@ -92,6 +95,7 @@ class Energiefluss extends utils.Adapter {
 			color_production_text = this.config.color_production_text;
 			color_car = this.config.color_car;
 			color_car_text = this.config.color_car_text;
+			color_car_plugged = this.config.color_car_plugged;
 			color_battery = this.config.color_battery;
 			color_battery_text = this.config.color_battery_text;
 			color_lines = this.config.color_lines;
@@ -109,7 +113,8 @@ class Energiefluss extends utils.Adapter {
 				battery_discharge: battery_discharge,
 				battery_percent: battery_percent,
 				car_charge: car_charge,
-				car_percent: car_percent
+				car_percent: car_percent,
+				car_plugged: car_plugged
 			};
 			// Delete empty ones
 			configObj = Object.entries(configObj).reduce((a, [k, v]) => (v ? (a[k] = v, a) : a), {})
@@ -223,6 +228,9 @@ class Energiefluss extends utils.Adapter {
 		if (id == car_percent) {
 			valuesObj['car_percent'] = state.val;
 		}
+		if (id == car_plugged) {
+			valuesObj['car_plugged'] = state.val;
+		}
 
 		if (calculate_consumption) {
 			let prodValue = valuesObj['production'];
@@ -231,15 +239,8 @@ class Energiefluss extends utils.Adapter {
 		}
 
 		this.log.debug("States changed: " + JSON.stringify(valuesObj));
-		/*
-		if (state) {
-			// The state was changed
-			this.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
-		} else {
-			// The state was deleted
-			this.log.info(`state ${id} deleted`);
-		}
-		*/
+
+		/* Rebuild the HTML after State change */
 		this.rebuildHTML();
 	}
 
@@ -276,10 +277,19 @@ class Energiefluss extends utils.Adapter {
 			const [key, value] = entry;
 			//values = values + this.getForeignStateAsync(value);
 			this.getForeignState(value, (err, stateValue) => {
-				if (!key.includes("percent")) {
-					tmpObj[key] = recalculate ? this.recalculateValue(stateValue.val) : stateValue.val;
-				} else {
-					tmpObj[key] = stateValue.val;
+				// Check, if key is a number
+				if (typeof (stateValue.val) === 'number') {
+					this.log.debug("Variable is number");
+					if (!key.includes("percent")) {
+						tmpObj[key] = recalculate ? this.recalculateValue(stateValue.val) : stateValue.val;
+					} else {
+						tmpObj[key] = stateValue.val;
+					}
+				}
+
+				if (typeof (stateValue.val) === 'boolean') {
+					this.log.debug("Variable is bool");
+					tmpObj[key] = stateValue.val ? true : false;
 				}
 			});
 
@@ -299,7 +309,7 @@ class Energiefluss extends utils.Adapter {
 		if ((valuesObj['battery_charge'] === undefined || valuesObj['battery_discharge'] === undefined) && valuesObj['battery_percent'] === undefined) {
 			no_battery = 'nobatt';
 		}
-		let html_head = '<!DOCTYPE html><html lang="en"><head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width,initial-scale=1.0"> <title>Energiefluss</title> <style>svg{height: 100%; width: 95%;}circle{stroke-width: 4px; fill: none; }.path{stroke-width: 4px; fill: none;}.icon_color{opacity: 0.7;}circle{stroke-width: 2px; fill: white;}.line{stroke:' + color_lines + '; stroke-dasharray: 1000; opacity: 0.7;}.elm_solar{stroke: ' + color_production + ';}.text_solar{fill: ' + color_production_text + ';}.elm_house{stroke: ' + color_house + ';}.text_house{fill: ' + color_house_text + ';}.elm_car{stroke: ' + color_car + ';}.text_car{fill:' + color_car_text + ';}.elm_battery{stroke: ' + color_battery + ';}.text_battery{fill:' + color_battery_text + ';}.elm_grid{stroke:' + color_grid + ';}.text_grid{fill:' + color_grid_text + ';}.text_inside_circle{font: 10px sans-serif; opacity: 0.7;}.value_inside_circle{font: 14px sans-serif;}.value_inside_circle_small{font: 10px sans-serif;}.consumption_animation{animation: cons 4s infinite steps(21); stroke:' + color_animation + '; stroke-dasharray: 4 12 4 12 4 120; stroke-linecap: round;}@keyframes cons{0%{stroke-dashoffset: 368;}100%{stroke-dashoffset: 32;}}html,body {background: transparent;height: 96vh;width: 96vw;}.shadow {-webkit-filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, .7));filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, .7));} .nobatt {margin-left: -9em;}</style></head>'
+		let html_head = '<!DOCTYPE html><html lang="en"><head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width,initial-scale=1.0"> <title>Energiefluss</title> <style>svg{height: 100%; width: 95%;}circle{stroke-width: 4px; fill: none; }.path{stroke-width: 4px; fill: none;}.icon_color{opacity: 0.7;}.icon_car_plugged { fill:' + color_car_plugged + ';}circle{stroke-width: 2px; fill: white;}.line{stroke:' + color_lines + '; stroke-dasharray: 1000; opacity: 0.7;}.elm_solar{stroke: ' + color_production + ';}.text_solar{fill: ' + color_production_text + ';}.elm_house{stroke: ' + color_house + ';}.text_house{fill: ' + color_house_text + ';}.elm_car{stroke: ' + color_car + ';}.text_car{fill:' + color_car_text + ';}.elm_battery{stroke: ' + color_battery + ';}.text_battery{fill:' + color_battery_text + ';}.elm_grid{stroke:' + color_grid + ';}.text_grid{fill:' + color_grid_text + ';}.text_inside_circle{font: 10px sans-serif; opacity: 0.7;}.value_inside_circle{font: 14px sans-serif;}.value_inside_circle_small{font: 10px sans-serif;}.consumption_animation{animation: cons 4s infinite steps(21); stroke:' + color_animation + '; stroke-dasharray: 4 12 4 12 4 120; stroke-linecap: round;}@keyframes cons{0%{stroke-dashoffset: 368;}100%{stroke-dashoffset: 32;}}html,body {background: transparent;height: 96vh;width: 96vw;}.shadow {-webkit-filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, .7));filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, .7));} .nobatt {margin-left: -9em;}</style></head>'
 		html_head = html_head + '<body> <svg viewBox="0 0 510 510" width="510" height="510" class="' + no_battery + '">';
 		/* Build all circles */
 		if (valuesObj['consumption'] != undefined) {
@@ -363,10 +373,14 @@ class Energiefluss extends utils.Adapter {
 		}
 
 		if (valuesObj['car_charge'] != undefined) {
+			let class_plugged = '';
 			if (valuesObj['car_charge'] > 0) {
 				line_animation.push('<use class="consumption_animation" xlink:href="#house_to_car" />');
 			}
-			circle_defs.push('<circle id="car_present" cx="448" cy="448" r="50" /><path id="icon_car" transform="translate(436,406)" class="icon_color" d="M18.92 2C18.72 1.42 18.16 1 17.5 1H6.5C5.84 1 5.29 1.42 5.08 2L3 8V16C3 16.55 3.45 17 4 17H5C5.55 17 6 16.55 6 16V15H18V16C18 16.55 18.45 17 19 17H20C20.55 17 21 16.55 21 16V8L18.92 2M6.85 3H17.14L18.22 6.11H5.77L6.85 3M19 13H5V8H19V13M7.5 9C8.33 9 9 9.67 9 10.5S8.33 12 7.5 12 6 11.33 6 10.5 6.67 9 7.5 9M16.5 9C17.33 9 18 9.67 18 10.5S17.33 12 16.5 12C15.67 12 15 11.33 15 10.5S15.67 9 16.5 9M7 20H11V18L17 21H13V23L7 20Z" /><text text-anchor="middle" id="text_car" x="450" y="478">Auto</text><text text-anchor="middle" id="text_car_value" x="450" y="453">' + valuesObj['car_charge'] + ' ' + unit + '</text>');
+			if (valuesObj['car_plugged'] === true) {
+				class_plugged = ' icon_car_plugged';
+			}
+			circle_defs.push('<circle id="car_present" cx="448" cy="448" r="50" /><path id="icon_car" transform="translate(436,406)" class="icon_color' + class_plugged + '" d="M18.92 2C18.72 1.42 18.16 1 17.5 1H6.5C5.84 1 5.29 1.42 5.08 2L3 8V16C3 16.55 3.45 17 4 17H5C5.55 17 6 16.55 6 16V15H18V16C18 16.55 18.45 17 19 17H20C20.55 17 21 16.55 21 16V8L18.92 2M6.85 3H17.14L18.22 6.11H5.77L6.85 3M19 13H5V8H19V13M7.5 9C8.33 9 9 9.67 9 10.5S8.33 12 7.5 12 6 11.33 6 10.5 6.67 9 7.5 9M16.5 9C17.33 9 18 9.67 18 10.5S17.33 12 16.5 12C15.67 12 15 11.33 15 10.5S15.67 9 16.5 9M7 20H11V18L17 21H13V23L7 20Z" /><text text-anchor="middle" id="text_car" x="450" y="478">Auto</text><text text-anchor="middle" id="text_car_value" x="450" y="453">' + valuesObj['car_charge'] + ' ' + unit + '</text>');
 			circle_uses.push('<use class="elm_car shadow" xlink:href="#car_present" /><use class="text_inside_circle" xlink:href="#text_car" /><use class="value_inside_circle text_car" xlink:href="#text_car_value" /><use xlink:href="#icon_car" />');
 		}
 

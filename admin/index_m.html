@@ -196,7 +196,7 @@
 			</div>
 			<div class="row">
 				<div class="col s12">
-					<h6 class="title translate" data-lang="car charge">charge car</h6>
+					<h6 class="title translate" data-lang="car_charge">charge car</h6>
 				</div>
 			</div>
 			<div class="row">
@@ -211,6 +211,11 @@
 					<label for="car_percent" class="translate" data-lang="car_battery_charge">Car accu level
 						state:</label>
 					<span class="translate" data-lang="ex_car_battery">Data point of your car accu in %</span>
+				</div>
+				<div class="input-field col s4">
+					<input class="value" id="car_plugged" type="text" />
+					<label for="car_plugged" class="translate" data-lang="car_plugged">Car charger:</label>
+					<span class="translate" data-lang="ex_car_plugged">Data point car charger</span>
 				</div>
 			</div>
 			<div class="row">
@@ -302,6 +307,11 @@
 					<input class="value color" id="color_car_text" type="text" />
 					<span class="translate" data-lang="color_car_text">color of the text inside the circle of the car
 						(default: #c5902e)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="color_car_plugged" type="text" />
+					<span class="translate" data-lang="color_car_plugged">color of the car icon if charger is
+						connected (default: #a1d343)</span>
 				</div>
 			</div>
 			<div class="row">
