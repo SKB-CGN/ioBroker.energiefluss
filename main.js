@@ -279,7 +279,6 @@ class Energiefluss extends utils.Adapter {
 			this.getForeignState(value, (err, stateValue) => {
 				// Check, if key is a number
 				if (typeof (stateValue.val) === 'number') {
-					this.log.debug("Variable is number");
 					if (!key.includes("percent")) {
 						tmpObj[key] = recalculate ? this.recalculateValue(stateValue.val) : stateValue.val;
 					} else {
@@ -288,7 +287,6 @@ class Energiefluss extends utils.Adapter {
 				}
 
 				if (typeof (stateValue.val) === 'boolean') {
-					this.log.debug("Variable is bool");
 					tmpObj[key] = stateValue.val ? true : false;
 				}
 			});
