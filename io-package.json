@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "energiefluss",
-        "version": "0.2.0-0",
+        "version": "0.2.0",
         "news": {
+            "0.2.0": {
+                "en": "Added new State for car charger connected and color option",
+                "de": "Hinzugefügt neue Staat für Auto-Ladegerät angeschlossen und Farbe Option",
+                "ru": "Добавлено новое государство для автозаряжателя подключено и вариант цвета",
+                "pt": "Adicionado novo Estado para carro carregador conectado e opção de cor",
+                "nl": "Vertaling:",
+                "fr": "Ajout d'un nouvel État pour chargeur de voiture connecté et option couleur",
+                "it": "Aggiunto nuovo Stato per caricabatterie auto collegato e colore opzione",
+                "es": "Nuevo Estado para cargador de coche conectado y opción de color",
+                "pl": "Dodano nowy stan do odpowiedzialności karnej i kolorowej opcji",
+                "zh-cn": "增加托儿所和颜色选择的新国家"
+            },
             "0.2.0-0": {
                 "en": "added possibility for changing the colors (text and circles)",
                 "de": "zusätzliche möglichkeit zum ändern der farben (text und kreise)",
@@ -230,18 +242,6 @@
                 "es": "arreglar algunos errores",
                 "pl": "uszkodził jakiś błęd",
                 "zh-cn": "固定的几桶"
-            },
-            "0.0.3": {
-                "en": "->",
-                "de": "->",
-                "ru": "->",
-                "pt": "->",
-                "nl": "->",
-                "fr": "->",
-                "it": "->",
-                "es": "->",
-                "pl": "->",
-                "zh-cn": "->"
             }
         },
         "title": "energiefluss",
