@@ -30,6 +30,9 @@ Installation ueber die Github Katze in ioBroker moeglich
 	Placeholder for the next version (at the beginning of the line):
 	## **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+- added possibility for changing the colors (text and circles)
+
 ### 0.0.22 (2022-06-21)
 - implemented function, to calculate house consumption, if no house-consumption state is available
 ### 0.0.21 (2022-06-17)
