@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "energiefluss",
-        "version": "0.0.22",
+        "version": "0.1.0-0",
         "news": {
+            "0.1.0-0": {
+                "en": "added possibility for changing the colors (text and circles)",
+                "de": "zusätzliche möglichkeit zum ändern der farben (text und kreise)",
+                "ru": "добавлена возможность изменения цветов (текст и круги)",
+                "pt": "possibilidade adicionada para alterar as cores (texto e círculos)",
+                "nl": "toegevoegde mogelijkheid om de kleuren te veranderen",
+                "fr": "possibilité supplémentaire pour changer les couleurs (texte et cercles)",
+                "it": "possibilità aggiunta per cambiare i colori (testo e cerchi)",
+                "es": "añadido posibilidad para cambiar los colores (texto y círculos)",
+                "pl": "dodano możliwość zmiany kolorów (tekstu i kręgów)",
+                "zh-cn": "改变肤色(背景和圈)的可能性"
+            },
             "0.0.22": {
                 "en": "implemented function, to calculate house consumption, if no house-consumption state is available",
                 "de": "implementierte funktion zur berechnung des hausverbrauchs, wenn kein hausverbrauchszustand verfügbar ist",
