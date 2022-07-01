@@ -52,5 +52,6 @@
     "production": "producción:",
     "production and consuming": "producción y uso",
     "recalculate": "Calcular valores de W en kW",
+    "reset_colors_to_default": "Restablecer todos los colores a los predeterminados",
     "unit": "unidad:"
 }

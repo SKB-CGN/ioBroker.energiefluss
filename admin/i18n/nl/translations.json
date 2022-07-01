@@ -52,5 +52,6 @@
     "production": "productie:",
     "production and consuming": "productie en gebruik",
     "recalculate": "Bereken waarden van W in kW",
+    "reset_colors_to_default": "Reset alle kleuren naar standaard",
     "unit": "eenheid:"
 }

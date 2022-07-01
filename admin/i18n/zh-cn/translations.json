@@ -52,5 +52,6 @@
     "production": "生产：",
     "production and consuming": "生产和使用",
     "recalculate": "从 W 计算值（以 kW 为单位）",
-    "unit": "单元："
+    "reset_colors_to_default": "Reset all colors to default",
+    "unit": "unit:"
 }

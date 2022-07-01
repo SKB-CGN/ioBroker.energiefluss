@@ -61,6 +61,14 @@
 			});
 			callback(obj);
 		}
+
+		function resetToDefaults() {
+			$('.color').each(function () {
+				$(this).minicolors('destroy');
+				$(this).val($(this).attr('placeholder')).trigger('change');
+				$(this).minicolors();
+			});
+		}
 	</script>
 	<style>
 		body {
@@ -244,12 +252,12 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s5">
-					<input class="value color" id="color_house" type="text" />
+					<input class="value color" id="color_house" type="text" placeholder="#00b5dd" />
 					<span class="translate" data-lang="color_house">color of the circle around the house (default:
 						#00b5dd)</span>
 				</div>
 				<div class="input-field col s5">
-					<input class="value color" id="color_house_text" type="text" />
+					<input class="value color" id="color_house_text" type="text" placeholder="#00b5dd" />
 					<span class="translate" data-lang="color_house_text">color of the text inside the circle of the
 						house (default:
 						#00b5dd)</span>
@@ -262,12 +270,12 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s5">
-					<input class="value color" id="color_grid" type="text" />
+					<input class="value color" id="color_grid" type="text" placeholder="#61687a" />
 					<span class="translate" data-lang="color_grid">color of the circle around the grid feed (default:
 						#61687a)</span>
 				</div>
 				<div class="input-field col s5">
-					<input class="value color" id="color_grid_text" type="text" />
+					<input class="value color" id="color_grid_text" type="text" placeholder="#61687a" />
 					<span class="translate" data-lang="color_grid_text">color of the text inside the circle of the net
 						feed-in
 						(default: #61687a)</span>
@@ -280,13 +288,13 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s5">
-					<input class="value color" id="color_production" type="text" />
+					<input class="value color" id="color_production" type="text" placeholder="#ffce4a" />
 					<span class="translate" data-lang="color_production">color of the circle around the solar production
 						(default:
 						#ffce4a)</span>
 				</div>
 				<div class="input-field col s5">
-					<input class="value color" id="color_production_text" type="text" />
+					<input class="value color" id="color_production_text" type="text" placeholder="#ffce4a" />
 					<span class="translate" data-lang="color_production_text">color of the text inside the circle of the
 						solar
 						production (default: #ffce4a)</span>
@@ -299,17 +307,17 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s5">
-					<input class="value color" id="color_car" type="text" />
+					<input class="value color" id="color_car" type="text" placeholder="#c5902e" />
 					<span class="translate" data-lang="color_car">color of the circle around the car (default:
 						#c5902e)</span>
 				</div>
 				<div class="input-field col s5">
-					<input class="value color" id="color_car_text" type="text" />
+					<input class="value color" id="color_car_text" type="text" placeholder="#c5902e" />
 					<span class="translate" data-lang="color_car_text">color of the text inside the circle of the car
 						(default: #c5902e)</span>
 				</div>
 				<div class="input-field col s5">
-					<input class="value color" id="color_car_plugged" type="text" />
+					<input class="value color" id="color_car_plugged" type="text" placeholder="#a1d343" />
 					<span class="translate" data-lang="color_car_plugged">color of the car icon if charger is
 						connected (default: #a1d343)</span>
 				</div>
@@ -321,12 +329,12 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s5">
-					<input class="value color" id="color_battery" type="text" />
+					<input class="value color" id="color_battery" type="text" placeholder="#a1d343" />
 					<span class="translate" data-lang="color_battery">color of the circle around the battery (default:
 						#a1d343)</span>
 				</div>
 				<div class="input-field col s5">
-					<input class="value color" id="color_battery_text" type="text" />
+					<input class="value color" id="color_battery_text" type="text" placeholder="#a1d343" />
 					<span class="translate" data-lang="color_battery_text">color of the text inside the circle of the
 						car
 						(default: #a1d343)</span>
@@ -339,18 +347,19 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s5">
-					<input class="value color" id="color_lines" type="text" />
+					<input class="value color" id="color_lines" type="text" placeholder="#000000" />
 					<span class="translate" data-lang="color_lines">color of the lines (default: #000000 - has
 						transparency effect)</span>
 				</div>
 				<div class="input-field col s5">
-					<input class="value color" id="color_animation" type="text" />
+					<input class="value color" id="color_animation" type="text" placeholder="#ffce4a" />
 					<span class="translate" data-lang="color_animation">color of the animation on the lines (default:
 						#ffce4a)</span>
 				</div>
 			</div>
 			<div class="row" style="height:120px;">
-				<span>&nbsp;</span>
+				<a class="btn"><span class="translate" data-lang="reset_colors_to_default"
+						onclick="javascript:resetToDefaults();">Reset all colors to default</a>
 			</div>
 		</div>
 	</div>

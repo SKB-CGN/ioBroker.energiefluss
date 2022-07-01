@@ -201,41 +201,43 @@ class Energiefluss extends utils.Adapter {
 	onStateChange(id, state) {
 		// Check the corresponding state for changes
 		// Production
-		if (id == production) {
-			valuesObj['production'] = recalculate ? this.recalculateValue(state.val) : state.val;
-		}
-		if (id == consumption) {
-			valuesObj['consumption'] = recalculate ? this.recalculateValue(state.val) : state.val;
-		}
-		if (id == grid_feed) {
-			valuesObj['grid_feed'] = recalculate ? this.recalculateValue(state.val) : state.val;
-		}
-		if (id == grid_consuming) {
-			valuesObj['grid_consuming'] = recalculate ? this.recalculateValue(state.val) : state.val;
-		}
-		if (id == battery_percent) {
-			valuesObj['battery_percent'] = state.val;
-		}
-		if (id == battery_charge) {
-			valuesObj['battery_charge'] = recalculate ? this.recalculateValue(state.val) : state.val;
-		}
-		if (id == battery_discharge) {
-			valuesObj['battery_discharge'] = recalculate ? this.recalculateValue(state.val) : state.val;
-		}
-		if (id == car_charge) {
-			valuesObj['car_charge'] = recalculate ? this.recalculateValue(state.val) : state.val;
-		}
-		if (id == car_percent) {
-			valuesObj['car_percent'] = state.val;
-		}
-		if (id == car_plugged) {
-			valuesObj['car_plugged'] = state.val;
-		}
+		if (state) {
+			if (id == production) {
+				valuesObj['production'] = recalculate ? this.recalculateValue(state.val) : state.val;
+			}
+			if (id == consumption) {
+				valuesObj['consumption'] = recalculate ? this.recalculateValue(state.val) : state.val;
+			}
+			if (id == grid_feed) {
+				valuesObj['grid_feed'] = recalculate ? this.recalculateValue(state.val) : state.val;
+			}
+			if (id == grid_consuming) {
+				valuesObj['grid_consuming'] = recalculate ? this.recalculateValue(state.val) : state.val;
+			}
+			if (id == battery_percent) {
+				valuesObj['battery_percent'] = state.val;
+			}
+			if (id == battery_charge) {
+				valuesObj['battery_charge'] = recalculate ? this.recalculateValue(state.val) : state.val;
+			}
+			if (id == battery_discharge) {
+				valuesObj['battery_discharge'] = recalculate ? this.recalculateValue(state.val) : state.val;
+			}
+			if (id == car_charge) {
+				valuesObj['car_charge'] = recalculate ? this.recalculateValue(state.val) : state.val;
+			}
+			if (id == car_percent) {
+				valuesObj['car_percent'] = state.val;
+			}
+			if (id == car_plugged) {
+				valuesObj['car_plugged'] = state.val;
+			}
 
-		if (calculate_consumption) {
-			let prodValue = valuesObj['production'];
-			let gridValue = valuesObj['grid_feed'];
-			valuesObj['consumption'] = recalculate ? this.recalculateValue(parseFloat(prodValue) + parseFloat(gridValue)) : (parseFloat(prodValue) + parseFloat(gridValue));
+			if (calculate_consumption) {
+				let prodValue = valuesObj['production'];
+				let gridValue = valuesObj['grid_feed'];
+				valuesObj['consumption'] = recalculate ? this.recalculateValue(parseFloat(prodValue) + parseFloat(gridValue)) : (parseFloat(prodValue) + parseFloat(gridValue));
+			}
 		}
 
 		this.log.debug("States changed: " + JSON.stringify(valuesObj));

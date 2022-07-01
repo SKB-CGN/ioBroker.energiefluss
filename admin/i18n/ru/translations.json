@@ -52,5 +52,6 @@
     "production": "производство:",
     "production and consuming": "производство и использование",
     "recalculate": "Рассчитать значения из Вт в кВт",
+    "reset_colors_to_default": "Сбросить все цвета по умолчанию",
     "unit": "Ед. изм:"
 }
