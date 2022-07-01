@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "energiefluss",
-        "version": "0.2.2",
+        "version": "0.2.3",
         "news": {
+            "0.2.3": {
+                "en": "fixed a crash, which might occur, if the state got deleted",
+                "de": "einen unfall behoben, der auftreten könnte, wenn der zustand gelöscht wurde",
+                "ru": "исправили аварии, которая может произойти, если государство удалилось",
+                "pt": "corrigiu um acidente, que pode ocorrer, se o estado foi excluído",
+                "nl": "wat zou kunnen gebeuren als de staat werd gewist",
+                "fr": "fixe un crash, qui pourrait se produire, si l'état a été supprimé",
+                "it": "fisso un crash, che potrebbe verificarsi, se lo stato è stato cancellato",
+                "es": "arregló un accidente, que podría ocurrir, si el estado fue eliminado",
+                "pl": "stała katastrofa, która może wystąpić, jeśli stan się usunął",
+                "zh-cn": "如果国家被删除,可能发生固定的事故。"
+            },
             "0.2.2": {
                 "en": "fixed failed log output",
                 "de": "fehlgeschlagene protokollausgabe",
@@ -220,18 +232,6 @@
                 "zh-cn": "固定的几桶"
             },
             "0.0.7": {
-                "en": "fixed some bugs",
-                "de": "einige fehler behoben",
-                "ru": "исправили некоторые ошибки",
-                "pt": "corrigiu alguns bugs",
-                "nl": "_",
-                "fr": "correction de quelques bugs",
-                "it": "fissi alcuni bug",
-                "es": "arreglar algunos errores",
-                "pl": "uszkodził jakiś błęd",
-                "zh-cn": "固定的几桶"
-            },
-            "0.0.6": {
                 "en": "fixed some bugs",
                 "de": "einige fehler behoben",
                 "ru": "исправили некоторые ошибки",
