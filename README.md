@@ -30,8 +30,12 @@ Installation ueber die Github Katze in ioBroker moeglich
 	Placeholder for the next version (at the beginning of the line):
 	## **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+- fixed Tranlastions
+
 ### 0.2.3 (2022-07-01)
 - fixed a crash, which might occur, if the state got deleted
+
 ### 0.2.2 (2022-06-24)
 - fixed failed log output
 
