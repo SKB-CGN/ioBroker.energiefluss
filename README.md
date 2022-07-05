@@ -5,8 +5,6 @@
 [![NPM version](https://img.shields.io/npm/v/iobroker.energiefluss?style=flat-square)](https://www.npmjs.com/package/iobroker.energiefluss)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.energiefluss.svg)](https://www.npmjs.com/package/iobroker.energiefluss)
 ![Number of Installations](https://iobroker.live/badges/energiefluss-installed.svg)
-![Current version in stable repository](https://iobroker.live/badges/energiefluss-stable.svg)
-[![Dependency Status](https://img.shields.io/david/SKB-CGN/iobroker.energiefluss.svg)](https://david-dm.org/SKB-CGN/iobroker.energiefluss)
 
 ![GitHub](https://img.shields.io/github/license/SKB-CGN/iobroker.energiefluss?style=flat-square)
 ![GitHub repo size](https://img.shields.io/github/repo-size/SKB-CGN/iobroker.energiefluss?logo=github&style=flat-square)
