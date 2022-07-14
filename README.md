@@ -28,7 +28,7 @@ Installation ueber die Github Katze in ioBroker moeglich
 	Placeholder for the next version (at the beginning of the line):
 	## **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.2.5 (2022-07-14)
 - fixed number rounding
 - fixed for positive values for consuming and grid-feeding
 
@@ -49,6 +49,7 @@ Installation ueber die Github Katze in ioBroker moeglich
 
 ### 0.0.22 (2022-06-21)
 - implemented function, to calculate house consumption, if no house-consumption state is available
+
 ### 0.0.21 (2022-06-17)
 - corrected admin Tab
 
