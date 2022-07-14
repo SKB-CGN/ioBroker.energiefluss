@@ -324,6 +324,7 @@
         "consumption": "",
         "recalculate": false,
         "grid_feed": "",
+        "grid_all_positive": false,
         "grid_consuming": "",
         "grid_different": "",
         "battery_percent": "",

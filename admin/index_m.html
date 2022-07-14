@@ -148,17 +148,30 @@
 					<label for="grid_consuming" class="translate" data-lang="grid_consumption">Grid consuming</label>
 					<span class="translate" data-lang="ex_grid_consumption">Data point of your grid consumption</span>
 				</div>
-				<div class="input-field col s4">
-					<input id="grid_different" class="value" type="checkbox" />
-					<label for="grid_different" class="translate" data-lang="cb_grid_different">Use different states
-						for grid feed-in and
-						consuming</label>
-				</div>
-				<br>
-				<div class="input-field col s4">
-					<input id="grid_reverse" class="value" type="checkbox" />
-					<label for="grid_reverse" class="translate" data-lang="cb_grid_reverse">Use negative for consumption
-						and positive for grid feed in</label>
+				<div class="col s4">
+					<div class="row">
+						<div class="input-field">
+							<input id="grid_different" class="value" type="checkbox" />
+							<label for="grid_different" class="translate" data-lang="cb_grid_different">Use different
+								states
+								for grid feed-in and
+								consuming</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field">
+							<input id="grid_reverse" class="value" type="checkbox" />
+							<label for="grid_reverse" class="translate" data-lang="cb_grid_reverse">Use positive for
+								consumption <u>and</u> negative for grid feed in</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field">
+							<input id="grid_all_positive" class="value" type="checkbox" />
+							<label for="grid_all_positive" class="translate" data-lang="cb_grid_all_positive">Use
+								positive for consumption <u>and</u> positive for grid feed in</label>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="row">
@@ -189,7 +202,8 @@
 				</div>
 				<div class="input-field col s4">
 					<input id="battery_different" class="value" type="checkbox" />
-					<label for="battery_different" class="translate" data-lang="cb_battery_different">Use different
+					<label for="battery_different" class="translate" data-lang="cb_battery_different">Use
+						different
 						states for Battery charge
 						and discharge</label>
 				</div>
@@ -197,8 +211,10 @@
 			<div class="row">
 				<div class="input-field col s4">
 					<input class="value" id="battery_percent" type="text" />
-					<label for="battery_percent" class="translate" data-lang="battery_percent">accu level:</label>
-					<span class="translate" data-lang="ex_battery_percent">data point of your battery charge-level
+					<label for="battery_percent" class="translate" data-lang="battery_percent">accu
+						level:</label>
+					<span class="translate" data-lang="ex_battery_percent">data point of your battery
+						charge-level
 						in %</span>
 				</div>
 			</div>
@@ -210,8 +226,10 @@
 			<div class="row">
 				<div class="input-field col s4">
 					<input class="value" id="car_charge" type="text" />
-					<label for="car_charge" class="translate" data-lang="car_charge_energy">wallbox or charger:</label>
-					<span class="translate" data-lang="ex_car_charge">Data point of your charger or wallbox</span>
+					<label for="car_charge" class="translate" data-lang="car_charge_energy">wallbox or
+						charger:</label>
+					<span class="translate" data-lang="ex_car_charge">Data point of your charger or
+						wallbox</span>
 				</div>
 				<div class="input-field col s4">
 					<input class="value" id="car_percent" type="text" />
@@ -221,7 +239,8 @@
 				</div>
 				<div class="input-field col s4">
 					<input class="value" id="car_plugged" type="text" />
-					<label for="car_plugged" class="translate" data-lang="car_plugged">car charger plugged in:</label>
+					<label for="car_plugged" class="translate" data-lang="car_plugged">car charger plugged
+						in:</label>
 					<span class="translate" data-lang="ex_car_plugged">Data point car charger plugged in</span>
 				</div>
 			</div>
@@ -238,7 +257,8 @@
 				</div>
 				<div class="input-field col s4">
 					<input id="recalculate" class="value" type="checkbox" />
-					<label for="recalculate" class="translate" data-lang="recalculate">Calculate values from W in
+					<label for="recalculate" class="translate" data-lang="recalculate">Calculate values from W
+						in
 						kW</label>
 				</div>
 			</div>
@@ -252,12 +272,14 @@
 			<div class="row">
 				<div class="input-field col s5">
 					<input class="value color" id="color_house" type="text" placeholder="#00b5dd" />
-					<span class="translate" data-lang="color_house">color of the circle around the house (default:
+					<span class="translate" data-lang="color_house">color of the circle around the house
+						(default:
 						#00b5dd)</span>
 				</div>
 				<div class="input-field col s5">
 					<input class="value color" id="color_house_text" type="text" placeholder="#00b5dd" />
-					<span class="translate" data-lang="color_house_text">color of the text inside the circle of the
+					<span class="translate" data-lang="color_house_text">color of the text inside the circle of
+						the
 						house (default:
 						#00b5dd)</span>
 				</div>
@@ -270,12 +292,15 @@
 			<div class="row">
 				<div class="input-field col s5">
 					<input class="value color" id="color_grid" type="text" placeholder="#61687a" />
-					<span class="translate" data-lang="color_grid">color of the circle around the grid feed (default:
+					<span class="translate" data-lang="color_grid">color of the circle around the grid feed
+						(default:
 						#61687a)</span>
 				</div>
 				<div class="input-field col s5">
 					<input class="value color" id="color_grid_text" type="text" placeholder="#61687a" />
-					<span class="translate" data-lang="color_grid_text">color of the text inside the circle of the net
+					<span class="translate" data-lang="color_grid_text">color of the text inside the circle of
+						the
+						net
 						feed-in
 						(default: #61687a)</span>
 				</div>
@@ -288,13 +313,16 @@
 			<div class="row">
 				<div class="input-field col s5">
 					<input class="value color" id="color_production" type="text" placeholder="#ffce4a" />
-					<span class="translate" data-lang="color_production">color of the circle around the solar production
+					<span class="translate" data-lang="color_production">color of the circle around the solar
+						production
 						(default:
 						#ffce4a)</span>
 				</div>
 				<div class="input-field col s5">
 					<input class="value color" id="color_production_text" type="text" placeholder="#ffce4a" />
-					<span class="translate" data-lang="color_production_text">color of the text inside the circle of the
+					<span class="translate" data-lang="color_production_text">color of the text inside the
+						circle of
+						the
 						solar
 						production (default: #ffce4a)</span>
 				</div>
@@ -312,7 +340,9 @@
 				</div>
 				<div class="input-field col s5">
 					<input class="value color" id="color_car_text" type="text" placeholder="#c5902e" />
-					<span class="translate" data-lang="color_car_text">color of the text inside the circle of the car
+					<span class="translate" data-lang="color_car_text">color of the text inside the circle of
+						the
+						car
 						(default: #c5902e)</span>
 				</div>
 				<div class="input-field col s5">
@@ -329,12 +359,15 @@
 			<div class="row">
 				<div class="input-field col s5">
 					<input class="value color" id="color_battery" type="text" placeholder="#a1d343" />
-					<span class="translate" data-lang="color_battery">color of the circle around the battery (default:
+					<span class="translate" data-lang="color_battery">color of the circle around the battery
+						(default:
 						#a1d343)</span>
 				</div>
 				<div class="input-field col s5">
 					<input class="value color" id="color_battery_text" type="text" placeholder="#a1d343" />
-					<span class="translate" data-lang="color_battery_text">color of the text inside the circle of the
+					<span class="translate" data-lang="color_battery_text">color of the text inside the circle
+						of
+						the
 						car
 						(default: #a1d343)</span>
 				</div>
@@ -352,7 +385,8 @@
 				</div>
 				<div class="input-field col s5">
 					<input class="value color" id="color_animation" type="text" placeholder="#ffce4a" />
-					<span class="translate" data-lang="color_animation">color of the animation on the lines (default:
+					<span class="translate" data-lang="color_animation">color of the animation on the lines
+						(default:
 						#ffce4a)</span>
 				</div>
 			</div>

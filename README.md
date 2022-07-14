@@ -28,6 +28,10 @@ Installation ueber die Github Katze in ioBroker moeglich
 	Placeholder for the next version (at the beginning of the line):
 	## **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+- fixed number rounding
+- fixed for positive values for consuming and grid-feeding
+
 ### 0.2.4 (2022-07-01)
 - fixed Tranlastions
 

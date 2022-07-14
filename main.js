@@ -19,6 +19,7 @@ let grid_feed;
 let grid_consuming;
 let grid_different;
 let grid_reverse;
+let grid_all_positive;
 let battery_percent;
 let battery_charge;
 let battery_discharge;
@@ -26,7 +27,7 @@ let battery_different;
 let car_charge;
 let car_percent;
 let car_plugged;
-let calculate_consumption
+let calculate_consumption;
 let recalculate = false;
 let valuesObj = {};
 let configObj = {};
@@ -77,6 +78,7 @@ class Energiefluss extends utils.Adapter {
 			grid_consuming = this.config.grid_consuming;
 			grid_different = this.config.grid_different;
 			grid_reverse = this.config.grid_reverse ? true : false;
+			grid_all_positive = this.config.grid_all_positive ? true : false;
 			battery_percent = this.config.battery_percent;
 			battery_charge = this.config.battery_charge;
 			battery_discharge = this.config.battery_discharge;
@@ -203,28 +205,28 @@ class Energiefluss extends utils.Adapter {
 		// Production
 		if (state) {
 			if (id == production) {
-				valuesObj['production'] = recalculate ? this.recalculateValue(state.val) : state.val;
+				valuesObj['production'] = recalculate ? this.recalculateValue(state.val) : this.floorNumber(state.val);
 			}
 			if (id == consumption) {
-				valuesObj['consumption'] = recalculate ? this.recalculateValue(state.val) : state.val;
+				valuesObj['consumption'] = recalculate ? this.recalculateValue(state.val) : this.floorNumber(state.val);
 			}
 			if (id == grid_feed) {
-				valuesObj['grid_feed'] = recalculate ? this.recalculateValue(state.val) : state.val;
+				valuesObj['grid_feed'] = recalculate ? this.recalculateValue(state.val) : this.floorNumber(state.val);
 			}
 			if (id == grid_consuming) {
-				valuesObj['grid_consuming'] = recalculate ? this.recalculateValue(state.val) : state.val;
+				valuesObj['grid_consuming'] = recalculate ? this.recalculateValue(state.val) : this.floorNumber(state.val);
 			}
 			if (id == battery_percent) {
 				valuesObj['battery_percent'] = state.val;
 			}
 			if (id == battery_charge) {
-				valuesObj['battery_charge'] = recalculate ? this.recalculateValue(state.val) : state.val;
+				valuesObj['battery_charge'] = recalculate ? this.recalculateValue(state.val) : this.floorNumber(state.val);
 			}
 			if (id == battery_discharge) {
-				valuesObj['battery_discharge'] = recalculate ? this.recalculateValue(state.val) : state.val;
+				valuesObj['battery_discharge'] = recalculate ? this.recalculateValue(state.val) : this.floorNumber(state.val);
 			}
 			if (id == car_charge) {
-				valuesObj['car_charge'] = recalculate ? this.recalculateValue(state.val) : state.val;
+				valuesObj['car_charge'] = recalculate ? this.recalculateValue(state.val) : this.floorNumber(state.val);
 			}
 			if (id == car_percent) {
 				valuesObj['car_percent'] = state.val;
@@ -235,8 +237,14 @@ class Energiefluss extends utils.Adapter {
 
 			if (calculate_consumption) {
 				let prodValue = valuesObj['production'];
-				let gridValue = valuesObj['grid_feed'];
-				valuesObj['consumption'] = recalculate ? this.recalculateValue(parseFloat(prodValue) + parseFloat(gridValue)) : (parseFloat(prodValue) + parseFloat(gridValue));
+
+				let consumptionValue = 0;
+				if (grid_all_positive) {
+					consumptionValue = parseFloat(valuesObj['grid_consuming'] + (prodValue - valuesObj['grid_feed']));
+				} else {
+					consumptionValue = parseFloat(valuesObj['grid_feed'] + prodValue);
+				}
+				valuesObj['consumption'] = recalculate ? this.recalculateValue(consumptionValue) : this.floorNumber(consumptionValue);
 			}
 		}
 
@@ -267,7 +275,13 @@ class Energiefluss extends utils.Adapter {
 	 * @param {number} value
 	 */
 	recalculateValue(value) {
-		return (value / 1000).toFixed(2);
+		return parseFloat((value / 1000).toFixed(2));
+	}
+	/**
+	 * @param {number} value
+	 */
+	floorNumber(value) {
+		return parseFloat(value.toFixed(2));
 	}
 
 	/**
@@ -433,7 +447,7 @@ class Energiefluss extends utils.Adapter {
 			circle_uses.push('<use class="elm_grid shadow" xlink:href="#grid_present" /><use class="text_inside_circle" xlink:href="#text_grid" /><use class="value_inside_circle text_grid" xlink:href="#text_grid_value" /><use xlink:href="#icon_grid" />');
 		}
 
-		if (valuesObj['battery_percent'] != undefined) {
+		if (valuesObj['battery_percent'] != undefined && valuesObj['battery_charge'] != undefined) {
 			circle_defs.push('<text text-anchor="middle" id="text_battery_percent" x="52" y="268">' + valuesObj['battery_percent'] + '%</text>');
 			circle_uses.push('<use class="value_inside_circle_small text_battery" xlink:href="#text_battery_percent" />');
 		}
