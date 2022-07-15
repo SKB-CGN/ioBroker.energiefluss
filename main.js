@@ -443,8 +443,8 @@ class Energiefluss extends utils.Adapter {
 				batteryValue = batteryDischargeValue + ' ' + unit;
 			}
 
-			circle_defs.push('<circle id="grid_present" cx="250" cy="448" r="50" /><path id="icon_grid" transform="translate(238,406)" class="icon_color" d="M8.28,5.45L6.5,4.55L7.76,2H16.23L17.5,4.55L15.72,5.44L15,4H9L8.28,5.45M18.62,8H14.09L13.3,5H10.7L9.91,8H5.38L4.1,10.55L5.89,11.44L6.62,10H17.38L18.1,11.45L19.89,10.56L18.62,8M17.77,22H15.7L15.46,21.1L12,15.9L8.53,21.1L8.3,22H6.23L9.12,11H11.19L10.83,12.35L12,14.1L13.16,12.35L12.81,11H14.88L17.77,22M11.4,15L10.5,13.65L9.32,18.13L11.4,15M14.68,18.12L13.5,13.64L12.6,15L14.68,18.12Z" /><text text-anchor="middle" id="text_grid" x="250" y="478">Netz</text><text text-anchor="middle" id="text_grid_value" x="250" y="453">' + batteryValue + '</text>');
-			circle_uses.push('<use class="elm_grid shadow" xlink:href="#grid_present" /><use class="text_inside_circle" xlink:href="#text_grid" /><use class="value_inside_circle text_grid" xlink:href="#text_grid_value" /><use xlink:href="#icon_grid" />');
+			circle_defs.push('<circle id="battery_present" cx="52" cy="250" r="50" /><path id="icon_battery" transform="translate(40,207)" class="icon_color" d="M16 20H8V6H16M16.67 4H15V2H9V4H7.33C6.6 4 6 4.6 6 5.33V20.67C6 21.4 6.6 22 7.33 22H16.67C17.41 22 18 21.41 18 20.67V5.33C18 4.6 17.4 4 16.67 4M15 16H9V19H15V16M15 7H9V10H15V7M15 11.5H9V14.5H15V11.5Z" /><text text-anchor="middle" id="text_battery" x="52" y="280">Batterie</text><text text-anchor="middle" id="text_battery_value" x="52" y="255">' + batteryValue + '</text>');
+			circle_uses.push('<use class="elm_battery shadow" xlink:href="#battery_present" /><use class="text_inside_circle" xlink:href="#text_battery" /><use class="value_inside_circle text_battery" xlink:href="#text_battery_value" /><use xlink:href="#icon_battery" />');
 		}
 
 		if (valuesObj['battery_percent'] != undefined && valuesObj['battery_charge'] != undefined) {
@@ -479,10 +479,14 @@ class Energiefluss extends utils.Adapter {
 			line_uses.push('<use class="line" xlink:href="#house_to_car" />');
 		}
 		if (valuesObj['battery_charge'] != undefined && valuesObj['grid_feed'] != undefined) {
-			line_defs.push('<path id="solar_to_battery" d="M 230,98 v 132 l 0,0 h -132" class="path" /><path id="grid_to_battery" d="M 230,402 v -132 l 0,0 h -132" class="path" />');
-			line_uses.push('<use class="line" xlink:href="#solar_to_battery" /><use class="line" xlink:href="#grid_to_battery" />');
+			line_defs.push('<path id="grid_to_battery" d="M 230,402 v -132 l 0,0 h -132" class="path" />');
+			line_uses.push('<use class="line" xlink:href="#grid_to_battery" />');
 		}
-		if (valuesObj['battery_charge'] != undefined && valuesObj['consumption'] != undefined) {
+		if (valuesObj['production'] != undefined && valuesObj['battery_charge'] != undefined) {
+			line_defs.push('<path id="solar_to_battery" d="M 230,98 v 132 l 0,0 h -132" class="path" />');
+			line_uses.push('<use class="line" xlink:href="#solar_to_battery" />');
+		}
+		if (valuesObj['battery_discharge'] != undefined && valuesObj['consumption'] != undefined) {
 			line_defs.push('<path id="battery_to_house" d="M 102,250 h 295" class="path" />');
 			line_uses.push('<use class="line" xlink:href="#battery_to_house" />');
 		}
