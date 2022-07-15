@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "energiefluss",
-    "version": "0.2.5",
+    "version": "0.2.6",
     "news": {
+      "0.2.6": {
+        "en": "fixed different states for battery charging",
+        "de": "feste verschiedene zustände für batterielade",
+        "ru": "фиксированные различные состояния для зарядки батареи",
+        "pt": "estados diferentes fixos para carregamento de bateria",
+        "nl": "verschillende staten voor beschuldigingen",
+        "fr": "états fixes différents pour la charge de la batterie",
+        "it": "stati diversi fissi per la ricarica della batteria",
+        "es": "estados fijos diferentes para la carga de batería",
+        "pl": "stałe inne stany ładowania baterii",
+        "zh-cn": "a. 固定不同国家对电池的征税"
+      },
       "0.2.5": {
         "en": "fixed number rounding\nfixed for positive values for consuming and grid-feeding",
         "de": "feste nummer rundung\nfür positive werte für den verbrauch und das netz-feed festgelegt",
@@ -74,18 +86,6 @@
         "es": "Nuevo Estado para cargador de coche conectado y opción de color",
         "pl": "Dodano nowy stan do odpowiedzialności karnej i kolorowej opcji",
         "zh-cn": "增加托儿所和颜色选择的新国家"
-      },
-      "0.2.0-0": {
-        "en": "added possibility for changing the colors (text and circles)",
-        "de": "zusätzliche möglichkeit zum ändern der farben (text und kreise)",
-        "ru": "добавлена возможность изменения цветов (текст и круги)",
-        "pt": "possibilidade adicionada para alterar as cores (texto e círculos)",
-        "nl": "toegevoegde mogelijkheid om de kleuren te veranderen",
-        "fr": "possibilité supplémentaire pour changer les couleurs (texte et cercles)",
-        "it": "possibilità aggiunta per cambiare i colori (testo e cerchi)",
-        "es": "añadido posibilidad para cambiar los colores (texto y círculos)",
-        "pl": "dodano możliwość zmiany kolorów (tekstu i kręgów)",
-        "zh-cn": "改变肤色(背景和圈)的可能性"
       }
     },
     "title": "energiefluss",

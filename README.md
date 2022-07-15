@@ -28,7 +28,7 @@ Installation ueber die Github Katze in ioBroker moeglich
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.2.6 (2022-07-15)
 - fixed different states for battery charging
 
 ### 0.2.5 (2022-07-14)
