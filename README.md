@@ -23,6 +23,10 @@ Es stellt einen animierten Energiefluss fuer Photovoltaik, Batterie, Hausverbrau
 ## Installation
 Installation ueber die Github Katze in ioBroker moeglich
 
+## Support
+If you like the adapter and want to support me, you can do so here:
+[![Donate](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://www.paypal.me/StephanKreyenborg)
+
 ## Changelog
 <!--
 	Placeholder for the next version (at the beginning of the line):
