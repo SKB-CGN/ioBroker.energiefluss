@@ -32,8 +32,11 @@ If you like the adapter and want to support me, you can do so here:
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### 0.3.0 (2022-07-22)
-- added font-size and font-face options in admin
+### **WORK IN PROGRESS**
+
+- added font-size options in admin
+- added font-face options in admin
+- addded smoother animation
 
 ### 0.2.6 (2022-07-15)
 - fixed different states for battery charging
