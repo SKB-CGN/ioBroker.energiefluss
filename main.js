@@ -48,6 +48,13 @@ let color_battery_text;
 let color_lines;
 let color_animation;
 
+/* fonts */
+let font;
+let font_size_label;
+let font_size_value;
+let font_size_percent;
+
+
 class Energiefluss extends utils.Adapter {
 
 	/**
@@ -102,6 +109,12 @@ class Energiefluss extends utils.Adapter {
 			color_battery_text = this.config.color_battery_text;
 			color_lines = this.config.color_lines;
 			color_animation = this.config.color_animation;
+
+			// Fonts
+			font = this.config.font;
+			font_size_label = this.config.font_size_label;
+			font_size_value = this.config.font_size_value;
+			font_size_percent = this.config.font_size_percent;
 
 			recalculate = this.config.recalculate ? true : false;
 			this.log.info("Starting Energiefluss Adapter");
@@ -323,7 +336,7 @@ class Energiefluss extends utils.Adapter {
 		if ((valuesObj['battery_charge'] === undefined || valuesObj['battery_discharge'] === undefined) && valuesObj['battery_percent'] === undefined) {
 			no_battery = 'nobatt';
 		}
-		let html_head = '<!DOCTYPE html><html lang="en"><head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width,initial-scale=1.0"> <title>Energiefluss</title> <style>svg{height: 100%; width: 95%;}circle{stroke-width: 4px; fill: none; }.path{stroke-width: 4px; fill: none;}.icon_color{opacity: 0.7;}.icon_car_plugged { fill:' + color_car_plugged + ';}circle{stroke-width: 2px; fill: white;}.line{stroke:' + color_lines + '; stroke-dasharray: 1000; opacity: 0.7;}.elm_solar{stroke: ' + color_production + ';}.text_solar{fill: ' + color_production_text + ';}.elm_house{stroke: ' + color_house + ';}.text_house{fill: ' + color_house_text + ';}.elm_car{stroke: ' + color_car + ';}.text_car{fill:' + color_car_text + ';}.elm_battery{stroke: ' + color_battery + ';}.text_battery{fill:' + color_battery_text + ';}.elm_grid{stroke:' + color_grid + ';}.text_grid{fill:' + color_grid_text + ';}.text_inside_circle{font: 10px sans-serif; opacity: 0.7;}.value_inside_circle{font: 14px sans-serif;}.value_inside_circle_small{font: 10px sans-serif;}.consumption_animation{animation: cons 4s infinite steps(21); stroke:' + color_animation + '; stroke-dasharray: 4 12 4 12 4 120; stroke-linecap: round;}@keyframes cons{0%{stroke-dashoffset: 368;}100%{stroke-dashoffset: 32;}}html,body {background: transparent;height: 96vh;width: 96vw;}.shadow {-webkit-filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, .7));filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, .7));} .nobatt {margin-left: -9em;}</style></head>'
+		let html_head = '<!DOCTYPE html><html lang="en"><head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width,initial-scale=1.0"> <title>Energiefluss</title> <style>svg{height: 100%; width: 95%;}circle{stroke-width: 4px; fill: none; }.path{stroke-width: 4px; fill: none;}.icon_color{opacity: 0.7;}.icon_car_plugged { fill:' + color_car_plugged + ';}circle{stroke-width: 2px; fill: white;}.line{stroke:' + color_lines + '; stroke-dasharray: 1000; opacity: 0.7;}.elm_solar{stroke: ' + color_production + ';}.text_solar{fill: ' + color_production_text + ';}.elm_house{stroke: ' + color_house + ';}.text_house{fill: ' + color_house_text + ';}.elm_car{stroke: ' + color_car + ';}.text_car{fill:' + color_car_text + ';}.elm_battery{stroke: ' + color_battery + ';}.text_battery{fill:' + color_battery_text + ';}.elm_grid{stroke:' + color_grid + ';}.text_grid{fill:' + color_grid_text + ';}.text_inside_circle{font-family:' + font + ';font-size:' + font_size_label + 'px; opacity: 0.7;}.value_inside_circle{font-family:' + font + ';font-size:' + font_size_value + 'px;}.value_inside_circle_small{font-family:' + font + ';font-size:' + font_size_percent + 'px;}.consumption_animation{animation: cons 3s infinite steps(260); stroke:' + color_animation + '; stroke-dasharray: 4 12 4 12 4 100; stroke-linecap: round;}@keyframes cons{0%{stroke-dashoffset: 250;}100%{stroke-dashoffset: -22;}}html,body {background: transparent;height: 96vh;width: 96vw;}.shadow {-webkit-filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, .7));filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, .7));} .nobatt {margin-left: -9em;}</style></head>'
 		html_head = html_head + '<body> <svg viewBox="0 0 510 510" width="510" height="510" class="' + no_battery + '">';
 		/* Build all circles */
 		if (valuesObj['consumption'] != undefined) {
