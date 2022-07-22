@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "energiefluss",
-    "version": "0.3.0",
+    "version": "0.3.1",
     "news": {
+      "0.3.1": {
+        "en": "added font-size options in admin\nadded font-face options in admin\naddded smoother animation",
+        "de": "schriftart-größe optionen in admin\nschriftartoptionen in admin\nzusätzliche glatte animation",
+        "ru": "добавлены параметры шрифт-размера в админ\nдобавлены параметры шрифта в admin\nдобавленная плавная анимация",
+        "pt": "adicionado opções de tamanho de fonte no admin\nadicionado opções de fonte em admin\nanimação mais suave acrescentada",
+        "nl": "voegde lettertype opties toe in administratie\nvoegde font-face opties toe in administratie\nvertaling:",
+        "fr": "ajout de police-size options dans admin\najouter des options de police dans admin\nanimation plus douce",
+        "it": "opzioni aggiuntive di font-size in admin\nopzioni di carattere aggiunto in admin\nanimazione più liscia",
+        "es": "opciones de tamaño de fuente agregadas en admin\nopciones de fuentes adicionales en administración\nanimación más suave",
+        "pl": "dodać opcje czcionki w adminach\ndodać opcje czcionki w adminach\ndodanie gładkiej animacji",
+        "zh-cn": "增加专注的备选办法\n在专注中增加以人为本的备选办法\n增 编"
+      },
       "0.3.0": {
         "en": "added font-size and font-face options in admin",
         "de": "schriftart-größe und schriftart-optionen in admin",
@@ -64,18 +76,6 @@
         "zh-cn": "如果国家被删除,可能发生固定的事故。"
       },
       "0.2.2": {
-        "en": "fixed failed log output",
-        "de": "fehlgeschlagene protokollausgabe",
-        "ru": "фиксированный неудачный выход журнала",
-        "pt": "saída de log de falha fixa",
-        "nl": "vertaling:",
-        "fr": "sortie du journal raté",
-        "it": "uscita di registro non riuscita fissa",
-        "es": "salida de registro fallada",
-        "pl": "wadliwość",
-        "zh-cn": "固定的伐木产出"
-      },
-      "0.2.1": {
         "en": "fixed failed log output",
         "de": "fehlgeschlagene protokollausgabe",
         "ru": "фиксированный неудачный выход журнала",

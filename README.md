@@ -32,7 +32,7 @@ If you like the adapter and want to support me, you can do so here:
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.3.1 (2022-07-22)
 
 - added font-size options in admin
 - added font-face options in admin
