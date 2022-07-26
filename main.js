@@ -43,9 +43,7 @@ let parameterObj = {
 	circles: {},
 	colors: {},
 	fonts: {},
-	general: {
-		no_battery: false
-	},
+	general: {},
 	icons: {},
 	values: {},
 	texts: {}
@@ -170,18 +168,6 @@ class Energiefluss extends utils.Adapter {
 			Here a simple template for a boolean variable named "testVariable"
 			Because every adapter instance uses its own unique namespace variable names can't collide with other adapters variables
 			*/
-			await this.setObjectNotExistsAsync('HTML', {
-				type: "state",
-				common: {
-					name: "HTML Output",
-					type: "string",
-					role: "html",
-					read: true,
-					write: false,
-				},
-				native: {},
-			});
-
 			await this.setObjectNotExistsAsync('configuration', {
 				type: 'state',
 				common: {
@@ -206,6 +192,8 @@ class Energiefluss extends utils.Adapter {
 				native: {},
 			});
 
+			// Delete old State HTML
+			await this.deleteStateAsync('HTML');
 
 			// Build Parameter
 			parameterObj.colors = {
@@ -233,6 +221,7 @@ class Energiefluss extends utils.Adapter {
 			}
 
 			// General
+			parameterObj.general.no_battery = false;
 			parameterObj.general.unit = unit;
 			parameterObj.general.line_size = this.config.line_size;
 
@@ -431,11 +420,8 @@ class Energiefluss extends utils.Adapter {
 		};
 
 		// Change CSS if no battery is present
-		let no_battery = '';
 		if ((valuesObj['battery_charge'] === undefined || valuesObj['battery_discharge'] === undefined) && valuesObj['battery_percent'] === undefined) {
-			parameterObj.general = {
-				no_battery: true
-			}
+			parameterObj.general.no_battery = true;
 		}
 		// Consumption
 		if (valuesObj['consumption'] != undefined) {
