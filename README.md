@@ -32,6 +32,14 @@ If you like the adapter and want to support me, you can do so here:
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+- Rewrote most of the Code, to add more flexibility
+- changed Data-Store to States instead of in memory (faster rendering)
+- Line Size can be adjusted
+- 'Stucking' while value has changed is removed, as rendering will be done on the fly
+- more stable
+- some bugs fixed (battery State)
+
 ### 0.3.1 (2022-07-22)
 
 - added font-size options in admin

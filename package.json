@@ -15,6 +15,9 @@
     "type": "git",
     "url": "git+https://github.com/SKB-CGN/ioBroker.energiefluss.git"
   },
+  "optionalDependencies": {
+    "canvas": "^2.9.3"
+  },
   "dependencies": {
     "@iobroker/adapter-core": "^2.6.0"
   },

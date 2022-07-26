@@ -29,9 +29,27 @@ let car_percent;
 let car_plugged;
 let calculate_consumption;
 let recalculate = false;
+
+/* Data Objects */
 let valuesObj = {};
+let dataObj = {
+	values: {},
+	animations: {}
+};
 let configObj = {};
 let subscribeArray = new Array();
+let parameterObj = {
+	lines: {},
+	circles: {},
+	colors: {},
+	fonts: {},
+	general: {
+		no_battery: false
+	},
+	icons: {},
+	values: {},
+	texts: {}
+};
 
 /* color for runtime */
 let color_house;
@@ -53,6 +71,10 @@ let font;
 let font_size_label;
 let font_size_value;
 let font_size_percent;
+
+/* Canvas */
+let canvas;
+let canvas_installed
 
 
 class Energiefluss extends utils.Adapter {
@@ -78,7 +100,7 @@ class Energiefluss extends utils.Adapter {
 	async onReady() {
 		if (this.config.production) {
 			// Initialize your adapter here
-			unit = ' ' + this.config.unit;
+			unit = this.config.unit;
 			production = this.config.production;
 			consumption = this.config.consumption;
 			grid_feed = this.config.grid_feed;
@@ -148,7 +170,7 @@ class Energiefluss extends utils.Adapter {
 			Here a simple template for a boolean variable named "testVariable"
 			Because every adapter instance uses its own unique namespace variable names can't collide with other adapters variables
 			*/
-			await this.setObjectNotExistsAsync("HTML", {
+			await this.setObjectNotExistsAsync('HTML', {
 				type: "state",
 				common: {
 					name: "HTML Output",
@@ -160,6 +182,63 @@ class Energiefluss extends utils.Adapter {
 				native: {},
 			});
 
+			await this.setObjectNotExistsAsync('configuration', {
+				type: 'state',
+				common: {
+					name: 'Parameters for HTML Output',
+					type: 'string',
+					role: 'json',
+					read: true,
+					write: false,
+				},
+				native: {},
+			});
+
+			await this.setObjectNotExistsAsync('data', {
+				type: 'state',
+				common: {
+					name: 'Data for HTML Output',
+					type: 'string',
+					role: 'json',
+					read: true,
+					write: false,
+				},
+				native: {},
+			});
+
+
+			// Build Parameter
+			parameterObj.colors = {
+				house: color_house,
+				consumption_value: color_house_text,
+				grid: color_grid,
+				grid_value: color_grid_text,
+				production: color_production,
+				production_value: color_production_text,
+				car: color_car,
+				car_value: color_car_text,
+				car_plugged: color_car_plugged,
+				battery: color_battery,
+				battery_value: color_battery_text,
+				lines: color_lines,
+				animation: color_animation
+			}
+
+			// Fonts
+			parameterObj.fonts = {
+				font: font,
+				font_size_label: font_size_label,
+				font_size_value: font_size_value,
+				font_size_percent: font_size_percent
+			}
+
+			// General
+			parameterObj.general.unit = unit;
+			parameterObj.general.line_size = this.config.line_size;
+
+
+			// buildDataJSON will add some more details to the object
+
 			// In order to get state updates, you need to subscribe to them. The following line adds a subscription for our variable we have created above.
 			this.subscribeForeignStates(subscribeArray);
 			// You can also add a subscription for multiple states. The following line watches all states starting with "lights."
@@ -168,6 +247,14 @@ class Energiefluss extends utils.Adapter {
 			// this.subscribeStates("*");
 			this.log.info("Adapter started and listening to " + subscribeArray.length + " States");
 			this.log.debug("Initial Values: " + JSON.stringify(valuesObj));
+			// check for canvas
+			try {
+				//canvas = require('canvas');
+				//canvas_installed = true;
+			} catch (e) {
+				this.log.warn('Canvas not installed! Thus, no map drawings are possible. Please see installation instructions on Github (https://github.com/iobroker-community-adapters/ioBroker.roomba#installation).');
+				this.log.debug(e.message);
+			}
 		} else {
 			this.log.warn("No production datapoint set");
 		}
@@ -263,8 +350,8 @@ class Energiefluss extends utils.Adapter {
 
 		this.log.debug("States changed: " + JSON.stringify(valuesObj));
 
-		/* Rebuild the HTML after State change */
-		this.rebuildHTML();
+		/* Build the JSON Arrays to store in states */
+		this.buildDataJSON();
 	}
 
 	// If you need to accept messages in your adapter, uncomment the following block and the corresponding line in the constructor.
@@ -324,59 +411,83 @@ class Energiefluss extends utils.Adapter {
 		return tmpObj;
 	}
 
-	async rebuildHTML() {
-		let circle_defs = new Array();
-		let line_defs = new Array();
-		let circle_uses = new Array();
-		let line_uses = new Array();
-		let line_animation = new Array();
+	async buildDataJSON() {
+		let dataValueObj = {};
+
+		let circlesObj = {};
+		let textObj = {};
+		let valueObj = {};
+		let iconObj = {};
+		let linesObj = {};
+
+		let line_animation = {
+			solar_to_house: false,
+			grid_to_house: false,
+			solar_to_grid: false,
+			house_to_car: false,
+			grid_to_battery: false,
+			solar_to_battery: false,
+			battery_to_house: false
+		};
 
 		// Change CSS if no battery is present
 		let no_battery = '';
 		if ((valuesObj['battery_charge'] === undefined || valuesObj['battery_discharge'] === undefined) && valuesObj['battery_percent'] === undefined) {
-			no_battery = 'nobatt';
+			parameterObj.general = {
+				no_battery: true
+			}
 		}
-		let html_head = '<!DOCTYPE html><html lang="en"><head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width,initial-scale=1.0"> <title>Energiefluss</title> <style>svg{height: 100%; width: 95%;}circle{stroke-width: 4px; fill: none; }.path{stroke-width: 4px; fill: none;}.icon_color{opacity: 0.7;}.icon_car_plugged { fill:' + color_car_plugged + ';}circle{stroke-width: 2px; fill: white;}.line{stroke:' + color_lines + '; stroke-dasharray: 1000; opacity: 0.7;}.elm_solar{stroke: ' + color_production + ';}.text_solar{fill: ' + color_production_text + ';}.elm_house{stroke: ' + color_house + ';}.text_house{fill: ' + color_house_text + ';}.elm_car{stroke: ' + color_car + ';}.text_car{fill:' + color_car_text + ';}.elm_battery{stroke: ' + color_battery + ';}.text_battery{fill:' + color_battery_text + ';}.elm_grid{stroke:' + color_grid + ';}.text_grid{fill:' + color_grid_text + ';}.text_inside_circle{font-family:' + font + ';font-size:' + font_size_label + 'px; opacity: 0.7;}.value_inside_circle{font-family:' + font + ';font-size:' + font_size_value + 'px;}.value_inside_circle_small{font-family:' + font + ';font-size:' + font_size_percent + 'px;}.consumption_animation{animation: cons 3s infinite steps(260); stroke:' + color_animation + '; stroke-dasharray: 4 12 4 12 4 100; stroke-linecap: round;}@keyframes cons{0%{stroke-dashoffset: 250;}100%{stroke-dashoffset: -22;}}html,body {background: transparent;height: 96vh;width: 96vw;}.shadow {-webkit-filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, .7));filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, .7));} .nobatt {margin-left: -9em;}</style></head>'
-		html_head = html_head + '<body> <svg viewBox="0 0 510 510" width="510" height="510" class="' + no_battery + '">';
-		/* Build all circles */
+		// Consumption
 		if (valuesObj['consumption'] != undefined) {
-			circle_defs.push('<circle id="home_present" cx="448" cy="250" r="50"/> <path id="icon_house" transform="translate(436,207)" class="icon_color" d="M0,21V10L7.5,5L15,10V21H10V14H5V21H0M24,2V21H17V8.93L16,8.27V6H14V6.93L10,4.27V2H24M21,14H19V16H21V14M21,10H19V12H21V10M21,6H19V8H21V6Z"/> <text text-anchor="middle" id="text_house" x="450" y="280">Verbrauch</text> <text text-anchor="middle" id="text_house_value" x="450" y="255">' + valuesObj['consumption'] + ' ' + unit + '</text>');
-			circle_uses.push('<use class="elm_house shadow" xlink:href="#home_present"/> <use class="text_inside_circle" xlink:href="#text_house"/> <use class="value_inside_circle text_house" xlink:href="#text_house_value"/> <use xlink:href="#icon_house"/>');
+			circlesObj.house = true;
+			textObj.consumption_text = true;
+			valueObj.consumption_value = true;
+			iconObj.icon_house = true;
+
+			dataValueObj.consumption_value = valuesObj['consumption'];
 		}
+
+		// Production
 		if (valuesObj['production'] != undefined) {
 			if (valuesObj['consumption'] > 0 && valuesObj['production'] > 0) {
-				line_animation.push('<use class="consumption_animation" xlink:href="#solar_to_house" />');
+				line_animation.solar_to_house = true;
 			}
-			circle_defs.push('<circle id="solar_present" cx="250" cy="52" r="50" /><path id="icon_solar" transform="translate(238,8)" class="icon_color" d="M4,2H20A2,2 0 0,1 22,4V14A2,2 0 0,1 20,16H15V20H18V22H13V16H11V22H6V20H9V16H4A2,2 0 0,1 2,14V4A2,2 0 0,1 4,2M4,4V8H11V4H4M4,14H11V10H4V14M20,14V10H13V14H20M20,4H13V8H20V4Z" /><text text-anchor="middle" id="text_solar" x="250" y="79">Erzeugung</text><text text-anchor="middle" id="text_solar_value" x="250" y="54">' + valuesObj['production'] + ' ' + unit + '</text>');
-			circle_uses.push('<use class="elm_solar shadow" xlink:href="#solar_present" /><use class="text_inside_circle" xlink:href="#text_solar" /><use class="value_inside_circle text_solar" xlink:href="#text_solar_value" /><use xlink:href="#icon_solar" />');
+			circlesObj.production = true;
+			textObj.production_text = true;
+			valueObj.production_value = true;
+			iconObj.icon_production = true;
+
+			dataValueObj.production_value = valuesObj['production'];
 		}
+
+		// Grid
 		if (valuesObj['grid_feed'] != undefined && grid_different === false) {
 			let gridValue = valuesObj['grid_feed'];
 			if (grid_reverse) {
 				if (gridValue > 0) {
-					line_animation.push('<use class="consumption_animation" xlink:href="#grid_to_house" />');
+					line_animation.grid_to_house = true;
 				}
 				if (gridValue < 0) {
 					// Display as positive
 					gridValue = gridValue * -1;
-					line_animation.push('<use class="consumption_animation" xlink:href="#solar_to_grid" />');
+					line_animation.solar_to_grid = true;
 				}
 			} else {
 				if (gridValue > 0) {
-					line_animation.push('<use class="consumption_animation" xlink:href="#solar_to_grid" />');
+					line_animation.solar_to_grid = true;
 				}
 				if (gridValue < 0) {
 					// Display as positive
 					gridValue = gridValue * -1;
-					line_animation.push('<use class="consumption_animation" xlink:href="#grid_to_house" />');
+					line_animation.grid_to_house = true;
 				}
 			}
-			// Feeding the grid
+			circlesObj.grid = true;
+			textObj.grid_text = true;
+			valueObj.grid_value = true;
+			iconObj.icon_grid = true;
 
-			gridValue = gridValue + ' ' + unit;
-
-			circle_defs.push('<circle id="grid_present" cx="250" cy="448" r="50" /><path id="icon_grid" transform="translate(238,406)" class="icon_color" d="M8.28,5.45L6.5,4.55L7.76,2H16.23L17.5,4.55L15.72,5.44L15,4H9L8.28,5.45M18.62,8H14.09L13.3,5H10.7L9.91,8H5.38L4.1,10.55L5.89,11.44L6.62,10H17.38L18.1,11.45L19.89,10.56L18.62,8M17.77,22H15.7L15.46,21.1L12,15.9L8.53,21.1L8.3,22H6.23L9.12,11H11.19L10.83,12.35L12,14.1L13.16,12.35L12.81,11H14.88L17.77,22M11.4,15L10.5,13.65L9.32,18.13L11.4,15M14.68,18.12L13.5,13.64L12.6,15L14.68,18.12Z" /><text text-anchor="middle" id="text_grid" x="250" y="478">Netz</text><text text-anchor="middle" id="text_grid_value" x="250" y="453">' + gridValue + '</text>');
-			circle_uses.push('<use class="elm_grid shadow" xlink:href="#grid_present" /><use class="text_inside_circle" xlink:href="#text_grid" /><use class="value_inside_circle text_grid" xlink:href="#text_grid_value" /><use xlink:href="#icon_grid" />');
+			dataValueObj.grid_value = gridValue;
 		}
 
 		// User has defined to used different States for consuming from and feeding to the grid
@@ -386,156 +497,135 @@ class Energiefluss extends utils.Adapter {
 			let gridValue = 0 + ' ' + unit;
 
 			if (gridConsumeValue > 0 && gridFeedValue === 0) {
-				line_animation.push('<use class="consumption_animation" xlink:href="#grid_to_house" />');
-				gridValue = gridConsumeValue + ' ' + unit;
+				line_animation.grid_to_house = true;
+				gridValue = gridConsumeValue;
 			}
 
 			if (gridFeedValue > 0 && gridConsumeValue === 0) {
-				line_animation.push('<use class="consumption_animation" xlink:href="#solar_to_grid" />');
-				gridValue = gridFeedValue + ' ' + unit;
+				line_animation.solar_to_grid = true;
+				gridValue = gridFeedValue;
 			}
 
-			circle_defs.push('<circle id="grid_present" cx="250" cy="448" r="50" /><path id="icon_grid" transform="translate(238,406)" class="icon_color" d="M8.28,5.45L6.5,4.55L7.76,2H16.23L17.5,4.55L15.72,5.44L15,4H9L8.28,5.45M18.62,8H14.09L13.3,5H10.7L9.91,8H5.38L4.1,10.55L5.89,11.44L6.62,10H17.38L18.1,11.45L19.89,10.56L18.62,8M17.77,22H15.7L15.46,21.1L12,15.9L8.53,21.1L8.3,22H6.23L9.12,11H11.19L10.83,12.35L12,14.1L13.16,12.35L12.81,11H14.88L17.77,22M11.4,15L10.5,13.65L9.32,18.13L11.4,15M14.68,18.12L13.5,13.64L12.6,15L14.68,18.12Z" /><text text-anchor="middle" id="text_grid" x="250" y="478">Netz</text><text text-anchor="middle" id="text_grid_value" x="250" y="453">' + gridValue + '</text>');
-			circle_uses.push('<use class="elm_grid shadow" xlink:href="#grid_present" /><use class="text_inside_circle" xlink:href="#text_grid" /><use class="value_inside_circle text_grid" xlink:href="#text_grid_value" /><use xlink:href="#icon_grid" />');
+			circlesObj.grid = true;
+			textObj.grid_text = true;
+			valueObj.grid_value = true;
+			iconObj.icon_grid = true;
+
+			dataValueObj.grid_value = gridValue;
 		}
 
 		if (valuesObj['car_charge'] != undefined) {
-			let class_plugged = '';
 			if (valuesObj['car_charge'] > 0) {
-				line_animation.push('<use class="consumption_animation" xlink:href="#house_to_car" />');
+				line_animation.house_to_car = true;
 			}
-			if (valuesObj['car_plugged'] === true) {
-				class_plugged = ' icon_car_plugged';
-			}
-			circle_defs.push('<circle id="car_present" cx="448" cy="448" r="50" /><path id="icon_car" transform="translate(436,406)" class="icon_color' + class_plugged + '" d="M18.92 2C18.72 1.42 18.16 1 17.5 1H6.5C5.84 1 5.29 1.42 5.08 2L3 8V16C3 16.55 3.45 17 4 17H5C5.55 17 6 16.55 6 16V15H18V16C18 16.55 18.45 17 19 17H20C20.55 17 21 16.55 21 16V8L18.92 2M6.85 3H17.14L18.22 6.11H5.77L6.85 3M19 13H5V8H19V13M7.5 9C8.33 9 9 9.67 9 10.5S8.33 12 7.5 12 6 11.33 6 10.5 6.67 9 7.5 9M16.5 9C17.33 9 18 9.67 18 10.5S17.33 12 16.5 12C15.67 12 15 11.33 15 10.5S15.67 9 16.5 9M7 20H11V18L17 21H13V23L7 20Z" /><text text-anchor="middle" id="text_car" x="450" y="478">Auto</text><text text-anchor="middle" id="text_car_value" x="450" y="453">' + valuesObj['car_charge'] + ' ' + unit + '</text>');
-			circle_uses.push('<use class="elm_car shadow" xlink:href="#car_present" /><use class="text_inside_circle" xlink:href="#text_car" /><use class="value_inside_circle text_car" xlink:href="#text_car_value" /><use xlink:href="#icon_car" />');
+			dataValueObj.car_plugged = valuesObj['car_plugged'];
+			circlesObj.car = true;
+			textObj.car_text = true;
+			valueObj.car_value = true;
+			iconObj.icon_car = true;
+
+			dataValueObj.car_value = valuesObj['car_charge'];
 		}
 
 		if (valuesObj['car_percent'] != undefined) {
-			circle_defs.push('<text text-anchor="middle" id="text_car_percent" x="450" y="466">' + valuesObj['car_percent'] + '%</text>');
-			circle_uses.push('<use class="value_inside_circle_small text_car" xlink:href="#text_car_percent" />');
+			valueObj.car_percent = true;
+			dataValueObj.car_percent = valuesObj['car_percent'];
 		}
 
 		if (valuesObj['car_charge'] != undefined && valuesObj['consumption'] === undefined) {
 			if (valuesObj['car_charge'] > 0) {
-				line_animation.push('<use class="consumption_animation" xlink:href="#house_to_car" />');
+				line_animation.house_to_car = true;
 			}
-			circle_defs.push('<circle id="home_present" cx="448" cy="250" r="50"/> <path id="icon_house" transform="translate(436,207)" class="icon_color" d="M0,21V10L7.5,5L15,10V21H10V14H5V21H0M24,2V21H17V8.93L16,8.27V6H14V6.93L10,4.27V2H24M21,14H19V16H21V14M21,10H19V12H21V10M21,6H19V8H21V6Z"/>');
-			circle_uses.push('<use class="elm_house shadow" xlink:href="#home_present"/><use xlink:href="#icon_house"/>');
+			circlesObj.house = true;
 		}
 
 		if (valuesObj['battery_charge'] != undefined && battery_different === false) {
 			let batteryValue = valuesObj['battery_charge'];
 			// Feeding the grid
 			if (batteryValue > 0) {
-				line_animation.push('<use class="consumption_animation" xlink:href="#solar_to_battery" />');
+				line_animation.solar_to_battery = true;
 			}
 			if (batteryValue < 0) {
 				// Display as positive & change animation
 				batteryValue = batteryValue * -1;
-				line_animation.push('<use class="consumption_animation" xlink:href="#battery_to_house" />');
+				line_animation.battery_to_house = true;
 			}
-			batteryValue = batteryValue + ' ' + unit;
-			circle_defs.push('<circle id="battery_present" cx="52" cy="250" r="50" /><path id="icon_battery" transform="translate(40,207)" class="icon_color" d="M16 20H8V6H16M16.67 4H15V2H9V4H7.33C6.6 4 6 4.6 6 5.33V20.67C6 21.4 6.6 22 7.33 22H16.67C17.41 22 18 21.41 18 20.67V5.33C18 4.6 17.4 4 16.67 4M15 16H9V19H15V16M15 7H9V10H15V7M15 11.5H9V14.5H15V11.5Z" /><text text-anchor="middle" id="text_battery" x="52" y="280">Batterie</text><text text-anchor="middle" id="text_battery_value" x="52" y="255">' + batteryValue + '</text>');
-			circle_uses.push('<use class="elm_battery shadow" xlink:href="#battery_present" /><use class="text_inside_circle" xlink:href="#text_battery" /><use class="value_inside_circle text_battery" xlink:href="#text_battery_value" /><use xlink:href="#icon_battery" />');
+			batteryValue = batteryValue;
+
+			circlesObj.battery = true;
+			textObj.battery_text = true;
+			valueObj.battery_value = true;
+			iconObj.icon_battery = true;
+
+			dataValueObj.battery_value = batteryValue;
 		}
 
 		// User has defined to used different States for consuming from and feeding to the grid
 		if (battery_different === true) {
 			let batteryChargeValue = valuesObj['battery_charge'];
 			let batteryDischargeValue = valuesObj['battery_discharge'];
-			let batteryValue = 0 + ' ' + unit;
+			let batteryValue = 0;
 
 			if (batteryChargeValue > 0 && batteryDischargeValue === 0) {
-				line_animation.push('<use class="consumption_animation" xlink:href="#solar_to_battery" />');
-				batteryValue = batteryChargeValue + ' ' + unit;
+				line_animation.solar_to_battery = true;
+				batteryValue = batteryChargeValue;
 			}
 
 			if (batteryDischargeValue > 0 && batteryChargeValue === 0) {
-				line_animation.push('<use class="consumption_animation" xlink:href="#battery_to_house" />');
-				batteryValue = batteryDischargeValue + ' ' + unit;
+				line_animation.battery_to_house = true;
+				batteryValue = batteryDischargeValue;
 			}
 
-			circle_defs.push('<circle id="battery_present" cx="52" cy="250" r="50" /><path id="icon_battery" transform="translate(40,207)" class="icon_color" d="M16 20H8V6H16M16.67 4H15V2H9V4H7.33C6.6 4 6 4.6 6 5.33V20.67C6 21.4 6.6 22 7.33 22H16.67C17.41 22 18 21.41 18 20.67V5.33C18 4.6 17.4 4 16.67 4M15 16H9V19H15V16M15 7H9V10H15V7M15 11.5H9V14.5H15V11.5Z" /><text text-anchor="middle" id="text_battery" x="52" y="280">Batterie</text><text text-anchor="middle" id="text_battery_value" x="52" y="255">' + batteryValue + '</text>');
-			circle_uses.push('<use class="elm_battery shadow" xlink:href="#battery_present" /><use class="text_inside_circle" xlink:href="#text_battery" /><use class="value_inside_circle text_battery" xlink:href="#text_battery_value" /><use xlink:href="#icon_battery" />');
+			circlesObj.battery = true;
+			textObj.battery_text = true;
+			valueObj.battery_value = true;
+			iconObj.icon_battery = true;
+
+			dataValueObj.battery_value = batteryValue;
 		}
 
 		if (valuesObj['battery_percent'] != undefined && valuesObj['battery_charge'] != undefined) {
-			circle_defs.push('<text text-anchor="middle" id="text_battery_percent" x="52" y="268">' + valuesObj['battery_percent'] + '%</text>');
-			circle_uses.push('<use class="value_inside_circle_small text_battery" xlink:href="#text_battery_percent" />');
+			valueObj.battery_percent = true;
+			dataValueObj.battery_percent = valuesObj['battery_percent'];
 		}
-
-
-		/* 
-		circle_defs.push('');
-		circle_uses.push('');
-		line_defs.push('');
-		line_uses.push('');
-		}
-		*/
 
 		/* Build all lines */
 		if (valuesObj['production'] != undefined && valuesObj['consumption'] != undefined) {
-			line_defs.push('<path id="solar_to_house" d="M 270,98 v 132 l 0,0 h 132" class="path"/>');
-			line_uses.push('<use class="line" xlink:href="#solar_to_house"/>');
+			linesObj.solar_to_house = true;
 		}
 		if (valuesObj['consumption'] != undefined && (valuesObj['grid_feed'] != undefined || valuesObj['grid_consuming'] != undefined)) {
-			line_defs.push('<path id="grid_to_house" d="M 270,402 v -132 l 0,0 h 132" class="path" />');
-			line_uses.push('<use class="line" xlink:href="#grid_to_house" />');
+			linesObj.grid_to_house = true;
 		}
 		if (valuesObj['production'] != undefined && (valuesObj['grid_feed'] != undefined || valuesObj['grid_consuming'] != undefined)) {
-			line_defs.push('<path id="solar_to_grid" d="M 250,102 v 295" class="path" />');
-			line_uses.push('<use class="line" xlink:href="#solar_to_grid" />');
+			linesObj.solar_to_grid = true;
 		}
 		if ((valuesObj['consumption'] != undefined && valuesObj['car_charge'] != undefined) || (valuesObj['car_charge'] != undefined && valuesObj['consumption'] === undefined)) {
-			line_defs.push('<path id="house_to_car" d="M 448,300 v 97" class="path" />');
-			line_uses.push('<use class="line" xlink:href="#house_to_car" />');
+			linesObj.house_to_car = true;
 		}
 		if (valuesObj['battery_charge'] != undefined && valuesObj['grid_feed'] != undefined) {
-			line_defs.push('<path id="grid_to_battery" d="M 230,402 v -132 l 0,0 h -132" class="path" />');
-			line_uses.push('<use class="line" xlink:href="#grid_to_battery" />');
+			linesObj.grid_to_battery = true;
 		}
 		if (valuesObj['production'] != undefined && valuesObj['battery_charge'] != undefined) {
-			line_defs.push('<path id="solar_to_battery" d="M 230,98 v 132 l 0,0 h -132" class="path" />');
-			line_uses.push('<use class="line" xlink:href="#solar_to_battery" />');
+			linesObj.solar_to_battery = true;
 		}
-		if (valuesObj['battery_discharge'] != undefined && valuesObj['consumption'] != undefined) {
-			line_defs.push('<path id="battery_to_house" d="M 102,250 h 295" class="path" />');
-			line_uses.push('<use class="line" xlink:href="#battery_to_house" />');
+		if (valuesObj['battery_discharge'] != undefined || valuesObj['battery_charge'] != undefined && valuesObj['consumption'] != undefined) {
+			linesObj.battery_to_house = true;
 		}
 
+		// Build the Parameters to be read inside Javascript on Webpage - called once
+		//JSON.parse(JSON.stringify(Object.assign({}, iconArray)));
+		parameterObj.circles = circlesObj;
+		parameterObj.icons = iconObj;
+		parameterObj.lines = linesObj;
+		parameterObj.texts = textObj;
+		parameterObj.values = valueObj;
 
-		// Put definitions together
-		/* Lines */
-		let defs_html = '<defs>';
-		line_defs.forEach(function (id, i) {
-			defs_html = defs_html + id;
-		});
-		/* Circles */
-		circle_defs.forEach(function (id, i) {
-			defs_html = defs_html + id;
-		});
-		defs_html = defs_html + '</defs>';
+		// Build the Values and Animations to be read inside Javascript - called every time a value changes
+		dataObj.animations = JSON.parse(JSON.stringify(line_animation));
+		dataObj.values = dataValueObj;
 
-		// Put uses together
-		/* Lines */
-		let uses_html = "";
-		line_uses.forEach(function (value) {
-			uses_html = uses_html + value;
-		});
-		/* Animations */
-		line_animation.forEach(function (value) {
-			uses_html = uses_html + value;
-		});
-
-		/* Circles */
-		circle_uses.forEach(function (value) {
-			uses_html = uses_html + value;
-		});
-
-		let html = html_head + defs_html + uses_html + '</svg></body></html>';
-
-		await this.setStateAsync("HTML", html, true);
+		await this.setStateAsync("data", JSON.stringify(dataObj), true);
+		await this.setStateAsync("configuration", JSON.stringify(parameterObj), true);
 	}
 }
 

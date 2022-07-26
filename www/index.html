@@ -3,15 +3,110 @@
 
 <head>
     <title>Energiefluss</title>
+    <style>
+        html,
+        body {
+            background: transparent;
+            height: 96vh;
+            width: 96vw;
+        }
+
+        #loading {
+            width: 100vw;
+            padding: 50px;
+            height: 100vw;
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            background-color: rgba(170, 170, 170, 0.9);
+            z-index: 101;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        #svg_image {
+            display: none;
+        }
+
+        svg {
+            height: 100%;
+            width: 95%;
+        }
+
+        circle {
+            stroke-width: 2px;
+            fill: white;
+        }
+
+        .shadow {
+            -webkit-filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, .7));
+            filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, .7));
+        }
+
+        .no_battery {
+            margin-left: -9em;
+        }
+
+        .path {
+            fill: none;
+        }
+
+        .icon_color {
+            opacity: 0.7;
+        }
+
+        .line {
+            stroke-dasharray: 1000;
+            opacity: 0.7;
+        }
+
+        .text,
+        .percent {
+            opacity: 0.7;
+        }
+
+        .animation {
+            animation: cons_anim 3s infinite steps(260);
+            stroke-dasharray: 4 12 4 12 4 100;
+            stroke-linecap: round;
+        }
+
+        @keyframes cons_anim {
+            0% {
+                stroke-dashoffset: 250;
+            }
+
+            100% {
+                stroke-dashoffset: -22;
+            }
+        }
+
+        .all_elm {
+            visibility: hidden;
+        }
+    </style>
     <script src="../../lib/js/jquery-3.2.1.min.js"></script>
     <script src="../../socket.io/socket.io.js"></script>
     <script src="conn.js"></script>
     <script>
         // config
-        let html;
-        servConn.namespace = 'energiefluss.0';
-        let objID = servConn.namespace + '.HTML';
+        // find out, which instance we are using
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const instance = urlParams.get('instance') ? urlParams.get('instance') : 0;
+
+        // Start connections to ioBroker Service
+        servConn.namespace = 'energiefluss.' + instance;
+        console.log('Using Instance: ' + servConn.namespace);
+        let objID = [servConn.namespace + '.configuration', servConn.namespace + '.data'];
         var loaded = false;
+
+        let config;
+        let data;
 
         var states = [];
         servConn.init({
@@ -28,9 +123,17 @@
                         if (count > 0) {
                             console.log('Received ' + count + ' states.');
                             console.log('Polling active!');
-                            html = states[objID].val;
-                            $('#loading').addClass('hidden');
-                            updateHTML();
+                            try {
+                                config = JSON.parse(states[objID[0]].val);
+                                data = JSON.parse(states[objID[1]].val);
+                                initConfig();
+                                updateValues();
+                                //$('#svg_image').css("display", "block");
+                                $('#svg_image').fadeIn("middle")
+                                $('#loading').fadeOut("middle").addClass('hidden');
+                            } catch (error) {
+                                console.log('Error while parsing JSON-Object!');
+                            }
                         }
                     });
                 } else {
@@ -43,10 +146,26 @@
             onUpdate: function (id, state) {
                 setTimeout(function () {
                     states[id] = state;
-                    if (id == objID) {
-                        html = states[id].val;
-                        updateHTML();
+                    // This is for changing the Values
+                    if (id == objID[1]) {
+                        try {
+                            data = JSON.parse(states[id].val);
+                            updateValues();
+                        } catch (error) {
+                            console.log('Error while parsing Values in JSON-Object!');
+                        }
                     }
+
+                    // Listen, if Adapter was reconfigured and adopt the new Config
+                    if (id == objID[0]) {
+                        try {
+                            config = JSON.parse(states[id].val);
+                            initConfig()
+                        } catch (error) {
+                            console.log('Error while parsing Config in JSON-Object!');
+                        }
+                    }
+
                 }, 0);
             },
             onError: function (err) {
@@ -55,38 +174,201 @@
             }
         });
 
-        function updateHTML() {
-            $("#html_display").html(html);
+        function initConfig() {
+            try {
+                // Process colors
+                Object.entries(config.colors).forEach(entry => {
+                    const [key, value] = entry;
+                    switch (key) {
+                        case 'lines':
+                            $('.line').css("stroke", value);
+                            break;
+                        default:
+                            if (key.includes("value")) {
+                                $('#' + key).css("fill", value);
+                            } else {
+                                $('#' + key).css("stroke", value);
+                            }
+                    }
+                });
+
+                // Process fonts
+                Object.entries(config.fonts).forEach(entry => {
+                    const [key, value] = entry;
+                    switch (key) {
+                        case 'font':
+                            $('body,html').css("font-family", value);
+                            break;
+                        case 'font_size_value':
+                            $('.value').css("font-size", value + "px");
+                            break;
+                        case 'font_size_label':
+                            $('.text').css("font-size", value + "px");
+                            break;
+                        case 'font_size_percent':
+                            $('.percent').css("font-size", value + "px");
+                            break;
+                    }
+                });
+                // Process Elements to be shown - Circles
+                Object.entries(config.circles).forEach(entry => {
+                    const [key, value] = entry;
+                    if (value) {
+                        $('#' + key).css("visibility", "visible");
+                    }
+                });
+                // Icons
+                Object.entries(config.icons).forEach(entry => {
+                    const [key, value] = entry;
+                    if (value) {
+                        $('#' + key).css("visibility", "visible");
+                    }
+                });
+                // Lines
+                Object.entries(config.lines).forEach(entry => {
+                    const [key, value] = entry;
+                    if (value) {
+                        $('#' + key).css("visibility", "visible");
+                    }
+                });
+                // Texts
+                Object.entries(config.texts).forEach(entry => {
+                    const [key, value] = entry;
+                    if (value) {
+                        $('#' + key).css("visibility", "visible");
+                    }
+                });
+                // Values
+                Object.entries(config.values).forEach(entry => {
+                    const [key, value] = entry;
+                    if (value) {
+                        $('#' + key).css("visibility", "visible");
+                    }
+                });
+                // General
+                Object.entries(config.general).forEach(entry => {
+                    const [key, value] = entry;
+                    if (key == 'no_battery' && value === true) {
+                        $('#svg_image').addClass("no_battery");
+                    }
+                    if (key == 'line_size') {
+                        $('.path').css("stroke-width", value + "px");
+                    }
+                });
+            } catch (error) {
+                console.log('Error while updating the Config!' + error);
+            }
+        }
+
+        function updateValues() {
+            /* Update the Values */
+            try {
+                Object.entries(data.values).forEach(entry => {
+                    const [key, value] = entry;
+                    if (key == "car_plugged") {
+                        if (value) {
+                            $('#icon_car').css("fill", config.colors.car_plugged);
+                        } else {
+                            $('#icon_car').css("fill", "");
+                        }
+                    }
+                    if (key.includes("percent")) {
+                        $('#' + key).text(value + '%');
+                    } else {
+                        $('#' + key).text(value + ' ' + config.general.unit);
+                    }
+                });
+            } catch (error) {
+                console.log('Error while updating the values!');
+            }
+
+            /* Update the animations */
+            try {
+                Object.entries(data.animations).forEach(entry => {
+                    const [key, value] = entry;
+                    if (value === true) {
+                        $('#anim_' + key).css("stroke", config.colors.animation);
+                    } else {
+                        $('#anim_' + key).css("stroke", "");
+                    }
+                });
+            } catch (error) {
+                console.log('Error while updating the Animations!');
+            }
         }
     </script>
-    <style>
-        #loading {
-            width: 100vw;
-            padding: 50px;
-            height: 100vw;
-            position: fixed;
-            left: 0px;
-            top: 0px;
-            background-color: rgba(170, 170, 170, 0.9);
-            z-index: 101;
-            color: #333;
-            font-weight: bold;
-        }
-
-        .hidden {
-            display: none !important
-        }
-
-        #html_display {
-            height: 96vh;
-            width: 96vw;
-        }
-    </style>
 </head>
 
 <body>
-    <div id="loading">Loading States..</div>
-    <div id="html_display"></div>
+    <div id="loading">Loading Config and Values ...</div>
+    <svg viewBox="0 0 510 510" width="510" height="510" class="" id="svg_image">
+        <defs>
+            <!-- Pathes -->
+            <path id="solar_to_battery" d="M 230,88 v 142 l 0,0 h -142" class="path" />
+            <path id="solar_to_grid" d="M 250,88 v 324" class="path" />
+            <path id="solar_to_house" d="M 270,88 v 142 l 0,0 h 142" class="path" />
+            <path id="house_to_car" d="M 448,286 v 124" class="path" />
+            <path id="grid_to_house" d="M 270,412 v -142 l 0,0 h 142" class="path" />
+            <path id="grid_to_battery" d="M 230,412 v -142 l 0,0 h -142" class="path" />
+            <path id="battery_to_house" d="M 88,250 h 324" class="path" />
+        </defs>
+
+        <!-- Lines -->
+        <use class="line all_elm" xlink:href="#solar_to_house" />
+        <use class="line all_elm" xlink:href="#grid_to_house" />
+        <use class="line all_elm" xlink:href="#solar_to_grid" />
+        <use class="line all_elm" xlink:href="#house_to_car" />
+        <use class="line all_elm" xlink:href="#grid_to_battery" />
+        <use class="line all_elm" xlink:href="#solar_to_battery" />
+        <use class="line all_elm" xlink:href="#battery_to_house" />
+
+        <!-- Animation -->
+        <use class="all_elm animation" xlink:href="#solar_to_house" id="anim_solar_to_house" />
+        <use class="all_elm animation" xlink:href="#grid_to_house" id="anim_grid_to_house" />
+        <use class="all_elm animation" xlink:href="#solar_to_grid" id="anim_solar_to_grid" />
+        <use class="all_elm animation" xlink:href="#house_to_car" id="anim_house_to_car" />
+        <use class="all_elm animation" xlink:href="#grid_to_battery" id="anim_grid_to_battery" />
+        <use class="all_elm animation" xlink:href="#solar_to_battery" id="anim_solar_to_battery" />
+        <use class="all_elm animation" xlink:href="#battery_to_house" id="anim_battery_to_house" />
+
+        <!-- Usages -->
+        <!-- Circles -->
+        <circle class="shadow all_elm" id="house" cx="448" cy="250" r="50" />
+        <circle class="shadow all_elm" id="grid" cx="250" cy="448" r="50" />
+        <circle class="shadow all_elm" id="production" cx="250" cy="52" r="50" />
+        <circle class="shadow all_elm" id="car" cx="448" cy="448" r="50" />
+        <circle class="shadow all_elm" id="battery" cx="52" cy="250" r="50" />
+
+        <!-- Icons -->
+        <path id="icon_house" transform="translate(436,207)" class="icon_color all_elm"
+            d="M0,21V10L7.5,5L15,10V21H10V14H5V21H0M24,2V21H17V8.93L16,8.27V6H14V6.93L10,4.27V2H24M21,14H19V16H21V14M21,10H19V12H21V10M21,6H19V8H21V6Z" />
+        <path id="icon_production" transform="translate(238,8)" class="icon_color all_elm"
+            d="M4,2H20A2,2 0 0,1 22,4V14A2,2 0 0,1 20,16H15V20H18V22H13V16H11V22H6V20H9V16H4A2,2 0 0,1 2,14V4A2,2 0 0,1 4,2M4,4V8H11V4H4M4,14H11V10H4V14M20,14V10H13V14H20M20,4H13V8H20V4Z" />
+        <path id="icon_grid" transform="translate(238,406)" class="icon_color all_elm"
+            d="M8.28,5.45L6.5,4.55L7.76,2H16.23L17.5,4.55L15.72,5.44L15,4H9L8.28,5.45M18.62,8H14.09L13.3,5H10.7L9.91,8H5.38L4.1,10.55L5.89,11.44L6.62,10H17.38L18.1,11.45L19.89,10.56L18.62,8M17.77,22H15.7L15.46,21.1L12,15.9L8.53,21.1L8.3,22H6.23L9.12,11H11.19L10.83,12.35L12,14.1L13.16,12.35L12.81,11H14.88L17.77,22M11.4,15L10.5,13.65L9.32,18.13L11.4,15M14.68,18.12L13.5,13.64L12.6,15L14.68,18.12Z" />
+        <path id="icon_car" transform="translate(436,406)" class="icon_color all_elm"
+            d="M18.92 2C18.72 1.42 18.16 1 17.5 1H6.5C5.84 1 5.29 1.42 5.08 2L3 8V16C3 16.55 3.45 17 4 17H5C5.55 17 6 16.55 6 16V15H18V16C18 16.55 18.45 17 19 17H20C20.55 17 21 16.55 21 16V8L18.92 2M6.85 3H17.14L18.22 6.11H5.77L6.85 3M19 13H5V8H19V13M7.5 9C8.33 9 9 9.67 9 10.5S8.33 12 7.5 12 6 11.33 6 10.5 6.67 9 7.5 9M16.5 9C17.33 9 18 9.67 18 10.5S17.33 12 16.5 12C15.67 12 15 11.33 15 10.5S15.67 9 16.5 9M7 20H11V18L17 21H13V23L7 20Z" />
+        <path id="icon_battery" transform="translate(40,207)" class="icon_color all_elm"
+            d="M16 20H8V6H16M16.67 4H15V2H9V4H7.33C6.6 4 6 4.6 6 5.33V20.67C6 21.4 6.6 22 7.33 22H16.67C17.41 22 18 21.41 18 20.67V5.33C18 4.6 17.4 4 16.67 4M15 16H9V19H15V16M15 7H9V10H15V7M15 11.5H9V14.5H15V11.5Z" />
+
+        <!-- Values -->
+        <text class="value all_elm" text-anchor="middle" id="consumption_value" x="450" y="255"></text>
+        <text class="value all_elm" text-anchor="middle" id="production_value" x="250" y="54"></text>
+        <text class="value all_elm" text-anchor="middle" id="grid_value" x="250" y="453"></text>
+        <text class="value all_elm" text-anchor="middle" id="car_value" x="450" y="453"></text>
+        <text class="value all_elm" text-anchor="middle" id="battery_value" x="52" y="255"></text>
+
+        <!-- Text -->
+        <text class="text all_elm" text-anchor="middle" id="consumption_text" x="450" y="282">Verbrauch</text>
+        <text class="text all_elm" text-anchor="middle" id="production_text" x="250" y="81">Erzeugung</text>
+        <text class="text all_elm" text-anchor="middle" id="grid_text" x="250" y="480">Netz</text>
+        <text class="text all_elm" text-anchor="middle" id="car_text" x="450" y="480">Auto</text>
+        <text class="text all_elm" text-anchor="middle" id="battery_text" x="52" y="282">Batterie</text>
+
+        <!-- Percent -->
+        <text class="percent all_elm" text-anchor="middle" id="car_percent" x="450" y="466"></text>
+        <text class="percent all_elm" text-anchor="middle" id="battery_percent" x="52" y="268"></text>
+    </svg>
 </body>
 
 </html>
