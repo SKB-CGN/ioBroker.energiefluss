@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "energiefluss",
-    "version": "0.4.0",
+    "version": "0.4.1",
     "news": {
+      "0.4.1": {
+        "en": "fixed JSON Object with configuration",
+        "de": "jSON Objekt mit Konfiguration",
+        "ru": "фиксированный JSON Объект с конфигурацией",
+        "pt": "jSON fixo Objeto com configuração",
+        "nl": "_ Bezwaar",
+        "fr": "jSON Objet avec configuration",
+        "it": "fisso JSON Oggetto con configurazione",
+        "es": "jSON Objeto con configuración",
+        "pl": "jSON obiekt z konfiguracją",
+        "zh-cn": "常设机构 组合的目的"
+      },
       "0.4.0": {
         "en": "Rewrote most of the Code, to add more flexibility\nchanged Data-Store to States instead of in memory (faster rendering)\nLine Size can be adjusted\n'Stucking' while value has changed is removed, as rendering will be done on the fly\nmore stable\nsome bugs fixed (battery State)",
         "de": "Rewrote die meisten Code, um mehr Flexibilität\ngeändert Data-Store in Staaten statt im Gedächtnis (schneller Rendering)\nLine Size kann eingestellt werden\nStucken, während sich der Wert geändert hat, wird entfernt, da das Rendern auf der Fliege erfolgt\nmehr stabil\neinige Fehler behoben (Batterie Staat)",
@@ -74,18 +86,6 @@
         "es": "tranlasciones fijas",
         "pl": "tranlastion",
         "zh-cn": "固定的提款"
-      },
-      "0.2.3": {
-        "en": "fixed a crash, which might occur, if the state got deleted",
-        "de": "einen unfall behoben, der auftreten könnte, wenn der zustand gelöscht wurde",
-        "ru": "исправили аварии, которая может произойти, если государство удалилось",
-        "pt": "corrigiu um acidente, que pode ocorrer, se o estado foi excluído",
-        "nl": "wat zou kunnen gebeuren als de staat werd gewist",
-        "fr": "fixe un crash, qui pourrait se produire, si l'état a été supprimé",
-        "it": "fisso un crash, che potrebbe verificarsi, se lo stato è stato cancellato",
-        "es": "arregló un accidente, que podría ocurrir, si el estado fue eliminado",
-        "pl": "stała katastrofa, która może wystąpić, jeśli stan się usunął",
-        "zh-cn": "如果国家被删除,可能发生固定的事故。"
       }
     },
     "title": "energiefluss",

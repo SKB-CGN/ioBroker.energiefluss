@@ -32,7 +32,7 @@ If you like the adapter and want to support me, you can do so here:
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.4.1 (2022-07-26)
 - fixed JSON Object with configuration
 
 ### 0.4.0 (2022-07-26)
