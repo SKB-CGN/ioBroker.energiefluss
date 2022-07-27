@@ -86,7 +86,7 @@
 
 <body>
 
-	<div class="m adapter-container">
+	<div class="m adapter-container ">
 		<div class="row">
 			<div class="col s12">
 				<ul class="tabs">
@@ -285,6 +285,11 @@
 						house (default:
 						#00b5dd)</span>
 				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="fill_color_house" type="text" placeholder="" />
+					<span class="translate" data-lang="fill_color_house">color inside the circle of the house (default:
+						empty)</span>
+				</div>
 			</div>
 			<div class="row">
 				<div class="col s12">
@@ -305,6 +310,11 @@
 						net
 						feed-in
 						(default: #61687a)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="fill_color_grid" type="text" placeholder="" />
+					<span class="translate" data-lang="fill_color_grid">color inside the circle of the grid (default:
+						empty)</span>
 				</div>
 			</div>
 			<div class="row">
@@ -328,6 +338,12 @@
 						solar
 						production (default: #ffce4a)</span>
 				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="fill_color_production" type="text" placeholder="" />
+					<span class="translate" data-lang="fill_color_production">color inside the circle of the solar
+						production (default:
+						empty)</span>
+				</div>
 			</div>
 			<div class="row">
 				<div class="col s12">
@@ -346,6 +362,11 @@
 						the
 						car
 						(default: #c5902e)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="fill_color_car" type="text" placeholder="" />
+					<span class="translate" data-lang="fill_color_car">color inside the circle of the car (default:
+						empty)</span>
 				</div>
 				<div class="input-field col s5">
 					<input class="value color" id="color_car_plugged" type="text" placeholder="#a1d343" />
@@ -373,10 +394,16 @@
 						car
 						(default: #a1d343)</span>
 				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="fill_color_battery" type="text" placeholder="" />
+					<span class="translate" data-lang="fill_color_battery">color inside the circle of the battery
+						(default:
+						empty)</span>
+				</div>
 			</div>
 			<div class="row">
 				<div class="col s12">
-					<h6 class="title translate" data-lang="lines_and_animations">lines and animations</h6>
+					<h6 class="title translate" data-lang="lines_and_animations">general lines and animations</h6>
 				</div>
 			</div>
 			<div class="row">
@@ -391,8 +418,124 @@
 						(default:
 						#ffce4a)</span>
 				</div>
+				<div class="col s12">
+					<h6 class="title translate" data-lang="special_lines">special lines and animations</h6>
+				</div>
+				<div class="col s10 m10" style="padding-top: 10px">
+					<p class="translate" data-lang="line_desc">Here you are able to modify each line and animation
+						between the
+						circles. Standard-color above will be overwritten!</p>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="color_solar_to_battery" type="text" placeholder="" />
+					<span class="translate" data-lang="color_solar_to_battery">color of the line between solar and
+						battery
+						(default:
+						empty)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="animation_color_solar_to_battery" type="text" placeholder="" />
+					<span class="translate" data-lang="animation_color_solar_to_battery">color of the animation between
+						solar
+						and
+						battery
+						(default:
+						empty)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="color_solar_to_grid" type="text" placeholder="" />
+					<span class="translate" data-lang="color_solar_to_grid">color of the line between solar and
+						grid
+						(default:
+						empty)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="animation_color_solar_to_grid" type="text" placeholder="" />
+					<span class="translate" data-lang="animation_color_solar_to_grid">color of the animation between
+						solar
+						and
+						grid
+						(default:
+						empty)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="color_solar_to_house" type="text" placeholder="" />
+					<span class="translate" data-lang="color_solar_to_house">color of the line between solar and
+						house
+						(default:
+						empty)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="animation_color_solar_to_house" type="text" placeholder="" />
+					<span class="translate" data-lang="animation_color_solar_to_house">color of the animation between
+						solar
+						and
+						house
+						(default:
+						empty)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="color_house_to_car" type="text" placeholder="" />
+					<span class="translate" data-lang="color_house_to_car">color of the line between house and
+						car
+						(default:
+						empty)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="animation_color_house_to_car" type="text" placeholder="" />
+					<span class="translate" data-lang="animation_color_house_to_car">color of the animation between
+						house and car
+						(default:
+						empty)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="color_grid_to_house" type="text" placeholder="" />
+					<span class="translate" data-lang="color_grid_to_house">color of the line between grid and house
+						(default:
+						empty)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="animation_color_grid_to_house" type="text" placeholder="" />
+					<span class="translate" data-lang="animation_color_grid_to_house">color of the animation between
+						grid
+						and
+						house
+						(default:
+						empty)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="color_grid_to_battery" type="text" placeholder="" />
+					<span class="translate" data-lang="color_grid_to_battery">color of the line between grid and battery
+						(default:
+						empty)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="animation_color_grid_to_battery" type="text" placeholder="" />
+					<span class="translate" data-lang="animation_color_grid_to_battery">color of the animation between
+						grid
+						and
+						battery
+						(default:
+						empty)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="color_battery_to_house" type="text" placeholder="" />
+					<span class="translate" data-lang="color_battery_to_house">color of the line between battery and
+						house
+						(default:
+						empty)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="animation_color_battery_to_house" type="text" placeholder="" />
+					<span class="translate" data-lang="animation_color_battery_to_house">color of the animation between
+						battery
+						and
+						house
+						(default:
+						empty)</span>
+				</div>
 			</div>
-			<div class="row" style="height:120px;">
+			<div class="row" style="height:100px;">
 				<a class="btn"><span class="translate" data-lang="reset_colors_to_default"
 						onclick="javascript:resetToDefaults();">Reset all colors to default</a>
 			</div>

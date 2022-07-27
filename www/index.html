@@ -180,15 +180,30 @@
                 Object.entries(config.colors).forEach(entry => {
                     const [key, value] = entry;
                     switch (key) {
-                        case 'lines':
-                            $('.line').css("stroke", value);
-                            break;
                         default:
                             if (key.includes("value")) {
                                 $('#' + key).css("fill", value);
                             } else {
                                 $('#' + key).css("stroke", value);
                             }
+                    }
+                });
+
+                // Process colors inside circles
+                Object.entries(config.fill_colors).forEach(entry => {
+                    const [key, value] = entry;
+                    if (value) {
+                        $('#' + key).css("fill", value);
+                    }
+                });
+
+                // Process colors of the lines - if overwritten
+                Object.entries(config.line_colors).forEach(entry => {
+                    const [key, value] = entry;
+                    if (value) {
+                        $('#line_' + key).css("stroke", value);
+                    } else {
+                        $('#line_' + key).css("stroke", config.colors.lines);
                     }
                 });
 
@@ -210,7 +225,8 @@
                             break;
                     }
                 });
-                // Process Elements to be shown - Circles
+                /* Process Elements to be shown */
+                //Circles
                 Object.entries(config.circles).forEach(entry => {
                     const [key, value] = entry;
                     if (value) {
@@ -286,9 +302,21 @@
             try {
                 Object.entries(data.animations).forEach(entry => {
                     const [key, value] = entry;
+                    if (key == 'solar_to_house') {
+                        console.log('Here!');
+                    }
                     if (value === true) {
-                        $('#anim_' + key).css("stroke", config.colors.animation);
+                        // Check, if there is a new color defined for this animation
+                        if (config.animation_colors.hasOwnProperty(key)) {
+                            if (config.animation_colors[key] != "" || null) {
+                                //console.log('Value found in Colors: ' + key);
+                                $('#anim_' + key).css("stroke", config.animation_colors[key]);
+                            } else {
+                                $('#anim_' + key).css("stroke", config.colors.animation);
+                            }
+                        }
                     } else {
+                        // Delete Animation because not needed till new Animation requested
                         $('#anim_' + key).css("stroke", "");
                     }
                 });
@@ -314,13 +342,13 @@
         </defs>
 
         <!-- Lines -->
-        <use class="line all_elm" xlink:href="#solar_to_house" />
-        <use class="line all_elm" xlink:href="#grid_to_house" />
-        <use class="line all_elm" xlink:href="#solar_to_grid" />
-        <use class="line all_elm" xlink:href="#house_to_car" />
-        <use class="line all_elm" xlink:href="#grid_to_battery" />
-        <use class="line all_elm" xlink:href="#solar_to_battery" />
-        <use class="line all_elm" xlink:href="#battery_to_house" />
+        <use class="line all_elm" xlink:href="#solar_to_house" id="line_solar_to_house" />
+        <use class="line all_elm" xlink:href="#grid_to_house" id="line_grid_to_house" />
+        <use class="line all_elm" xlink:href="#solar_to_grid" id="line_solar_to_grid" />
+        <use class="line all_elm" xlink:href="#house_to_car" id="line_house_to_car" />
+        <use class="line all_elm" xlink:href="#grid_to_battery" id="line_grid_to_battery" />
+        <use class="line all_elm" xlink:href="#solar_to_battery" id="line_solar_to_battery" />
+        <use class="line all_elm" xlink:href="#battery_to_house" id="line_battery_to_house" />
 
         <!-- Animation -->
         <use class="all_elm animation" xlink:href="#solar_to_house" id="anim_solar_to_house" />

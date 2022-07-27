@@ -40,35 +40,17 @@ let configObj = {};
 let subscribeArray = new Array();
 let parameterObj = {
 	lines: {},
+	line_colors: {},
+	animation_colors: {},
 	circles: {},
 	colors: {},
+	fill_colors: {},
 	fonts: {},
 	general: {},
 	icons: {},
 	values: {},
 	texts: {}
 };
-
-/* color for runtime */
-let color_house;
-let color_house_text;
-let color_grid;
-let color_grid_text;
-let color_production;
-let color_production_text;
-let color_car;
-let color_car_text;
-let color_car_plugged;
-let color_battery;
-let color_battery_text;
-let color_lines;
-let color_animation;
-
-/* fonts */
-let font;
-let font_size_label;
-let font_size_value;
-let font_size_percent;
 
 /* Canvas */
 let canvas;
@@ -114,27 +96,6 @@ class Energiefluss extends utils.Adapter {
 			car_percent = this.config.car_percent;
 			car_plugged = this.config.car_plugged;
 			calculate_consumption = this.config.calculate_consumption;
-
-			// Colors
-			color_house = this.config.color_house;
-			color_house_text = this.config.color_house_text;
-			color_grid = this.config.color_grid;
-			color_grid_text = this.config.color_grid_text;
-			color_production = this.config.color_production;
-			color_production_text = this.config.color_production_text;
-			color_car = this.config.color_car;
-			color_car_text = this.config.color_car_text;
-			color_car_plugged = this.config.color_car_plugged;
-			color_battery = this.config.color_battery;
-			color_battery_text = this.config.color_battery_text;
-			color_lines = this.config.color_lines;
-			color_animation = this.config.color_animation;
-
-			// Fonts
-			font = this.config.font;
-			font_size_label = this.config.font_size_label;
-			font_size_value = this.config.font_size_value;
-			font_size_percent = this.config.font_size_percent;
 
 			recalculate = this.config.recalculate ? true : false;
 			this.log.info("Starting Energiefluss Adapter");
@@ -195,29 +156,61 @@ class Energiefluss extends utils.Adapter {
 			// Delete old State HTML
 			await this.deleteStateAsync('HTML');
 
-			// Build Parameter
+			/* Build Parameter */
+			// Colors
 			parameterObj.colors = {
-				house: color_house,
-				consumption_value: color_house_text,
-				grid: color_grid,
-				grid_value: color_grid_text,
-				production: color_production,
-				production_value: color_production_text,
-				car: color_car,
-				car_value: color_car_text,
-				car_plugged: color_car_plugged,
-				battery: color_battery,
-				battery_value: color_battery_text,
-				lines: color_lines,
-				animation: color_animation
+				house: this.config.color_house,
+				consumption_value: this.config.color_house_text,
+				grid: this.config.color_grid,
+				grid_value: this.config.color_grid_text,
+				production: this.config.color_production,
+				production_value: this.config.color_production_text,
+				car: this.config.color_car,
+				car_value: this.config.color_car_text,
+				car_plugged: this.config.color_car_plugged,
+				battery: this.config.color_battery,
+				battery_value: this.config.color_battery_text,
+				lines: this.config.color_lines,
+				animation: this.config.color_animation
+			}
+
+			// Fills of the Circles
+			parameterObj.fill_colors = {
+				house: this.config.fill_color_house,
+				grid: this.config.fill_color_grid,
+				production: this.config.fill_color_production,
+				battery: this.config.fill_color_battery,
+				car: this.config.fill_color_car
+			}
+
+			// Colors of the lines
+			parameterObj.line_colors = {
+				solar_to_battery: this.config.color_solar_to_battery,
+				solar_to_grid: this.config.color_solar_to_grid,
+				solar_to_house: this.config.color_solar_to_house,
+				house_to_car: this.config.color_house_to_car,
+				grid_to_house: this.config.color_grid_to_house,
+				grid_to_battery: this.config.color_grid_to_battery,
+				battery_to_house: this.config.color_battery_to_house,
+			}
+
+			// Animation Colors of the lines
+			parameterObj.animation_colors = {
+				solar_to_battery: this.config.animation_color_solar_to_battery,
+				solar_to_grid: this.config.animation_color_solar_to_grid,
+				solar_to_house: this.config.animation_color_solar_to_house,
+				house_to_car: this.config.animation_color_house_to_car,
+				grid_to_house: this.config.animation_color_grid_to_house,
+				grid_to_battery: this.config.animation_color_grid_to_battery,
+				battery_to_house: this.config.animation_color_battery_to_house,
 			}
 
 			// Fonts
 			parameterObj.fonts = {
-				font: font,
-				font_size_label: font_size_label,
-				font_size_value: font_size_value,
-				font_size_percent: font_size_percent
+				font: this.config.font,
+				font_size_label: this.config.font_size_label,
+				font_size_value: this.config.font_size_value,
+				font_size_percent: this.config.font_size_percent
 			}
 
 			// General
