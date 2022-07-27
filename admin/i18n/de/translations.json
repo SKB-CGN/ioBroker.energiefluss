@@ -17,6 +17,7 @@
     "car_charge_energy": "Wallbox oder Ladegerät:",
     "car_plugged": "Autoladegerät angeschlossen:",
     "cb_battery_different": "Verwenden Sie unterschiedliche Zustände zum Laden und Entladen der Batterie",
+    "cb_battery_reverse": "Verwenden Sie negativ zum Laden <u>und</u> positiv zum Entladen",
     "cb_calculate_consumption": "Verbrauchsberechnung über 'Erzeugung' + 'Netz'",
     "cb_grid_all_positive": "Verwenden Sie positiv für den Verbrauch <u>und</u> positiv für die Netzeinspeisung",
     "cb_grid_different": "Verwenden Sie unterschiedliche Zustände für Netzeinspeisung und Verbrauch",

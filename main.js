@@ -24,6 +24,7 @@ let battery_percent;
 let battery_charge;
 let battery_discharge;
 let battery_different;
+let battery_reverse;
 let car_charge;
 let car_percent;
 let car_plugged;
@@ -92,6 +93,7 @@ class Energiefluss extends utils.Adapter {
 			battery_charge = this.config.battery_charge;
 			battery_discharge = this.config.battery_discharge;
 			battery_different = this.config.battery_different;
+			battery_reverse = this.config.battery_reverse ? true : false;
 			car_charge = this.config.car_charge;
 			car_percent = this.config.car_percent;
 			car_plugged = this.config.car_plugged;
@@ -520,16 +522,25 @@ class Energiefluss extends utils.Adapter {
 
 		if (valuesObj['battery_charge'] != undefined && battery_different === false) {
 			let batteryValue = valuesObj['battery_charge'];
-			// Feeding the grid
-			if (batteryValue > 0) {
-				line_animation.solar_to_battery = true;
+			if (battery_reverse) {
+				if (batteryValue > 0) {
+					line_animation.battery_to_house = true;
+				}
+				if (batteryValue < 0) {
+					// Display as positive
+					batteryValue = batteryValue * -1;
+					line_animation.solar_to_battery = true;
+				}
+			} else {
+				if (batteryValue > 0) {
+					line_animation.solar_to_battery = true;
+				}
+				if (batteryValue < 0) {
+					// Display as positive
+					batteryValue = batteryValue * -1;
+					line_animation.battery_to_house = true;
+				}
 			}
-			if (batteryValue < 0) {
-				// Display as positive & change animation
-				batteryValue = batteryValue * -1;
-				line_animation.battery_to_house = true;
-			}
-			batteryValue = batteryValue;
 
 			circlesObj.battery = true;
 			textObj.battery_text = true;

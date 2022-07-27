@@ -17,6 +17,7 @@
     "car_charge_energy": "wallbox or charger:",
     "car_plugged": "car charger plugged in:",
     "cb_battery_different": "Use different states for Battery charge and discharge",
+    "cb_battery_reverse": "Use negative for charging <u>and</u> positive for discharging",
     "cb_calculate_consumption": "Consumption Calculation via 'Production' + 'Grid'",
     "cb_grid_all_positive": "Use positive for consumption <u>and</u> positive for grid feed in",
     "cb_grid_different": "Use different states for grid feeding and consumption",

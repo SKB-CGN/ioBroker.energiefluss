@@ -17,6 +17,7 @@
     "car_charge_energy": "boîtier mural ou chargeur :",
     "car_plugged": "chargeur de voiture branché :",
     "cb_battery_different": "Utiliser différents états pour la charge et la décharge de la batterie",
+    "cb_battery_reverse": "Utilisez le négatif pour charger <u>et</u> le positif pour décharger",
     "cb_calculate_consumption": "Calcul de la consommation via 'Production' + 'Grid'",
     "cb_grid_all_positive": "Utiliser le positif pour la consommation <u>et</u> le positif pour l'alimentation du réseau",
     "cb_grid_different": "Utiliser différents états pour l'alimentation et la consommation du réseau",
