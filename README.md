@@ -32,7 +32,7 @@ If you like the adapter and want to support me, you can do so here:
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.6.0 (2022-07-29)
 - option, to add a custom circle feeded from the house (free text and icon)
 - own fonts can be added through download parameter - must be in the same domain or ip
 - Added 3 new Icons for Accu-state (0%, 25%, 75%, >75%)
