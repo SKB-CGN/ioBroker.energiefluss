@@ -1,7 +1,7 @@
 {
     "common": {
         "name": "energiefluss",
-        "version": "0.5.0",
+        "version": "0.5.1",
         "news": {
             "0.5.0": {
                 "en": "Fill inside the circle configurable\nline color configurable\nline animation configurable",
