@@ -32,6 +32,11 @@ If you like the adapter and want to support me, you can do so here:
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+- option, to add a custom circle feeded from the house (free text and icon)
+- own fonts can be added through download parameter - must be in the same domain or ip
+- Added 3 new Icons for Accu-state (0%, 25%, 75%, >75%)
+
 ### 0.5.1 (2022-07-27)
 - added posibility, to change battery charging and discharging direction
 

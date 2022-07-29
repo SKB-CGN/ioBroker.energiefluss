@@ -30,6 +30,7 @@ let car_percent;
 let car_plugged;
 let calculate_consumption;
 let recalculate = false;
+let custom;
 
 /* Data Objects */
 let valuesObj = {};
@@ -50,7 +51,9 @@ let parameterObj = {
 	general: {},
 	icons: {},
 	values: {},
-	texts: {}
+	texts: {},
+	custom_text: {},
+	custom_symbol: {}
 };
 
 /* Canvas */
@@ -98,6 +101,7 @@ class Energiefluss extends utils.Adapter {
 			car_percent = this.config.car_percent;
 			car_plugged = this.config.car_plugged;
 			calculate_consumption = this.config.calculate_consumption;
+			custom = this.config.custom;
 
 			recalculate = this.config.recalculate ? true : false;
 			this.log.info("Starting Energiefluss Adapter");
@@ -112,7 +116,8 @@ class Energiefluss extends utils.Adapter {
 				battery_percent: battery_percent,
 				car_charge: car_charge,
 				car_percent: car_percent,
-				car_plugged: car_plugged
+				car_plugged: car_plugged,
+				custom: custom
 			};
 			// Delete empty ones
 			configObj = Object.entries(configObj).reduce((a, [k, v]) => (v ? (a[k] = v, a) : a), {})
@@ -170,8 +175,12 @@ class Energiefluss extends utils.Adapter {
 				car: this.config.color_car,
 				car_value: this.config.color_car_text,
 				car_plugged: this.config.color_car_plugged,
+				car_percent: this.config.color_car_percent,
 				battery: this.config.color_battery,
 				battery_value: this.config.color_battery_text,
+				battery_percent: this.config.color_battery_percent,
+				custom: this.config.color_custom,
+				custom_value: this.config.color_custom_text,
 				lines: this.config.color_lines,
 				animation: this.config.color_animation
 			}
@@ -182,7 +191,8 @@ class Energiefluss extends utils.Adapter {
 				grid: this.config.fill_color_grid,
 				production: this.config.fill_color_production,
 				battery: this.config.fill_color_battery,
-				car: this.config.fill_color_car
+				car: this.config.fill_color_car,
+				custom: this.config.fill_color_custom
 			}
 
 			// Colors of the lines
@@ -194,6 +204,7 @@ class Energiefluss extends utils.Adapter {
 				grid_to_house: this.config.color_grid_to_house,
 				grid_to_battery: this.config.color_grid_to_battery,
 				battery_to_house: this.config.color_battery_to_house,
+				house_to_custom: this.config.color_house_to_custom
 			}
 
 			// Animation Colors of the lines
@@ -205,14 +216,25 @@ class Energiefluss extends utils.Adapter {
 				grid_to_house: this.config.animation_color_grid_to_house,
 				grid_to_battery: this.config.animation_color_grid_to_battery,
 				battery_to_house: this.config.animation_color_battery_to_house,
+				house_to_custom: this.config.animation_color_house_to_custom
 			}
 
 			// Fonts
 			parameterObj.fonts = {
+				font_src: this.config.font_src,
 				font: this.config.font,
 				font_size_label: this.config.font_size_label,
 				font_size_value: this.config.font_size_value,
 				font_size_percent: this.config.font_size_percent
+			}
+
+			// Custom's
+			parameterObj.custom_symbol = {
+				icon_custom: this.config.custom_icon
+			}
+
+			parameterObj.custom_text = {
+				custom_text: this.config.custom_label
 			}
 
 			// General
@@ -288,6 +310,9 @@ class Energiefluss extends utils.Adapter {
 		// Check the corresponding state for changes
 		// Production
 		if (state) {
+			if (id == custom) {
+				valuesObj['custom'] = recalculate ? this.recalculateValue(state.val) : this.floorNumber(state.val);
+			}
 			if (id == production) {
 				valuesObj['production'] = recalculate ? this.recalculateValue(state.val) : this.floorNumber(state.val);
 			}
@@ -397,12 +422,37 @@ class Energiefluss extends utils.Adapter {
 
 	async buildDataJSON() {
 		let dataValueObj = {};
-
-		let circlesObj = {};
+		// Circles - init as false
+		let circlesObj = {
+			house: false,
+			production: false,
+			grid: false,
+			car: false,
+			battery: false,
+			custom: false
+		};
 		let textObj = {};
 		let valueObj = {};
-		let iconObj = {};
-		let linesObj = {};
+		// Icons
+		let iconObj = {
+			house: false,
+			production: false,
+			grid: false,
+			car: false,
+			battery: false,
+			custom: false
+		};
+		// Lines
+		let linesObj = {
+			solar_to_house: false,
+			grid_to_house: false,
+			solar_to_grid: false,
+			house_to_car: false,
+			grid_to_battery: false,
+			solar_to_battery: false,
+			battery_to_house: false,
+			house_to_custom: false
+		};
 
 		let line_animation = {
 			solar_to_house: false,
@@ -411,7 +461,8 @@ class Energiefluss extends utils.Adapter {
 			house_to_car: false,
 			grid_to_battery: false,
 			solar_to_battery: false,
-			battery_to_house: false
+			battery_to_house: false,
+			house_to_custom: false
 		};
 
 		// Change CSS if no battery is present
@@ -423,7 +474,7 @@ class Energiefluss extends utils.Adapter {
 			circlesObj.house = true;
 			textObj.consumption_text = true;
 			valueObj.consumption_value = true;
-			iconObj.icon_house = true;
+			iconObj.house = true;
 
 			dataValueObj.consumption_value = valuesObj['consumption'];
 		}
@@ -436,7 +487,7 @@ class Energiefluss extends utils.Adapter {
 			circlesObj.production = true;
 			textObj.production_text = true;
 			valueObj.production_value = true;
-			iconObj.icon_production = true;
+			iconObj.production = true;
 
 			dataValueObj.production_value = valuesObj['production'];
 		}
@@ -466,7 +517,7 @@ class Energiefluss extends utils.Adapter {
 			circlesObj.grid = true;
 			textObj.grid_text = true;
 			valueObj.grid_value = true;
-			iconObj.icon_grid = true;
+			iconObj.grid = true;
 
 			dataValueObj.grid_value = gridValue;
 		}
@@ -490,7 +541,7 @@ class Energiefluss extends utils.Adapter {
 			circlesObj.grid = true;
 			textObj.grid_text = true;
 			valueObj.grid_value = true;
-			iconObj.icon_grid = true;
+			iconObj.grid = true;
 
 			dataValueObj.grid_value = gridValue;
 		}
@@ -503,7 +554,7 @@ class Energiefluss extends utils.Adapter {
 			circlesObj.car = true;
 			textObj.car_text = true;
 			valueObj.car_value = true;
-			iconObj.icon_car = true;
+			iconObj.car = true;
 
 			dataValueObj.car_value = valuesObj['car_charge'];
 		}
@@ -545,7 +596,7 @@ class Energiefluss extends utils.Adapter {
 			circlesObj.battery = true;
 			textObj.battery_text = true;
 			valueObj.battery_value = true;
-			iconObj.icon_battery = true;
+			iconObj.battery = true;
 
 			dataValueObj.battery_value = batteryValue;
 		}
@@ -569,9 +620,22 @@ class Energiefluss extends utils.Adapter {
 			circlesObj.battery = true;
 			textObj.battery_text = true;
 			valueObj.battery_value = true;
-			iconObj.icon_battery = true;
+			iconObj.battery = true;
 
 			dataValueObj.battery_value = batteryValue;
+		}
+
+		// Custom Circle
+		if (valuesObj['custom'] != undefined) {
+			circlesObj.custom = true;
+			textObj.custom_text = true;
+			valueObj.custom_value = true;
+			iconObj.custom = true;
+			if (valuesObj['custom'] > 0) {
+				line_animation.house_to_custom = true;
+			}
+
+			dataValueObj.custom_value = valuesObj['custom'];
 		}
 
 		if (valuesObj['battery_percent'] != undefined && valuesObj['battery_charge'] != undefined) {
@@ -600,6 +664,9 @@ class Energiefluss extends utils.Adapter {
 		}
 		if (valuesObj['battery_discharge'] != undefined || valuesObj['battery_charge'] != undefined && valuesObj['consumption'] != undefined) {
 			linesObj.battery_to_house = true;
+		}
+		if ((valuesObj['consumption'] != undefined && valuesObj['custom'] != undefined)) {
+			linesObj.house_to_custom = true;
 		}
 
 		// Build the Parameters to be read inside Javascript on Webpage - called once
