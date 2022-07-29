@@ -15,6 +15,18 @@
         "pl": "w celu dodania dowolnego kręgu karmionego z domu (wolne teksty i ikony)\ninne fonty można dodać poprzez parametr pobierania - muszą być w tej samej domenie lub ip\nDostęp 3 nowych Icons for Accu-state (0,%,% 75,% % >%%)",
         "zh-cn": "备选案文:增加从住房(无案文和icon)中喂养的习惯群体\n可通过下载参数来增加自己的缺陷,必须在同样的领域或地点。\n增加3个新盟国(0,25.0%,75.0%,5.7%)"
       },
+      "0.5.1": {
+        "en": "Possibility to revere battery inputs",
+        "de": "M�glichkeit, Batterieeing�nge zu vertauschen",
+        "ru": "??????????? ??????? ????? ???????",
+        "pt": "Possibilidade de reverenciar entradas de bateria",
+        "nl": "Mogelijkheid om batterij-ingangen te respecteren",
+        "fr": "Possibilit� de v�n�rer les entr�es batterie",
+        "it": "Possibilit� di riverire gli ingressi della batteria",
+        "es": "Posibilidad de venerar entradas de bater�a.",
+        "pl": "Mozliwosc odwr�cenia wejsc baterii",
+        "zh-cn": "Zunzh�ng di�nch� shur� de ken�ng x�ng"
+      },	
       "0.5.0": {
         "en": "Fill inside the circle configurable\nline color configurable\nline animation configurable",
         "de": "Füllen Sie innerhalb des Kreises konfigurierbar\nzeilenfarbe konfigurierbar\nline animation konfigurierbar",
