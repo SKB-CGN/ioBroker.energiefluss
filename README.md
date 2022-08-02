@@ -32,8 +32,8 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### 0.7.1 (2022-08-02)
-- Added "Consumption negativ" option
+### **WORK IN PROGRESS**
+- Added "Consumption negative" option
 - Choose Number of places after the decimal point for Values
 - Function, to Display the netto house consumption (if car and additional equipment is also used)
 - Show or hide shadow around the circles
