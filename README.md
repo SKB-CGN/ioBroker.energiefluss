@@ -24,10 +24,24 @@ Es stellt einen animierten Energiefluss fuer Photovoltaik, Batterie, Hausverbrau
 Installation ueber die Github Katze in ioBroker moeglich
 
 ## Support
-If you like the adapter and want to support me, you can do so here:
+Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du dies hier tun:
 [![Donate](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://www.paypal.me/StephanKreyenborg)
 
 ## Changelog
+### **WORK IN PROGRESS**
+- Added "Consumption negativ" option
+- Choose Number of places after the decimal point for Values
+- Function, to Display the netto house consumption (if car and additional equipment is also used)
+- Show or hide shadow around the circles
+- Thickness of the circle outline (in px)
+- instances link corrected
+- multiple instances can be accessed via the link -> http://<IP>/energiefluss/?instance=<Instance>
+- Corrected getting the WebPort, if not on standard 8082
+- added "WebApp" functionality on Android, iOS, Apple and Microsoft Browsers - If opened via Homescreen, the page shows without address-bar
+- added shortcut icons
+- changed adapter picture
+- fixed some bugs for displaying HTML elements
+
 <!--
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
