@@ -39,12 +39,6 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 - Show or hide shadow around the circles
 - Thickness of the circle outline (in px)
 - instances link corrected
-- multiple instances can be accessed via the link -> http://<IP>/energiefluss/?instance=<Instance>
-- Corrected getting the WebPort, if not on standard 8082
-- added "WebApp" functionality on Android, iOS, Apple and Microsoft Browsers - If opened via Homescreen, the page shows without address-bar
-- added shortcut icons
-- changed adapter picture
-- fixed some bugs for displaying HTML elements
 
 ### 0.6.0 (2022-07-29)
 - option, to add a custom circle feeded from the house (free text and icon)
