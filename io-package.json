@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "energiefluss",
-    "version": "0.7.1",
+    "version": "0.7.2",
     "news": {
+      "0.7.2": {
+        "en": "multiple instances can be accessed via the link -> http://<IP>/energiefluss/?instance=<Instance>\nCorrected getting the WebPort, if not on standard 8082\nadded \"WebApp\" functionality on Android, iOS, Apple and Microsoft Browsers - If opened via Homescreen, the page shows without address-bar\nadded bookmark icons\nchanged adapter picture\nfixed some bugs for displaying HTML elements",
+        "de": "mehrere Instanzen können über den Link -> aufgerufen werden http://<IP>/energiefluss/?instance=<Instance\nKorrektur des WebPort, wenn nicht auf Standard 8082\nwebApp-Funktionalität auf Android, iOS, Apple und Microsoft Browsern hinzugefügt - Wenn Sie über Homescreen geöffnet werden, zeigt die Seite ohne Adressleiste\nzusätzliche lesezeichen-symbole\ngeändertes adapterbild\neinige Fehler zur Anzeige von HTML-Elementen behoben",
+        "ru": "можно получить доступ по ссылке -> http://<IP>/energiefluss/?instance=<Инвестиции\nИсправлено получение WebPort, если не по стандарту 8082\nдобавлена функция WebApp на Android, iOS, Apple и Microsoft Browsers - Если открыта с помощью Homescreen, страница показывает без адресной панели\nдобавлены иконки закладки\nизменена фотография адаптера\nисправили некоторые ошибки для отображения элементов HTML",
+        "pt": "múltiplas instâncias podem ser acessadas através do link -> http://<IP>/energieflus/?instance=<Instância\nCorrigido obtendo o WebPort, se não no padrão 8082\nadicionado funcionalidade WebApp no Android, iOS, Apple e Microsoft Browsers - Se aberto via Homescreen, a página mostra sem barra de endereços\nícones de favoritos adicionados\nimagem do adaptador alterado\ncorrigiu alguns bugs para exibir elementos HTML",
+        "nl": "meerdere instanties kunnen via de link _\nGecorrigeerd om de WebPort te krijgen, zo niet op standaard 8082\nwebApp functionaliteit toevoegen op Android, iOS, Apple en Microsoft Browsers - als geopend via Homescreen, toont de pagina zonder adres-bar\nvoegde boekmark iconen toe\nveranderde adapter foto\n_",
+        "fr": "plusieurs instances peuvent être consultées via le lien - Cancer http:// visait à prévenir/energieflus/?instance= respecterInstance\nCorrection de l'obtention du WebPort, sinon sur la norme 8082\najout de la fonctionnalité WebApp sur Android, iOS, Apple et Microsoft Browsers - Si ouvert via l'écran d'accueil, la page montre sans adresse-bar\nicônes de signets ajoutés\nchangement d'adaptateur\ncorrection de quelques bugs pour afficher des éléments HTML",
+        "it": "è possibile accedere a più istanze tramite il link -> http://ιIP>/energiefluss/?instance=\nCorretto ottenere il WebPort, se non su standard 8082\naggiunta funzionalità WebApp su Android, iOS, Apple e Microsoft Browsers - Se aperto tramite Homescreen, la pagina mostra senza barra degli indirizzi\nicone del bookmark aggiunto\nimmagine adattatore modificato\nfisso alcuni bug per la visualizzazione di elementi HTML",
+        "es": "múltiples instancias pueden ser accedidas a través del enlace - http:// dirigidap.org/energieflus/?instance=\nCorregido conseguir el WebPort, si no en la norma 8082\nañadió funcionalidad de WebApp sobre Android, iOS, Apple y Microsoft Browsers - Si se abre a través de Homescreen, la página muestra sin dirección-bar\niconos de marcadores añadidos\nimagen de adaptador cambiado\nfijo algunos errores para mostrar elementos HTML",
+        "pl": "wiele instancji może być udostępnionych poprzez link ->>. http:/<IP>/energieflus/?instance=<Instance> (ang.)\nWykwalifikowany do serwisu internetowego, nie w standardzie 8082\ndodano funkcjonalność WebApp na Android, iOS, Apple i Microsoft Browsers - If open by Homescreen, strona programu bez adres-bar\nikona księgarni\nzmieniona adaptacja\nustalono kilka błędów do wyświetlania elementów HTML",
+        "zh-cn": "可通过联系获取多种情况- > http://<IP>/energieflus/?instance=<Instance\n如果没有标准8082\n在安德罗伊、奥塞、阿勒和微软·巴代尔的App功能上,如果通过家作主打开,页上没有发言说明。\n增加书记\nb. 适应情况的变化\n展示HTML要素的固定阀"
+      },
       "0.7.1": {
         "en": "Added \"Consumption negative\" option\nChoose Number of places after the decimal point for Values\nFunction, to Display the netto house consumption (if car and additional equipment is also used)\nShow or hide shadow around the circles\nThickness of the circle outline (in px)\ninstances link corrected",
         "de": "Option \"Verbrauch negativ\" hinzugefügt\nWählen Sie Anzahl der Orte nach dem Dezimalpunkt für Werte\nFunktion, um den Nettohausverbrauch anzuzeigen (wenn Auto und zusätzliche Ausrüstung auch verwendet wird)\nSchatten um die Kreise zeigen oder verbergen\nDicke des Kreisumrisses (in px)\nin den warenkorb",
@@ -74,18 +86,6 @@
         "es": "Reescribió la mayoría del Código, para añadir más flexibilidad\ncambio de Data-Store a los Estados en lugar de en la memoria (rendición más rápida)\nTamaño de la línea se puede ajustar\nAtascado mientras el valor ha cambiado se elimina, ya que la renderización se hará en la mosca\nmás estable\nalgunos errores fijos (Estado de la niñera)",
         "pl": "Przetłumaczył większość kodeksu, aby dodać więcej elastyczności\nzmienił dane ze Stanów Zjednoczonych zamiast pamięci (zamiast remisu)\nLinia Size może być dostosowana\nPodczas gdy wartość zmieniała się została usunięta, gdy renderowanie odbywa się w locie\nstabilny\nniektóre trąbki ułożone (pol.)",
         "zh-cn": "《守则》的大部分内容是增加灵活性\n数据对各国作了修改,而不是记忆(不让)\n可调整规模\n停机虽然价值发生了变化,但机上将会做。\n更稳定\n某些固定的玻璃(巴特州)"
-      },
-      "0.3.1": {
-        "en": "added font-size options in admin\nadded font-face options in admin\naddded smoother animation",
-        "de": "schriftart-größe optionen in admin\nschriftartoptionen in admin\nzusätzliche glatte animation",
-        "ru": "добавлены параметры шрифт-размера в админ\nдобавлены параметры шрифта в admin\nдобавленная плавная анимация",
-        "pt": "adicionado opções de tamanho de fonte no admin\nadicionado opções de fonte em admin\nanimação mais suave acrescentada",
-        "nl": "voegde lettertype opties toe in administratie\nvoegde font-face opties toe in administratie\nvertaling:",
-        "fr": "ajout de police-size options dans admin\najouter des options de police dans admin\nanimation plus douce",
-        "it": "opzioni aggiuntive di font-size in admin\nopzioni di carattere aggiunto in admin\nanimazione più liscia",
-        "es": "opciones de tamaño de fuente agregadas en admin\nopciones de fuentes adicionales en administración\nanimación más suave",
-        "pl": "dodać opcje czcionki w adminach\ndodać opcje czcionki w adminach\ndodanie gładkiej animacji",
-        "zh-cn": "增加专注的备选办法\n在专注中增加以人为本的备选办法\n增 编"
       }
     },
     "title": "energiefluss",
