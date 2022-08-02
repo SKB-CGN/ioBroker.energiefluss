@@ -28,7 +28,12 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 [![Donate](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://www.paypal.me/StephanKreyenborg)
 
 ## Changelog
-### 0.7.0 (2022-08-02)
+<!--
+	Placeholder for the next version (at the beginning of the line):
+	### **WORK IN PROGRESS**
+-->
+
+### **WORK IN PROGRESS**
 - Added "Consumption negativ" option
 - Choose Number of places after the decimal point for Values
 - Function, to Display the netto house consumption (if car and additional equipment is also used)
@@ -41,11 +46,6 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 - added shortcut icons
 - changed adapter picture
 - fixed some bugs for displaying HTML elements
-
-<!--
-	Placeholder for the next version (at the beginning of the line):
-	### **WORK IN PROGRESS**
--->
 
 ### 0.6.0 (2022-07-29)
 - option, to add a custom circle feeded from the house (free text and icon)
