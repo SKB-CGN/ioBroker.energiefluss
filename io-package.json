@@ -1,7 +1,7 @@
 {
     "common": {
         "name": "energiefluss",
-        "version": "0.6.0",
+        "version": "0.7.0",
         "news": {
             "0.6.0": {
                 "en": "option, to add a custom circle feeded from the house (free text and icon)\nown fonts can be added through download parameter - must be in the same domain or ip\nAdded 3 new Icons for Accu-state (0%, 25%, 75%, >75%)",
