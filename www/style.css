@@ -1,0 +1,88 @@
+html,
+body {
+    background: transparent;
+    height: 96vh;
+    width: 96vw;
+}
+
+#loading {
+    width: 100vw;
+    padding: 50px;
+    height: 100vw;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    background-color: rgba(170, 170, 170, 0.9);
+    z-index: 101;
+    color: #333;
+    font-weight: bold;
+}
+
+.hidden {
+    display: none !important;
+}
+
+#svg_image {
+    display: none;
+}
+
+svg {
+    height: 100%;
+    width: 95%;
+}
+
+circle {
+    stroke-width: 2px;
+    fill: white;
+}
+
+.shadow {
+    -webkit-filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, .7));
+    filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, .7));
+}
+
+.no_battery {
+    margin-left: -9em;
+}
+
+.path {
+    fill: none;
+}
+
+.icon_color {
+    opacity: 0.7;
+}
+
+.line {
+    stroke-dasharray: 1000;
+    opacity: 0.7;
+}
+
+.text,
+.percent {
+    opacity: 0.7;
+}
+
+.animation {
+    animation: cons_anim 3s infinite steps(260);
+    stroke-dasharray: 4 12 4 12 4 100;
+    stroke-linecap: round;
+}
+
+@keyframes cons_anim {
+    0% {
+        stroke-dashoffset: 250;
+    }
+
+    100% {
+        stroke-dashoffset: -22;
+    }
+}
+
+.all_elm {
+    visibility: hidden;
+}
+
+#span_error {
+    color: firebrick;
+}
