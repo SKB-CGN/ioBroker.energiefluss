@@ -32,6 +32,14 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+- multiple instances can be accessed via the link -> http://<IP>/energiefluss/?instance=<Instance>
+- Corrected getting the WebPort, if not on standard 8082
+- added "WebApp" functionality on Android, iOS, Apple and Microsoft Browsers - If opened via Homescreen, the page shows without address-bar
+- added bookmark icons
+- changed adapter picture
+- fixed some bugs for displaying HTML elements
+
 ### 0.7.1 (2022-08-02)
 - Added "Consumption negative" option
 - Choose Number of places after the decimal point for Values
