@@ -134,6 +134,11 @@
 						data-lang="cb_calculate_consumption">Consumption
 						Calculation via 'Production' + 'Grid'</label>
 				</div>
+				<div class="input-field col s4">
+					<input id="consumption_reverse" class="value" type="checkbox" />
+					<label for="consumption_reverse" class="translate" data-lang="cb_consumption_reverse">Consumption is
+						negative</label>
+				</div>
 			</div>
 			<div class="row">
 				<div class="col s12">
@@ -282,7 +287,7 @@
 					<label for="custom_label" class="translate" data-lang="custom_label">label inside the
 						custom circle:</label>
 				</div>
-				<div class="input-field col s6">
+				<div class="input-field col s8">
 					<input class="value" id="custom_icon" type="text" />
 					<label for="custom_icon" class="translate" data-lang="custom_icon">icon inside the
 						custom circle:</label>
@@ -318,13 +323,34 @@
 					<span class="translate" data-lang="ex_unit">Unit (W or kW) for displaying</span>
 				</div>
 				<div class="input-field col s4">
+					<select id="fraction" class="value">
+						<option value="0">0</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+					</select>
+					<label for="fraction" class="translate" data-lang="fraction">Number of places after the decimal
+						point</label>
+					<span class="translate" data-lang="ex_fraction">If zero, the value will be rounded to the next
+						possible integer.</span>
+				</div>
+				<div class="input-field col s4">
 					<input id="recalculate" class="value" type="checkbox" />
 					<label for="recalculate" class="translate" data-lang="recalculate">Calculate values from W
 						in
 						kW</label>
 				</div>
 			</div>
+			<div class="row">
+				<div class="input-field col s4">
+					<input id="house_netto" class="value" type="checkbox" />
+					<label for="house_netto" class="translate" data-lang="house_netto">Display the house net
+						consumption</label><br>
+					<span class="translate" data-lang="ex_house_netto">Subtract the consumption of the car and
+						additional equipment from the consumption in the house</span>
+				</div>
+			</div>
 		</div>
+		<!-- TAB Color -->
 		<div id="tab-color" class="col s12">
 			<div class="row">
 				<div class="col s12">
@@ -648,6 +674,7 @@
 						onclick="javascript:resetToDefaults();">Reset all colors to default</a>
 			</div>
 		</div>
+		<!-- TAB Font -->
 		<div id="tab-fonts" class="col s12">
 			<div class="row">
 				<div class="col s12">
@@ -655,12 +682,12 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="input-field col s5">
+				<div class="input-field col s4">
 					<input class="value" id="font" type="text" placeholder="sans-serif" />
 					<span class="translate" data-lang="font-for-all">font-face for all elements - if URL specified on
 						the right, define alias here (default: sans-serif)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s4">
 					<input class="value" id="font_src" type="text" placeholder="" />
 					<span class="translate" data-lang="font-src">relative font url<br>Only (relative) paths from the
 						same ip or address are allowed! (default: empty)</span>
@@ -672,17 +699,17 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="input-field col s3">
+				<div class="input-field col s4">
 					<input class="value" id="font_size_label" type="text" placeholder="12" />
 					<span class="translate" data-lang="font_size_label">font-size of the description inside the
 						circle (in px)</span>
 				</div>
-				<div class="input-field col s3">
+				<div class="input-field col s4">
 					<input class="value" id="font_size_value" type="text" placeholder="14" />
 					<span class="translate" data-lang="font_size_value">font-size of the value inside the circle (in
 						px)</span>
 				</div>
-				<div class="input-field col s3">
+				<div class="input-field col s4">
 					<input class="value" id="font_size_percent" type="text" placeholder="14" />
 					<span class="translate" data-lang="font_size_percent">font-size of the percent value inside the
 						circle (in px)</span>
@@ -694,9 +721,25 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="input-field col s5">
+				<div class="input-field col s4">
 					<input class="value" id="line_size" type="number" placeholder="12" min="2" max="18" />
 					<span class="translate" data-lang="line_size">Thickness of the line (in px)</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s12">
+					<h6 class="title translate" data-lang="circle">circle</h6>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s4">
+					<input class="value" id="circle_size" type="number" placeholder="2" min="2" max="18" />
+					<span class="translate" data-lang="circle_size">Thickness of the circle outline (in px)</span>
+				</div>
+				<div class="input-field col s4">
+					<input id="circle_shadow" class="value" type="checkbox" />
+					<label for="circle_shadow" class="translate" data-lang="cb_circle_shadow">Show shadow around the
+						circles</label>
 				</div>
 			</div>
 		</div>

@@ -1,11 +1,56 @@
 <html>
 
 <head>
-    <script type="text/javascript">
-        let url = new URL(document.location);
-        var namespace = "energiefluss.0";
-        location.replace(url.protocol + "//" + url.hostname + ":" + url.port + "/energiefluss/index.html?namespace=" +
-            namespace);
+    <script type="text/javascript" src="../../lib/js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="../../socket.io/socket.io.js"></script>
+    <script src="conn.js"></script>
+
+    <script type="text/javascript" src="../../js/translate.js"></script>
+    <script type="text/javascript" src="words.js"></script>
+
+    <script>
+        let objID = 'system.adapter.web.0';
+        let web_port;
+        servConn.init({
+            connLink: window.location.href.substr(0, window.location.href.indexOf('/', 8))
+        }, {
+            onConnChange: function (isConnected) {
+                if (isConnected) {
+                    console.log('connected');
+                    // Get the Web Instance
+                    servConn.getObject(objID, false, (error, objects) => {
+                        if (!error) {
+                            web_port = objects.native ? objects.native.port : 0;
+                            console.log('Web-Port: ' + web_port);
+                            let url = new URL(document.location);
+                            location.replace(url.protocol + "//" + url.hostname + ":" + web_port +
+                                "/energiefluss/index.html?namespace=0");
+                        } else {
+                            console.log('Error while getting the Web-Port!');
+                        }
+
+                    });
+                } else {
+                    console.log('disconnected');
+                }
+            },
+            onRefresh: function () {
+                window.location.reload();
+            },
+            onUpdate: function (id, obj) {
+                setTimeout(function () {
+                    objects[id] = obj;
+                    // This is for changing the Values
+                    if (id == objID) {
+                        console.log("Changed!");
+                    }
+                }, 0);
+            },
+            onError: function (err) {
+                window.alert(_('Cannot execute %s for %s, because of insufficient permissions', err.command,
+                    err.arg), _('Insufficient permissions'), 'alert', 600);
+            }
+        });
     </script>
 </head>
 
