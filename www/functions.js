@@ -161,7 +161,6 @@ function initConfig(once = false) {
         // Labels inside circle
         Object.entries(config.texts.labels).forEach(entry => {
             const [key, value] = entry;
-            console.log(key + "_text" + ": " + value);
             $("#" + key + "_text").text(value);
         });
         /* Process Elements to be shown */
@@ -176,7 +175,6 @@ function initConfig(once = false) {
                 $('#icon_' + tmpElm[0]).css("visibility", "hidden");
                 $("#" + tmpElm[0] + "_value").css("visibility", "hidden");
                 $("#" + tmpElm[0] + "_percent").css("visibility", "hidden");
-                $("#" + tmpElm[0] + "_text").css("visibility", "hidden");
                 // Remove battery icons
                 if (tmpElm[0] == 'battery') {
                     $('.batt_elm').css("visibility", "hidden");
@@ -197,6 +195,13 @@ function initConfig(once = false) {
         Object.entries(config.texts.texts).forEach(entry => {
             const [key, value] = entry;
             $('#' + key).css("visibility", value ? "visible" : "hidden");
+        });
+        // Custom Text
+        Object.entries(config.custom_text).forEach(entry => {
+            const [key, value] = entry;
+            // Check, if Custom Text should be displayed
+            $('#' + key).css("visibility", config.texts.custom_text ? "visible" : "hidden");
+            $('#' + key).text(value);
         });
 
         // Custom Symbol
@@ -254,17 +259,18 @@ function updateValues() {
         Object.entries(data.values).forEach(entry => {
             const [key, value] = entry;
             if (key == "car_plugged") {
-                $('#icon_car').css("fill", value ? config.colors.car_plugged : "");
+                $('#icon_car').css("fill", value ? config.values.color.car_plugged : "");
             }
             // Show Battery Icon if user has no state for percents
             if (key == 'battery_value' && data.values.battery_percent == null) {
                 $('#' + batteryDisplay(100)).css("visibility", "visible");
             }
+
             if (key.includes("percent")) {
                 $('#' + key).text(value + '%');
                 /* Handler for Battery Icon */
                 if (key == 'battery_percent') {
-                    $('#' + key).text(fractionLimit(value, config.general.fraction_battery) + '%');
+                    //$('#' + key).text(fractionLimit(value, config.general.fraction_battery) + '%');
                     $('.batt_elm').css("visibility", "hidden");
                     $('#' + batteryDisplay(value)).css("visibility", "visible");
                 }
@@ -284,7 +290,6 @@ function updateValues() {
                 // Check, if there is a new color defined for this animation
                 if (config.lines.animation_colors.hasOwnProperty(key)) {
                     if (config.lines.animation_colors[key] != "" || null) {
-                        //console.log('Value found in Colors: ' + key);
                         $('#anim_' + key).css("stroke", config.lines.animation_colors[key]);
                     } else {
                         $('#anim_' + key).css("stroke", config.lines.animation_colors.default);
