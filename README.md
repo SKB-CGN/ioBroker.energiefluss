@@ -33,10 +33,10 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 	### **WORK IN PROGRESS**
 -->
 ### 0.8.0 (2022-08-04)
-- Some Values can have different colors, if their value is zero (consumption, production, grid and battery) (@guergen)
-- shadows of the circles can be modified ((@tobi19)
-- battery percent fraction selectable (@tobi19)
-- Labels inside the circle can be modified (@tobi19)
+- Some Values can have different colors, if their value is zero (consumption, production, grid and battery)
+- shadows of the circles can be modified
+- battery percent fraction selectable
+- Labels inside the circle can be modified
 - JSON structure for better handling changed
 - unnecessary pre-defines removed
 - preview icon of the custom circle was not displayed after re-entering config
