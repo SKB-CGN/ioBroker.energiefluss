@@ -93,6 +93,7 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 	### **WORK IN PROGRESS**
 -->
 ### **WORK IN PROGRESS**
+- fixed applying config under some circumstances
 
 ### 0.8.0 (2022-08-04)
 - Some Values can have different colors, if their value is zero (consumption, production, grid and battery)
