@@ -32,7 +32,7 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.8.0 (2022-08-04)
 - Some Values can have different colors, if their value is zero (consumption, production, grid and battery) (@guergen)
 - shadows of the circles can be modified ((@tobi19)
 - battery percent fraction selectable (@tobi19)
