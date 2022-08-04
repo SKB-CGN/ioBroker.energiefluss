@@ -28,7 +28,7 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 [![Donate](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://www.paypal.me/StephanKreyenborg)
 
 ## Functions (german below)
-Design:
+**Design:**
 - change the color of each item
 - Texts inside the circles can be modified
 - %-texts can have different colors as well
@@ -43,7 +43,7 @@ Design:
 - define a color for the the car icon, if its charging
 - Some Values can have different colors, if their value is zero (consumption, production, grid and battery)
 
-Technical:
+**Technical:**
 - define Datapoints for each circle
 - show battery percent inside car or battery circle
 - use different states for feeding into or consuming from the grid
@@ -58,34 +58,34 @@ Technical:
 - Subtract the consumption of the car and additional equipment from the consumption in the house
 
 ## Funktionen
-#Design:
-- Ändern Sie die Farbe jedes Elements
-- Texte innerhalb der Kreise können geändert werden
-- %-Texte können auch andere Farben haben
-- Definieren Sie verschiedene Farben für jede Zeile
-- verschiedene Farben für jede Animation auf der Linie definieren
-- Dicke der Kreise und Linien ändern
-- Fülle die Kreise mit verschiedenen Farben
+**Design:**
+- Ã„ndern Sie die Farbe jedes Elements
+- Texte innerhalb der Kreise kÃ¶nnen geÃ¤ndert werden
+- %-Texte kÃ¶nnen auch andere Farben haben
+- Definieren Sie verschiedene Farben fÃ¼r jede Zeile
+- verschiedene Farben fÃ¼r jede Animation auf der Linie definieren
+- Dicke der Kreise und Linien Ã¤ndern
+- FÃ¼lle die Kreise mit verschiedenen Farben
 - Schatten des Kreises ein-/ausblenden
-- Definieren Sie Ihre eigene Farbe und Deckkraft für die Schatten (rgba-unterstützt)
-- Schriftarten der Werte und Texte ändern (eigene Schriftarten können importiert werden)
-- Ändern Sie die Schriftgröße für Label, Werte und %-Texte
-- Definieren Sie eine Farbe für das Autosymbol, wenn es geladen wird
-- Einige Werte können unterschiedliche Farben haben, wenn ihr Wert Null ist (Verbrauch, Produktion, Netz und Batterie)
+- Definieren Sie Ihre eigene Farbe und Deckkraft fÃ¼r die Schatten (rgba-unterstÃ¼tzt)
+- Schriftarten der Werte und Texte Ã¤ndern (eigene Schriftarten kÃ¶nnen importiert werden)
+- Ã„ndern Sie die SchriftgrÃ¶ÃŸe fÃ¼r Label, Werte und %-Texte
+- Definieren Sie eine Farbe fÃ¼r das Autosymbol, wenn es geladen wird
+- Einige Werte kÃ¶nnen unterschiedliche Farben haben, wenn ihr Wert Null ist (Verbrauch, Produktion, Netz und Batterie)
 
-#Technisch:
-- Datenpunkte für jeden Kreis definieren
+**Technisch:**
+- Datenpunkte fÃ¼r jeden Kreis definieren
 - Batterieprozentsatz innerhalb des Auto- oder Batteriekreises anzeigen
-- unterschiedliche Zustände für Einspeisung oder Bezug aus dem Netz verwenden
-- Einstellungen umkehren, wenn Ihre Werte negativ sind (für Verbrauch, Netzeinspeisung, Laden-/Entladen der Batterie)
-- Verwenden Sie positive oder negative Werte für den Verbrauch
-- Berechnen Sie Ihren Verbrauch über Erzeugung und Netzeinspeisung, wenn Sie keinen Stromzähler haben
-- Verwenden Sie verschiedene Zustände für Ihre Batterie
-- Fügen Sie Ihren eigenen Kreis für ein Verbrauchsgerät mit unterschiedlichem Text, Werten und Symbolen hinzu
+- unterschiedliche ZustÃ¤nde fÃ¼r Einspeisung oder Bezug aus dem Netz verwenden
+- Einstellungen umkehren, wenn Ihre Werte negativ sind (fÃ¼r Verbrauch, Netzeinspeisung, Laden-/Entladen der Batterie)
+- Verwenden Sie positive oder negative Werte fÃ¼r den Verbrauch
+- Berechnen Sie Ihren Verbrauch Ã¼ber Erzeugung und Netzeinspeisung, wenn Sie keinen StromzÃ¤hler haben
+- Verwenden Sie verschiedene ZustÃ¤nde fÃ¼r Ihre Batterie
+- FÃ¼gen Sie Ihren eigenen Kreis fÃ¼r ein VerbrauchsgerÃ¤t mit unterschiedlichem Text, Werten und Symbolen hinzu
 - Alle Werte von W in kW umrechnen
-- Wählen Sie, wie viele Dezimalstellen Sie anzeigen möchten (0, 1, 2) - für Werte und Akkuladung
-- Wählen Sie die Einheit (Freitext)
-- Ziehen Sie den Verbrauch des Autos und der Zusatzgeräte vom Verbrauch im Haus ab
+- WÃ¤hlen Sie, wie viele Dezimalstellen Sie anzeigen mÃ¶chten (0, 1, 2) - fÃ¼r Werte und Akkuladung
+- WÃ¤hlen Sie die Einheit (Freitext)
+- Ziehen Sie den Verbrauch des Autos und der ZusatzgerÃ¤te vom Verbrauch im Haus ab
 
 ## Changelog
 <!--
