@@ -41,6 +41,7 @@ Design:
 - change fontfaces of the values and texts (own fonts can be imported)
 - change the font size for label, values and %-texts
 - define a color for the the car icon, if its charging
+- Some Values can have different colors, if their value is zero (consumption, production, grid and battery)
 
 Technical:
 - define Datapoints for each circle
@@ -70,6 +71,7 @@ Design:
 - Schriftarten der Werte und Texte ändern (eigene Schriftarten können importiert werden)
 - Ändern Sie die Schriftgröße für Label, Werte und %-Texte
 - Definieren Sie eine Farbe für das Autosymbol, wenn es geladen wird
+- Einige Werte können unterschiedliche Farben haben, wenn ihr Wert Null ist (Verbrauch, Produktion, Netz und Batterie)
 
 Technisch:
 - Datenpunkte für jeden Kreis definieren
