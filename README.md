@@ -32,6 +32,16 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+- Some Values can have different colors, if their value is zero (consumption, production, grid and battery) (@guergen)
+- shadows of the circles can be modified ((@tobi19)
+- battery percent fraction selectable (@tobi19)
+- Labels inside the circle can be modified (@tobi19)
+- JSON structure for better handling changed
+- unnecessary pre-defines removed
+- preview icon of the custom circle was not displayed after re-entering config
+- reduced memory consumption inside iobroker
+
 ### 0.7.2 (2022-08-02)
 - multiple instances can be accessed via the link -> http://<IP>/energiefluss/?instance=<Instance>
 - Corrected getting the WebPort, if not on standard 8082

@@ -41,8 +41,16 @@
 			// reinitialize all the Materialize labels on the page if you are dynamically adding inputs:
 			if (M) M.updateTextFields();
 			$('.color').each(function () {
-				$(this).minicolors();
+				$(this).minicolors({
+					format: $(this).attr('data-format') || 'hex',
+					swatchPosition: 'right',
+					opacity: $(this).attr('data-opacity')
+				});
 			});
+
+			if ($("#custom_icon").val() != "") {
+				$("#icon_preview").attr("d", $("#custom_icon").val());
+			}
 		}
 
 		// This will be called by the admin adapter when the user presses the save button
@@ -66,7 +74,11 @@
 			$('.color').each(function () {
 				$(this).minicolors('destroy');
 				$(this).val($(this).attr('placeholder')).trigger('change');
-				$(this).minicolors();
+				$(this).minicolors({
+					format: $(this).attr('data-format') || 'hex',
+					swatchPosition: 'right',
+					opacity: $(this).attr('data-opacity')
+				});
 			});
 		}
 
@@ -83,8 +95,8 @@
 
 		.minicolors-swatch {
 			top: 15px !important;
-			left: 70px !important;
-			;
+			left: auto !important;
+			right: 4px;
 		}
 	</style>
 
@@ -118,6 +130,18 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s4">
+					<input class="value" id="label_production" type="text" />
+					<label for="label_production" class="translate" data-lang="label">Label:</label>
+					<span class="translate" data-lang="ex_label">label inside the circle</span>
+				</div>
+				<div class="input-field col s4">
+					<input class="value" id="label_house" type="text" />
+					<label for="label_house" class="translate" data-lang="label">Label:</label>
+					<span class="translate" data-lang="ex_label">label inside the circle</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s4">
 					<input class="value" id="production" type="text" />
 					<label for="production" class="translate" data-lang="production">Production state:</label>
 					<span class="translate" data-lang="ex_production">Data point of your photovoltaic
@@ -140,9 +164,17 @@
 						negative</label>
 				</div>
 			</div>
+
 			<div class="row">
 				<div class="col s12">
 					<h6 class="title translate" data-lang="grid feed in settings">Grid Feed-in and Consuming</h6>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s4">
+					<input class="value" id="label_grid" type="text" />
+					<label for="label_grid" class="translate" data-lang="label">Label:</label>
+					<span class="translate" data-lang="ex_label">label inside the circle</span>
 				</div>
 			</div>
 			<div class="row">
@@ -195,6 +227,13 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s4">
+					<input class="value" id="label_battery" type="text" />
+					<label for="label_battery" class="translate" data-lang="label">Label:</label>
+					<span class="translate" data-lang="ex_label">label inside the circle</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s4">
 					<input class="value" id="battery_charge" type="text" />
 					<label for="battery_charge" class="translate" data-lang="battery_charge_state">Charge
 						battery:</label>
@@ -242,10 +281,28 @@
 						charge-level
 						in %</span>
 				</div>
+				<div class="input-field col s4">
+					<select id="fraction_battery" class="value">
+						<option value="0">0</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+					</select>
+					<label for="fraction" class="translate" data-lang="fraction">Number of places after the decimal
+						point</label>
+					<span class="translate" data-lang="ex_fraction">If zero, the value will be rounded to the next
+						possible integer.</span>
+				</div>
 			</div>
 			<div class="row">
 				<div class="col s12">
 					<h6 class="title translate" data-lang="car_charge">charge car</h6>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s4">
+					<input class="value" id="label_car" type="text" />
+					<label for="label_car" class="translate" data-lang="label">Label:</label>
+					<span class="translate" data-lang="ex_label">label inside the circle</span>
 				</div>
 			</div>
 			<div class="row">
@@ -276,16 +333,16 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s4">
-					<input class="value" id="custom" type="text" />
-					<label for="custom" class="translate" data-lang="custom">custom circle</label>
-					<span class="translate" data-lang="ex_custom">Data point of your custom circle</span>
+					<input class="value" id="label_custom" type="text" />
+					<label for="label_custom" class="translate" data-lang="label">Label:</label>
+					<span class="translate" data-lang="ex_label">label inside the circle</span>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s4">
-					<input class="value" id="custom_label" type="text" />
-					<label for="custom_label" class="translate" data-lang="custom_label">label inside the
-						custom circle:</label>
+					<input class="value" id="custom" type="text" />
+					<label for="custom" class="translate" data-lang="custom">custom circle</label>
+					<span class="translate" data-lang="ex_custom">Data point of your custom circle</span>
 				</div>
 				<div class="input-field col s8">
 					<input class="value" id="custom_icon" type="text" />
@@ -366,14 +423,18 @@
 				</div>
 				<div class="input-field col s5">
 					<input class="value color" id="color_house_text" type="text" placeholder="#00b5dd" />
-					<span class="translate" data-lang="color_house_text">color of the text inside the circle of
+					<span class="translate" data-lang="color_house_text">color of the value inside the circle of
 						the
 						house (default:
 						#00b5dd)</span>
 				</div>
 				<div class="input-field col s5">
 					<input class="value color" id="fill_color_house" type="text" placeholder="" />
-					<span class="translate" data-lang="fill_color_house">color inside the circle of the house (default:
+					<span class="translate" data-lang="fill_color">color inside the circle (default: empty)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="color_house_text_no_prod" type="text" placeholder="" />
+					<span class="translate" data-lang="color_no_prod">color of the value if value is 0 (default:
 						empty)</span>
 				</div>
 			</div>
@@ -391,7 +452,7 @@
 				</div>
 				<div class="input-field col s5">
 					<input class="value color" id="color_grid_text" type="text" placeholder="#61687a" />
-					<span class="translate" data-lang="color_grid_text">color of the text inside the circle of
+					<span class="translate" data-lang="color_grid_text">color of the value inside the circle of
 						the
 						net
 						feed-in
@@ -399,7 +460,13 @@
 				</div>
 				<div class="input-field col s5">
 					<input class="value color" id="fill_color_grid" type="text" placeholder="" />
-					<span class="translate" data-lang="fill_color_grid">color inside the circle of the grid (default:
+					<span class="translate" data-lang="fill_color">color inside the circle (default:
+						empty)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="color_grid_text_no_prod" type="text" placeholder="" />
+					<span class="translate" data-lang="color_no_prod">color of the value if value is 0
+						(default:
 						empty)</span>
 				</div>
 			</div>
@@ -418,7 +485,7 @@
 				</div>
 				<div class="input-field col s5">
 					<input class="value color" id="color_production_text" type="text" placeholder="#ffce4a" />
-					<span class="translate" data-lang="color_production_text">color of the text inside the
+					<span class="translate" data-lang="color_production_text">color of the value inside the
 						circle of
 						the
 						solar
@@ -426,8 +493,12 @@
 				</div>
 				<div class="input-field col s5">
 					<input class="value color" id="fill_color_production" type="text" placeholder="" />
-					<span class="translate" data-lang="fill_color_production">color inside the circle of the solar
-						production (default:
+					<span class="translate" data-lang="fill_color">color inside the circle (default: empty)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="color_production_text_no_prod" type="text" placeholder="" />
+					<span class="translate" data-lang="color_no_prod">color of the value if value is 0
+						(default:
 						empty)</span>
 				</div>
 			</div>
@@ -444,15 +515,14 @@
 				</div>
 				<div class="input-field col s5">
 					<input class="value color" id="color_car_text" type="text" placeholder="#c5902e" />
-					<span class="translate" data-lang="color_car_text">color of the text inside the circle of
+					<span class="translate" data-lang="color_car_text">color of the value inside the circle of
 						the
 						car
 						(default: #c5902e)</span>
 				</div>
 				<div class="input-field col s5">
 					<input class="value color" id="fill_color_car" type="text" placeholder="" />
-					<span class="translate" data-lang="fill_color_car">color inside the circle of the car (default:
-						empty)</span>
+					<span class="translate" data-lang="fill_color">color inside the circle (default: empty)</span>
 				</div>
 				<div class="input-field col s5">
 					<input class="value color" id="color_car_plugged" type="text" placeholder="#a1d343" />
@@ -479,7 +549,7 @@
 				</div>
 				<div class="input-field col s5">
 					<input class="value color" id="color_battery_text" type="text" placeholder="#a1d343" />
-					<span class="translate" data-lang="color_battery_text">color of the text inside the circle
+					<span class="translate" data-lang="color_battery_text">color of the value inside the circle
 						of
 						the
 						car
@@ -487,7 +557,11 @@
 				</div>
 				<div class="input-field col s5">
 					<input class="value color" id="fill_color_battery" type="text" placeholder="" />
-					<span class="translate" data-lang="fill_color_battery">color inside the circle of the battery
+					<span class="translate" data-lang="fill_color">color inside the circle (default: empty)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="color_battery_text_no_prod" type="text" placeholder="" />
+					<span class="translate" data-lang="color_no_prod">color of the value if value is 0
 						(default:
 						empty)</span>
 				</div>
@@ -514,13 +588,36 @@
 				</div>
 				<div class="input-field col s5">
 					<input class="value color" id="color_custom_text" type="text" placeholder="#f20e40" />
-					<span class="translate" data-lang="color_custom_text">color of the text inside the
+					<span class="translate" data-lang="color_custom_text">color of the value inside the
 						custom circle (default: #f20e40)</span>
 				</div>
 				<div class="input-field col s5">
 					<input class="value color" id="fill_color_custom" type="text" placeholder="" />
-					<span class="translate" data-lang="fill_color_custom">color inside the custom circle (default:
+					<span class="translate" data-lang="fill_color">color inside the circle (default: empty)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="color_custom_text_no_prod" type="text" placeholder="" />
+					<span class="translate" data-lang="color_no_prod">color of the value if value is 0
+						(default:
 						empty)</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s12">
+					<h6 class="title translate" data-lang="circle">circle</h6>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s5">
+					<input class="value color opacity" data-format="rgb" data-opacity="true" id="circle_shadow_color"
+						type="text" size="7" placeholder="rgba(0, 0, 0, .7)" />
+					<span class="translate" data-lang="ex_circle_shadow">color of the shadow around the circle (default:
+						rgba(0, 0, 0, .7)</span>
+				</div>
+				<div class="input-field col s5">
+					<input id="circle_shadow" class="value" type="checkbox" />
+					<label for="circle_shadow" class="translate" data-lang="cb_circle_shadow">Show shadow around the
+						circles</label>
 				</div>
 			</div>
 			<div class="row">
@@ -734,12 +831,7 @@
 			<div class="row">
 				<div class="input-field col s4">
 					<input class="value" id="circle_size" type="number" placeholder="2" min="2" max="18" />
-					<span class="translate" data-lang="circle_size">Thickness of the circle outline (in px)</span>
-				</div>
-				<div class="input-field col s4">
-					<input id="circle_shadow" class="value" type="checkbox" />
-					<label for="circle_shadow" class="translate" data-lang="cb_circle_shadow">Show shadow around the
-						circles</label>
+					<span class="translate" data-lang="ex_circle_size">Thickness of the circle outline (in px)</span>
 				</div>
 			</div>
 		</div>

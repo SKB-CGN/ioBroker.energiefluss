@@ -43,25 +43,32 @@ let dataObj = {
 let configObj = {};
 let subscribeArray = new Array();
 let parameterObj = {
-	lines: {},
-	line_colors: {},
-	animation_colors: {},
-	circles: {},
-	colors: {},
-	fill_colors: {},
+	lines: {
+		lines: {},
+		style: {},
+		color: {},
+		animation_colors: {}
+	},
+	circles: {
+		circles: {},
+		style: {},
+		fill: {},
+		color: {}
+	},
 	fonts: {},
 	general: {},
 	icons: {},
-	values: {},
-	texts: {},
+	texts: {
+		texts: {},
+		labels: {}
+	},
+	values: {
+		values: {},
+		color: {}
+	},
 	custom_text: {},
 	custom_symbol: {}
 };
-
-/* Canvas */
-let canvas;
-let canvas_installed
-
 
 class Energiefluss extends utils.Adapter {
 
@@ -168,29 +175,32 @@ class Energiefluss extends utils.Adapter {
 			await this.deleteStateAsync('HTML');
 
 			/* Build Parameter */
-			// Colors
-			parameterObj.colors = {
-				house: this.config.color_house,
-				consumption_value: this.config.color_house_text,
-				grid: this.config.color_grid,
-				grid_value: this.config.color_grid_text,
-				production: this.config.color_production,
-				production_value: this.config.color_production_text,
-				car: this.config.color_car,
+			// Colors of the values
+			// color_house_text_no_prod, color_grid_text_no_prod, color_production_text_no_prod, color_custom_text_no_prod
+			parameterObj.values.color = {
+				consumption_value: this.config.color_house_text_no_prod ? this.config.color_house_text_no_prod : this.config.color_house_text,
+				grid_value: this.config.color_grid_text_no_prod ? this.config.color_grid_text_no_prod : this.config.color_grid_text,
+				production_value: this.config.color_production_text_no_prod ? this.config.color_production_text_no_prod : this.config.color_production_text,
 				car_value: this.config.color_car_text,
 				car_plugged: this.config.color_car_plugged,
 				car_percent: this.config.color_car_percent,
-				battery: this.config.color_battery,
-				battery_value: this.config.color_battery_text,
+				battery_value: this.config.color_battery_text_no_prod ? this.config.color_battery_text_no_prod : this.config.color_battery_text,
 				battery_percent: this.config.color_battery_percent,
+				custom_value: this.config.color_custom_text_no_prod ? this.config.color_custom_text_no_prod : this.config.color_custom_text
+			}
+
+			// Colors of the circles
+			parameterObj.circles.color = {
+				house: this.config.color_house,
+				grid: this.config.color_grid,
+				production: this.config.color_production,
+				battery: this.config.color_battery,
+				car: this.config.color_car,
 				custom: this.config.color_custom,
-				custom_value: this.config.color_custom_text,
-				lines: this.config.color_lines,
-				animation: this.config.color_animation
 			}
 
 			// Fills of the Circles
-			parameterObj.fill_colors = {
+			parameterObj.circles.fill = {
 				house: this.config.fill_color_house,
 				grid: this.config.fill_color_grid,
 				production: this.config.fill_color_production,
@@ -200,7 +210,7 @@ class Energiefluss extends utils.Adapter {
 			}
 
 			// Colors of the lines
-			parameterObj.line_colors = {
+			parameterObj.lines.color = {
 				solar_to_battery: this.config.color_solar_to_battery,
 				solar_to_grid: this.config.color_solar_to_grid,
 				solar_to_house: this.config.color_solar_to_house,
@@ -208,11 +218,12 @@ class Energiefluss extends utils.Adapter {
 				grid_to_house: this.config.color_grid_to_house,
 				grid_to_battery: this.config.color_grid_to_battery,
 				battery_to_house: this.config.color_battery_to_house,
-				house_to_custom: this.config.color_house_to_custom
+				house_to_custom: this.config.color_house_to_custom,
+				default: this.config.color_lines
 			}
 
 			// Animation Colors of the lines
-			parameterObj.animation_colors = {
+			parameterObj.lines.animation_colors = {
 				solar_to_battery: this.config.animation_color_solar_to_battery,
 				solar_to_grid: this.config.animation_color_solar_to_grid,
 				solar_to_house: this.config.animation_color_solar_to_house,
@@ -220,7 +231,12 @@ class Energiefluss extends utils.Adapter {
 				grid_to_house: this.config.animation_color_grid_to_house,
 				grid_to_battery: this.config.animation_color_grid_to_battery,
 				battery_to_house: this.config.animation_color_battery_to_house,
-				house_to_custom: this.config.animation_color_house_to_custom
+				house_to_custom: this.config.animation_color_house_to_custom,
+				default: this.config.color_animation
+			}
+
+			parameterObj.lines.style = {
+				line_size: this.config.line_size
 			}
 
 			// Fonts
@@ -232,22 +248,31 @@ class Energiefluss extends utils.Adapter {
 				font_size_percent: this.config.font_size_percent
 			}
 
+			// Labels
+			parameterObj.texts.labels = {
+				consumption: this.config.label_house,
+				production: this.config.label_production,
+				grid: this.config.label_grid,
+				battery: this.config.label_battery,
+				custom: this.config.label_custom,
+				car: this.config.label_car
+			}
+
 			// Custom's
 			parameterObj.custom_symbol = {
 				icon_custom: this.config.custom_icon
 			}
 
-			parameterObj.custom_text = {
-				custom_text: this.config.custom_label
-			}
-
 			// General
 			parameterObj.general.no_battery = false;
 			parameterObj.general.unit = unit;
-			parameterObj.general.line_size = this.config.line_size;
 			parameterObj.general.fraction = this.config.fraction;
-			parameterObj.general.circle_size = this.config.circle_size || 2;
-			parameterObj.general.circle_shadow = this.config.circle_shadow;
+			parameterObj.general.fraction_battery = this.config.fraction_battery;
+
+			// Circle - Style
+			parameterObj.circles.style.size = this.config.circle_size || 2;
+			parameterObj.circles.style.shadow = this.config.circle_shadow;
+			parameterObj.circles.style.shadow_color = this.config.circle_shadow_color;
 
 
 			// buildDataJSON will add some more details to the object
@@ -495,6 +520,10 @@ class Energiefluss extends utils.Adapter {
 			iconObj.house = true;
 
 			dataValueObj.consumption_value = valuesObj['consumption'];
+
+			if (valuesObj != 0) {
+				parameterObj.values.color.consumption_value = this.config.color_house_text;
+			}
 		}
 
 		// Production
@@ -508,6 +537,10 @@ class Energiefluss extends utils.Adapter {
 			iconObj.production = true;
 
 			dataValueObj.production_value = valuesObj['production'];
+
+			if (valuesObj['production'] != 0) {
+				parameterObj.values.color.production_value = this.config.color_production_text;
+			}
 		}
 
 		// Grid
@@ -538,6 +571,10 @@ class Energiefluss extends utils.Adapter {
 			iconObj.grid = true;
 
 			dataValueObj.grid_value = gridValue;
+
+			if (gridValue != 0) {
+				parameterObj.values.color.grid_value = this.config.color_grid_text;
+			}
 		}
 
 		// User has defined to used different States for consuming from and feeding to the grid
@@ -562,6 +599,10 @@ class Energiefluss extends utils.Adapter {
 			iconObj.grid = true;
 
 			dataValueObj.grid_value = gridValue;
+
+			if (gridValue != 0) {
+				parameterObj.values.color.grid_value = this.config.color_grid_text;
+			}
 		}
 
 		// Car charge
@@ -619,6 +660,10 @@ class Energiefluss extends utils.Adapter {
 			iconObj.battery = true;
 
 			dataValueObj.battery_value = batteryValue;
+
+			if (batteryValue != 0) {
+				parameterObj.values.color.battery_value = this.config.color_battery_text;
+			}
 		}
 
 		// User has defined to used different States for charging and discharging the battery
@@ -643,6 +688,10 @@ class Energiefluss extends utils.Adapter {
 			iconObj.battery = true;
 
 			dataValueObj.battery_value = batteryValue;
+
+			if (batteryValue != 0) {
+				parameterObj.values.color.battery_value = this.config.color_battery_text;
+			}
 		}
 
 		// Battery percent
@@ -662,6 +711,10 @@ class Energiefluss extends utils.Adapter {
 			}
 
 			dataValueObj.custom_value = valuesObj['custom'];
+
+			if (valuesObj['custom'] != 0) {
+				parameterObj.values.color.custom_value = this.config.color_custom_text;
+			}
 		}
 
 		// House netto - Reduce House consumption with Custom-Circle and Car-Charge
@@ -697,11 +750,11 @@ class Energiefluss extends utils.Adapter {
 
 		// Build the Parameters to be read inside Javascript on Webpage - called once
 		//JSON.parse(JSON.stringify(Object.assign({}, iconArray)));
-		parameterObj.circles = circlesObj;
+		parameterObj.circles.circles = circlesObj;
 		parameterObj.icons = iconObj;
-		parameterObj.lines = linesObj;
-		parameterObj.texts = textObj;
-		parameterObj.values = valueObj;
+		parameterObj.lines.lines = linesObj;
+		parameterObj.texts.texts = textObj;
+		parameterObj.values.values = valueObj;
 
 		// Build the Values and Animations to be read inside Javascript - called every time a value changes
 		dataObj.animations = JSON.parse(JSON.stringify(line_animation));

@@ -86,27 +86,30 @@ servConn.init({
 
 function initConfig(once = false) {
     try {
-        // Process colors
-        Object.entries(config.colors).forEach(entry => {
+        // Colors - Circles
+        Object.entries(config.circles.color).forEach(entry => {
             const [key, value] = entry;
-            if (key.includes("value") || key.includes("percent")) {
-                $('#' + key).css("fill", value);
-            } else {
-                $('#' + key).css("stroke", value);
-            }
+            $('#' + key).css("stroke", value);
         });
 
-        // Process colors inside circles
-        Object.entries(config.fill_colors).forEach(entry => {
+        // Colors - Values
+        Object.entries(config.values.color).forEach(entry => {
+            const [key, value] = entry;
+            $('#' + key).css("fill", value);
+        });
+
+        // Colors - Circle Fill
+        Object.entries(config.circles.fill).forEach(entry => {
             const [key, value] = entry;
             $('#' + key).css("fill", value ? value : "");
         });
 
-        // Process colors of the lines - if overwritten
-        Object.entries(config.line_colors).forEach(entry => {
+        // Colors - Lines
+        Object.entries(config.lines.color).forEach(entry => {
             const [key, value] = entry;
-            $('#line_' + key).css("stroke", value ? value : config.colors.lines);
+            $('#line_' + key).css("stroke", value ? value : config.lines.color.default);
         });
+        $('.path').css("stroke-width", config.lines.style.line_size);
 
         // Process fonts
         Object.entries(config.fonts).forEach(entry => {
@@ -129,9 +132,42 @@ function initConfig(once = false) {
                     break;
             }
         });
+
+        // General
+        Object.entries(config.general).forEach(entry => {
+            const [key, value] = entry;
+            if (key == 'no_battery' && value === true) {
+                $('#svg_image').addClass("no_battery");
+            }
+        });
+        // Circle
+        Object.entries(config.circles.style).forEach(entry => {
+            const [key, value] = entry;
+            if (key == 'size') {
+                $('circle').css("stroke-width", value + "px");
+            }
+            if (key == 'shadow') {
+                if (value === true) {
+                    $('circle').addClass('shadow');
+                } else {
+                    $('circle').removeClass('shadow');
+                }
+            }
+            if (key == 'shadow_color') {
+                $(".shadow").css("-webkit-filter", "drop-shadow(0px 3px 3px " + value);
+                $(".shadow").css("filter", "drop-shadow(0px 3px 3px " + value);
+            }
+        });
+        // Labels inside circle
+        Object.entries(config.texts.labels).forEach(entry => {
+            const [key, value] = entry;
+            console.log(key + "_text" + ": " + value);
+            $("#" + key + "_text").text(value);
+        });
         /* Process Elements to be shown */
+        /* Visibility */
         //Circles
-        Object.entries(config.circles).forEach(entry => {
+        Object.entries(config.circles.circles).forEach(entry => {
             const [key, value] = entry;
             $('#' + key).css("visibility", value ? "visible" : "hidden");
             // If no Circle is displayed, remove the Data as well: Values and Text
@@ -140,6 +176,7 @@ function initConfig(once = false) {
                 $('#icon_' + tmpElm[0]).css("visibility", "hidden");
                 $("#" + tmpElm[0] + "_value").css("visibility", "hidden");
                 $("#" + tmpElm[0] + "_percent").css("visibility", "hidden");
+                $("#" + tmpElm[0] + "_text").css("visibility", "hidden");
                 // Remove battery icons
                 if (tmpElm[0] == 'battery') {
                     $('.batt_elm').css("visibility", "hidden");
@@ -152,21 +189,14 @@ function initConfig(once = false) {
             $('#icon_' + key).css("visibility", value ? "visible" : "hidden");
         });
         // Lines
-        Object.entries(config.lines).forEach(entry => {
+        Object.entries(config.lines.lines).forEach(entry => {
             const [key, value] = entry;
             $('#' + key).css("visibility", value ? "visible" : "hidden");
         });
         // Texts
-        Object.entries(config.texts).forEach(entry => {
+        Object.entries(config.texts.texts).forEach(entry => {
             const [key, value] = entry;
             $('#' + key).css("visibility", value ? "visible" : "hidden");
-        });
-        // Custom Text
-        Object.entries(config.custom_text).forEach(entry => {
-            const [key, value] = entry;
-            // Check, if Custom Text should be displayed
-            $('#' + key).css("visibility", config.texts.custom_text ? "visible" : "hidden");
-            $('#' + key).text(value);
         });
 
         // Custom Symbol
@@ -176,32 +206,14 @@ function initConfig(once = false) {
         });
 
         // Values
-        Object.entries(config.values).forEach(entry => {
+        Object.entries(config.values.values).forEach(entry => {
             const [key, value] = entry;
             if (value) {
                 $('#' + key).css("visibility", "visible");
             }
         });
-        // General
-        Object.entries(config.general).forEach(entry => {
-            const [key, value] = entry;
-            if (key == 'no_battery' && value === true) {
-                $('#svg_image').addClass("no_battery");
-            }
-            if (key == 'line_size') {
-                $('.path').css("stroke-width", value + "px");
-            }
-            if (key == 'circle_size') {
-                $('circle').css("stroke-width", value + "px");
-            }
-            if (key == 'circle_shadow') {
-                if (value === true) {
-                    $('circle').addClass('shadow');
-                } else {
-                    $('circle').removeClass('shadow');
-                }
-            }
-        });
+
+        // Ran once
         if (once) {
             console.log('Applied config successfully!');
         }
@@ -252,11 +264,12 @@ function updateValues() {
                 $('#' + key).text(value + '%');
                 /* Handler for Battery Icon */
                 if (key == 'battery_percent') {
+                    $('#' + key).text(fractionLimit(value, config.general.fraction_battery) + '%');
                     $('.batt_elm').css("visibility", "hidden");
                     $('#' + batteryDisplay(value)).css("visibility", "visible");
                 }
             } else {
-                $('#' + key).text(fractionLimit(value) + ' ' + config.general.unit);
+                $('#' + key).text(fractionLimit(value, config.general.fraction) + ' ' + config.general.unit);
             }
         });
     } catch (error) {
@@ -269,12 +282,12 @@ function updateValues() {
             const [key, value] = entry;
             if (value === true) {
                 // Check, if there is a new color defined for this animation
-                if (config.animation_colors.hasOwnProperty(key)) {
-                    if (config.animation_colors[key] != "" || null) {
+                if (config.lines.animation_colors.hasOwnProperty(key)) {
+                    if (config.lines.animation_colors[key] != "" || null) {
                         //console.log('Value found in Colors: ' + key);
-                        $('#anim_' + key).css("stroke", config.animation_colors[key]);
+                        $('#anim_' + key).css("stroke", config.lines.animation_colors[key]);
                     } else {
-                        $('#anim_' + key).css("stroke", config.colors.animation);
+                        $('#anim_' + key).css("stroke", config.lines.animation_colors.default);
                     }
                 }
             } else {
@@ -287,9 +300,9 @@ function updateValues() {
     }
 }
 
-function fractionLimit(value) {
+function fractionLimit(value, fraction) {
     return Intl.NumberFormat('de-DE', {
-        minimumFractionDigits: config.general.fraction,
-        maximumFractionDigits: config.general.fraction
+        minimumFractionDigits: fraction,
+        maximumFractionDigits: fraction
     }).format(value);
 }
