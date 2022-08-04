@@ -58,7 +58,7 @@ Technical:
 - Subtract the consumption of the car and additional equipment from the consumption in the house
 
 ## Funktionen
-Design:
+#Design:
 - Ändern Sie die Farbe jedes Elements
 - Texte innerhalb der Kreise können geändert werden
 - %-Texte können auch andere Farben haben
@@ -73,7 +73,7 @@ Design:
 - Definieren Sie eine Farbe für das Autosymbol, wenn es geladen wird
 - Einige Werte können unterschiedliche Farben haben, wenn ihr Wert Null ist (Verbrauch, Produktion, Netz und Batterie)
 
-Technisch:
+#Technisch:
 - Datenpunkte für jeden Kreis definieren
 - Batterieprozentsatz innerhalb des Auto- oder Batteriekreises anzeigen
 - unterschiedliche Zustände für Einspeisung oder Bezug aus dem Netz verwenden
