@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "energiefluss",
-    "version": "0.8.0",
+    "version": "0.8.1",
     "news": {
+      "0.8.1": {
+        "en": "fixed applying config under some circumstances",
+        "de": "festanwendungsbeschränkung unter umständen",
+        "ru": "фиксированное применение config при некоторых обстоятельствах",
+        "pt": "fixo aplicando config em algumas circunstâncias",
+        "nl": "gerepareerd met een configuur onder sommige omstandigheden",
+        "fr": "la configuration d'application fixe dans certaines circonstances",
+        "it": "fissa applicazione config in alcune circostanze",
+        "es": "configuración de aplicación fija en algunas circunstancias",
+        "pl": "stosowny",
+        "zh-cn": "a. 在某些情况下固定使用混凝土"
+      },
       "0.8.0": {
         "en": "Some Values can have different colors, if their value is zero (consumption, production, grid and battery) (@guergen)\nshadows of the circles can be modified ((@tobi19)\nbattery percent fraction selectable (@tobi19)\nLabels inside the circle can be modified (@tobi19)\nJSON structure for better handling changed\nunnecessary pre-defines removed\npreview icon of the custom circle was not displayed after re-entering config\nreduced memory consumption inside iobroker",
         "de": "Einige Werte können unterschiedliche Farben haben, wenn ihr Wert Null ist (Verbrauch, Produktion, Netz und Batterie) @(guergen)\nschatten der kreise können modifiziert werden @(tobi19)\nbatterieprozentanteil wählbar @(tobi19)\nLabels im Kreis können modifiziert werden @(tobi19)\nJSON Struktur für bessere Handhabung geändert\nunnötige voreinstellungen entfernt\nvorschau-symbol des benutzerdefinierten kreises wurde nicht nach dem erneuten eingeben von config angezeigt\nreduzierter speicherverbrauch innerhalb von iobroker",
@@ -74,18 +86,6 @@
         "es": "Llenar dentro del círculo configurable\nlínea de color configurable\nlínea animación configurable",
         "pl": "Filled in the circle configurable (ang.)\nkonfigurowalny\nkomputerowa animacja",
         "zh-cn": "圈子内\na. 可图的颜色\n易燃的线"
-      },
-      "0.4.1": {
-        "en": "fixed JSON Object with configuration",
-        "de": "jSON Objekt mit Konfiguration",
-        "ru": "фиксированный JSON Объект с конфигурацией",
-        "pt": "jSON fixo Objeto com configuração",
-        "nl": "_ Bezwaar",
-        "fr": "jSON Objet avec configuration",
-        "it": "fisso JSON Oggetto con configurazione",
-        "es": "jSON Objeto con configuración",
-        "pl": "jSON obiekt z konfiguracją",
-        "zh-cn": "常设机构 组合的目的"
       }
     },
     "title": "energiefluss",

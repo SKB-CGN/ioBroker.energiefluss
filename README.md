@@ -92,7 +92,7 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.8.1 (2022-08-04)
 - fixed applying config under some circumstances
 
 ### 0.8.0 (2022-08-04)
