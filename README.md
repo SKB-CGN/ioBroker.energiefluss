@@ -42,6 +42,7 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 - change the font size for label, values and %-texts
 - define a color for the the car icon, if its charging
 - Some Values can have different colors, if their value is zero (consumption, production, grid and battery)
+- Battery icon can be animated while charging or discharging
 
 **Technical:**
 - define Datapoints for each circle
@@ -72,6 +73,7 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 - Ändern Sie die Schriftgröße für Label, Werte und %-Texte
 - Definieren Sie eine Farbe für das Autosymbol, wenn es geladen wird
 - Einige Werte können unterschiedliche Farben haben, wenn ihr Wert Null ist (Verbrauch, Produktion, Netz und Batterie)
+- Batterie-Icon kann beim Laden und Entladen animiert werden
 
 **Technisch:**
 - Datenpunkte für jeden Kreis definieren
@@ -92,6 +94,11 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+- Correction: some values can have different colors if their value is zero (consumption, production, grid and battery) (@guergen)
+- Animations are not displayed if the decimal place is 0 and the value is therefore also zero ( @oxident)
+- Icon animation of the battery charge (changes every second when charging/discharging)
+
 ### 0.8.1 (2022-08-04)
 - fixed applying config under some circumstances
 

@@ -12,6 +12,10 @@ var loaded = false;
 
 let config;
 let data;
+let battery_animation = false;
+let battery_timer = null;
+let battery_direction;
+let battery_animation_running = false;
 
 var states = [];
 servConn.init({
@@ -139,6 +143,14 @@ function initConfig(once = false) {
             if (key == 'no_battery' && value === true) {
                 $('#svg_image').addClass("no_battery");
             }
+            if (key == 'battery_animation') {
+
+                battery_animation = value;
+                if (!value) {
+                    battery_direction = '';
+                    clearInterval(battery_timer);
+                }
+            }
         });
         // Circle
         Object.entries(config.circles.style).forEach(entry => {
@@ -196,13 +208,6 @@ function initConfig(once = false) {
             const [key, value] = entry;
             $('#' + key).css("visibility", value ? "visible" : "hidden");
         });
-        // Custom Text
-        Object.entries(config.custom_text).forEach(entry => {
-            const [key, value] = entry;
-            // Check, if Custom Text should be displayed
-            $('#' + key).css("visibility", config.texts.custom_text ? "visible" : "hidden");
-            $('#' + key).text(value);
-        });
 
         // Custom Symbol
         Object.entries(config.custom_symbol).forEach(entry => {
@@ -213,9 +218,7 @@ function initConfig(once = false) {
         // Values
         Object.entries(config.values.values).forEach(entry => {
             const [key, value] = entry;
-            if (value) {
-                $('#' + key).css("visibility", "visible");
-            }
+            $('#' + key).css("visibility", value ? "visible" : "hidden");
         });
 
         // Ran once
@@ -251,6 +254,47 @@ function batteryDisplay(value) {
         elm = "icon_battery_high";
     }
     return elm;
+
+}
+
+function animateBattery(what) {
+    // Check, if we already animate the battery
+    if (what == 'charge' || what == 'discharge') {
+        if (battery_direction != what) {
+            battery_direction = what;
+            let batt = $(".batt_elm");
+            let length = batt.length;
+            let current_pos = what == 'charge' ? length - 1 : 0;
+            // Get Battery Elements
+            // Clear the Interval if its already running to prevent multiple intervals
+            if (battery_timer) {
+                clearInterval(battery_timer);
+            }
+            // Show empty battery before animations starts to display "something"
+            $("#icon_battery_empty").css("visibility", "visible");
+            battery_timer = setInterval(function () {
+                if (what == 'discharge') {
+                    current_pos = current_pos == length ? 0 : current_pos;
+                }
+
+                if (what == 'charge') {
+                    current_pos = current_pos < 0 ? length - 1 : current_pos;
+                }
+
+                if (current_pos < length && what == 'discharge' ||
+                    current_pos >= 0 && what == 'charge') {
+                    $('.batt_elm').css("visibility", "hidden");
+                    batt.eq(current_pos).css("visibility", "visible");
+                    what == 'charge' ? current_pos-- : current_pos++;
+                }
+            }, 1000);
+        }
+    } else {
+        // Stop the Interval
+        if (battery_timer) {
+            clearInterval(battery_timer);
+        }
+    }
 }
 
 function updateValues() {
@@ -263,19 +307,38 @@ function updateValues() {
             }
             // Show Battery Icon if user has no state for percents
             if (key == 'battery_value' && data.values.battery_percent == null) {
-                $('#' + batteryDisplay(100)).css("visibility", "visible");
+                if (battery_animation == false) {
+                    $('#' + batteryDisplay(100)).css("visibility", "visible");
+                } else {
+                    animateBattery(data.battery_animation.direction);
+                }
             }
 
             if (key.includes("percent")) {
                 $('#' + key).text(value + '%');
                 /* Handler for Battery Icon */
                 if (key == 'battery_percent') {
-                    //$('#' + key).text(fractionLimit(value, config.general.fraction_battery) + '%');
-                    $('.batt_elm').css("visibility", "hidden");
-                    $('#' + batteryDisplay(value)).css("visibility", "visible");
+                    $('#' + key).text(value + '%');
+                    if (battery_animation == false) {
+                        $('.batt_elm').css("visibility", "hidden");
+                        $('#' + batteryDisplay(value)).css("visibility", "visible");
+                    } else {
+                        if (data.battery_animation.hasOwnProperty('direction')) {
+                            animateBattery(data.battery_animation.direction);
+                        } else {
+                            // Here we need to stop the Animation
+                            if (battery_timer) {
+                                clearInterval(battery_timer);
+                                battery_direction = '';
+                            }
+                            // Re-Display the Icon, if Animation stopped
+                            $('.batt_elm').css("visibility", "hidden");
+                            $('#' + batteryDisplay(value)).css("visibility", "visible");
+                        }
+                    }
                 }
             } else {
-                $('#' + key).text(fractionLimit(value, config.general.fraction) + ' ' + config.general.unit);
+                $('#' + key).text(value + ' ' + config.general.unit);
             }
         });
     } catch (error) {
@@ -303,11 +366,4 @@ function updateValues() {
     } catch (error) {
         console.log('Error while updating the Animations!');
     }
-}
-
-function fractionLimit(value, fraction) {
-    return Intl.NumberFormat('de-DE', {
-        minimumFractionDigits: fraction,
-        maximumFractionDigits: fraction
-    }).format(value);
 }

@@ -54,7 +54,6 @@ circle {
 }
 
 .line {
-    stroke-dasharray: 1000;
     opacity: 0.7;
 }
 

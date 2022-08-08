@@ -33,12 +33,15 @@ let consumption_reverse;
 let recalculate = false;
 let house_netto;
 let custom;
+let fraction;
+let fraction_battery;
 
 /* Data Objects */
 let valuesObj = {};
 let dataObj = {
 	values: {},
-	animations: {}
+	animations: {},
+	battery_animation: {}
 };
 let configObj = {};
 let subscribeArray = new Array();
@@ -66,7 +69,6 @@ let parameterObj = {
 		values: {},
 		color: {}
 	},
-	custom_text: {},
 	custom_symbol: {}
 };
 
@@ -113,6 +115,8 @@ class Energiefluss extends utils.Adapter {
 			calculate_consumption = this.config.calculate_consumption;
 			custom = this.config.custom;
 			house_netto = this.config.house_netto;
+			fraction = this.config.fraction;
+			fraction_battery = this.config.fraction_battery;
 
 			recalculate = this.config.recalculate ? true : false;
 			this.log.info("Starting Energiefluss Adapter");
@@ -176,17 +180,16 @@ class Energiefluss extends utils.Adapter {
 
 			/* Build Parameter */
 			// Colors of the values
-			// color_house_text_no_prod, color_grid_text_no_prod, color_production_text_no_prod, color_custom_text_no_prod
 			parameterObj.values.color = {
-				consumption_value: this.config.color_house_text_no_prod ? this.config.color_house_text_no_prod : this.config.color_house_text,
-				grid_value: this.config.color_grid_text_no_prod ? this.config.color_grid_text_no_prod : this.config.color_grid_text,
-				production_value: this.config.color_production_text_no_prod ? this.config.color_production_text_no_prod : this.config.color_production_text,
+				consumption_value: this.config.color_house_text,
+				grid_value: this.config.color_grid_text,
+				production_value: this.config.color_production_text,
 				car_value: this.config.color_car_text,
 				car_plugged: this.config.color_car_plugged,
 				car_percent: this.config.color_car_percent,
-				battery_value: this.config.color_battery_text_no_prod ? this.config.color_battery_text_no_prod : this.config.color_battery_text,
+				battery_value: this.config.color_battery_text,
 				battery_percent: this.config.color_battery_percent,
-				custom_value: this.config.color_custom_text_no_prod ? this.config.color_custom_text_no_prod : this.config.color_custom_text
+				custom_value: this.config.color_custom_text
 			}
 
 			// Colors of the circles
@@ -266,8 +269,11 @@ class Energiefluss extends utils.Adapter {
 			// General
 			parameterObj.general.no_battery = false;
 			parameterObj.general.unit = unit;
+			/*
 			parameterObj.general.fraction = this.config.fraction;
 			parameterObj.general.fraction_battery = this.config.fraction_battery;
+			*/
+			parameterObj.general.battery_animation = this.config.battery_animation;
 
 			// Circle - Style
 			parameterObj.circles.style.size = this.config.circle_size || 2;
@@ -362,7 +368,8 @@ class Energiefluss extends utils.Adapter {
 				valuesObj['grid_consuming'] = recalculate ? this.recalculateValue(state.val) : this.floorNumber(state.val);
 			}
 			if (id == battery_percent) {
-				valuesObj['battery_percent'] = state.val;
+				//valuesObj['battery_percent'] = parseFloat(state.val.toFixed(fraction_battery));
+				valuesObj['battery_percent'] = (Math.round(state.val * 100) / 100).toFixed(fraction_battery);
 			}
 			if (id == battery_charge) {
 				valuesObj['battery_charge'] = recalculate ? this.recalculateValue(state.val) : this.floorNumber(state.val);
@@ -420,13 +427,15 @@ class Energiefluss extends utils.Adapter {
 	 * @param {number} value
 	 */
 	recalculateValue(value) {
-		return parseFloat((value / 1000).toFixed(2));
+		//return parseFloat((value / 1000).toFixed(fraction));
+		return (Math.round((value / 1000) * 100) / 100).toFixed(fraction);
 	}
 	/**
 	 * @param {number} value
 	 */
 	floorNumber(value) {
-		return parseFloat(value.toFixed(2));
+		//return parseFloat(value.toFixed(fraction));
+		return (Math.round(value * 100) / 100).toFixed(fraction);
 	}
 
 	/**
@@ -475,7 +484,16 @@ class Energiefluss extends utils.Adapter {
 			car_text: false,
 			custom_text: false
 		};
-		let valueObj = {};
+		let valueObj = {
+			consumption_value: false,
+			production_value: false,
+			grid_value: false,
+			car_value: false,
+			car_percent: false,
+			battery_value: false,
+			battery_percent: false,
+			custom_value: false
+		};
 		// Icons
 		let iconObj = {
 			house: false,
@@ -509,7 +527,7 @@ class Energiefluss extends utils.Adapter {
 		};
 
 		// Change CSS if no battery is present
-		if ((valuesObj['battery_charge'] === undefined || valuesObj['battery_discharge'] === undefined) && valuesObj['battery_percent'] === undefined) {
+		if ((valuesObj['battery_charge'] === undefined || valuesObj['battery_discharge'] === undefined && battery_different) && valuesObj['battery_percent'] === undefined) {
 			parameterObj.general.no_battery = true;
 		}
 		// Consumption
@@ -523,6 +541,8 @@ class Energiefluss extends utils.Adapter {
 
 			if (valuesObj != 0) {
 				parameterObj.values.color.consumption_value = this.config.color_house_text;
+			} else {
+				parameterObj.values.color.consumption_value = this.config.color_house_text_no_prod;
 			}
 		}
 
@@ -540,6 +560,8 @@ class Energiefluss extends utils.Adapter {
 
 			if (valuesObj['production'] != 0) {
 				parameterObj.values.color.production_value = this.config.color_production_text;
+			} else {
+				parameterObj.values.color.production_value = this.config.color_production_text_no_prod ? this.config.color_production_text_no_prod : this.config.color_production_text;
 			}
 		}
 
@@ -574,6 +596,8 @@ class Energiefluss extends utils.Adapter {
 
 			if (gridValue != 0) {
 				parameterObj.values.color.grid_value = this.config.color_grid_text;
+			} else {
+				parameterObj.values.color.grid_value = this.config.color_grid_text_no_prod ? this.config.color_grid_text_no_prod : this.config.color_grid_text;
 			}
 		}
 
@@ -602,6 +626,8 @@ class Energiefluss extends utils.Adapter {
 
 			if (gridValue != 0) {
 				parameterObj.values.color.grid_value = this.config.color_grid_text;
+			} else {
+				parameterObj.values.color.grid_value = this.config.color_grid_text_no_prod ? this.config.color_grid_text_no_prod : this.config.color_grid_text;
 			}
 		}
 
@@ -637,20 +663,24 @@ class Energiefluss extends utils.Adapter {
 			if (battery_reverse) {
 				if (batteryValue > 0) {
 					line_animation.battery_to_house = true;
+					dataObj.battery_animation.direction = 'discharge';
 				}
 				if (batteryValue < 0) {
 					// Display as positive
 					batteryValue = batteryValue * -1;
 					line_animation.solar_to_battery = true;
+					dataObj.battery_animation.direction = 'charge';
 				}
 			} else {
 				if (batteryValue > 0) {
 					line_animation.solar_to_battery = true;
+					dataObj.battery_animation.direction = 'charge';
 				}
 				if (batteryValue < 0) {
 					// Display as positive
 					batteryValue = batteryValue * -1;
 					line_animation.battery_to_house = true;
+					dataObj.battery_animation.direction = 'discharge';
 				}
 			}
 
@@ -663,6 +693,8 @@ class Energiefluss extends utils.Adapter {
 
 			if (batteryValue != 0) {
 				parameterObj.values.color.battery_value = this.config.color_battery_text;
+			} else {
+				parameterObj.values.color.battery_value = this.config.color_battery_text_no_prod ? this.config.color_battery_text_no_prod : this.config.color_battery_text;
 			}
 		}
 
@@ -675,11 +707,13 @@ class Energiefluss extends utils.Adapter {
 			if (batteryChargeValue > 0 && batteryDischargeValue === 0) {
 				line_animation.solar_to_battery = true;
 				batteryValue = batteryChargeValue;
+				dataObj.battery_animation.direction = 'charge';
 			}
 
 			if (batteryDischargeValue > 0 && batteryChargeValue === 0) {
 				line_animation.battery_to_house = true;
 				batteryValue = batteryDischargeValue;
+				dataObj.battery_animation.direction = 'discharge';
 			}
 
 			circlesObj.battery = true;
@@ -691,6 +725,8 @@ class Energiefluss extends utils.Adapter {
 
 			if (batteryValue != 0) {
 				parameterObj.values.color.battery_value = this.config.color_battery_text;
+			} else {
+				parameterObj.values.color.battery_value = this.config.color_battery_text_no_prod ? this.config.color_battery_text_no_prod : this.config.color_battery_text;
 			}
 		}
 
@@ -714,6 +750,8 @@ class Energiefluss extends utils.Adapter {
 
 			if (valuesObj['custom'] != 0) {
 				parameterObj.values.color.custom_value = this.config.color_custom_text;
+			} else {
+				parameterObj.values.color.custom_value = this.config.color_custom_text_no_prod ? this.config.color_custom_text_no_prod : this.config.color_custom_text;
 			}
 		}
 
