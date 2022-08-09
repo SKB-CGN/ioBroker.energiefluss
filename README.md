@@ -94,14 +94,13 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.8.3 (2022-08-09)
 - Correction of House-consumption calculation in combination with house-netto-calculation
 - changed battery animation if battery is fully charged or empty and no progress is detected
 
-
 ### 0.8.2 (2022-08-08)
-- Correction: some values can have different colors if their value is zero (consumption, production, grid and battery) (@guergen)
-- Animations are not displayed if the decimal place is 0 and the value is therefore also zero ( @oxident)
+- Correction: some values can have different colors if their value is zero (consumption, production, grid and battery)
+- Animations are not displayed if the decimal place is 0 and the value is therefore also zero
 - Icon animation of the battery charge (changes every second when charging/discharging)
 
 ### 0.8.1 (2022-08-04)

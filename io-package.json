@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "energiefluss",
-    "version": "0.8.2",
+    "version": "0.8.3",
     "news": {
+      "0.8.3": {
+        "en": "Correction of House-consumption calculation in combination with house-netto-calculation\nchanged battery animation if battery is fully charged or empty and no progress is detected",
+        "de": "Korrektur der Hausverbrauchsberechnung in Kombination mit Haus-Netto-Berechnung\ngeänderte batterieanimation, wenn die batterie vollständig geladen oder leer ist und kein fortschritt erkannt wird",
+        "ru": "Исправление расчетов House-consumption в комбинации с дома-нетто-расчётом\nизменена анимация батареи, если батарея полностью заряжена или пуста, и никакий прогресс не обнаружен",
+        "pt": "Correção do cálculo do consumo doméstico em combinação com a casa-rede-calculação\nanimação de bateria alterada se a bateria estiver totalmente carregada ou vazia e nenhum progresso for detectado",
+        "nl": "Vertaling:\nverandering van batterij animatie als batterij volledig wordt aangeklaagd of leeg en geen vooruitgang wordt ontdekt",
+        "fr": "Correction du calcul de la consommation de maison en combinaison avec le calcul de l ' établissement d ' un réseau\nchangement d'animation de la batterie si la batterie est entièrement chargée ou vide et aucun progrès n'est détecté",
+        "it": "Correzione del calcolo della casa-consumo in combinazione con la casa-netto-calcolo\nl'animazione della batteria modificata se la batteria è completamente carica o vuota e nessun progresso viene rilevato",
+        "es": "Corrección del cálculo del consumo de la casa en combinación con el cálculo de la red de la casa\ncambiar la animación de la batería si la batería está completamente cargada o vacía y no se detecta progreso",
+        "pl": "Wykorzystanie obliczeń z House’a w połączeniu z obliczeniami domowymi\nzmieniona animacja baterii, jeśli bateria jest w pełni naładowana lub pusta, nie wykrywa się żadnych postępów",
+        "zh-cn": "B. 结合住房-网上图-提高住房消费计算\n如果电池被完全指控或空调,则电离破裂,发现没有进展。"
+      },
       "0.8.2": {
         "en": "Correction: some values can have different colors if their value is zero (consumption, production, grid and battery) (@guergen)\nAnimations are not displayed if the decimal place is 0 and the value is therefore also zero ( @oxident)\nIcon animation of the battery charge (changes every second when charging/discharging)",
         "de": "Korrektur: Einige Werte können unterschiedliche Farben haben, wenn ihr Wert Null ist (Verbrauch, Produktion, Netz und Batterie) @(Gast)\nAnimationen werden nicht angezeigt, wenn der Dezimalplatz 0 ist und der Wert daher auch Null ist ( @oxident)\nIcon-Animation der Batterieladung (Ändert jede Sekunde beim Laden/Entladen)",
@@ -74,18 +86,6 @@
         "es": "opción, para añadir un círculo personalizado alimentado de la casa (texto libre e icono)\nfuentes propias se pueden añadir a través del parámetro de descarga - debe estar en el mismo dominio o ip\nAñadido 3 nuevos iconos para el estado de Accu (0,% 25,% 75,% ±75)%",
         "pl": "w celu dodania dowolnego kręgu karmionego z domu (wolne teksty i ikony)\ninne fonty można dodać poprzez parametr pobierania - muszą być w tej samej domenie lub ip\nDostęp 3 nowych Icons for Accu-state (0,%,% 75,% % >%%)",
         "zh-cn": "备选案文:增加从住房(无案文和icon)中喂养的习惯群体\n可通过下载参数来增加自己的缺陷,必须在同样的领域或地点。\n增加3个新盟国(0,25.0%,75.0%,5.7%)"
-      },
-      "0.5.1": {
-        "en": "Possibility to revere battery inputs",
-        "de": "M�glichkeit, Batterieeing�nge zu vertauschen",
-        "ru": "??????????? ??????? ????? ???????",
-        "pt": "Possibilidade de reverenciar entradas de bateria",
-        "nl": "Mogelijkheid om batterij-ingangen te respecteren",
-        "fr": "Possibilit� de v�n�rer les entr�es batterie",
-        "it": "Possibilit� di riverire gli ingressi della batteria",
-        "es": "Posibilidad de venerar entradas de bater�a.",
-        "pl": "Mozliwosc odwr�cenia wejsc baterii",
-        "zh-cn": "Zunzh�ng di�nch� shur� de ken�ng x�ng"
       }
     },
     "titleLang": {
@@ -126,7 +126,7 @@
     "main": "main.js",
     "icon": "energiefluss.png",
     "enabled": true,
-    "localLink":"%web_protocol%://%ip%:%web_port%/energiefluss/index.html?instance=%instance%",
+    "localLink": "%web_protocol%://%ip%:%web_port%/energiefluss/index.html?instance=%instance%",
     "extIcon": "https://raw.githubusercontent.com/SKB-CGN/ioBroker.energiefluss/main/admin/energiefluss.png",
     "readme": "https://github.com/SKB-CGN/ioBroker.energiefluss/blob/main/README.md",
     "loglevel": "info",
