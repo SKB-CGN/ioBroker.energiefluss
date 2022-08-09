@@ -88,7 +88,6 @@
         "zh-cn": "Zunzh�ng di�nch� shur� de ken�ng x�ng"
       }
     },
-    "title": "energiefluss",
     "titleLang": {
       "en": "Energiefluss",
       "de": "Energiefluss",
@@ -155,7 +154,7 @@
       "link": "",
       "fa-icon": "info"
     },
-    "supportCustoms": true,
+    "supportCustoms": false,
     "dependencies": [
       {
         "js-controller": ">=2.0.0"
