@@ -126,9 +126,7 @@
     "main": "main.js",
     "icon": "energiefluss.png",
     "enabled": true,
-    "localLinks": {
-        "default":"%web_protocol%://%ip%:%web_port%/energiefluss/index.html?instance=%instance%"
-    },
+    "localLink":"%web_protocol%://%ip%:%web_port%/energiefluss/index.html?instance=%instance%",
     "extIcon": "https://raw.githubusercontent.com/SKB-CGN/ioBroker.energiefluss/main/admin/energiefluss.png",
     "readme": "https://github.com/SKB-CGN/ioBroker.energiefluss/blob/main/README.md",
     "loglevel": "info",
