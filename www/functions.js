@@ -294,6 +294,8 @@ function animateBattery(what) {
         if (battery_timer) {
             clearInterval(battery_timer);
         }
+        // Show correct Battery, if charging completed
+        $('#' + batteryDisplay(100)).css("visibility", "visible");
     }
 }
 

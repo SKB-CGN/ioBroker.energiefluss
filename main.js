@@ -349,36 +349,36 @@ class Energiefluss extends utils.Adapter {
 		// Production
 		if (state) {
 			if (id == custom) {
-				valuesObj['custom'] = recalculate ? this.recalculateValue(state.val) : this.floorNumber(state.val);
+				valuesObj['custom'] = state.val;
 			}
 			if (id == production) {
-				valuesObj['production'] = recalculate ? this.recalculateValue(state.val) : this.floorNumber(state.val);
+				valuesObj['production'] = state.val;
 			}
 			if (id == consumption) {
 				let consumption = state.val;
 				if (consumption_reverse) {
 					consumption = consumption * (-1);
 				}
-				valuesObj['consumption'] = recalculate ? this.recalculateValue(consumption) : this.floorNumber(consumption);
+				valuesObj['consumption'] = state.val;
 			}
 			if (id == grid_feed) {
-				valuesObj['grid_feed'] = recalculate ? this.recalculateValue(state.val) : this.floorNumber(state.val);
+				valuesObj['grid_feed'] = state.val;
 			}
 			if (id == grid_consuming) {
-				valuesObj['grid_consuming'] = recalculate ? this.recalculateValue(state.val) : this.floorNumber(state.val);
+				valuesObj['grid_consuming'] = state.val;
 			}
 			if (id == battery_percent) {
 				//valuesObj['battery_percent'] = parseFloat(state.val.toFixed(fraction_battery));
 				valuesObj['battery_percent'] = (Math.round(state.val * 100) / 100).toFixed(fraction_battery);
 			}
 			if (id == battery_charge) {
-				valuesObj['battery_charge'] = recalculate ? this.recalculateValue(state.val) : this.floorNumber(state.val);
+				valuesObj['battery_charge'] = state.val;
 			}
 			if (id == battery_discharge) {
-				valuesObj['battery_discharge'] = recalculate ? this.recalculateValue(state.val) : this.floorNumber(state.val);
+				valuesObj['battery_discharge'] = state.val;
 			}
 			if (id == car_charge) {
-				valuesObj['car_charge'] = recalculate ? this.recalculateValue(state.val) : this.floorNumber(state.val);
+				valuesObj['car_charge'] = state.val;
 			}
 			if (id == car_percent) {
 				valuesObj['car_percent'] = state.val;
@@ -392,11 +392,12 @@ class Energiefluss extends utils.Adapter {
 
 				let consumptionValue = 0;
 				if (grid_all_positive) {
-					consumptionValue = parseFloat(valuesObj['grid_consuming'] + (prodValue - valuesObj['grid_feed']));
+					//consumptionValue = parseFloat(valuesObj['grid_consuming'] + (prodValue - valuesObj['grid_feed']));
+					consumptionValue = valuesObj['grid_consuming'] + (prodValue - valuesObj['grid_feed']);
 				} else {
-					consumptionValue = parseFloat(valuesObj['grid_feed'] + prodValue);
+					consumptionValue = valuesObj['grid_feed'] + prodValue;
 				}
-				valuesObj['consumption'] = recalculate ? this.recalculateValue(consumptionValue * 1000) : this.floorNumber(consumptionValue);
+				valuesObj['consumption'] = consumptionValue;
 			}
 		}
 
@@ -450,7 +451,7 @@ class Energiefluss extends utils.Adapter {
 				// Check, if key is a number
 				if (typeof (stateValue.val) === 'number') {
 					if (!key.includes("percent")) {
-						tmpObj[key] = recalculate ? this.recalculateValue(stateValue.val) : stateValue.val;
+						tmpObj[key] = stateValue.val;
 					} else {
 						tmpObj[key] = stateValue.val;
 					}
@@ -466,6 +467,8 @@ class Energiefluss extends utils.Adapter {
 	}
 
 	async buildDataJSON() {
+		// Reset Battery Animation
+		dataObj.battery_animation.direction = 'none';
 		let dataValueObj = {};
 		// Circles - init as false
 		let circlesObj = {
@@ -476,6 +479,8 @@ class Energiefluss extends utils.Adapter {
 			battery: false,
 			custom: false
 		};
+
+		// Texts
 		let textObj = {
 			consumption_text: false,
 			production_text: false,
@@ -484,6 +489,8 @@ class Energiefluss extends utils.Adapter {
 			car_text: false,
 			custom_text: false
 		};
+
+		// Values
 		let valueObj = {
 			consumption_value: false,
 			production_value: false,
@@ -494,6 +501,7 @@ class Energiefluss extends utils.Adapter {
 			battery_percent: false,
 			custom_value: false
 		};
+
 		// Icons
 		let iconObj = {
 			house: false,
@@ -503,6 +511,7 @@ class Energiefluss extends utils.Adapter {
 			battery: false,
 			custom: false
 		};
+
 		// Lines
 		let linesObj = {
 			solar_to_house: false,
@@ -515,6 +524,7 @@ class Energiefluss extends utils.Adapter {
 			house_to_custom: false
 		};
 
+		// Line-Animation
 		let line_animation = {
 			solar_to_house: false,
 			grid_to_house: false,
@@ -537,7 +547,7 @@ class Energiefluss extends utils.Adapter {
 			valueObj.consumption_value = true;
 			iconObj.house = true;
 
-			dataValueObj.consumption_value = valuesObj['consumption'];
+			dataValueObj.consumption_value = recalculate ? this.recalculateValue(valuesObj['consumption']) : this.floorNumber(valuesObj['consumption']);
 
 			if (valuesObj != 0) {
 				parameterObj.values.color.consumption_value = this.config.color_house_text;
@@ -556,7 +566,7 @@ class Energiefluss extends utils.Adapter {
 			valueObj.production_value = true;
 			iconObj.production = true;
 
-			dataValueObj.production_value = valuesObj['production'];
+			dataValueObj.production_value = recalculate ? this.recalculateValue(valuesObj['production']) : this.floorNumber(valuesObj['production']);
 
 			if (valuesObj['production'] != 0) {
 				parameterObj.values.color.production_value = this.config.color_production_text;
@@ -592,7 +602,7 @@ class Energiefluss extends utils.Adapter {
 			valueObj.grid_value = true;
 			iconObj.grid = true;
 
-			dataValueObj.grid_value = gridValue;
+			dataValueObj.grid_value = recalculate ? this.recalculateValue(gridValue) : this.floorNumber(gridValue);
 
 			if (gridValue != 0) {
 				parameterObj.values.color.grid_value = this.config.color_grid_text;
@@ -605,7 +615,7 @@ class Energiefluss extends utils.Adapter {
 		if (grid_different === true) {
 			let gridConsumeValue = valuesObj['grid_consuming'];
 			let gridFeedValue = valuesObj['grid_feed'];
-			let gridValue = 0 + ' ' + unit;
+			let gridValue = 0;
 
 			if (gridConsumeValue > 0 && gridFeedValue === 0) {
 				line_animation.grid_to_house = true;
@@ -622,7 +632,7 @@ class Energiefluss extends utils.Adapter {
 			valueObj.grid_value = true;
 			iconObj.grid = true;
 
-			dataValueObj.grid_value = gridValue;
+			dataValueObj.grid_value = recalculate ? this.recalculateValue(gridValue) : this.floorNumber(gridValue);
 
 			if (gridValue != 0) {
 				parameterObj.values.color.grid_value = this.config.color_grid_text;
@@ -636,13 +646,15 @@ class Energiefluss extends utils.Adapter {
 			if (valuesObj['car_charge'] > 0) {
 				line_animation.house_to_car = true;
 			}
-			dataValueObj.car_plugged = valuesObj['car_plugged'];
+			if (valuesObj['car_charge'] > 0 || valuesObj['car_plugged']) {
+				dataValueObj.car_plugged = true;
+			}
 			circlesObj.car = true;
 			textObj.car_text = true;
 			valueObj.car_value = true;
 			iconObj.car = true;
 
-			dataValueObj.car_value = valuesObj['car_charge'];
+			dataValueObj.car_value = recalculate ? this.recalculateValue(valuesObj['car_charge']) : this.floorNumber(valuesObj['car_charge']);
 		}
 
 		if (valuesObj['car_percent'] != undefined) {
@@ -661,22 +673,22 @@ class Energiefluss extends utils.Adapter {
 		if (valuesObj['battery_charge'] != undefined && battery_different === false) {
 			let batteryValue = valuesObj['battery_charge'];
 			if (battery_reverse) {
-				if (batteryValue > 0) {
+				if (batteryValue > 5) {
 					line_animation.battery_to_house = true;
 					dataObj.battery_animation.direction = 'discharge';
 				}
-				if (batteryValue < 0) {
+				if (batteryValue < -5) {
 					// Display as positive
 					batteryValue = batteryValue * -1;
 					line_animation.solar_to_battery = true;
 					dataObj.battery_animation.direction = 'charge';
 				}
 			} else {
-				if (batteryValue > 0) {
+				if (batteryValue > 5) {
 					line_animation.solar_to_battery = true;
 					dataObj.battery_animation.direction = 'charge';
 				}
-				if (batteryValue < 0) {
+				if (batteryValue < -5) {
 					// Display as positive
 					batteryValue = batteryValue * -1;
 					line_animation.battery_to_house = true;
@@ -689,7 +701,7 @@ class Energiefluss extends utils.Adapter {
 			valueObj.battery_value = true;
 			iconObj.battery = true;
 
-			dataValueObj.battery_value = batteryValue;
+			dataValueObj.battery_value = recalculate ? this.recalculateValue(batteryValue) : this.floorNumber(batteryValue);
 
 			if (batteryValue != 0) {
 				parameterObj.values.color.battery_value = this.config.color_battery_text;
@@ -704,13 +716,13 @@ class Energiefluss extends utils.Adapter {
 			let batteryDischargeValue = valuesObj['battery_discharge'];
 			let batteryValue = 0;
 
-			if (batteryChargeValue > 0 && batteryDischargeValue === 0) {
+			if (batteryChargeValue > 0 && batteryDischargeValue === 0 || batteryDischargeValue < 5) {
 				line_animation.solar_to_battery = true;
 				batteryValue = batteryChargeValue;
 				dataObj.battery_animation.direction = 'charge';
 			}
 
-			if (batteryDischargeValue > 0 && batteryChargeValue === 0) {
+			if (batteryDischargeValue > 0 && batteryChargeValue === 0 || batteryChargeValue < 5) {
 				line_animation.battery_to_house = true;
 				batteryValue = batteryDischargeValue;
 				dataObj.battery_animation.direction = 'discharge';
@@ -721,7 +733,7 @@ class Energiefluss extends utils.Adapter {
 			valueObj.battery_value = true;
 			iconObj.battery = true;
 
-			dataValueObj.battery_value = batteryValue;
+			dataValueObj.battery_value = recalculate ? this.recalculateValue(batteryValue) : this.floorNumber(batteryValue);
 
 			if (batteryValue != 0) {
 				parameterObj.values.color.battery_value = this.config.color_battery_text;
@@ -746,7 +758,7 @@ class Energiefluss extends utils.Adapter {
 				line_animation.house_to_custom = true;
 			}
 
-			dataValueObj.custom_value = valuesObj['custom'];
+			dataValueObj.custom_value = recalculate ? this.recalculateValue(valuesObj['custom']) : this.floorNumber(valuesObj['custom']);
 
 			if (valuesObj['custom'] != 0) {
 				parameterObj.values.color.custom_value = this.config.color_custom_text;
@@ -755,9 +767,54 @@ class Energiefluss extends utils.Adapter {
 			}
 		}
 
+		// Battery substraction
+		if (calculate_consumption) {
+			// Check, which direction we have
+			let tmpValue = valuesObj['consumption'];
+
+			// Fallback if no charging
+			let tmpResult = tmpValue;
+
+			if (dataObj.battery_animation.direction == 'charge') {
+				if (battery_different) {
+					tmpResult = tmpValue + valuesObj['battery_discharge'];
+				} else {
+					tmpResult = tmpValue - valuesObj['battery_charge'];
+				}
+			}
+
+			if (dataObj.battery_animation.direction == 'discharge') {
+				if (battery_different) {
+					tmpResult = tmpValue - valuesObj['battery_discharge'];
+				} else {
+					tmpResult = tmpValue + valuesObj['battery_charge'];
+				}
+			}
+
+			// Set the Value
+			dataValueObj.consumption_value = tmpResult;
+		}
+
 		// House netto - Reduce House consumption with Custom-Circle and Car-Charge
 		if (house_netto) {
-			dataValueObj.consumption_value = dataValueObj.consumption_value - dataValueObj.car_value - dataValueObj.custom_value;
+			let tmpValue = parseFloat(dataValueObj.consumption_value);
+			let tmpResult = 0;
+
+			if (dataValueObj.car_value) {
+				tmpResult = tmpValue - valuesObj['car_charge'];
+			}
+
+			if (dataValueObj.custom_value) {
+				tmpResult = tmpResult - valuesObj['custom'];
+			}
+
+			// Set the Value
+			dataValueObj.consumption_value = tmpResult;
+		}
+
+		// After the things are done, we need to recalculate the consumption
+		if (house_netto || calculate_consumption) {
+			dataValueObj.consumption_value = recalculate ? this.recalculateValue(dataValueObj.consumption_value) : this.floorNumber(dataValueObj.consumption_value);
 		}
 
 		/* Build all lines */
