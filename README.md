@@ -37,6 +37,7 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 - change thickness of the circles and lines
 - fill the circles with different colors
 - show/hide shadows of the circle
+- change radius of the circles
 - define your own color and opacity for the shadows (rgba supported)
 - change fontfaces of the values and texts (own fonts can be imported)
 - change the font size for label, values and %-texts
@@ -68,6 +69,7 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 - Dicke der Kreise und Linien ändern
 - Fülle die Kreise mit verschiedenen Farben
 - Schatten des Kreises ein-/ausblenden
+- Radius des Kreises anpassbar
 - Definieren Sie Ihre eigene Farbe und Deckkraft für die Schatten (rgba-unterstützt)
 - Schriftarten der Werte und Texte ändern (eigene Schriftarten können importiert werden)
 - Ändern Sie die Schriftgröße für Label, Werte und %-Texte
@@ -94,6 +96,10 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+- corrected house-consumption-calculation not working under some circumstances
+- possibility to change circle radius
+
 ### 0.8.3 (2022-08-09)
 - Correction of House-consumption calculation in combination with house-netto-calculation
 - changed battery animation if battery is fully charged or empty and no progress is detected

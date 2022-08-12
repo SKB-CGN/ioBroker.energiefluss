@@ -30,11 +30,12 @@ let car_percent;
 let car_plugged;
 let calculate_consumption;
 let consumption_reverse;
-let recalculate = false;
+let recalculate;
 let house_netto;
 let custom;
 let fraction;
 let fraction_battery;
+let threshold;
 
 /* Data Objects */
 let valuesObj = {};
@@ -117,6 +118,7 @@ class Energiefluss extends utils.Adapter {
 			house_netto = this.config.house_netto;
 			fraction = this.config.fraction;
 			fraction_battery = this.config.fraction_battery;
+			threshold = this.config.threshold ? this.config.threshold : 0;
 
 			recalculate = this.config.recalculate ? true : false;
 			this.log.info("Starting Energiefluss Adapter");
@@ -269,17 +271,13 @@ class Energiefluss extends utils.Adapter {
 			// General
 			parameterObj.general.no_battery = false;
 			parameterObj.general.unit = unit;
-			/*
-			parameterObj.general.fraction = this.config.fraction;
-			parameterObj.general.fraction_battery = this.config.fraction_battery;
-			*/
 			parameterObj.general.battery_animation = this.config.battery_animation;
 
 			// Circle - Style
 			parameterObj.circles.style.size = this.config.circle_size || 2;
+			parameterObj.circles.style.radius = this.config.circle_radius || 50;
 			parameterObj.circles.style.shadow = this.config.circle_shadow;
 			parameterObj.circles.style.shadow_color = this.config.circle_shadow_color;
-
 
 			// buildDataJSON will add some more details to the object
 
@@ -291,14 +289,6 @@ class Energiefluss extends utils.Adapter {
 			// this.subscribeStates("*");
 			this.log.info("Adapter started and listening to " + subscribeArray.length + " States");
 			this.log.debug("Initial Values: " + JSON.stringify(valuesObj));
-			// check for canvas
-			try {
-				//canvas = require('canvas');
-				//canvas_installed = true;
-			} catch (e) {
-				this.log.warn('Canvas not installed! Thus, no map drawings are possible. Please see installation instructions on Github (https://github.com/iobroker-community-adapters/ioBroker.roomba#installation).');
-				this.log.debug(e.message);
-			}
 		} else {
 			this.log.warn("No production datapoint set");
 		}
@@ -312,9 +302,6 @@ class Energiefluss extends utils.Adapter {
 		try {
 			// Here you must clear all timeouts or intervals that may still be active
 			// clearTimeout(timeout1);
-			// clearTimeout(timeout2);
-			// ...
-			// clearInterval(interval1);
 
 			callback();
 		} catch (e) {
@@ -368,7 +355,6 @@ class Energiefluss extends utils.Adapter {
 				valuesObj['grid_consuming'] = state.val;
 			}
 			if (id == battery_percent) {
-				//valuesObj['battery_percent'] = parseFloat(state.val.toFixed(fraction_battery));
 				valuesObj['battery_percent'] = (Math.round(state.val * 100) / 100).toFixed(fraction_battery);
 			}
 			if (id == battery_charge) {
@@ -395,7 +381,11 @@ class Energiefluss extends utils.Adapter {
 					//consumptionValue = parseFloat(valuesObj['grid_consuming'] + (prodValue - valuesObj['grid_feed']));
 					consumptionValue = valuesObj['grid_consuming'] + (prodValue - valuesObj['grid_feed']);
 				} else {
-					consumptionValue = valuesObj['grid_feed'] + prodValue;
+					if (grid_reverse) {
+						consumptionValue = valuesObj['grid_feed'] + prodValue;
+					} else {
+						consumptionValue = (valuesObj['grid_feed'] * -1) + prodValue;
+					}
 				}
 				valuesObj['consumption'] = consumptionValue;
 			}
@@ -549,6 +539,8 @@ class Energiefluss extends utils.Adapter {
 
 			dataValueObj.consumption_value = recalculate ? this.recalculateValue(valuesObj['consumption']) : this.floorNumber(valuesObj['consumption']);
 
+			this.log.info("General Consumption: " + dataValueObj.consumption_value);
+
 			if (valuesObj != 0) {
 				parameterObj.values.color.consumption_value = this.config.color_house_text;
 			} else {
@@ -558,7 +550,7 @@ class Energiefluss extends utils.Adapter {
 
 		// Production
 		if (valuesObj['production'] != undefined) {
-			if (valuesObj['consumption'] > 0 && valuesObj['production'] > 0) {
+			if (valuesObj['consumption'] > threshold && valuesObj['production'] > threshold) {
 				line_animation.solar_to_house = true;
 			}
 			circlesObj.production = true;
@@ -579,19 +571,19 @@ class Energiefluss extends utils.Adapter {
 		if (valuesObj['grid_feed'] != undefined && grid_different === false) {
 			let gridValue = valuesObj['grid_feed'];
 			if (grid_reverse) {
-				if (gridValue > 0) {
+				if (gridValue > threshold) {
 					line_animation.grid_to_house = true;
 				}
-				if (gridValue < 0) {
+				if (gridValue < (threshold * -1)) {
 					// Display as positive
 					gridValue = gridValue * -1;
 					line_animation.solar_to_grid = true;
 				}
 			} else {
-				if (gridValue > 0) {
+				if (gridValue > threshold) {
 					line_animation.solar_to_grid = true;
 				}
-				if (gridValue < 0) {
+				if (gridValue < (threshold * -1)) {
 					// Display as positive
 					gridValue = gridValue * -1;
 					line_animation.grid_to_house = true;
@@ -602,7 +594,11 @@ class Energiefluss extends utils.Adapter {
 			valueObj.grid_value = true;
 			iconObj.grid = true;
 
-			dataValueObj.grid_value = recalculate ? this.recalculateValue(gridValue) : this.floorNumber(gridValue);
+			if (gridValue > threshold) {
+				dataValueObj.grid_value = recalculate ? this.recalculateValue(gridValue) : this.floorNumber(gridValue);
+			} else {
+				dataValueObj.grid_value = this.floorNumber(0);
+			}
 
 			if (gridValue != 0) {
 				parameterObj.values.color.grid_value = this.config.color_grid_text;
@@ -617,12 +613,12 @@ class Energiefluss extends utils.Adapter {
 			let gridFeedValue = valuesObj['grid_feed'];
 			let gridValue = 0;
 
-			if (gridConsumeValue > 0 && gridFeedValue === 0) {
+			if (gridConsumeValue > threshold && gridFeedValue === 0) {
 				line_animation.grid_to_house = true;
 				gridValue = gridConsumeValue;
 			}
 
-			if (gridFeedValue > 0 && gridConsumeValue === 0) {
+			if (gridFeedValue > threshold && gridConsumeValue === 0) {
 				line_animation.solar_to_grid = true;
 				gridValue = gridFeedValue;
 			}
@@ -643,10 +639,10 @@ class Energiefluss extends utils.Adapter {
 
 		// Car charge
 		if (valuesObj['car_charge'] != undefined) {
-			if (valuesObj['car_charge'] > 0) {
+			if (valuesObj['car_charge'] > threshold) {
 				line_animation.house_to_car = true;
 			}
-			if (valuesObj['car_charge'] > 0 || valuesObj['car_plugged']) {
+			if (valuesObj['car_charge'] > threshold || valuesObj['car_plugged']) {
 				dataValueObj.car_plugged = true;
 			}
 			circlesObj.car = true;
@@ -663,7 +659,7 @@ class Energiefluss extends utils.Adapter {
 		}
 
 		if (valuesObj['car_charge'] != undefined && valuesObj['consumption'] === undefined) {
-			if (valuesObj['car_charge'] > 0) {
+			if (valuesObj['car_charge'] > threshold) {
 				line_animation.house_to_car = true;
 			}
 			circlesObj.house = true;
@@ -673,22 +669,22 @@ class Energiefluss extends utils.Adapter {
 		if (valuesObj['battery_charge'] != undefined && battery_different === false) {
 			let batteryValue = valuesObj['battery_charge'];
 			if (battery_reverse) {
-				if (batteryValue > 5) {
+				if (batteryValue > threshold) {
 					line_animation.battery_to_house = true;
 					dataObj.battery_animation.direction = 'discharge';
 				}
-				if (batteryValue < -5) {
+				if (batteryValue < (threshold * -1)) {
 					// Display as positive
 					batteryValue = batteryValue * -1;
 					line_animation.solar_to_battery = true;
 					dataObj.battery_animation.direction = 'charge';
 				}
 			} else {
-				if (batteryValue > 5) {
+				if (batteryValue > threshold) {
 					line_animation.solar_to_battery = true;
 					dataObj.battery_animation.direction = 'charge';
 				}
-				if (batteryValue < -5) {
+				if (batteryValue < (threshold * -1)) {
 					// Display as positive
 					batteryValue = batteryValue * -1;
 					line_animation.battery_to_house = true;
@@ -716,13 +712,13 @@ class Energiefluss extends utils.Adapter {
 			let batteryDischargeValue = valuesObj['battery_discharge'];
 			let batteryValue = 0;
 
-			if (batteryChargeValue > 0 && batteryDischargeValue === 0 || batteryDischargeValue < 5) {
+			if (batteryChargeValue > threshold && batteryDischargeValue === 0) {
 				line_animation.solar_to_battery = true;
 				batteryValue = batteryChargeValue;
 				dataObj.battery_animation.direction = 'charge';
 			}
 
-			if (batteryDischargeValue > 0 && batteryChargeValue === 0 || batteryChargeValue < 5) {
+			if (batteryDischargeValue > threshold && batteryChargeValue === 0) {
 				line_animation.battery_to_house = true;
 				batteryValue = batteryDischargeValue;
 				dataObj.battery_animation.direction = 'discharge';
@@ -767,29 +763,25 @@ class Energiefluss extends utils.Adapter {
 			}
 		}
 
-		// Battery substraction
+		// Battery substraction from Consumption
 		if (calculate_consumption) {
 			// Check, which direction we have
-			let tmpValue = valuesObj['consumption'];
+			let tmpValue = parseFloat(dataValueObj.consumption_value);
 
 			// Fallback if no charging
 			let tmpResult = tmpValue;
 
+			this.log.info("Battery Consumption before: " + tmpResult);
+
 			if (dataObj.battery_animation.direction == 'charge') {
-				if (battery_different) {
-					tmpResult = tmpValue + valuesObj['battery_discharge'];
-				} else {
-					tmpResult = tmpValue - valuesObj['battery_charge'];
-				}
+				tmpResult = tmpValue - parseFloat(dataValueObj.battery_value);
 			}
 
 			if (dataObj.battery_animation.direction == 'discharge') {
-				if (battery_different) {
-					tmpResult = tmpValue - valuesObj['battery_discharge'];
-				} else {
-					tmpResult = tmpValue + valuesObj['battery_charge'];
-				}
+				tmpResult = tmpValue + parseFloat(dataValueObj.battery_value);
 			}
+
+			this.log.info("Battery Consumption after: " + tmpResult);
 
 			// Set the Value
 			dataValueObj.consumption_value = tmpResult;
@@ -798,14 +790,15 @@ class Energiefluss extends utils.Adapter {
 		// House netto - Reduce House consumption with Custom-Circle and Car-Charge
 		if (house_netto) {
 			let tmpValue = parseFloat(dataValueObj.consumption_value);
-			let tmpResult = 0;
+			let tmpResult = tmpValue;
+			this.log.info("Consumption before: " + tmpResult);
 
 			if (dataValueObj.car_value) {
-				tmpResult = tmpValue - valuesObj['car_charge'];
+				tmpResult = tmpValue - parseFloat(dataValueObj.car_value);
 			}
 
 			if (dataValueObj.custom_value) {
-				tmpResult = tmpResult - valuesObj['custom'];
+				tmpResult = tmpResult - parseFloat(dataValueObj.custom_value);
 			}
 
 			// Set the Value
@@ -814,7 +807,14 @@ class Energiefluss extends utils.Adapter {
 
 		// After the things are done, we need to recalculate the consumption
 		if (house_netto || calculate_consumption) {
-			dataValueObj.consumption_value = recalculate ? this.recalculateValue(dataValueObj.consumption_value) : this.floorNumber(dataValueObj.consumption_value);
+			// Perhaps, the Value is lower than zero, we need to disable the Animation again
+			this.log.info("Cons: " + dataValueObj.consumption_value);
+			if (dataValueObj.consumption_value > 0) {
+				dataValueObj.consumption_value = recalculate ? this.recalculateValue(dataValueObj.consumption_value * 1000) : this.floorNumber(dataValueObj.consumption_value * 1000);
+			} else {
+				line_animation.solar_to_house = false;
+				dataValueObj.consumption_value = this.floorNumber(0);
+			}
 		}
 
 		/* Build all lines */

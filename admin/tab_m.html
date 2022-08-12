@@ -23,8 +23,12 @@
                             web_port = objects.native ? objects.native.port : 0;
                             console.log('Web-Port: ' + web_port);
                             let url = new URL(document.location);
+                            let queryString = url.search;
+                            let params = new URLSearchParams(queryString);
+                            let instance = params.get('instance');
+                            console.log('Redirecting to Instance:' + instance);
                             location.replace(url.protocol + "//" + url.hostname + ":" + web_port +
-                                "/energiefluss/index.html?namespace=0");
+                                "/energiefluss/index.html?instance=" + instance);
                         } else {
                             console.log('Error while getting the Web-Port!');
                         }

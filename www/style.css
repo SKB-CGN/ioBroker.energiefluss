@@ -1,8 +1,8 @@
 html,
 body {
     background: transparent;
-    height: 96vh;
-    width: 96vw;
+    height: 94vh;
+    width: 94vw;
 }
 
 #loading {
@@ -28,7 +28,7 @@ body {
 
 svg {
     height: 100%;
-    width: 95%;
+    width: 100%;
 }
 
 circle {
@@ -63,7 +63,7 @@ circle {
 }
 
 .animation {
-    animation: cons_anim 3s infinite steps(260);
+    animation: cons_anim 3s infinite steps(150);
     stroke-dasharray: 4 12 4 12 4 100;
     stroke-linecap: round;
 }

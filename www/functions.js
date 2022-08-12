@@ -155,19 +155,24 @@ function initConfig(once = false) {
         // Circle
         Object.entries(config.circles.style).forEach(entry => {
             const [key, value] = entry;
-            if (key == 'size') {
-                $('circle').css("stroke-width", value + "px");
-            }
-            if (key == 'shadow') {
-                if (value === true) {
-                    $('circle').addClass('shadow');
-                } else {
-                    $('circle').removeClass('shadow');
-                }
-            }
-            if (key == 'shadow_color') {
-                $(".shadow").css("-webkit-filter", "drop-shadow(0px 3px 3px " + value);
-                $(".shadow").css("filter", "drop-shadow(0px 3px 3px " + value);
+            switch (key) {
+                case 'size':
+                    $('circle').css("stroke-width", value + "px");
+                    break;
+                case 'shadow':
+                    if (value === true) {
+                        $('circle').addClass('shadow');
+                    } else {
+                        $('circle').removeClass('shadow');
+                    }
+                    break;
+                case 'shadow_color':
+                    $(".shadow").css("-webkit-filter", "drop-shadow(0px 3px 3px " + value);
+                    $(".shadow").css("filter", "drop-shadow(0px 3px 3px " + value);
+                    break;
+                case 'radius':
+                    $('circle').attr("r", value);
+                    break;
             }
         });
         // Labels inside circle
@@ -243,6 +248,7 @@ function downloadFont(name, url) {
 }
 
 function batteryDisplay(value) {
+    $('.batt_elm').css("visibility", "hidden");
     var elm = "icon_battery_empty";
     if (value >= 25) {
         elm = "icon_battery_low";
@@ -270,8 +276,11 @@ function animateBattery(what) {
             if (battery_timer) {
                 clearInterval(battery_timer);
             }
-            // Show empty battery before animations starts to display "something"
-            $("#icon_battery_empty").css("visibility", "visible");
+            // Show corresponding battery before animations starts to display "something"
+            $('.batt_elm').css("visibility", "hidden");
+            let elm = what == 'charge' ? 'empty' : 'high';
+            $("#icon_battery_" + elm).css("visibility", "visible");
+
             battery_timer = setInterval(function () {
                 if (what == 'discharge') {
                     current_pos = current_pos == length ? 0 : current_pos;
@@ -290,12 +299,14 @@ function animateBattery(what) {
             }, 1000);
         }
     } else {
+        // Set "what" to none, if animation is not needed
+        battery_direction = 'none';
         // Stop the Interval
         if (battery_timer) {
             clearInterval(battery_timer);
         }
         // Show correct Battery, if charging completed
-        $('#' + batteryDisplay(100)).css("visibility", "visible");
+        $('#' + batteryDisplay(data.values.battery_percent ? data.values.battery_percent : 100)).css("visibility", "visible");
     }
 }
 
@@ -322,7 +333,6 @@ function updateValues() {
                 if (key == 'battery_percent') {
                     $('#' + key).text(value + '%');
                     if (battery_animation == false) {
-                        $('.batt_elm').css("visibility", "hidden");
                         $('#' + batteryDisplay(value)).css("visibility", "visible");
                     } else {
                         if (data.battery_animation.hasOwnProperty('direction')) {
@@ -334,7 +344,6 @@ function updateValues() {
                                 battery_direction = '';
                             }
                             // Re-Display the Icon, if Animation stopped
-                            $('.batt_elm').css("visibility", "hidden");
                             $('#' + batteryDisplay(value)).css("visibility", "visible");
                         }
                     }
