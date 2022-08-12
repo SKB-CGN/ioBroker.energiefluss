@@ -771,8 +771,6 @@ class Energiefluss extends utils.Adapter {
 			// Fallback if no charging
 			let tmpResult = tmpValue;
 
-			this.log.info("Battery Consumption before: " + tmpResult);
-
 			if (dataObj.battery_animation.direction == 'charge') {
 				tmpResult = tmpValue - parseFloat(dataValueObj.battery_value);
 			}
@@ -780,8 +778,6 @@ class Energiefluss extends utils.Adapter {
 			if (dataObj.battery_animation.direction == 'discharge') {
 				tmpResult = tmpValue + parseFloat(dataValueObj.battery_value);
 			}
-
-			this.log.info("Battery Consumption after: " + tmpResult);
 
 			// Set the Value
 			dataValueObj.consumption_value = tmpResult;
@@ -791,7 +787,6 @@ class Energiefluss extends utils.Adapter {
 		if (house_netto) {
 			let tmpValue = parseFloat(dataValueObj.consumption_value);
 			let tmpResult = tmpValue;
-			this.log.info("Consumption before: " + tmpResult);
 
 			if (dataValueObj.car_value) {
 				tmpResult = tmpValue - parseFloat(dataValueObj.car_value);
@@ -808,7 +803,6 @@ class Energiefluss extends utils.Adapter {
 		// After the things are done, we need to recalculate the consumption
 		if (house_netto || calculate_consumption) {
 			// Perhaps, the Value is lower than zero, we need to disable the Animation again
-			this.log.info("Cons: " + dataValueObj.consumption_value);
 			if (dataValueObj.consumption_value > 0) {
 				dataValueObj.consumption_value = recalculate ? this.recalculateValue(dataValueObj.consumption_value * 1000) : this.floorNumber(dataValueObj.consumption_value * 1000);
 			} else {
