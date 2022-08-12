@@ -67,7 +67,7 @@
     "ex_car_battery": "Data point of your car accu in %",
     "ex_car_charge": "Data point of your charger or wallbox",
     "ex_car_plugged": "Data point car charger plugged in",
-    "ex_circle_radius": "Radius of the circle outline (in px)",
+    "ex_circle_radius": "Radius of the circle (in px)",
     "ex_circle_shadow": "color of the shadow around the circle (default: rgba(0, 0, 0, .7))",
     "ex_circle_size": "Thickness of the circle outline (in px)",
     "ex_consumption": "Data point of your house consumption",

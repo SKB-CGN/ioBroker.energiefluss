@@ -67,7 +67,7 @@
     "ex_car_battery": "Datenpunkt Ihres Autoakkus in %",
     "ex_car_charge": "Datenpunkt Ihres Ladegeräts oder Ihrer Wallbox",
     "ex_car_plugged": "Datenpunkt-Autoladegerät angeschlossen",
-    "ex_circle_radius": "Radius des Kreisumrisses (in px)",
+    "ex_circle_radius": "Radius des Kreises (in px)",
     "ex_circle_shadow": "Farbe des Schattens um den Kreis (Standard: rgba(0, 0, 0, .7))",
     "ex_circle_size": "Dicke des Kreisumrisses (in px)",
     "ex_consumption": "Datenpunkt Ihres Hausverbrauchs",
