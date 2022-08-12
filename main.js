@@ -539,7 +539,7 @@ class Energiefluss extends utils.Adapter {
 
 			dataValueObj.consumption_value = recalculate ? this.recalculateValue(valuesObj['consumption']) : this.floorNumber(valuesObj['consumption']);
 
-			if (valuesObj != 0) {
+			if (valuesObj['consumption'] > threshold) {
 				parameterObj.values.color.consumption_value = this.config.color_house_text;
 			} else {
 				parameterObj.values.color.consumption_value = this.config.color_house_text_no_prod;
@@ -558,7 +558,7 @@ class Energiefluss extends utils.Adapter {
 
 			dataValueObj.production_value = recalculate ? this.recalculateValue(valuesObj['production']) : this.floorNumber(valuesObj['production']);
 
-			if (valuesObj['production'] != 0) {
+			if (valuesObj['production'] > threshold) {
 				parameterObj.values.color.production_value = this.config.color_production_text;
 			} else {
 				parameterObj.values.color.production_value = this.config.color_production_text_no_prod ? this.config.color_production_text_no_prod : this.config.color_production_text;
@@ -598,7 +598,7 @@ class Energiefluss extends utils.Adapter {
 				dataValueObj.grid_value = this.floorNumber(0);
 			}
 
-			if (gridValue != 0) {
+			if (gridValue > threshold) {
 				parameterObj.values.color.grid_value = this.config.color_grid_text;
 			} else {
 				parameterObj.values.color.grid_value = this.config.color_grid_text_no_prod ? this.config.color_grid_text_no_prod : this.config.color_grid_text;
@@ -628,7 +628,7 @@ class Energiefluss extends utils.Adapter {
 
 			dataValueObj.grid_value = recalculate ? this.recalculateValue(gridValue) : this.floorNumber(gridValue);
 
-			if (gridValue != 0) {
+			if (gridValue > threshold) {
 				parameterObj.values.color.grid_value = this.config.color_grid_text;
 			} else {
 				parameterObj.values.color.grid_value = this.config.color_grid_text_no_prod ? this.config.color_grid_text_no_prod : this.config.color_grid_text;
@@ -697,7 +697,7 @@ class Energiefluss extends utils.Adapter {
 
 			dataValueObj.battery_value = recalculate ? this.recalculateValue(batteryValue) : this.floorNumber(batteryValue);
 
-			if (batteryValue != 0) {
+			if (batteryValue > threshold) {
 				parameterObj.values.color.battery_value = this.config.color_battery_text;
 			} else {
 				parameterObj.values.color.battery_value = this.config.color_battery_text_no_prod ? this.config.color_battery_text_no_prod : this.config.color_battery_text;
@@ -729,7 +729,7 @@ class Energiefluss extends utils.Adapter {
 
 			dataValueObj.battery_value = recalculate ? this.recalculateValue(batteryValue) : this.floorNumber(batteryValue);
 
-			if (batteryValue != 0) {
+			if (batteryValue > threshold) {
 				parameterObj.values.color.battery_value = this.config.color_battery_text;
 			} else {
 				parameterObj.values.color.battery_value = this.config.color_battery_text_no_prod ? this.config.color_battery_text_no_prod : this.config.color_battery_text;
@@ -754,7 +754,7 @@ class Energiefluss extends utils.Adapter {
 
 			dataValueObj.custom_value = recalculate ? this.recalculateValue(valuesObj['custom']) : this.floorNumber(valuesObj['custom']);
 
-			if (valuesObj['custom'] != 0) {
+			if (valuesObj['custom'] > threshold) {
 				parameterObj.values.color.custom_value = this.config.color_custom_text;
 			} else {
 				parameterObj.values.color.custom_value = this.config.color_custom_text_no_prod ? this.config.color_custom_text_no_prod : this.config.color_custom_text;

@@ -49,7 +49,7 @@
     "color_house_to_car": "colore della linea tra casa e auto (predefinito: vuoto)",
     "color_house_to_custom": "colore della linea tra casa e cerchio personalizzato (predefinito: vuoto)",
     "color_lines": "colore delle linee (predefinito: #000000)",
-    "color_no_prod": "colore del valore se il valore è 0 (predefinito: vuoto)",
+    "color_no_prod": "colore del valore se il valore è inferiore alla soglia (default: vuoto)",
     "color_production": "colore del cerchio attorno alla produzione solare (default: #ffce4a)",
     "color_production_text": "colore del valore all'interno del cerchio della produzione solare (default: #ffce4a)",
     "color_solar_to_battery": "colore della linea tra produzione solare e batteria (default: vuoto)",
@@ -82,7 +82,7 @@
     "ex_house_netto": "Sottrarre il consumo dell'auto e delle dotazioni aggiuntive dal consumo della casa",
     "ex_label": "etichetta all'interno del cerchio",
     "ex_production": "Data point della tua produzione fotovoltaica",
-    "ex_threshold": "una soglia al di sopra o al di sotto della quale vengono gestiti i valori. ",
+    "ex_threshold": "una soglia al di sopra o al di sotto della quale vengono gestiti i valori.<br>10 per valori maggiori di 10 o -10 Watt / o 0,01 per valori maggiori di 0,01 o -0,01 kW.<br>Questo valore influisce anche sul colore.",
     "ex_unit": "Unità (W o kW) per la visualizzazione",
     "fill_color": "colore all'interno del cerchio (predefinito: vuoto)",
     "font": "font",
@@ -114,5 +114,6 @@
     "recalculate": "Calcolare i valori da W in kW",
     "reset_colors_to_default": "Ripristina tutti i colori ai valori predefiniti",
     "special_lines": "linee speciali e animazioni",
+    "threshold": "soglia:",
     "unit": "unità:"
 }

@@ -99,6 +99,7 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 ### 0.8.4 (2022-08-12)
 - corrected house-consumption-calculation not working under some circumstances
 - possibility to change circle radius
+- threshold value possible. Below this value no animation or value is displayed.
 
 ### 0.8.3 (2022-08-09)
 - Correction of House-consumption calculation in combination with house-netto-calculation

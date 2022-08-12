@@ -49,7 +49,7 @@
     "color_house_to_car": "Farbe der Linie zwischen Haus und Auto (Standard: leer)",
     "color_house_to_custom": "Farbe der Linie zwischen Haus und benutzerdefiniertem Kreis (Standard: leer)",
     "color_lines": "Farbe der Linien (Standard: #000000)",
-    "color_no_prod": "Farbe des Werts, wenn Wert 0 ist (Standard: leer)",
+    "color_no_prod": "Farbe des Werts, wenn der Wert unter dem Schwellenwert liegt (Standard: leer)",
     "color_production": "Farbe des Kreises um die Solarproduktion (Standard: #ffce4a)",
     "color_production_text": "Farbe des Werts innerhalb des Kreises der Solarproduktion (Standard: #ffce4a)",
     "color_solar_to_battery": "Farbe der Linie zwischen Solarproduktion und Batterie (Standard: leer)",
@@ -82,7 +82,7 @@
     "ex_house_netto": "Ziehen Sie den Verbrauch des Autos und der Zusatzgeräte vom Verbrauch im Haus ab",
     "ex_label": "Beschriftung innerhalb des Kreises",
     "ex_production": "Datenpunkt Ihrer Photovoltaik-Produktion",
-    "ex_threshold": "eine Schwelle, über oder unter der Werte verarbeitet werden. ",
+    "ex_threshold": "eine Schwelle, über oder unter der Werte behandelt werden.<br>10 für Werte größer als 10 oder -10 Watt / oder 0,01 für Werte größer als 0,01 oder -0,01 kW.<br>Dieser Wert wirkt sich auch auf die Farbe aus.",
     "ex_unit": "Einheit (W oder kW) für die Anzeige",
     "fill_color": "Farbe innerhalb des Kreises (Standard: leer)",
     "font": "Schriftart",
@@ -114,5 +114,6 @@
     "recalculate": "Berechnen Sie Werte von W in kW",
     "reset_colors_to_default": "Alle Farben auf Standard zurücksetzen",
     "special_lines": "spezielle Linien und Animationen",
+    "threshold": "Schwelle:",
     "unit": "Einheit:"
 }

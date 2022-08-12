@@ -49,7 +49,7 @@
     "color_house_to_car": "kleur van de lijn tussen huis en auto (standaard: leeg)",
     "color_house_to_custom": "kleur van de lijn tussen huis en aangepaste cirkel (standaard: leeg)",
     "color_lines": "kleur van de lijnen (standaard: #000000)",
-    "color_no_prod": "kleur van de waarde als waarde 0 is (standaard: leeg)",
+    "color_no_prod": "kleur van de waarde als de waarde onder de drempel ligt (standaard: leeg)",
     "color_production": "kleur van de cirkel rond de zonneproductie (standaard: #ffce4a)",
     "color_production_text": "kleur van de waarde binnen de cirkel van de zonneproductie (standaard: #ffce4a)",
     "color_solar_to_battery": "kleur van de lijn tussen zonne-energieproductie en batterij (standaard: leeg)",
@@ -82,7 +82,7 @@
     "ex_house_netto": "Trek het verbruik van de auto en extra uitrusting af van het verbruik in huis",
     "ex_label": "label binnen de cirkel",
     "ex_production": "Gegevenspunt van uw fotovoltaïsche productie",
-    "ex_threshold": "een drempel waarboven of waaronder waarden worden verwerkt. ",
+    "ex_threshold": "een drempel waarboven of waaronder waarden worden verwerkt.<br>10 voor waarden groter dan 10 of -10 Watt / of 0,01 voor waarden groter dan 0,01 of -0,01 kW.<br>Deze waarde is ook van invloed op de kleur.",
     "ex_unit": "Eenheid (W of kW) voor weergave",
     "fill_color": "kleur binnen de cirkel (standaard: leeg)",
     "font": "lettertype",
@@ -114,5 +114,6 @@
     "recalculate": "Bereken waarden van W in kW",
     "reset_colors_to_default": "Reset alle kleuren naar standaard",
     "special_lines": "speciale lijnen en animaties",
+    "threshold": "drempel:",
     "unit": "eenheid:"
 }

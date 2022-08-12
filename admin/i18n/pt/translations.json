@@ -49,7 +49,7 @@
     "color_house_to_car": "cor da linha entre casa e carro (padrão: vazio)",
     "color_house_to_custom": "cor da linha entre a casa e o círculo personalizado (padrão: vazio)",
     "color_lines": "cor das linhas (padrão: #000000)",
-    "color_no_prod": "cor do valor se valor for 0 (padrão: vazio)",
+    "color_no_prod": "cor do valor se o valor estiver abaixo do limite (padrão: vazio)",
     "color_production": "cor do círculo ao redor da produção solar (padrão: #ffce4a)",
     "color_production_text": "cor do valor dentro do círculo da produção solar (padrão: #ffce4a)",
     "color_solar_to_battery": "cor da linha entre a produção solar e a bateria (padrão: vazio)",
@@ -82,7 +82,7 @@
     "ex_house_netto": "Subtraia o consumo do carro e equipamentos adicionais do consumo da casa",
     "ex_label": "etiqueta dentro do círculo",
     "ex_production": "Ponto de dados da sua produção fotovoltaica",
-    "ex_threshold": "um limite acima ou abaixo do qual os valores são manipulados. ",
+    "ex_threshold": "um limite acima ou abaixo do qual os valores são tratados.<br>10 para valores maiores que 10 ou -10 Watts / ou 0,01 para valores maiores que 0,01 ou -0,01 kW.<br>Esse valor também afeta a cor.",
     "ex_unit": "Unidade (W ou kW) para exibição",
     "fill_color": "cor dentro do círculo (padrão: vazio)",
     "font": "Fonte",
@@ -114,5 +114,6 @@
     "recalculate": "Calcular valores de W em kW",
     "reset_colors_to_default": "Redefinir todas as cores para o padrão",
     "special_lines": "linhas e animações especiais",
+    "threshold": "limite:",
     "unit": "unidade:"
 }
