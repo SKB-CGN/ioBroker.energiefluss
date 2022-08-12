@@ -802,7 +802,7 @@ class Energiefluss extends utils.Adapter {
 		if (house_netto || calculate_consumption) {
 			// Perhaps, the Value is lower than zero, we need to disable the Animation again
 			if (dataValueObj.consumption_value > 0) {
-				dataValueObj.consumption_value = recalculate ? this.recalculateValue(dataValueObj.consumption_value * 1000) : this.floorNumber(dataValueObj.consumption_value * 1000);
+				dataValueObj.consumption_value = recalculate ? this.recalculateValue(dataValueObj.consumption_value) : this.floorNumber(dataValueObj.consumption_value);
 			} else {
 				line_animation.solar_to_house = false;
 				dataValueObj.consumption_value = this.floorNumber(0);
