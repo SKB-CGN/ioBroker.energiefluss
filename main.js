@@ -539,8 +539,6 @@ class Energiefluss extends utils.Adapter {
 
 			dataValueObj.consumption_value = recalculate ? this.recalculateValue(valuesObj['consumption']) : this.floorNumber(valuesObj['consumption']);
 
-			this.log.info("General Consumption: " + dataValueObj.consumption_value);
-
 			if (valuesObj != 0) {
 				parameterObj.values.color.consumption_value = this.config.color_house_text;
 			} else {
