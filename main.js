@@ -796,18 +796,26 @@ class Energiefluss extends utils.Adapter {
 
 			// Set the Value
 			dataValueObj.consumption_value = tmpResult;
+			this.log.info("Number: " + dataValueObj.consumption_value);
 		}
 
 		// After the things are done, we need to recalculate the consumption
+
 		if (house_netto || calculate_consumption) {
-			// Perhaps, the Value is lower than zero, we need to disable the Animation again
-			if (dataValueObj.consumption_value > 0) {
-				dataValueObj.consumption_value = recalculate ? this.recalculateValue(dataValueObj.consumption_value) : this.floorNumber(dataValueObj.consumption_value);
-			} else {
-				line_animation.solar_to_house = false;
-				dataValueObj.consumption_value = this.floorNumber(0);
-			}
+			dataValueObj.consumption_value = this.floorNumber(dataValueObj.consumption_value);
+			/*
+				// Perhaps, the Value is lower than zero, we need to disable the Animation again
+				if (dataValueObj.consumption_value > 0) {
+					this.log.info("Here!");
+					dataValueObj.consumption_value = recalculate ? this.recalculateValue(dataValueObj.consumption_value) : this.floorNumber(dataValueObj.consumption_value);
+				} else {
+					line_animation.solar_to_house = false;
+					dataValueObj.consumption_value = this.floorNumber(0);
+				}
+				*/
 		}
+
+		this.log.info("After: " + dataValueObj.consumption_value);
 
 		/* Build all lines */
 		if (valuesObj['production'] != undefined && valuesObj['consumption'] != undefined) {
