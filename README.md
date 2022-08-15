@@ -96,6 +96,10 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+- if circle radius changed, adjust the new circles to appear correctly
+- moved percent element up for better layout
+
 ### 0.8.4 (2022-08-12)
 - corrected house-consumption-calculation not working under some circumstances
 - possibility to change circle radius

@@ -1,7 +1,7 @@
 html,
 body {
     background: transparent;
-    height: 98vh;
+    height: 96vh;
     width: 94vw;
 }
 
@@ -45,20 +45,17 @@ circle {
     margin-left: -9em;
 }
 
+.icon_set {
+    translate: 0px 50px;
+}
+
 .path {
     fill: none;
 }
 
-.icon_color {
-    opacity: 0.7;
-}
-
-.line {
-    opacity: 0.7;
-}
-
-.text,
-.percent {
+.icon_color,
+.line,
+.text {
     opacity: 0.7;
 }
 
@@ -80,6 +77,10 @@ circle {
 
 .all_elm {
     visibility: hidden;
+}
+
+.moveable {
+    translate: 0px 5px;
 }
 
 #span_error {

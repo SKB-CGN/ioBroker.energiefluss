@@ -171,6 +171,14 @@ function initConfig(once = false) {
                     $(".shadow").css("filter", "drop-shadow(0px 3px 3px " + value);
                     break;
                 case 'radius':
+                    // If Radius is bigger than Basis of 50px, we need to redraw all elements on the SVG
+                    let new_pos = 0;
+                    if (value > 50) {
+                        new_pos = value - 50;
+                    } else {
+                        new_pos = 50 - value;
+                    }
+                    $('circle, text, .line, .animation').css("translate", "0px " + new_pos + "px");
                     $('circle').attr("r", value);
                     break;
             }

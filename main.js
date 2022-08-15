@@ -796,7 +796,6 @@ class Energiefluss extends utils.Adapter {
 
 			// Set the Value
 			dataValueObj.consumption_value = tmpResult;
-			this.log.info("Number: " + dataValueObj.consumption_value);
 		}
 
 		// After the things are done, we need to recalculate the consumption
@@ -815,7 +814,6 @@ class Energiefluss extends utils.Adapter {
 				*/
 		}
 
-		this.log.info("After: " + dataValueObj.consumption_value);
 
 		/* Build all lines */
 		if (valuesObj['production'] != undefined && valuesObj['consumption'] != undefined) {
