@@ -96,7 +96,7 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.8.5 (2022-08-15)
 - if circle radius changed, adjust the new circles to appear correctly
 - moved percent element up for better layout
 
