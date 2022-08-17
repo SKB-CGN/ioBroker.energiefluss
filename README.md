@@ -77,7 +77,7 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 - Definieren Sie eine Farbe für das Autosymbol, wenn es geladen wird
 - Einige Werte können unterschiedliche Farben haben, wenn ihr Wert Null ist (Verbrauch, Produktion, Netz und Batterie)
 - Batterie-Icon kann beim Laden und Entladen animiert werden
-- Anzahl der animierten Punkte auf der Linie ausw�hlbar
+- Anzahl der animierten Punkte auf der Linie ausw�hlbar
 
 **Technisch:**
 - Datenpunkte für jeden Kreis definieren
@@ -98,7 +98,7 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.8.6 (2022-08-17)
 - color of the label inside the circle can be changed
 - smoother animation on slower devices
 - number of animation dots selectable
