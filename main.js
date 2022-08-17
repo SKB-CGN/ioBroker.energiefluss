@@ -241,7 +241,8 @@ class Energiefluss extends utils.Adapter {
 			}
 
 			parameterObj.lines.style = {
-				line_size: this.config.line_size
+				line_size: this.config.line_size,
+				animation_dots: this.config.animation_dots
 			}
 
 			// Fonts
@@ -250,7 +251,9 @@ class Energiefluss extends utils.Adapter {
 				font: this.config.font,
 				font_size_label: this.config.font_size_label,
 				font_size_value: this.config.font_size_value,
-				font_size_percent: this.config.font_size_percent
+				font_size_percent: this.config.font_size_percent,
+				font_size_unit: this.config.font_size_unit,
+				font_size_unit_percent: this.config.font_size_unit_percent
 			}
 
 			// Labels
@@ -262,6 +265,9 @@ class Energiefluss extends utils.Adapter {
 				custom: this.config.label_custom,
 				car: this.config.label_car
 			}
+
+			// Label Color
+			parameterObj.texts.color = this.config.color_label;
 
 			// Custom's
 			parameterObj.custom_symbol = {
@@ -439,16 +445,18 @@ class Energiefluss extends utils.Adapter {
 			//values = values + this.getForeignStateAsync(value);
 			this.getForeignState(value, (err, stateValue) => {
 				// Check, if key is a number
-				if (typeof (stateValue.val) === 'number') {
-					if (!key.includes("percent")) {
-						tmpObj[key] = stateValue.val;
-					} else {
-						tmpObj[key] = stateValue.val;
+				if (stateValue) {
+					if (typeof (stateValue.val) === 'number') {
+						if (!key.includes("percent")) {
+							tmpObj[key] = stateValue.val;
+						} else {
+							tmpObj[key] = stateValue.val;
+						}
 					}
-				}
 
-				if (typeof (stateValue.val) === 'boolean') {
-					tmpObj[key] = stateValue.val ? true : false;
+					if (typeof (stateValue.val) === 'boolean') {
+						tmpObj[key] = stateValue.val ? true : false;
+					}
 				}
 			});
 

@@ -44,6 +44,7 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 - define a color for the the car icon, if its charging
 - Some Values can have different colors, if their value is zero (consumption, production, grid and battery)
 - Battery icon can be animated while charging or discharging
+- number of animation dots selectable
 
 **Technical:**
 - define Datapoints for each circle
@@ -64,7 +65,7 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 - Ändern Sie die Farbe jedes Elements
 - Texte innerhalb der Kreise können geändert werden
 - %-Texte können auch andere Farben haben
-- Definieren Sie verschiedene Farben für jede Zeile
+- Definieren Sie verschiedene Farben für jede Linie
 - verschiedene Farben für jede Animation auf der Linie definieren
 - Dicke der Kreise und Linien ändern
 - Fülle die Kreise mit verschiedenen Farben
@@ -76,6 +77,7 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 - Definieren Sie eine Farbe für das Autosymbol, wenn es geladen wird
 - Einige Werte können unterschiedliche Farben haben, wenn ihr Wert Null ist (Verbrauch, Produktion, Netz und Batterie)
 - Batterie-Icon kann beim Laden und Entladen animiert werden
+- Anzahl der animierten Punkte auf der Linie ausw�hlbar
 
 **Technisch:**
 - Datenpunkte für jeden Kreis definieren
@@ -96,6 +98,11 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+- color of the label inside the circle can be changed
+- smoother animation on slower devices
+- number of animation dots selectable
+
 ### 0.8.5 (2022-08-15)
 - if circle radius changed, adjust the new circles to appear correctly
 - moved percent element up for better layout

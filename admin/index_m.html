@@ -641,6 +641,18 @@
 			</div>
 			<div class="row">
 				<div class="col s12">
+					<h6 class="title translate" data-lang="label">label</h6>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s5">
+					<input class="value color" id="color_label" type="text" size="7" placeholder="#000000" />
+					<span class="translate" data-lang="ex_circle_label">color of the label inside the the circle
+						(default: #000000)</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s12">
 					<h6 class="title translate" data-lang="lines_and_animations">general lines and animations</h6>
 				</div>
 			</div>
@@ -832,6 +844,19 @@
 				</div>
 			</div>
 			<div class="row">
+				<div class="input-field col s4">
+					<input class="value" id="font_size_unit" type="text" placeholder="14" />
+					<span class="translate" data-lang="font_size_unit">font-size of the unit inside the
+						circle (in px)</span>
+				</div>
+				<div class="input-field col s4">
+					<input class="value" id="font_size_unit_percent" type="text" placeholder="14" />
+					<span class="translate" data-lang="font_size_unit_percent">font-size of the percent unit inside the
+						circle (in
+						px)</span>
+				</div>
+			</div>
+			<div class="row">
 				<div class="col s12">
 					<h6 class="title translate" data-lang="line">line</h6>
 				</div>
@@ -840,6 +865,15 @@
 				<div class="input-field col s4">
 					<input class="value" id="line_size" type="number" placeholder="12" min="2" max="18" />
 					<span class="translate" data-lang="line_size">Thickness of the line (in px)</span>
+				</div>
+				<div class="input-field col s4">
+					<select id="animation_dots" class="value">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+					</select>
+					<span class="translate" data-lang="animation_dots">Number of animation dots on
+						the line</span>
 				</div>
 			</div>
 			<div class="row">

@@ -60,9 +60,16 @@ circle {
 }
 
 .animation {
-    animation: cons_anim 3s infinite steps(150);
+    /* animation: cons_anim 3s infinite steps(150);*/
+    animation: dashdraw 2s linear infinite;
     stroke-dasharray: 4 12 4 12 4 100;
     stroke-linecap: round;
+}
+
+@keyframes dashdraw {
+    to {
+        stroke-dashoffset: -135;
+    }
 }
 
 @keyframes cons_anim {
@@ -81,4 +88,8 @@ circle {
 
 #span_error {
     color: firebrick;
+}
+
+text {
+    text-anchor: middle;
 }

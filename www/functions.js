@@ -99,7 +99,7 @@ function initConfig(once = false) {
         // Colors - Values
         Object.entries(config.values.color).forEach(entry => {
             const [key, value] = entry;
-            $('#' + key).css("fill", value);
+            $('#' + key).parent().css("fill", value);
         });
 
         // Colors - Circle Fill
@@ -115,6 +115,19 @@ function initConfig(once = false) {
         });
         $('.path').css("stroke-width", config.lines.style.line_size);
 
+        // Animation Dots
+        switch (config.lines.style.animation_dots) {
+            case '1':
+                $('.animation').css("stroke-dasharray", "4 132");
+                break;
+            case '2':
+                $('.animation').css("stroke-dasharray", "4 12 4 116");
+                break;
+            case '3':
+                $('.animation').css("stroke-dasharray", "4 12 4 12 4 100");
+                break;
+        }
+
         // Process fonts
         Object.entries(config.fonts).forEach(entry => {
             const [key, value] = entry;
@@ -123,7 +136,7 @@ function initConfig(once = false) {
                     downloadFont(config.fonts.font, value);
                     break;
                 case 'font':
-                    $('.value, .text, .percent').css("font-family", value);
+                    $('body').css("font-family", value);
                     break;
                 case 'font_size_value':
                     $('.value').css("font-size", value + "px");
@@ -133,6 +146,12 @@ function initConfig(once = false) {
                     break;
                 case 'font_size_percent':
                     $('.percent').css("font-size", value + "px");
+                    break;
+                case 'font_size_unit':
+                    $('.unit').css("font-size", value + "px");
+                    break;
+                case 'font_size_unit_percent':
+                    $('.unit_percent').css("font-size", value + "px");
                     break;
             }
         });
@@ -144,7 +163,6 @@ function initConfig(once = false) {
                 $('#svg_image').addClass("no_battery");
             }
             if (key == 'battery_animation') {
-
                 battery_animation = value;
                 if (!value) {
                     battery_direction = '';
@@ -188,6 +206,9 @@ function initConfig(once = false) {
             const [key, value] = entry;
             $("#" + key + "_text").text(value);
         });
+        // Color of the Labels inside the circle
+        $(".text").css("fill", config.texts.color);
+
         /* Process Elements to be shown */
         /* Visibility */
         //Circles
@@ -198,11 +219,15 @@ function initConfig(once = false) {
             if (value === false) {
                 let tmpElm = key.split("_");
                 $('#icon_' + tmpElm[0]).css("visibility", "hidden");
-                $("#" + tmpElm[0] + "_value").css("visibility", "hidden");
-                $("#" + tmpElm[0] + "_percent").css("visibility", "hidden");
+                $("#" + tmpElm[0] + "_value").parent().css("visibility", "hidden");
+                $("#" + tmpElm[0] + "_percent").parent().css("visibility", "hidden");
                 // Remove battery icons
                 if (tmpElm[0] == 'battery') {
                     $('.batt_elm').css("visibility", "hidden");
+                    if (battery_timer) {
+                        clearInterval(battery_timer);
+                        battery_direction = 'none';
+                    }
                 }
             }
         });
@@ -231,7 +256,7 @@ function initConfig(once = false) {
         // Values
         Object.entries(config.values.values).forEach(entry => {
             const [key, value] = entry;
-            $('#' + key).css("visibility", value ? "visible" : "hidden");
+            $('#' + key).parent().css("visibility", value ? "visible" : "hidden");
         });
 
         // Ran once
@@ -336,10 +361,11 @@ function updateValues() {
             }
 
             if (key.includes("percent")) {
-                $('#' + key).text(value + '%');
+                $('#' + key).text(value);
+                $('.unit_percent').text('%');
                 /* Handler for Battery Icon */
                 if (key == 'battery_percent') {
-                    $('#' + key).text(value + '%');
+                    $('#' + key).text(value);
                     if (battery_animation == false) {
                         $('#' + batteryDisplay(value)).css("visibility", "visible");
                     } else {
@@ -349,7 +375,7 @@ function updateValues() {
                             // Here we need to stop the Animation
                             if (battery_timer) {
                                 clearInterval(battery_timer);
-                                battery_direction = '';
+                                battery_direction = 'none';
                             }
                             // Re-Display the Icon, if Animation stopped
                             $('#' + batteryDisplay(value)).css("visibility", "visible");
@@ -357,7 +383,8 @@ function updateValues() {
                     }
                 }
             } else {
-                $('#' + key).text(value + ' ' + config.general.unit);
+                $('#' + key).text(value);
+                $('.unit').text(' ' + config.general.unit);
             }
         });
     } catch (error) {

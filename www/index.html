@@ -99,24 +99,48 @@
             d="M16,20H8V6H16M16.67,4H15V2H9V4H7.33A1.33,1.33 0 0,0 6,5.33V20.67C6,21.4 6.6,22 7.33,22H16.67A1.33,1.33 0 0,0 18,20.67V5.33C18,4.6 17.4,4 16.67,4Z" />
 
         <!-- Values -->
-        <text class="value all_elm" text-anchor="middle" id="consumption_value" x="450" y="251"></text>
-        <text class="value all_elm" text-anchor="middle" id="production_value" x="250" y="52"></text>
-        <text class="value all_elm" text-anchor="middle" id="grid_value" x="250" y="450"></text>
-        <text class="value all_elm" text-anchor="middle" id="car_value" x="450" y="450"></text>
-        <text class="value all_elm" text-anchor="middle" id="battery_value" x="52" y="251"></text>
-        <text class="value all_elm" text-anchor="middle" id="custom_value" x="450" y="52"></text>
+        <text class="all_elm" x="450" y="251">
+            <tspan class="value" id="consumption_value"></tspan>
+            <tspan class="unit"></tspan>
+        </text>
+        <text class="all_elm" x="250" y="52">
+            <tspan class="value" id="production_value"></tspan>
+            <tspan class="unit"></tspan>
+        </text>
+        <text class="all_elm" x="250" y="450">
+            <tspan class="value" id="grid_value"></tspan>
+            <tspan class="unit"></tspan>
+        </text>
+        <text class="value all_elm" x="450" y="450">
+            <tspan class="value" id="car_value"></tspan>
+            <tspan class="unit"></tspan>
+        </text>
+        <text class="value all_elm" x="52" y="251">
+            <tspan class="value" id="battery_value"></tspan>
+            <tspan class="unit"></tspan>
+        </text>
+        <text class="value all_elm" x="450" y="52">
+            <tspan class="value" id="custom_value"></tspan>
+            <tspan class="unit"></tspan>
+        </text>
 
         <!-- Text -->
-        <text class="text all_elm" text-anchor="middle" id="consumption_text" x="448" y="282"></text>
-        <text class="text all_elm" text-anchor="middle" id="production_text" x="250" y="81"></text>
-        <text class="text all_elm" text-anchor="middle" id="grid_text" x="250" y="480"></text>
-        <text class="text all_elm" text-anchor="middle" id="car_text" x="448" y="480"></text>
-        <text class="text all_elm" text-anchor="middle" id="battery_text" x="52" y="282"></text>
-        <text class="text all_elm" text-anchor="middle" id="custom_text" x="448" y="79"></text>
+        <text class="text all_elm" id="consumption_text" x="448" y="282"></text>
+        <text class="text all_elm" id="production_text" x="250" y="81"></text>
+        <text class="text all_elm" id="grid_text" x="250" y="480"></text>
+        <text class="text all_elm" id="car_text" x="448" y="480"></text>
+        <text class="text all_elm" id="battery_text" x="52" y="282"></text>
+        <text class="text all_elm" id="custom_text" x="448" y="79"></text>
 
         <!-- Percent -->
-        <text class="percent all_elm" text-anchor="middle" id="car_percent" x="448" y="466"></text>
-        <text class="percent all_elm" text-anchor="middle" id="battery_percent" x="52" y="268"></text>
+        <text class="percent all_elm" x="448" y="466">
+            <tspan class="value" id="car_percent"></tspan>
+            <tspan class="unit_percent"></tspan>
+        </text>
+        <text class="percent all_elm" x="52" y="268">
+            <tspan class="value" id="battery_percent"></tspan>
+            <tspan class="unit_percent"></tspan>
+        </text>
     </svg>
 </body>
 
