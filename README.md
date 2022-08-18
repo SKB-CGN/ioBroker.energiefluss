@@ -98,7 +98,7 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 1.0.0 (2022-08-18)
 - added 3 more circles. Overall 4 are now possible and this will be the current maximum (all circles can be customized as well)
 - aligned the complete graphic to the left to save space on the height and right
 
