@@ -460,14 +460,12 @@ class Energiefluss extends utils.Adapter {
 	 * @param {number} value
 	 */
 	recalculateValue(value) {
-		//return parseFloat((value / 1000).toFixed(fraction));
 		return (Math.round((value / 1000) * 100) / 100).toFixed(fraction);
 	}
 	/**
 	 * @param {number} value
 	 */
 	floorNumber(value) {
-		//return parseFloat(value.toFixed(fraction));
 		return (Math.round(value * 100) / 100).toFixed(fraction);
 	}
 
@@ -478,7 +476,6 @@ class Energiefluss extends utils.Adapter {
 		let tmpObj = {};
 		Object.entries(obj).forEach(entry => {
 			const [key, value] = entry;
-			//values = values + this.getForeignStateAsync(value);
 			this.getForeignState(value, (err, stateValue) => {
 				// Check, if key is a number
 				if (stateValue) {
@@ -493,6 +490,8 @@ class Energiefluss extends utils.Adapter {
 					if (typeof (stateValue.val) === 'boolean') {
 						tmpObj[key] = stateValue.val ? true : false;
 					}
+				} else {
+					this.log.warn("The adapter could not find the state " + value + "! Please review the config!");
 				}
 			});
 
