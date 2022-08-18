@@ -54,7 +54,7 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 - use positive or negative values for consumption
 - calculcate your consumption via production and grid-feed-in, if you do not have a powermeter
 - use different states for your battery
-- add your own circle for a consuming device with different text, values and icon
+- add 4 own circles for a consuming device with different text, values and icon
 - convert all values from W into kW
 - Choose, how many decimal places you want to display (0, 1, 2) - for values and battery charging
 - choose the unit (freetext)
@@ -87,7 +87,7 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 - Verwenden Sie positive oder negative Werte für den Verbrauch
 - Berechnen Sie Ihren Verbrauch über Erzeugung und Netzeinspeisung, wenn Sie keinen Stromzähler haben
 - Verwenden Sie verschiedene Zustände für Ihre Batterie
-- Fügen Sie Ihren eigenen Kreis für ein Verbrauchsgerät mit unterschiedlichem Text, Werten und Symbolen hinzu
+- Fügen Sie 4 eigene Kreise für ein Verbrauchsgerät mit unterschiedlichem Text, Werten und Symbolen hinzu
 - Alle Werte von W in kW umrechnen
 - Wählen Sie, wie viele Dezimalstellen Sie anzeigen möchten (0, 1, 2) - für Werte und Akkuladung
 - Wählen Sie die Einheit (Freitext)
@@ -98,6 +98,10 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+- added 3 more circles. Overall 4 are now possible and this will be the current maximum (all circles can be customized as well)
+- aligned the complete graphic to the left to save space on the height and right
+
 ### 0.8.6 (2022-08-17)
 - color of the label inside the circle can be changed
 - smoother animation on slower devices

@@ -48,8 +48,17 @@
 				});
 			});
 
-			if ($("#custom_icon").val() != "") {
-				$("#icon_preview").attr("d", $("#custom_icon").val());
+			if ($("#custom_icon0").val() != "") {
+				$("#icon_preview0").attr("d", $("#custom_icon0").val());
+			}
+			if ($("#custom_icon1").val() != "") {
+				$("#icon_preview1").attr("d", $("#custom_icon1").val());
+			}
+			if ($("#custom_icon2").val() != "") {
+				$("#icon_preview2").attr("d", $("#custom_icon2").val());
+			}
+			if ($("#custom_icon3").val() != "") {
+				$("#icon_preview3").attr("d", $("#custom_icon3").val());
 			}
 		}
 
@@ -83,8 +92,19 @@
 		}
 
 		$(function () {
-			$("#custom_icon").change(function (e) {
-				$("#icon_preview").attr("d", $(this).val());
+			$("#custom_icon0").change(function (e) {
+				$("#icon_preview0").attr("d", $(this).val());
+			});
+
+			$("#custom_icon1").change(function (e) {
+				$("#icon_preview1").attr("d", $(this).val());
+			});
+
+			$("#custom_icon2").change(function (e) {
+				$("#icon_preview2").attr("d", $(this).val());
+			});
+			$("#custom_icon3").change(function (e) {
+				$("#icon_preview3").attr("d", $(this).val());
 			});
 		});
 	</script>
@@ -338,25 +358,25 @@
 			</div>
 			<div class="row">
 				<div class="col s12">
-					<h6 class="title translate" data-lang="custom_title">custom circle above the house</h6>
+					<h6 class="title translate" data-lang="custom_title1">custom circle 1:</h6>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s4">
-					<input class="value" id="label_custom" type="text" />
+					<input class="value" id="label_custom0" type="text" />
 					<label for="label_custom" class="translate" data-lang="label">Label:</label>
 					<span class="translate" data-lang="ex_label">label inside the circle</span>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s4">
-					<input class="value" id="custom" type="text" />
-					<label for="custom" class="translate" data-lang="custom">custom circle</label>
+					<input class="value" id="custom0" type="text" />
+					<label for="custom0" class="translate" data-lang="custom">custom circle</label>
 					<span class="translate" data-lang="ex_custom">Data point of your custom circle</span>
 				</div>
 				<div class="input-field col s8">
-					<input class="value" id="custom_icon" type="text" />
-					<label for="custom_icon" class="translate" data-lang="custom_icon">icon inside the
+					<input class="value" id="custom_icon0" type="text" />
+					<label for="custom_icon0" class="translate" data-lang="custom_icon">icon inside the
 						custom circle:</label>
 					<span class="translate" data-lang="ex_custom_icon1">How to get the Icon?<br>(Visit <a
 							href='https://materialdesignicons.com' target='_blank'>https://materialdesignicons.com</a>
@@ -372,8 +392,101 @@
 				<div class="input-field col s4">&nbsp;</div>
 				<div class="input-field col s6">
 					<span class="translate" data-lang="ex_custom_preview">Preview</span><br>
-					<svg viewBox="0 0 30 30" width="30" height="30" id="preview_svg">
-						<path id="icon_preview" transform="translate(0,0)"
+					<svg viewBox="0 0 30 30" width="30" height="30" id="preview_svg0">
+						<path id="icon_preview0" transform="translate(0,0)"
+							d="M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,6A4,4 0 0,0 8,10H10A2,2 0 0,1 12,8A2,2 0 0,1 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10A4,4 0 0,0 12,6Z" />
+					</svg>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s12">
+					<h6 class="title translate" data-lang="custom_title2">custom circle 2:</h6>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s4">
+					<input class="value" id="label_custom1" type="text" />
+					<label for="label_custom1" class="translate" data-lang="label">Label:</label>
+					<span class="translate" data-lang="ex_label">label inside the circle</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s4">
+					<input class="value" id="custom1" type="text" />
+					<label for="custom1" class="translate" data-lang="custom">custom circle</label>
+					<span class="translate" data-lang="ex_custom">Data point of your custom circle</span>
+				</div>
+				<div class="input-field col s8">
+					<input class="value" id="custom_icon1" type="text" />
+					<label for="custom_icon1" class="translate" data-lang="custom_icon">icon inside the
+						custom circle:</label>
+				</div>
+				<div class="input-field col s6">
+					<span class="translate" data-lang="ex_custom_preview">Preview</span><br>
+					<svg viewBox="0 0 30 30" width="30" height="30" id="preview_svg1">
+						<path id="icon_preview1" transform="translate(0,0)"
+							d="M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,6A4,4 0 0,0 8,10H10A2,2 0 0,1 12,8A2,2 0 0,1 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10A4,4 0 0,0 12,6Z" />
+					</svg>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s12">
+					<h6 class="title translate" data-lang="custom_title3">custom circle 3:</h6>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s4">
+					<input class="value" id="label_custom2" type="text" />
+					<label for="label_custom2" class="translate" data-lang="label">Label:</label>
+					<span class="translate" data-lang="ex_label">label inside the circle</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s4">
+					<input class="value" id="custom2" type="text" />
+					<label for="custom2" class="translate" data-lang="custom">custom circle</label>
+					<span class="translate" data-lang="ex_custom">Data point of your custom circle</span>
+				</div>
+				<div class="input-field col s8">
+					<input class="value" id="custom_icon2" type="text" />
+					<label for="custom_icon2" class="translate" data-lang="custom_icon">icon inside the
+						custom circle:</label>
+				</div>
+				<div class="input-field col s6">
+					<span class="translate" data-lang="ex_custom_preview">Preview</span><br>
+					<svg viewBox="0 0 30 30" width="30" height="30" id="preview_svg2">
+						<path id="icon_preview2" transform="translate(0,0)"
+							d="M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,6A4,4 0 0,0 8,10H10A2,2 0 0,1 12,8A2,2 0 0,1 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10A4,4 0 0,0 12,6Z" />
+					</svg>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s12">
+					<h6 class="title translate" data-lang="custom_title4">custom circle 4:</h6>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s4">
+					<input class="value" id="label_custom3" type="text" />
+					<label for="label_custom3" class="translate" data-lang="label">Label:</label>
+					<span class="translate" data-lang="ex_label">label inside the circle</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s4">
+					<input class="value" id="custom3" type="text" />
+					<label for="custom3" class="translate" data-lang="custom">custom circle</label>
+					<span class="translate" data-lang="ex_custom">Data point of your custom circle</span>
+				</div>
+				<div class="input-field col s8">
+					<input class="value" id="custom_icon3" type="text" />
+					<label for="custom_icon3" class="translate" data-lang="custom_icon">icon inside the
+						custom circle:</label>
+				</div>
+				<div class="input-field col s6">
+					<span class="translate" data-lang="ex_custom_preview">Preview</span><br>
+					<svg viewBox="0 0 30 30" width="30" height="30" id="preview_svg3">
+						<path id="icon_preview3" transform="translate(0,0)"
 							d="M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,6A4,4 0 0,0 8,10H10A2,2 0 0,1 12,8A2,2 0 0,1 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10A4,4 0 0,0 12,6Z" />
 					</svg>
 				</div>
@@ -595,27 +708,112 @@
 			</div>
 			<div class="row">
 				<div class="col s12">
-					<h6 class="title translate" data-lang="custom">custom circle</h6>
+					<h6 class="title translate" data-lang="custom1">custom circle 1</h6>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s5">
-					<input class="value color" id="color_custom" type="text" placeholder="#f20e40" />
+					<input class="value color" id="color_custom0" type="text" placeholder="#f20e40" />
 					<span class="translate" data-lang="color_custom">color of the circle around the custom circle
 						(default:
 						#f20e40)</span>
 				</div>
 				<div class="input-field col s5">
-					<input class="value color" id="color_custom_text" type="text" placeholder="#f20e40" />
+					<input class="value color" id="color_custom0_text" type="text" placeholder="#f20e40" />
 					<span class="translate" data-lang="color_custom_text">color of the value inside the
 						custom circle (default: #f20e40)</span>
 				</div>
 				<div class="input-field col s5">
-					<input class="value color" id="fill_color_custom" type="text" placeholder="" />
+					<input class="value color" id="fill_color_custom0" type="text" placeholder="" />
 					<span class="translate" data-lang="fill_color">color inside the circle (default: empty)</span>
 				</div>
 				<div class="input-field col s5">
-					<input class="value color" id="color_custom_text_no_prod" type="text" placeholder="" />
+					<input class="value color" id="color_custom0_text_no_prod" type="text" placeholder="" />
+					<span class="translate" data-lang="color_no_prod">color of the value if value is below threshold
+						(default:
+						empty)</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s12">
+					<h6 class="title translate" data-lang="custom2">custom circle 2</h6>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s5">
+					<input class="value color" id="color_custom1" type="text" placeholder="#f20e40" />
+					<span class="translate" data-lang="color_custom">color of the circle around the custom circle
+						(default:
+						#f20e40)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="color_custom1_text" type="text" placeholder="#f20e40" />
+					<span class="translate" data-lang="color_custom_text">color of the value inside the
+						custom circle (default: #f20e40)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="fill_color_custom1" type="text" placeholder="" />
+					<span class="translate" data-lang="fill_color">color inside the circle (default: empty)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="color_custom1_text_no_prod" type="text" placeholder="" />
+					<span class="translate" data-lang="color_no_prod">color of the value if value is below threshold
+						(default:
+						empty)</span>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col s12">
+					<h6 class="title translate" data-lang="custom3">custom circle 3</h6>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s5">
+					<input class="value color" id="color_custom2" type="text" placeholder="#f20e40" />
+					<span class="translate" data-lang="color_custom">color of the circle around the custom circle
+						(default:
+						#f20e40)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="color_custom2_text" type="text" placeholder="#f20e40" />
+					<span class="translate" data-lang="color_custom_text">color of the value inside the
+						custom circle (default: #f20e40)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="fill_color_custom2" type="text" placeholder="" />
+					<span class="translate" data-lang="fill_color">color inside the circle (default: empty)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="color_custom2_text_no_prod" type="text" placeholder="" />
+					<span class="translate" data-lang="color_no_prod">color of the value if value is below threshold
+						(default:
+						empty)</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s12">
+					<h6 class="title translate" data-lang="custom4">custom circle 4</h6>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s5">
+					<input class="value color" id="color_custom3" type="text" placeholder="#f20e40" />
+					<span class="translate" data-lang="color_custom">color of the circle around the custom circle
+						(default:
+						#f20e40)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="color_custom3_text" type="text" placeholder="#f20e40" />
+					<span class="translate" data-lang="color_custom_text">color of the value inside the
+						custom circle (default: #f20e40)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="fill_color_custom3" type="text" placeholder="" />
+					<span class="translate" data-lang="fill_color">color inside the circle (default: empty)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="color_custom3_text_no_prod" type="text" placeholder="" />
 					<span class="translate" data-lang="color_no_prod">color of the value if value is below threshold
 						(default:
 						empty)</span>
@@ -785,15 +983,58 @@
 						empty)</span>
 				</div>
 				<div class="input-field col s5">
-					<input class="value color" id="color_house_to_custom" type="text" placeholder="" />
-					<span class="translate" data-lang="color_house_to_custom">color of the line between house and custom
-						circle (default:
+					<input class="value color" id="color_house_to_custom0" type="text" placeholder="" />
+					<span class="translate" data-lang="color_house_to_custom1">color of the line between house and
+						custom
+						circle 1 (default:
 						empty)</span>
 				</div>
 				<div class="input-field col s5">
-					<input class="value color" id="animation_color_house_to_custom" type="text" placeholder="" />
-					<span class="translate" data-lang="animation_color_house_to_custom">color of the animation between
-						house and custom circle (default:
+					<input class="value color" id="animation_color_house_to_custom0" type="text" placeholder="" />
+					<span class="translate" data-lang="animation_color_house_to_custom1">color of the animation between
+						house and custom circle 1 (default:
+						empty)</span>
+				</div>
+
+				<div class="input-field col s5">
+					<input class="value color" id="color_house_to_custom1" type="text" placeholder="" />
+					<span class="translate" data-lang="color_house_to_custom2">color of the line between house and
+						custom
+						circle 2 (default:
+						empty)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="animation_color_house_to_custom1" type="text" placeholder="" />
+					<span class="translate" data-lang="animation_color_house_to_custom2">color of the animation between
+						house and custom circle 2 (default:
+						empty)</span>
+				</div>
+
+				<div class="input-field col s5">
+					<input class="value color" id="color_house_to_custom2" type="text" placeholder="" />
+					<span class="translate" data-lang="color_house_to_custom3">color of the line between house and
+						custom
+						circle 3 (default:
+						empty)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="animation_color_house_to_custom2" type="text" placeholder="" />
+					<span class="translate" data-lang="animation_color_house_to_custom3">color of the animation between
+						house and custom circle 3 (default:
+						empty)</span>
+				</div>
+
+				<div class="input-field col s5">
+					<input class="value color" id="color_house_to_custom3" type="text" placeholder="" />
+					<span class="translate" data-lang="color_house_to_custom4">color of the line between house and
+						custom
+						circle 4 (default:
+						empty)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="animation_color_house_to_custom3" type="text" placeholder="" />
+					<span class="translate" data-lang="animation_color_house_to_custom4">color of the animation between
+						house and custom circle 4 (default:
 						empty)</span>
 				</div>
 			</div>
