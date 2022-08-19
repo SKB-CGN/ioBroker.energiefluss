@@ -61,6 +61,9 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 - Subtract the consumption of the car and additional equipment from the consumption in the house
 - All objects can be choosen via the object-browser
 
+## Implementation
+Display is possible via the instance link. This can then also be inserted into an iFrame or HTML widget..
+
 ## Funktionen
 **Design:**
 - Ändern Sie die Farbe jedes Elements
@@ -94,6 +97,9 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 - Wählen Sie die Einheit (Freitext)
 - Ziehen Sie den Verbrauch des Autos und der Zusatzgeräte vom Verbrauch im Haus ab
 - Alle Datenpunkte können über den Objekt-Browser ausgewählt werden
+
+## Implementierung
+Anzeige ist �ber den Instanz Link m�glich. Dieser kann dann auch in ein iFrame oder HTML Widget eingef�gt werden.
 
 ## Changelog
 <!--
