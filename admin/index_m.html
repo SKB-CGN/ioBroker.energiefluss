@@ -3,14 +3,19 @@
 <head>
 
 	<!-- Load ioBroker scripts and styles-->
+	<link type="text/css" rel="stylesheet" href="../../lib/css/fancytree/ui.fancytree.min.css" />
 	<link rel="stylesheet" type="text/css" href="../../css/adapter.css" />
 	<link rel="stylesheet" type="text/css" href="../../lib/css/materialize.css">
 
 	<script type="text/javascript" src="../../lib/js/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="../../socket.io/socket.io.js"></script>
 
-	<script type="text/javascript" src="../../js/translate.js"></script>
 	<script type="text/javascript" src="../../lib/js/materialize.js"></script>
+	<script type="text/javascript" src="../../lib/js/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="../../lib/js/jquery.fancytree-all.min.js"></script>
+
+	<script type="text/javascript" src="../../js/translate.js"></script>
+	<script type="text/javascript" src="../../lib/js/selectID.js"></script>
 	<script type="text/javascript" src="../../js/adapter-settings.js"></script>
 
 	<!-- Load our own files -->
@@ -60,6 +65,19 @@
 			if ($("#custom_icon3").val() != "") {
 				$("#icon_preview3").attr("d", $("#custom_icon3").val());
 			}
+
+			$('.datasource').click(function () {
+				let id = $(this).closest(".row").find(".dp").attr("id");
+				initSelectId(function (sid) {
+					sid.selectId('show', $('#' + id).val(), function (newId) {
+						if (newId != $('#' + id).val()) {
+							$('#' + id).val(newId);
+							$('#' + id).focus();
+							onChange();
+						}
+					});
+				});
+			});
 		}
 
 		// This will be called by the admin adapter when the user presses the save button
@@ -107,6 +125,45 @@
 				$("#icon_preview3").attr("d", $(this).val());
 			});
 		});
+		var selectId;
+
+		function initSelectId(callback) {
+			if (selectId) {
+				return callback(selectId);
+			}
+			socket.emit('getObjects', function (err, objs) {
+				selectId = $('#dialog-select-member').selectId('init', {
+					noMultiselect: true,
+					objects: objs,
+					imgPath: '../../lib/css/fancytree/',
+					filter: {
+						type: 'state'
+					},
+					name: 'scenes-select-state',
+					texts: {
+						select: _('Select'),
+						cancel: _('Cancel'),
+						all: _('All'),
+						id: _('ID'),
+						name: _('Name'),
+						role: _('Role'),
+						room: _('Room'),
+						value: _('Value'),
+						selectid: _('Select ID'),
+						from: _('From'),
+						lc: _('Last changed'),
+						ts: _('Time stamp'),
+						wait: _('Processing...'),
+						ack: _('Acknowledged'),
+						selectAll: _('Select all'),
+						unselectAll: _('Deselect all'),
+						invertSelection: _('Invert selection')
+					},
+					columns: ['image', 'name', 'role', 'room']
+				});
+				callback(selectId);
+			});
+		}
 	</script>
 	<style>
 		body {
@@ -118,12 +175,23 @@
 			left: auto !important;
 			right: 4px;
 		}
+
+		#dialog-select-member {
+			z-index: 9999 !important;
+		}
+
+		.m .modal .modal-footer {
+			padding-right: 2rem;
+		}
+
+		.m #dialog-select-member .modal-footer {
+			margin-left: 0rem;
+		}
 	</style>
 
 </head>
 
 <body>
-
 	<div class="m adapter-container ">
 		<div class="row">
 			<div class="col s12">
@@ -149,28 +217,21 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="input-field col s4">
+				<div class="input-field col s3">
 					<input class="value" id="label_production" type="text" />
 					<label for="label_production" class="translate" data-lang="label">Label:</label>
 					<span class="translate" data-lang="ex_label">label inside the circle</span>
 				</div>
 				<div class="input-field col s4">
-					<input class="value" id="label_house" type="text" />
-					<label for="label_house" class="translate" data-lang="label">Label:</label>
-					<span class="translate" data-lang="ex_label">label inside the circle</span>
-				</div>
-			</div>
-			<div class="row">
-				<div class="input-field col s4">
-					<input class="value" id="production" type="text" />
+					<input class="value dp" id="production" type="text" />
 					<label for="production" class="translate" data-lang="production">Production state:</label>
 					<span class="translate" data-lang="ex_production">Data point of your photovoltaic
 						production</span>
 				</div>
-				<div class="input-field col s4">
-					<input class="value" id="consumption" type="text" />
-					<label for="consumption" class="translate" data-lang="consumption">Consumption state:</label>
-					<span class="translate" data-lang="ex_consumption">Data point of your house consumption</span>
+				<div class="col s1 m2 l1">
+					<a
+						class="btn-floating waves-effect waves-light blue table-button-add input-field datasource datasource"><i
+							class="material-icons">search</i></a>
 				</div>
 				<div class="input-field col s4">
 					<input id="calculate_consumption" class="value" type="checkbox" />
@@ -178,28 +239,41 @@
 						data-lang="cb_calculate_consumption">Consumption
 						Calculation via 'Production' + 'Grid'</label>
 				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s3">
+					<input class="value" id="label_house" type="text" />
+					<label for="label_house" class="translate" data-lang="label">Label:</label>
+					<span class="translate" data-lang="ex_label">label inside the circle</span>
+				</div>
+				<div class="input-field col s4">
+					<input class="value dp" id="consumption" type="text" />
+					<label for="consumption" class="translate" data-lang="consumption">Consumption state:</label>
+					<span class="translate" data-lang="ex_consumption">Data point of your house consumption</span>
+				</div>
+				<div class="col s1 m2 l1">
+					<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
+							class="material-icons">search</i></a>
+				</div>
 				<div class="input-field col s4">
 					<input id="consumption_reverse" class="value" type="checkbox" />
 					<label for="consumption_reverse" class="translate" data-lang="cb_consumption_reverse">Consumption is
 						negative</label>
 				</div>
 			</div>
-
 			<div class="row">
 				<div class="col s12">
 					<h6 class="title translate" data-lang="grid feed in settings">Grid Feed-in and Consuming</h6>
 				</div>
 			</div>
 			<div class="row">
-				<div class="input-field col s4">
+				<div class="input-field col s3">
 					<input class="value" id="label_grid" type="text" />
 					<label for="label_grid" class="translate" data-lang="label">Label:</label>
 					<span class="translate" data-lang="ex_label">label inside the circle</span>
 				</div>
-			</div>
-			<div class="row">
 				<div class="input-field col s4">
-					<input class="value" id="grid_feed" type="text" />
+					<input class="value dp" id="grid_feed" type="text" />
 					<label for="grid_feed" class="translate" data-lang="grid_feed">Grid feed-in:</label>
 					<span class="translate" data-lang="ex_grid_feed">Data point of your grid feeder<br><br>(This is
 						usually a
@@ -208,35 +282,43 @@
 						other
 						state on)</span>
 				</div>
+				<div class="col s1 m2 l1">
+					<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
+							class="material-icons">search</i></a>
+				</div>
+				<div class="input-field col s3">
+					<input id="grid_different" class="value" type="checkbox" />
+					<label for="grid_different" class="translate" data-lang="cb_grid_different">Use different
+						states
+						for grid feed-in and
+						consuming</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s3"></div>
 				<div class="input-field col s4">
-					<input class="value" id="grid_consuming" type="text" />
+					<input class="value dp" id="grid_consuming" type="text" />
 					<label for="grid_consuming" class="translate" data-lang="grid_consumption">Grid consuming</label>
 					<span class="translate" data-lang="ex_grid_consumption">Data point of your grid consumption</span>
 				</div>
-				<div class="col s4">
-					<div class="row">
-						<div class="input-field">
-							<input id="grid_different" class="value" type="checkbox" />
-							<label for="grid_different" class="translate" data-lang="cb_grid_different">Use different
-								states
-								for grid feed-in and
-								consuming</label>
-						</div>
-					</div>
-					<div class="row">
-						<div class="input-field">
-							<input id="grid_reverse" class="value" type="checkbox" />
-							<label for="grid_reverse" class="translate" data-lang="cb_grid_reverse">Use positive for
-								consumption <u>and</u> negative for grid feed in</label>
-						</div>
-					</div>
-					<div class="row">
-						<div class="input-field">
-							<input id="grid_all_positive" class="value" type="checkbox" />
-							<label for="grid_all_positive" class="translate" data-lang="cb_grid_all_positive">Use
-								positive for consumption <u>and</u> positive for grid feed in</label>
-						</div>
-					</div>
+				<div class="col s1 m2 l1">
+					<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
+							class="material-icons">search</i></a>
+				</div>
+				<div class="input-field col s3">
+					<input id="grid_reverse" class="value" type="checkbox" />
+					<label for="grid_reverse" class="translate" data-lang="cb_grid_reverse">Use positive for
+						consumption <u>and</u> negative for grid feed in</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s3"></div>
+				<div class="input-field col s4"></div>
+				<div class="col s1 m2 l1">&nbsp;</div>
+				<div class="input-field col s3">
+					<input id="grid_all_positive" class="value" type="checkbox" />
+					<label for="grid_all_positive" class="translate" data-lang="cb_grid_all_positive">Use
+						positive for consumption <u>and</u> positive for grid feed in</label>
 				</div>
 			</div>
 			<div class="row">
@@ -246,15 +328,13 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="input-field col s4">
+				<div class="input-field col s3">
 					<input class="value" id="label_battery" type="text" />
 					<label for="label_battery" class="translate" data-lang="label">Label:</label>
 					<span class="translate" data-lang="ex_label">label inside the circle</span>
 				</div>
-			</div>
-			<div class="row">
 				<div class="input-field col s4">
-					<input class="value" id="battery_charge" type="text" />
+					<input class="value dp" id="battery_charge" type="text" />
 					<label for="battery_charge" class="translate" data-lang="battery_charge_state">Charge
 						battery:</label>
 					<span class="translate" data-lang="ex_battery_charge">Data point of your battery charge
@@ -265,51 +345,20 @@
 						other
 						state on)</span>
 				</div>
-				<div class="input-field col s4">
-					<input class="value" id="battery_discharge" type="text" />
-					<label for="battery_discharge" class="translate" data-lang="battery_discharge">Discharge
-						battery:</label>
-					<span class="translate" data-lang="ex_battery_discharge">Data point for discharging your
-						battery</span>
+				<div class="col s1 m2 l1">
+					<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
+							class="material-icons">search</i></a>
 				</div>
-				<div class="col s4">
-					<div class="row">
-						<div class="input-field">
-							<input id="battery_different" class="value" type="checkbox" />
-							<label for="battery_different" class="translate" data-lang="cb_battery_different">Use
-								different
-								states for Battery charge
-								and discharge</label>
-						</div>
-					</div>
-					<div class="row">
-						<div class="input-field">
-							<input id="battery_reverse" class="value" type="checkbox" />
-							<label for="battery_reverse" class="translate" data-lang="cb_battery_reverse">Use negative
-								for
-								charging <u>and</u> positive for discharging</label>
-						</div>
-					</div>
-					<div class="row">
-						<div class="input-field">
-							<input id="battery_animation" class="value" type="checkbox" />
-							<label for="battery_animation" class="translate" data-lang="cb_battery_animation">Show
-								battery
-								animation</label>
-						</div>
-					</div>
+				<div class="input-field col s3">
+					<input id="battery_different" class="value" type="checkbox" />
+					<label for="battery_different" class="translate" data-lang="cb_battery_different">Use
+						different
+						states for Battery charge
+						and discharge</label>
 				</div>
 			</div>
 			<div class="row">
-				<div class="input-field col s4">
-					<input class="value" id="battery_percent" type="text" />
-					<label for="battery_percent" class="translate" data-lang="battery_percent">accu
-						level:</label>
-					<span class="translate" data-lang="ex_battery_percent">data point of your battery
-						charge-level
-						in %</span>
-				</div>
-				<div class="input-field col s4">
+				<div class="input-field col s3">
 					<select id="fraction_battery" class="value">
 						<option value="0">0</option>
 						<option value="1">1</option>
@@ -322,6 +371,44 @@
 					<span class="translate" data-lang="ex_fraction">If zero, the value will be rounded to the next
 						possible integer.</span>
 				</div>
+				<div class="input-field col s4">
+					<input class="value dp" id="battery_discharge" type="text" />
+					<label for="battery_discharge" class="translate" data-lang="battery_discharge">Discharge
+						battery:</label>
+					<span class="translate" data-lang="ex_battery_discharge">Data point for discharging your
+						battery</span>
+				</div>
+				<div class="col s1 m2 l1">
+					<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
+							class="material-icons">search</i></a>
+				</div>
+				<div class="input-field col s3">
+					<input id="battery_reverse" class="value" type="checkbox" />
+					<label for="battery_reverse" class="translate" data-lang="cb_battery_reverse">Use negative
+						for
+						charging <u>and</u> positive for discharging</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s3"></div>
+				<div class="input-field col s4">
+					<input class="value dp" id="battery_percent" type="text" />
+					<label for="battery_percent" class="translate" data-lang="battery_percent">accu
+						level:</label>
+					<span class="translate" data-lang="ex_battery_percent">data point of your battery
+						charge-level
+						in %</span>
+				</div>
+				<div class="col s1 m2 l1">
+					<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
+							class="material-icons">search</i></a>
+				</div>
+				<div class="input-field col s3">
+					<input id="battery_animation" class="value" type="checkbox" />
+					<label for="battery_animation" class="translate" data-lang="cb_battery_animation">Show
+						battery
+						animation</label>
+				</div>
 			</div>
 			<div class="row">
 				<div class="col s12">
@@ -329,31 +416,47 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="input-field col s4">
+				<div class="input-field col s3">
 					<input class="value" id="label_car" type="text" />
 					<label for="label_car" class="translate" data-lang="label">Label:</label>
 					<span class="translate" data-lang="ex_label">label inside the circle</span>
 				</div>
-			</div>
-			<div class="row">
 				<div class="input-field col s4">
-					<input class="value" id="car_charge" type="text" />
+					<input class="value dp" id="car_charge" type="text" />
 					<label for="car_charge" class="translate" data-lang="car_charge_energy">wallbox or
 						charger:</label>
 					<span class="translate" data-lang="ex_car_charge">Data point of your charger or
 						wallbox</span>
 				</div>
+				<div class="col s1 m2 l1">
+					<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
+							class="material-icons">search</i></a>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s3"></div>
 				<div class="input-field col s4">
-					<input class="value" id="car_percent" type="text" />
+					<input class="value dp" id="car_percent" type="text" />
 					<label for="car_percent" class="translate" data-lang="car_battery_charge">Car accu level
 						state:</label>
 					<span class="translate" data-lang="ex_car_battery">Data point of your car accu in %</span>
 				</div>
+				<div class="col s1 m2 l1">
+					<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
+							class="material-icons">search</i></a>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s3"></div>
 				<div class="input-field col s4">
-					<input class="value" id="car_plugged" type="text" />
+					<input class="value dp" id="car_plugged" type="text" />
 					<label for="car_plugged" class="translate" data-lang="car_plugged">car charger plugged
 						in:</label>
 					<span class="translate" data-lang="ex_car_plugged">Data point car charger plugged in</span>
+				</div>
+				<div class="col s1 m2 l1">
+					<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
+							class="material-icons">search</i></a>
 				</div>
 			</div>
 			<div class="row">
@@ -362,19 +465,23 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="input-field col s4">
+				<div class="input-field col s3">
 					<input class="value" id="label_custom0" type="text" />
 					<label for="label_custom" class="translate" data-lang="label">Label:</label>
 					<span class="translate" data-lang="ex_label">label inside the circle</span>
 				</div>
-			</div>
-			<div class="row">
 				<div class="input-field col s4">
-					<input class="value" id="custom0" type="text" />
+					<input class="value dp" id="custom0" type="text" />
 					<label for="custom0" class="translate" data-lang="custom">custom circle</label>
 					<span class="translate" data-lang="ex_custom">Data point of your custom circle</span>
 				</div>
-				<div class="input-field col s8">
+				<div class="col s1 m2 l1">
+					<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
+							class="material-icons">search</i></a>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s7">
 					<input class="value" id="custom_icon0" type="text" />
 					<label for="custom_icon0" class="translate" data-lang="custom_icon">icon inside the
 						custom circle:</label>
@@ -387,16 +494,16 @@
 					<span class="translate" data-lang="ex_custom_icon3">If you entered it correctly, it will replace the
 						current question mark icon below.</span>
 				</div>
-				<div class="input-field col s4">&nbsp;</div>
-				<div class="input-field col s6"><img src="icon_help.png"></div>
-				<div class="input-field col s4">&nbsp;</div>
-				<div class="input-field col s6">
+				<div class="input-field col s4">
 					<span class="translate" data-lang="ex_custom_preview">Preview</span><br>
 					<svg viewBox="0 0 30 30" width="30" height="30" id="preview_svg0">
 						<path id="icon_preview0" transform="translate(0,0)"
 							d="M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,6A4,4 0 0,0 8,10H10A2,2 0 0,1 12,8A2,2 0 0,1 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10A4,4 0 0,0 12,6Z" />
 					</svg>
 				</div>
+				<div class="input-field col s4">&nbsp;</div>
+				<div class="input-field col s6"><img src="icon_help.png"></div>
+				<div class="input-field col s4">&nbsp;</div>
 			</div>
 			<div class="row">
 				<div class="col s12">
@@ -404,24 +511,28 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="input-field col s4">
+				<div class="input-field col s3">
 					<input class="value" id="label_custom1" type="text" />
 					<label for="label_custom1" class="translate" data-lang="label">Label:</label>
 					<span class="translate" data-lang="ex_label">label inside the circle</span>
 				</div>
-			</div>
-			<div class="row">
 				<div class="input-field col s4">
-					<input class="value" id="custom1" type="text" />
+					<input class="value dp" id="custom1" type="text" />
 					<label for="custom1" class="translate" data-lang="custom">custom circle</label>
 					<span class="translate" data-lang="ex_custom">Data point of your custom circle</span>
 				</div>
-				<div class="input-field col s8">
+				<div class="col s1 m2 l1">
+					<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
+							class="material-icons">search</i></a>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s7">
 					<input class="value" id="custom_icon1" type="text" />
 					<label for="custom_icon1" class="translate" data-lang="custom_icon">icon inside the
 						custom circle:</label>
 				</div>
-				<div class="input-field col s6">
+				<div class="input-field col s4">
 					<span class="translate" data-lang="ex_custom_preview">Preview</span><br>
 					<svg viewBox="0 0 30 30" width="30" height="30" id="preview_svg1">
 						<path id="icon_preview1" transform="translate(0,0)"
@@ -435,24 +546,28 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="input-field col s4">
+				<div class="input-field col s3">
 					<input class="value" id="label_custom2" type="text" />
 					<label for="label_custom2" class="translate" data-lang="label">Label:</label>
 					<span class="translate" data-lang="ex_label">label inside the circle</span>
 				</div>
-			</div>
-			<div class="row">
 				<div class="input-field col s4">
-					<input class="value" id="custom2" type="text" />
+					<input class="value dp" id="custom2" type="text" />
 					<label for="custom2" class="translate" data-lang="custom">custom circle</label>
 					<span class="translate" data-lang="ex_custom">Data point of your custom circle</span>
 				</div>
-				<div class="input-field col s8">
+				<div class="col s1 m2 l1">
+					<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
+							class="material-icons">search</i></a>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s7">
 					<input class="value" id="custom_icon2" type="text" />
 					<label for="custom_icon2" class="translate" data-lang="custom_icon">icon inside the
 						custom circle:</label>
 				</div>
-				<div class="input-field col s6">
+				<div class="input-field col s4">
 					<span class="translate" data-lang="ex_custom_preview">Preview</span><br>
 					<svg viewBox="0 0 30 30" width="30" height="30" id="preview_svg2">
 						<path id="icon_preview2" transform="translate(0,0)"
@@ -466,24 +581,28 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="input-field col s4">
+				<div class="input-field col s3">
 					<input class="value" id="label_custom3" type="text" />
 					<label for="label_custom3" class="translate" data-lang="label">Label:</label>
 					<span class="translate" data-lang="ex_label">label inside the circle</span>
 				</div>
-			</div>
-			<div class="row">
 				<div class="input-field col s4">
-					<input class="value" id="custom3" type="text" />
+					<input class="value dp" id="custom3" type="text" />
 					<label for="custom3" class="translate" data-lang="custom">custom circle</label>
 					<span class="translate" data-lang="ex_custom">Data point of your custom circle</span>
 				</div>
-				<div class="input-field col s8">
+				<div class="col s1 m2 l1">
+					<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
+							class="material-icons">search</i></a>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s7">
 					<input class="value" id="custom_icon3" type="text" />
 					<label for="custom_icon3" class="translate" data-lang="custom_icon">icon inside the
 						custom circle:</label>
 				</div>
-				<div class="input-field col s6">
+				<div class="input-field col s4">
 					<span class="translate" data-lang="ex_custom_preview">Preview</span><br>
 					<svg viewBox="0 0 30 30" width="30" height="30" id="preview_svg3">
 						<path id="icon_preview3" transform="translate(0,0)"
@@ -497,7 +616,7 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="input-field col s4">
+				<div class="input-field col s3">
 					<input class="value" id="unit" type="text" />
 					<label for="unit" class="translate" data-lang="unit">Unit:</label>
 					<span class="translate" data-lang="ex_unit">Unit (W or kW) for displaying</span>
@@ -513,6 +632,7 @@
 					<span class="translate" data-lang="ex_fraction">If zero, the value will be rounded to the next
 						possible integer.</span>
 				</div>
+				<div class="col s1 m2 l1"></div>
 				<div class="input-field col s4">
 					<input id="recalculate" class="value" type="checkbox" />
 					<label for="recalculate" class="translate" data-lang="recalculate">Calculate values from W
@@ -521,7 +641,7 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="input-field col s4">
+				<div class="input-field col s3">
 					<input class="value" id="threshold" type="text" />
 					<label for="threshold" class="translate" data-lang="threshold">threshold:</label>
 					<span class="translate" data-lang="ex_threshold">a threshold over or under which values are handled.
@@ -529,6 +649,8 @@
 						for values greater than 10 or -10 Watts / or 0.01 for values greater than 0.01 or -0.01
 						kW. This value affects the color too.</span>
 				</div>
+				<div class="input-field col s4"></div>
+				<div class="col s1 m2 l1"></div>
 				<div class="input-field col s4">
 					<input id="house_netto" class="value" type="checkbox" />
 					<label for="house_netto" class="translate" data-lang="house_netto">Display the house net
@@ -1133,6 +1255,26 @@
 				</div>
 			</div>
 		</div>
+		<div class="m material-dialogs">
+			<div id="dialog-select-member" class="modal modal-fixed-footer">
+				<div class="modal-content">
+					<div class="row">
+						<div class="col s12 title"></div>
+					</div>
+					<div class="row">
+						<div class="col s12 dialog-content">
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<a class="modal-action modal-close waves-effect waves-green btn btn-set"><i
+							class="large material-icons left">check</i><span class="translate">Select</span></a>
+					<a class="modal-action modal-close waves-effect waves-green btn btn-close"><i
+							class="large material-icons left ">close</i><span class="translate">Cancel</span></a>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 
 </html>

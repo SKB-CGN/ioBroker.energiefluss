@@ -59,6 +59,7 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 - Choose, how many decimal places you want to display (0, 1, 2) - for values and battery charging
 - choose the unit (freetext)
 - Subtract the consumption of the car and additional equipment from the consumption in the house
+- All objects can be choosen via the object-browser
 
 ## Funktionen
 **Design:**
@@ -92,12 +93,18 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 - Wählen Sie, wie viele Dezimalstellen Sie anzeigen möchten (0, 1, 2) - für Werte und Akkuladung
 - Wählen Sie die Einheit (Freitext)
 - Ziehen Sie den Verbrauch des Autos und der Zusatzgeräte vom Verbrauch im Haus ab
+- Alle Datenpunkte können über den Objekt-Browser ausgewählt werden
 
 ## Changelog
 <!--
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+- cleaned up Admin-Interface
+- possible, to choose objects via Object-Browser
+- corrected missing translations
+
 ### 1.0.0 (2022-08-18)
 - added 3 more circles. Overall 4 are now possible and this will be the current maximum (all circles can be customized as well)
 - aligned the complete graphic to the left to save space on the height and right
