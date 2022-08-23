@@ -70,7 +70,7 @@ Display is possible via the instance link. This can then also be inserted into a
 **Design:**
 - Aendern Sie die Farbe jedes Elements
 - Elemente koennen ausgewaehlt werden (Kreis oder Rechteck)
-- Texte innerhalb der Elemente koennen geÄndert werden
+- Texte innerhalb der Elemente koennen geaendert werden
 - %-Texte koennen auch andere Farben haben
 - Definieren Sie verschiedene Farben fuer jede Linie
 - verschiedene Farben fuer jede Animation auf der Linie definieren
@@ -80,12 +80,12 @@ Display is possible via the instance link. This can then also be inserted into a
 - Radius des Kreises anpassbar
 - Hoehe und Breite des Rechtecks anpassbar
 - Definieren Sie Ihre eigene Farbe und Deckkraft fuer die Schatten (rgba-unterstuetzt)
-- Schriftarten der Werte und Texte Ändern (eigene Schriftarten koennen importiert werden)
-- Ändern Sie die Schriftgroessee fuer Label, Werte und %-Texte
+- Schriftarten der Werte und Texte aendern (eigene Schriftarten koennen importiert werden)
+- Aendern Sie die Schriftgroessee fuer Label, Werte und %-Texte
 - Definieren Sie eine Farbe fuer das Autosymbol, wenn es geladen wird
-- Einige Werte kÄnnen unterschiedliche Farben haben, wenn ihr Wert Null ist (Verbrauch, Produktion, Netz und Batterie)
+- Einige Werte koennen unterschiedliche Farben haben, wenn ihr Wert Null ist (Verbrauch, Produktion, Netz und Batterie)
 - Batterie-Icon kann beim Laden und Entladen animiert werden
-- Anzahl der animierten Punkte auf der Linie auswÄhlbar (1-5)
+- Anzahl der animierten Punkte auf der Linie auswaehlbar (1-5)
 
 **Technisch:**
 - Datenpunkte fuer jedes Element definieren
