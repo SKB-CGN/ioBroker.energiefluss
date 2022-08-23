@@ -68,24 +68,24 @@ Display is possible via the instance link. This can then also be inserted into a
 
 ## Funktionen
 **Design:**
-- ï¿½ndern Sie die Farbe jedes Elements
-- Elemente kï¿½nnen ausgewï¿½hlt werden (Kreis oder Rechteck)
-- Texte innerhalb der Elemente kï¿½nnen geï¿½ndert werden
-- %-Texte kï¿½nnen auch andere Farben haben
-- Definieren Sie verschiedene Farben fï¿½r jede Linie
-- verschiedene Farben fï¿½r jede Animation auf der Linie definieren
-- Dicke der Elemente und Linien ï¿½nderbar
-- Fï¿½lle die Elemente mit verschiedenen Farben
+- Ändern Sie die Farbe jedes Elements
+- Elemente kÄnnen ausgewÄhlt werden (Kreis oder Rechteck)
+- Texte innerhalb der Elemente kÄnnen geÄndert werden
+- %-Texte kÄnnen auch andere Farben haben
+- Definieren Sie verschiedene Farben fÄr jede Linie
+- verschiedene Farben fuer jede Animation auf der Linie definieren
+- Dicke der Elemente und Linien uenderbar
+- Fuelle die Elemente mit verschiedenen Farben
 - Schatten des Elemente ein-/ausblenden
 - Radius des Kreises anpassbar
-- Hï¿½he und Breite des Rechtecks anpassbar
-- Definieren Sie Ihre eigene Farbe und Deckkraft fï¿½r die Schatten (rgba-unterstï¿½tzt)
-- Schriftarten der Werte und Texte ï¿½ndern (eigene Schriftarten kï¿½nnen importiert werden)
-- ï¿½ndern Sie die Schriftgrï¿½ï¿½e fï¿½r Label, Werte und %-Texte
-- Definieren Sie eine Farbe fï¿½r das Autosymbol, wenn es geladen wird
-- Einige Werte kï¿½nnen unterschiedliche Farben haben, wenn ihr Wert Null ist (Verbrauch, Produktion, Netz und Batterie)
+- Hoehe und Breite des Rechtecks anpassbar
+- Definieren Sie Ihre eigene Farbe und Deckkraft fuer die Schatten (rgba-unterstuetzt)
+- Schriftarten der Werte und Texte Ändern (eigene Schriftarten koennen importiert werden)
+- Ändern Sie die Schriftgroessee fuer Label, Werte und %-Texte
+- Definieren Sie eine Farbe fuer das Autosymbol, wenn es geladen wird
+- Einige Werte kÄnnen unterschiedliche Farben haben, wenn ihr Wert Null ist (Verbrauch, Produktion, Netz und Batterie)
 - Batterie-Icon kann beim Laden und Entladen animiert werden
-- Anzahl der animierten Punkte auf der Linie auswï¿½hlbar (1-5)
+- Anzahl der animierten Punkte auf der Linie auswÄhlbar (1-5)
 
 **Technisch:**
 - Datenpunkte fuer jedes Element definieren
