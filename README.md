@@ -88,22 +88,22 @@ Display is possible via the instance link. This can then also be inserted into a
 - Anzahl der animierten Punkte auf der Linie ausw�hlbar (1-5)
 
 **Technisch:**
-- Datenpunkte f�r jedes Element definieren
+- Datenpunkte fuer jedes Element definieren
 - Batterieprozentsatz innerhalb des Auto- oder Batteriekreises anzeigen
-- unterschiedliche Zustände f�r Einspeisung oder Bezug aus dem Netz verwenden
-- Einstellungen umkehren, wenn Ihre Werte negativ sind (f�r Verbrauch, Netzeinspeisung, Laden-/Entladen der Batterie)
-- Verwenden Sie positive oder negative Werte f�r den Verbrauch
-- Berechnen Sie Ihren Verbrauch �ber Erzeugung und Netzeinspeisung, wenn Sie keinen Stromz�hler haben
-- Verwenden Sie verschiedene Zust�nde f�r Ihre Batterie
-- F�gen Sie 4 eigene Kreise f�r ein Verbrauchsger�t mit unterschiedlichem Text, Werten und Symbolen hinzu
+- unterschiedliche Zustaende fuer Einspeisung oder Bezug aus dem Netz verwenden
+- Einstellungen umkehren, wenn Ihre Werte negativ sind (fuer Verbrauch, Netzeinspeisung, Laden-/Entladen der Batterie)
+- Verwenden Sie positive oder negative Werte fuer den Verbrauch
+- Berechnen Sie Ihren Verbrauch ueber Erzeugung und Netzeinspeisung, wenn Sie keinen Stromzuehler haben
+- Verwenden Sie verschiedene Zustuende fuer Ihre Batterie
+- Fuegen Sie 4 eigene Kreise fuer ein Verbrauchsgeruet mit unterschiedlichem Text, Werten und Symbolen hinzu
 - Alle Werte von W in kW umrechnen
-- W�hlen Sie, wie viele Dezimalstellen Sie anzeigen m�chten (0, 1, 2) - f�r Werte und Akkuladung
-- W�hlen Sie die Einheit (Freitext)
-- Ziehen Sie den Verbrauch des Autos und der Zusatzgeräte vom Verbrauch im Haus ab
-- Alle Datenpunkte k�nnen �ber den Objekt-Browser ausgewählt werden
+- Wuehlen Sie, wie viele Dezimalstellen Sie anzeigen muechten (0, 1, 2) - fuer Werte und Akkuladung
+- Wuehlen Sie die Einheit (Freitext)
+- Ziehen Sie den Verbrauch des Autos und der Zusatzgeraete vom Verbrauch im Haus ab
+- Alle Datenpunkte kuennen ueber den Objekt-Browser ausgewaehlt werden
 
 ## Implementierung
-Anzeige ist �ber den Instanz Link m�glich. Dieser kann dann auch in ein iFrame oder HTML Widget eingef�gt werden.
+Anzeige ist ueber den Instanz Link mueglich. Dieser kann dann auch in ein iFrame oder HTML Widget eingefuegt werden.
 
 ## Changelog
 <!--
