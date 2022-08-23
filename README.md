@@ -68,11 +68,11 @@ Display is possible via the instance link. This can then also be inserted into a
 
 ## Funktionen
 **Design:**
-- Ändern Sie die Farbe jedes Elements
-- Elemente kÄnnen ausgewÄhlt werden (Kreis oder Rechteck)
-- Texte innerhalb der Elemente kÄnnen geÄndert werden
-- %-Texte kÄnnen auch andere Farben haben
-- Definieren Sie verschiedene Farben fÄr jede Linie
+- Aendern Sie die Farbe jedes Elements
+- Elemente koennen ausgewaehlt werden (Kreis oder Rechteck)
+- Texte innerhalb der Elemente koennen geÄndert werden
+- %-Texte koennen auch andere Farben haben
+- Definieren Sie verschiedene Farben fuer jede Linie
 - verschiedene Farben fuer jede Animation auf der Linie definieren
 - Dicke der Elemente und Linien uenderbar
 - Fuelle die Elemente mit verschiedenen Farben
