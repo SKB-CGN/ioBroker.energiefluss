@@ -110,7 +110,7 @@ Anzeige ist ueber den Instanz Link mueglich. Dieser kann dann auch in ein iFrame
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 1.0.5 (2022-08-23)
 - If consumption is negative, this was not displayed
 - Elements can now be selected (rectangle or circle)
 
