@@ -17,6 +17,32 @@ let battery_timer = null;
 let battery_direction;
 let battery_animation_running = false;
 
+let elements = {
+    cx: {
+        "house": 448,
+        "grid": 250,
+        "production": 250,
+        "car": 448,
+        "battery": 52,
+        "custom0": 448,
+        "custom1": 646,
+        "custom2": 646,
+        "custom3": 646
+
+    },
+    cy: {
+        "house": 250,
+        "grid": 448,
+        "production": 52,
+        "car": 448,
+        "battery": 250,
+        "custom0": 52,
+        "custom1": 52,
+        "custom2": 250,
+        "custom3": 448
+    }
+}
+
 var states = [];
 servConn.init({
     connLink: window.location.href.substr(0, window.location.href.indexOf('/', 8))
@@ -36,7 +62,7 @@ servConn.init({
                         try {
                             config = JSON.parse(states[objID[0]].val);
                             data = JSON.parse(states[objID[1]].val);
-                            initConfig(once = true);
+                            initConfig();
                             updateValues();
                             $('#svg_image').fadeIn("middle")
                             $('#loading').fadeOut("middle").addClass('hidden');
@@ -88,25 +114,16 @@ servConn.init({
     }
 });
 
-function initConfig(once = false) {
+function initConfig() {
     try {
-        // Colors - Circles
-        Object.entries(config.circles.color).forEach(entry => {
-            const [key, value] = entry;
-            $('#' + key).css("stroke", value);
-        });
 
         // Colors - Values
+        /*
         Object.entries(config.values.color).forEach(entry => {
             const [key, value] = entry;
             $('#' + key).parent().css("fill", value);
         });
-
-        // Colors - Circle Fill
-        Object.entries(config.circles.fill).forEach(entry => {
-            const [key, value] = entry;
-            $('#' + key).css("fill", value ? value : "");
-        });
+        */
 
         // Colors - Lines
         Object.entries(config.lines.color).forEach(entry => {
@@ -125,6 +142,12 @@ function initConfig(once = false) {
                 break;
             case '3':
                 $('.animation').css("stroke-dasharray", "4 12 4 12 4 100");
+                break;
+            case '4':
+                $('.animation').css("stroke-dasharray", "4 12 4 12 4 12 4 84");
+                break;
+            case '5':
+                $('.animation').css("stroke-dasharray", "4 12 4 12 4 12 4 12 4 68");
                 break;
         }
 
@@ -159,45 +182,114 @@ function initConfig(once = false) {
         // General
         Object.entries(config.general).forEach(entry => {
             const [key, value] = entry;
-            if (key == 'no_battery' && value === true) {
-                $('#svg_image').addClass("no_battery");
-            }
-            if (key == 'battery_animation') {
-                battery_animation = value;
-                if (!value) {
-                    battery_direction = '';
-                    clearInterval(battery_timer);
-                }
+            switch (key) {
+                case 'no_battery':
+                    if (value === true) {
+                        $('#svg_image').addClass("no_battery");
+                    }
+                    break;
+                case 'battery_animation':
+                    battery_animation = value;
+                    if (!value) {
+                        battery_direction = '';
+                        clearInterval(battery_timer);
+                    }
+                    break;
+                case 'type':
+                    $("circle, rect").remove();
+                    if (value == "circle") {
+                        Object.entries(config.elements.elements).forEach(entry => {
+                            const [key, value] = entry;
+                            if (value === true) {
+                                let c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                                c.setAttribute('id', key);
+                                c.setAttribute('cx', elements.cx[key]);
+                                c.setAttribute('cy', elements.cy[key]);
+                                c.setAttribute('r', config.elements.style.circle_radius);
+                                c.setAttribute('class', 'all_elm');
+                                $(c).insertAfter("#placeholder");
+                            }
+                        });
+                    }
+                    if (value == "rect") {
+                        Object.entries(config.elements.elements).forEach(entry => {
+                            const [key, value] = entry;
+                            if (value === true) {
+                                let c = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+                                c.setAttribute('id', key);
+                                c.setAttribute('x', (elements.cx[key] - (config.elements.style.rect_width / 2)).toString());
+                                c.setAttribute('y', (elements.cy[key] - (config.elements.style.rect_height / 2)).toString());
+                                c.setAttribute('width', config.elements.style.rect_width);
+                                c.setAttribute('height', config.elements.style.rect_height);
+                                c.setAttribute('class', 'all_elm');
+                                c.setAttribute('rx', config.elements.style.rect_corner);
+                                $(c).insertAfter("#placeholder");
+                            }
+                        });
+                    }
+                    break;
             }
         });
-        // Circle
-        Object.entries(config.circles.style).forEach(entry => {
+
+        // Colors - elements
+        Object.entries(config.elements.color).forEach(entry => {
             const [key, value] = entry;
+            $('#' + key).css("stroke", value);
+        });
+
+        // Colors - Elements Fill
+        Object.entries(config.elements.fill).forEach(entry => {
+            const [key, value] = entry;
+            $('#' + key).css("fill", value ? value : "");
+        });
+
+        // Element
+        Object.entries(config.elements.style).forEach(entry => {
+            const [key, value] = entry;
+            let new_pos = 0;
             switch (key) {
                 case 'size':
-                    $('circle').css("stroke-width", value + "px");
+                    $('circle, rect').css("stroke-width", value + "px");
                     break;
                 case 'shadow':
                     if (value === true) {
-                        $('circle').addClass('shadow');
+                        $('circle, rect').addClass('shadow');
                     } else {
-                        $('circle').removeClass('shadow');
+                        $('circle, rect').removeClass('shadow');
                     }
                     break;
                 case 'shadow_color':
                     $(".shadow").css("-webkit-filter", "drop-shadow(0px 3px 3px " + value);
                     $(".shadow").css("filter", "drop-shadow(0px 3px 3px " + value);
                     break;
-                case 'radius':
+                case 'circle_radius':
                     // If Radius is bigger than Basis of 50px, we need to redraw all elements on the SVG
-                    let new_pos = 0;
-                    if (value > 50) {
-                        new_pos = value - 50;
-                    } else {
-                        new_pos = 50 - value;
+                    if (config.general.type == 'circle') {
+                        new_pos = 0;
+                        if (value > 50) {
+                            new_pos = value - 50;
+                        } else {
+                            new_pos = 50 - value;
+                        }
+                        $('circle, text, .line, .animation').css("translate", "0px " + new_pos + "px");
+                        $(".icon_color").each(function () {
+                            moveIcon(this.id, 0, new_pos);
+                        });
                     }
-                    $('circle, text, .line, .animation').css("translate", "0px " + new_pos + "px");
-                    $('circle').attr("r", value);
+                    break;
+                case 'rect_height':
+                    if (config.general.type == 'rect') {
+                        new_pos = 0;
+                        if (value > 100) {
+                            new_pos = value - 100;
+                        } else {
+                            new_pos = 100 - value;
+                        }
+                        $('rect, text, .line, .animation').css("translate", "0px " + new_pos + "px");
+                        $(".icon_color").each(function () {
+                            moveIcon(this.id, 0, new_pos);
+                        });
+                    }
                     break;
             }
         });
@@ -211,8 +303,8 @@ function initConfig(once = false) {
 
         /* Process Elements to be shown */
         /* Visibility */
-        //Circles
-        Object.entries(config.circles.circles).forEach(entry => {
+        // Elements
+        Object.entries(config.elements.elements).forEach(entry => {
             const [key, value] = entry;
             $('#' + key).css("visibility", value ? "visible" : "hidden");
             // If no Circle is displayed, remove the Data as well: Values and Text
@@ -259,13 +351,21 @@ function initConfig(once = false) {
             $('#' + key).parent().css("visibility", value ? "visible" : "hidden");
         });
 
-        // Ran once
-        if (once) {
-            console.log('Applied config successfully!');
-        }
+        let date = new Date().toLocaleString();
+        console.log('Config successfully applied at ' + date + '!');
+
     } catch (error) {
         console.log('Error while updating the Config! ' + error);
     }
+}
+
+function moveIcon(id, x, y) {
+    let coords = {};
+    let matrix = $("#" + id).attr("data-default");
+    let values = matrix.match(/-?[\d\.]+/g);
+    coords.x = parseInt(values[0]);
+    coords.y = parseInt(values[1]);
+    $("#" + id).attr("transform", "translate(" + (coords.x + x) + "," + (coords.y + y) + ")");
 }
 
 function downloadFont(name, url) {
@@ -349,7 +449,7 @@ function updateValues() {
         Object.entries(data.values).forEach(entry => {
             const [key, value] = entry;
             if (key == "car_plugged") {
-                $('#icon_car').css("fill", value ? config.values.color.car_plugged : "");
+                $('#icon_car').css("fill", value ? data.color.car_plugged : "");
             }
             // Show Battery Icon if user has no state for percents
             if (key == 'battery_value' && data.values.battery_percent == null) {
@@ -411,5 +511,15 @@ function updateValues() {
         });
     } catch (error) {
         console.log('Error while updating the Animations!');
+    }
+
+    try {
+        // Colors - Values
+        Object.entries(data.color).forEach(entry => {
+            const [key, value] = entry;
+            $('#' + key).parent().css("fill", value);
+        });
+    } catch (error) {
+        console.log('Error while updating the Colors!');
     }
 }

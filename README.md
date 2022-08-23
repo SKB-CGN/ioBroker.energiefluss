@@ -30,21 +30,23 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 ## Functions (german below)
 **Design:**
 - change the color of each item
+- Elements can be selected (circle or rectangle)
 - Texts inside the circles can be modified
 - %-texts can have different colors as well
 - define different colors for each line
 - define different colors for each animation on the line
 - change thickness of the circles and lines
 - fill the circles with different colors
-- show/hide shadows of the circle
+- show/hide shadows of the elements
 - change radius of the circles
+- change width and height of the rectangle
 - define your own color and opacity for the shadows (rgba supported)
 - change fontfaces of the values and texts (own fonts can be imported)
 - change the font size for label, values and %-texts
 - define a color for the the car icon, if its charging
 - Some Values can have different colors, if their value is zero (consumption, production, grid and battery)
 - Battery icon can be animated while charging or discharging
-- number of animation dots selectable
+- number of animation dots selectable (1-5)
 
 **Technical:**
 - define Datapoints for each circle
@@ -66,37 +68,39 @@ Display is possible via the instance link. This can then also be inserted into a
 
 ## Funktionen
 **Design:**
-- Ã„ndern Sie die Farbe jedes Elements
-- Texte innerhalb der Kreise kÃ¶nnen geÃ¤ndert werden
-- %-Texte kÃ¶nnen auch andere Farben haben
-- Definieren Sie verschiedene Farben fÃ¼r jede Linie
-- verschiedene Farben fÃ¼r jede Animation auf der Linie definieren
-- Dicke der Kreise und Linien Ã¤ndern
-- FÃ¼lle die Kreise mit verschiedenen Farben
-- Schatten des Kreises ein-/ausblenden
+- Ändern Sie die Farbe jedes Elements
+- Elemente können ausgewählt werden (Kreis oder Rechteck)
+- Texte innerhalb der Elemente können geändert werden
+- %-Texte können auch andere Farben haben
+- Definieren Sie verschiedene Farben für jede Linie
+- verschiedene Farben für jede Animation auf der Linie definieren
+- Dicke der Elemente und Linien änderbar
+- Fülle die Elemente mit verschiedenen Farben
+- Schatten des Elemente ein-/ausblenden
 - Radius des Kreises anpassbar
-- Definieren Sie Ihre eigene Farbe und Deckkraft fÃ¼r die Schatten (rgba-unterstÃ¼tzt)
-- Schriftarten der Werte und Texte Ã¤ndern (eigene Schriftarten kÃ¶nnen importiert werden)
-- Ã„ndern Sie die SchriftgrÃ¶ÃŸe fÃ¼r Label, Werte und %-Texte
-- Definieren Sie eine Farbe fÃ¼r das Autosymbol, wenn es geladen wird
-- Einige Werte kÃ¶nnen unterschiedliche Farben haben, wenn ihr Wert Null ist (Verbrauch, Produktion, Netz und Batterie)
+- Höhe und Breite des Rechtecks anpassbar
+- Definieren Sie Ihre eigene Farbe und Deckkraft für die Schatten (rgba-unterstützt)
+- Schriftarten der Werte und Texte ändern (eigene Schriftarten können importiert werden)
+- Ändern Sie die Schriftgröße für Label, Werte und %-Texte
+- Definieren Sie eine Farbe für das Autosymbol, wenn es geladen wird
+- Einige Werte können unterschiedliche Farben haben, wenn ihr Wert Null ist (Verbrauch, Produktion, Netz und Batterie)
 - Batterie-Icon kann beim Laden und Entladen animiert werden
-- Anzahl der animierten Punkte auf der Linie auswï¿½hlbar
+- Anzahl der animierten Punkte auf der Linie auswählbar (1-5)
 
 **Technisch:**
-- Datenpunkte fÃ¼r jeden Kreis definieren
+- Datenpunkte für jedes Element definieren
 - Batterieprozentsatz innerhalb des Auto- oder Batteriekreises anzeigen
-- unterschiedliche ZustÃ¤nde fÃ¼r Einspeisung oder Bezug aus dem Netz verwenden
-- Einstellungen umkehren, wenn Ihre Werte negativ sind (fÃ¼r Verbrauch, Netzeinspeisung, Laden-/Entladen der Batterie)
-- Verwenden Sie positive oder negative Werte fÃ¼r den Verbrauch
-- Berechnen Sie Ihren Verbrauch Ã¼ber Erzeugung und Netzeinspeisung, wenn Sie keinen StromzÃ¤hler haben
-- Verwenden Sie verschiedene ZustÃ¤nde fÃ¼r Ihre Batterie
-- FÃ¼gen Sie 4 eigene Kreise fÃ¼r ein VerbrauchsgerÃ¤t mit unterschiedlichem Text, Werten und Symbolen hinzu
+- unterschiedliche ZustÃ¤nde für Einspeisung oder Bezug aus dem Netz verwenden
+- Einstellungen umkehren, wenn Ihre Werte negativ sind (für Verbrauch, Netzeinspeisung, Laden-/Entladen der Batterie)
+- Verwenden Sie positive oder negative Werte für den Verbrauch
+- Berechnen Sie Ihren Verbrauch über Erzeugung und Netzeinspeisung, wenn Sie keinen Stromzähler haben
+- Verwenden Sie verschiedene Zustände für Ihre Batterie
+- Fügen Sie 4 eigene Kreise für ein Verbrauchsgerät mit unterschiedlichem Text, Werten und Symbolen hinzu
 - Alle Werte von W in kW umrechnen
-- WÃ¤hlen Sie, wie viele Dezimalstellen Sie anzeigen mÃ¶chten (0, 1, 2) - fÃ¼r Werte und Akkuladung
-- WÃ¤hlen Sie die Einheit (Freitext)
+- Wählen Sie, wie viele Dezimalstellen Sie anzeigen möchten (0, 1, 2) - für Werte und Akkuladung
+- Wählen Sie die Einheit (Freitext)
 - Ziehen Sie den Verbrauch des Autos und der ZusatzgerÃ¤te vom Verbrauch im Haus ab
-- Alle Datenpunkte kÃ¶nnen Ã¼ber den Objekt-Browser ausgewÃ¤hlt werden
+- Alle Datenpunkte können über den Objekt-Browser ausgewÃ¤hlt werden
 
 ## Implementierung
 Anzeige ist über den Instanz Link möglich. Dieser kann dann auch in ein iFrame oder HTML Widget eingefügt werden.
@@ -106,6 +110,15 @@ Anzeige ist über den Instanz Link möglich. Dieser kann dann auch in ein iFrame o
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+- Threshold for the user-defined elements was not always adopted
+- Increased number of animation points to 5
+- If consumption is negative, this was not displayed
+- Elements can now be selected (rectangle or circle)
+- Data point load reduced by 90%, as the configuration is now only loaded when it starts or changes (previously when the values changed)
+- Icons are realigned when resizing the element
+- Cleaned up the admin interface
+
 ### 1.0.1 (2022-08-19)
 - cleaned up Admin-Interface
 - possible, to choose objects via Object-Browser

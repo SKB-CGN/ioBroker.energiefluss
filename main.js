@@ -42,7 +42,8 @@ let valuesObj = {};
 let dataObj = {
 	values: {},
 	animations: {},
-	battery_animation: {}
+	battery_animation: {},
+	color: {}
 };
 let configObj = {};
 let subscribeArray = new Array();
@@ -53,8 +54,8 @@ let parameterObj = {
 		color: {},
 		animation_colors: {}
 	},
-	circles: {
-		circles: {},
+	elements: {
+		elements: {},
 		style: {},
 		fill: {},
 		color: {}
@@ -67,8 +68,7 @@ let parameterObj = {
 		labels: {}
 	},
 	values: {
-		values: {},
-		color: {}
+		values: {}
 	},
 	custom_symbol: {}
 };
@@ -187,24 +187,8 @@ class Energiefluss extends utils.Adapter {
 			await this.deleteStateAsync('HTML');
 
 			/* Build Parameter */
-			// Colors of the values
-			parameterObj.values.color = {
-				consumption_value: this.config.color_house_text,
-				grid_value: this.config.color_grid_text,
-				production_value: this.config.color_production_text,
-				car_value: this.config.color_car_text,
-				car_plugged: this.config.color_car_plugged,
-				car_percent: this.config.color_car_percent,
-				battery_value: this.config.color_battery_text,
-				battery_percent: this.config.color_battery_percent,
-				custom0_value: this.config.color_custom0_text,
-				custom1_value: this.config.color_custom1_text,
-				custom2_value: this.config.color_custom2_text,
-				custom3_value: this.config.color_custom3_text
-			}
-
 			// Colors of the circles
-			parameterObj.circles.color = {
+			parameterObj.elements.color = {
 				house: this.config.color_house,
 				grid: this.config.color_grid,
 				production: this.config.color_production,
@@ -217,7 +201,7 @@ class Energiefluss extends utils.Adapter {
 			}
 
 			// Fills of the Circles
-			parameterObj.circles.fill = {
+			parameterObj.elements.fill = {
 				house: this.config.fill_color_house,
 				grid: this.config.fill_color_grid,
 				production: this.config.fill_color_production,
@@ -305,12 +289,16 @@ class Energiefluss extends utils.Adapter {
 			parameterObj.general.no_battery = false;
 			parameterObj.general.unit = unit;
 			parameterObj.general.battery_animation = this.config.battery_animation;
+			parameterObj.general.type = this.config.element_type;
 
-			// Circle - Style
-			parameterObj.circles.style.size = this.config.circle_size || 2;
-			parameterObj.circles.style.radius = this.config.circle_radius || 50;
-			parameterObj.circles.style.shadow = this.config.circle_shadow;
-			parameterObj.circles.style.shadow_color = this.config.circle_shadow_color;
+			// Element - Style
+			parameterObj.elements.style.size = this.config.element_size || 2;
+			parameterObj.elements.style.circle_radius = this.config.circle_radius || 50;
+			parameterObj.elements.style.shadow = this.config.element_shadow;
+			parameterObj.elements.style.shadow_color = this.config.element_shadow_color;
+			parameterObj.elements.style.rect_height = this.config.rect_height;
+			parameterObj.elements.style.rect_width = this.config.rect_width;
+			parameterObj.elements.style.rect_corner = this.config.rect_corner;
 
 			// buildDataJSON will add some more details to the object
 
@@ -322,6 +310,9 @@ class Energiefluss extends utils.Adapter {
 			// this.subscribeStates("*");
 			this.log.info("Adapter started and listening to " + subscribeArray.length + " States");
 			this.log.debug("Initial Values: " + JSON.stringify(valuesObj));
+
+			// Build the Configuration JSON
+			this.buildConfigJSON();
 		} else {
 			this.log.warn("No production datapoint set");
 		}
@@ -388,7 +379,7 @@ class Energiefluss extends utils.Adapter {
 				if (consumption_reverse) {
 					consumption = consumption * (-1);
 				}
-				valuesObj['consumption'] = state.val;
+				valuesObj['consumption'] = consumption;
 			}
 			if (id == grid_feed) {
 				valuesObj['grid_feed'] = state.val;
@@ -499,12 +490,9 @@ class Energiefluss extends utils.Adapter {
 		return tmpObj;
 	}
 
-	async buildDataJSON() {
-		// Reset Battery Animation
-		dataObj.battery_animation.direction = 'none';
-		let dataValueObj = {};
-		// Circles - init as false
-		let circlesObj = {
+	async buildConfigJSON() {
+		// Elements - init as false
+		let elementsObj = {
 			house: false,
 			production: false,
 			grid: false,
@@ -572,365 +560,111 @@ class Energiefluss extends utils.Adapter {
 			house_to_custom3: false,
 		};
 
-		// Line-Animation
-		let line_animation = {
-			solar_to_house: false,
-			grid_to_house: false,
-			solar_to_grid: false,
-			house_to_car: false,
-			grid_to_battery: false,
-			solar_to_battery: false,
-			battery_to_house: false,
-			house_to_custom0: false,
-			house_to_custom1: false,
-			house_to_custom2: false,
-			house_to_custom3: false,
-		};
-
 		// Change CSS if no battery is present
 		if ((valuesObj['battery_charge'] === undefined || valuesObj['battery_discharge'] === undefined && battery_different) && valuesObj['battery_percent'] === undefined) {
 			parameterObj.general.no_battery = true;
 		}
+
 		// Consumption
 		if (valuesObj['consumption'] != undefined) {
-			circlesObj.house = true;
+			elementsObj.house = true;
 			textObj.consumption_text = true;
 			valueObj.consumption_value = true;
 			iconObj.house = true;
-
-			dataValueObj.consumption_value = recalculate ? this.recalculateValue(valuesObj['consumption']) : this.floorNumber(valuesObj['consumption']);
-
-			if (valuesObj['consumption'] > threshold) {
-				parameterObj.values.color.consumption_value = this.config.color_house_text;
-			} else {
-				parameterObj.values.color.consumption_value = this.config.color_house_text_no_prod;
-			}
 		}
 
 		// Production
 		if (valuesObj['production'] != undefined) {
-			if (valuesObj['consumption'] > threshold && valuesObj['production'] > threshold) {
-				line_animation.solar_to_house = true;
-			}
-			circlesObj.production = true;
+			elementsObj.production = true;
 			textObj.production_text = true;
 			valueObj.production_value = true;
 			iconObj.production = true;
-
-			dataValueObj.production_value = recalculate ? this.recalculateValue(valuesObj['production']) : this.floorNumber(valuesObj['production']);
-
-			if (valuesObj['production'] > threshold) {
-				parameterObj.values.color.production_value = this.config.color_production_text;
-			} else {
-				parameterObj.values.color.production_value = this.config.color_production_text_no_prod ? this.config.color_production_text_no_prod : this.config.color_production_text;
-			}
 		}
 
 		// Grid
 		if (valuesObj['grid_feed'] != undefined && grid_different === false) {
-			let gridValue = valuesObj['grid_feed'];
-			if (grid_reverse) {
-				if (gridValue > threshold) {
-					line_animation.grid_to_house = true;
-				}
-				if (gridValue < (threshold * -1)) {
-					// Display as positive
-					gridValue = gridValue * -1;
-					line_animation.solar_to_grid = true;
-				}
-			} else {
-				if (gridValue > threshold) {
-					line_animation.solar_to_grid = true;
-				}
-				if (gridValue < (threshold * -1)) {
-					// Display as positive
-					gridValue = gridValue * -1;
-					line_animation.grid_to_house = true;
-				}
-			}
-			circlesObj.grid = true;
+			elementsObj.grid = true;
 			textObj.grid_text = true;
 			valueObj.grid_value = true;
 			iconObj.grid = true;
-
-			if (gridValue > threshold) {
-				dataValueObj.grid_value = recalculate ? this.recalculateValue(gridValue) : this.floorNumber(gridValue);
-			} else {
-				dataValueObj.grid_value = this.floorNumber(0);
-			}
-
-			if (gridValue > threshold) {
-				parameterObj.values.color.grid_value = this.config.color_grid_text;
-			} else {
-				parameterObj.values.color.grid_value = this.config.color_grid_text_no_prod ? this.config.color_grid_text_no_prod : this.config.color_grid_text;
-			}
 		}
 
 		// User has defined to used different States for consuming from and feeding to the grid
 		if (grid_different === true) {
-			let gridConsumeValue = valuesObj['grid_consuming'];
-			let gridFeedValue = valuesObj['grid_feed'];
-			let gridValue = 0;
-
-			if (gridConsumeValue > threshold && gridFeedValue === 0) {
-				line_animation.grid_to_house = true;
-				gridValue = gridConsumeValue;
-			}
-
-			if (gridFeedValue > threshold && gridConsumeValue === 0) {
-				line_animation.solar_to_grid = true;
-				gridValue = gridFeedValue;
-			}
-
-			circlesObj.grid = true;
+			elementsObj.grid = true;
 			textObj.grid_text = true;
 			valueObj.grid_value = true;
 			iconObj.grid = true;
-
-			dataValueObj.grid_value = recalculate ? this.recalculateValue(gridValue) : this.floorNumber(gridValue);
-
-			if (gridValue > threshold) {
-				parameterObj.values.color.grid_value = this.config.color_grid_text;
-			} else {
-				parameterObj.values.color.grid_value = this.config.color_grid_text_no_prod ? this.config.color_grid_text_no_prod : this.config.color_grid_text;
-			}
 		}
 
 		// Car charge
 		if (valuesObj['car_charge'] != undefined) {
-			if (valuesObj['car_charge'] > threshold) {
-				line_animation.house_to_car = true;
-			}
-			if (valuesObj['car_charge'] > threshold || valuesObj['car_plugged']) {
-				dataValueObj.car_plugged = true;
-			}
-			circlesObj.car = true;
+			elementsObj.car = true;
 			textObj.car_text = true;
 			valueObj.car_value = true;
 			iconObj.car = true;
-
-			dataValueObj.car_value = recalculate ? this.recalculateValue(valuesObj['car_charge']) : this.floorNumber(valuesObj['car_charge']);
 		}
 
 		if (valuesObj['car_percent'] != undefined) {
 			valueObj.car_percent = true;
-			dataValueObj.car_percent = valuesObj['car_percent'];
 		}
 
 		if (valuesObj['car_charge'] != undefined && valuesObj['consumption'] === undefined) {
-			if (valuesObj['car_charge'] > threshold) {
-				line_animation.house_to_car = true;
-			}
-			circlesObj.house = true;
+			elementsObj.house = true;
 		}
 
 		// Battery Charge
 		if (valuesObj['battery_charge'] != undefined && battery_different === false) {
-			let batteryValue = valuesObj['battery_charge'];
-			if (battery_reverse) {
-				if (batteryValue > threshold) {
-					line_animation.battery_to_house = true;
-					dataObj.battery_animation.direction = 'discharge';
-				}
-				if (batteryValue < (threshold * -1)) {
-					// Display as positive
-					batteryValue = batteryValue * -1;
-					line_animation.solar_to_battery = true;
-					dataObj.battery_animation.direction = 'charge';
-				}
-			} else {
-				if (batteryValue > threshold) {
-					line_animation.solar_to_battery = true;
-					dataObj.battery_animation.direction = 'charge';
-				}
-				if (batteryValue < (threshold * -1)) {
-					// Display as positive
-					batteryValue = batteryValue * -1;
-					line_animation.battery_to_house = true;
-					dataObj.battery_animation.direction = 'discharge';
-				}
-			}
-
-			circlesObj.battery = true;
+			elementsObj.battery = true;
 			textObj.battery_text = true;
 			valueObj.battery_value = true;
 			iconObj.battery = true;
-
-			dataValueObj.battery_value = recalculate ? this.recalculateValue(batteryValue) : this.floorNumber(batteryValue);
-
-			if (batteryValue > threshold) {
-				parameterObj.values.color.battery_value = this.config.color_battery_text;
-			} else {
-				parameterObj.values.color.battery_value = this.config.color_battery_text_no_prod ? this.config.color_battery_text_no_prod : this.config.color_battery_text;
-			}
 		}
 
 		// User has defined to used different States for charging and discharging the battery
 		if (battery_different === true) {
-			let batteryChargeValue = valuesObj['battery_charge'];
-			let batteryDischargeValue = valuesObj['battery_discharge'];
-			let batteryValue = 0;
-
-			if (batteryChargeValue > threshold && batteryDischargeValue === 0) {
-				line_animation.solar_to_battery = true;
-				batteryValue = batteryChargeValue;
-				dataObj.battery_animation.direction = 'charge';
-			}
-
-			if (batteryDischargeValue > threshold && batteryChargeValue === 0) {
-				line_animation.battery_to_house = true;
-				batteryValue = batteryDischargeValue;
-				dataObj.battery_animation.direction = 'discharge';
-			}
-
-			circlesObj.battery = true;
+			elementsObj.battery = true;
 			textObj.battery_text = true;
 			valueObj.battery_value = true;
 			iconObj.battery = true;
-
-			dataValueObj.battery_value = recalculate ? this.recalculateValue(batteryValue) : this.floorNumber(batteryValue);
-
-			if (batteryValue > threshold) {
-				parameterObj.values.color.battery_value = this.config.color_battery_text;
-			} else {
-				parameterObj.values.color.battery_value = this.config.color_battery_text_no_prod ? this.config.color_battery_text_no_prod : this.config.color_battery_text;
-			}
 		}
 
 		// Battery percent
 		if (valuesObj['battery_percent'] != undefined && valuesObj['battery_charge'] != undefined) {
 			valueObj.battery_percent = true;
-			dataValueObj.battery_percent = valuesObj['battery_percent'];
 		}
 
 		// Custom Circle - 0
 		if (valuesObj['custom0'] != undefined) {
-			circlesObj.custom0 = true;
+			elementsObj.custom0 = true;
 			textObj.custom0_text = true;
 			valueObj.custom0_value = true;
 			iconObj.custom0 = true;
-			if (valuesObj['custom0'] > 0) {
-				line_animation.house_to_custom0 = true;
-			}
-
-			dataValueObj.custom0_value = recalculate ? this.recalculateValue(valuesObj['custom0']) : this.floorNumber(valuesObj['custom0']);
-
-			if (valuesObj['custom0'] > threshold) {
-				parameterObj.values.color.custom0_value = this.config.color_custom0_text;
-			} else {
-				parameterObj.values.color.custom0_value = this.config.color_custom0_text_no_prod ? this.config.color_custom0_text_no_prod : this.config.color_custom0_text;
-			}
 		}
 
 		// Custom Circle - 1
 		if (valuesObj['custom1'] != undefined) {
-			circlesObj.custom1 = true;
+			elementsObj.custom1 = true;
 			textObj.custom1_text = true;
 			valueObj.custom1_value = true;
 			iconObj.custom1 = true;
-			if (valuesObj['custom1'] > 0) {
-				line_animation.house_to_custom1 = true;
-			}
-
-			dataValueObj.custom1_value = recalculate ? this.recalculateValue(valuesObj['custom1']) : this.floorNumber(valuesObj['custom1']);
-
-			if (valuesObj['custom1'] > threshold) {
-				parameterObj.values.color.custom1_value = this.config.color_custom1_text;
-			} else {
-				parameterObj.values.color.custom1_value = this.config.color_custom1_text_no_prod ? this.config.color_custom1_text_no_prod : this.config.color_custom1_text;
-			}
 		}
 
 		// Custom Circle - 2
 		if (valuesObj['custom2'] != undefined) {
-			circlesObj.custom2 = true;
+			elementsObj.custom2 = true;
 			textObj.custom2_text = true;
 			valueObj.custom2_value = true;
 			iconObj.custom2 = true;
-			if (valuesObj['custom2'] > 0) {
-				line_animation.house_to_custom2 = true;
-			}
-
-			dataValueObj.custom2_value = recalculate ? this.recalculateValue(valuesObj['custom2']) : this.floorNumber(valuesObj['custom2']);
-
-			if (valuesObj['custom2'] > threshold) {
-				parameterObj.values.color.custom2_value = this.config.color_custom2_text;
-			} else {
-				parameterObj.values.color.custom2_value = this.config.color_custom2_text_no_prod ? this.config.color_custom2_text_no_prod : this.config.color_custom2_text;
-			}
 		}
 
 		// Custom Circle - 3
 		if (valuesObj['custom3'] != undefined) {
-			circlesObj.custom3 = true;
+			elementsObj.custom3 = true;
 			textObj.custom3_text = true;
 			valueObj.custom3_value = true;
 			iconObj.custom3 = true;
-			if (valuesObj['custom3'] > 0) {
-				line_animation.house_to_custom3 = true;
-			}
-
-			dataValueObj.custom3_value = recalculate ? this.recalculateValue(valuesObj['custom3']) : this.floorNumber(valuesObj['custom3']);
-
-			if (valuesObj['custom3'] > threshold) {
-				parameterObj.values.color.custom3_value = this.config.color_custom3_text;
-			} else {
-				parameterObj.values.color.custom3_value = this.config.color_custom3_text_no_prod ? this.config.color_custom3_text_no_prod : this.config.color_custom3_text;
-			}
 		}
-
-		// Battery substraction from Consumption
-		if (calculate_consumption) {
-			// Check, which direction we have
-			let tmpValue = parseFloat(dataValueObj.consumption_value);
-
-			// Fallback if no charging
-			let tmpResult = tmpValue;
-
-			if (dataObj.battery_animation.direction == 'charge') {
-				tmpResult = tmpValue - parseFloat(dataValueObj.battery_value);
-			}
-
-			if (dataObj.battery_animation.direction == 'discharge') {
-				tmpResult = tmpValue + parseFloat(dataValueObj.battery_value);
-			}
-
-			// Set the Value
-			dataValueObj.consumption_value = tmpResult;
-		}
-
-		// House netto - Reduce House consumption with Custom-Circle and Car-Charge
-		if (house_netto) {
-			let tmpValue = parseFloat(dataValueObj.consumption_value);
-			let tmpResult = tmpValue;
-
-			if (dataValueObj.car_value) {
-				tmpResult = tmpValue - parseFloat(dataValueObj.car_value);
-			}
-
-			if (dataValueObj.custom0_value0) {
-				tmpResult = tmpResult - parseFloat(dataValueObj.custom0_value);
-			}
-			if (dataValueObj.custom1_value) {
-				tmpResult = tmpResult - parseFloat(dataValueObj.custom1_value);
-			}
-			if (dataValueObj.custom2_value) {
-				tmpResult = tmpResult - parseFloat(dataValueObj.custom2_value);
-			}
-			if (dataValueObj.custom3_value) {
-				tmpResult = tmpResult - parseFloat(dataValueObj.custom3_value);
-			}
-
-			// Set the Value
-			dataValueObj.consumption_value = tmpResult;
-		}
-
-		// After the things are done, we need to recalculate the consumption
-
-		if (house_netto || calculate_consumption) {
-			dataValueObj.consumption_value = this.floorNumber(dataValueObj.consumption_value);
-		}
-
 
 		/* Build all lines */
 		if (valuesObj['production'] != undefined && valuesObj['consumption'] != undefined) {
@@ -968,19 +702,331 @@ class Energiefluss extends utils.Adapter {
 		}
 
 		// Build the Parameters to be read inside Javascript on Webpage - called once
-		//JSON.parse(JSON.stringify(Object.assign({}, iconArray)));
-		parameterObj.circles.circles = circlesObj;
+		parameterObj.elements.elements = elementsObj;
 		parameterObj.icons = iconObj;
 		parameterObj.lines.lines = linesObj;
 		parameterObj.texts.texts = textObj;
 		parameterObj.values.values = valueObj;
 
+		await this.setStateAsync("configuration", JSON.stringify(parameterObj), true);
+	}
+
+	async buildDataJSON() {
+		// Reset Battery Animation
+		dataObj.battery_animation.direction = 'none';
+		let values = {};
+
+		// Colors of the values
+		let color = {
+			consumption_value: this.config.color_house_text,
+			grid_value: this.config.color_grid_text,
+			production_value: this.config.color_production_text,
+			car_value: this.config.color_car_text,
+			car_plugged: this.config.color_car_plugged,
+			car_percent: this.config.color_car_percent,
+			battery_value: this.config.color_battery_text,
+			battery_percent: this.config.color_battery_percent,
+			custom0_value: this.config.color_custom0_text,
+			custom1_value: this.config.color_custom1_text,
+			custom2_value: this.config.color_custom2_text,
+			custom3_value: this.config.color_custom3_text
+		}
+
+		// Line-Animation
+		let line_animation = {
+			solar_to_house: false,
+			grid_to_house: false,
+			solar_to_grid: false,
+			house_to_car: false,
+			grid_to_battery: false,
+			solar_to_battery: false,
+			battery_to_house: false,
+			house_to_custom0: false,
+			house_to_custom1: false,
+			house_to_custom2: false,
+			house_to_custom3: false,
+		};
+
+
+		// Consumption
+		if (valuesObj['consumption'] != undefined) {
+			if (valuesObj['consumption'] > threshold) {
+				color.consumption_value = this.config.color_house_text;
+				values.consumption_value = recalculate ? this.recalculateValue(valuesObj['consumption']) : this.floorNumber(valuesObj['consumption']);
+			} else {
+				color.consumption_value = this.config.color_house_text_no_prod ? this.config.color_house_text_no_prod : this.config.color_house_text;
+				values.consumption_value = this.floorNumber(0);
+			}
+		}
+
+		// Production
+		if (valuesObj['production'] != undefined) {
+			if (valuesObj['consumption'] > threshold && valuesObj['production'] > threshold) {
+				line_animation.solar_to_house = true;
+			}
+
+			if (valuesObj['production'] > threshold) {
+				color.production_value = this.config.color_production_text;
+				values.production_value = recalculate ? this.recalculateValue(valuesObj['production']) : this.floorNumber(valuesObj['production']);
+			} else {
+				color.production_value = this.config.color_production_text_no_prod ? this.config.color_production_text_no_prod : this.config.color_production_text;
+				values.production_value = this.floorNumber(0);
+			}
+		}
+
+		// Grid
+		if (valuesObj['grid_feed'] != undefined && grid_different === false) {
+			let gridValue = valuesObj['grid_feed'];
+			if (grid_reverse) {
+				if (gridValue > threshold) {
+					line_animation.grid_to_house = true;
+				}
+				if (gridValue < (threshold * -1)) {
+					// Display as positive
+					gridValue = gridValue * -1;
+					line_animation.solar_to_grid = true;
+				}
+			} else {
+				if (gridValue > threshold) {
+					line_animation.solar_to_grid = true;
+				}
+				if (gridValue < (threshold * -1)) {
+					// Display as positive
+					gridValue = gridValue * -1;
+					line_animation.grid_to_house = true;
+				}
+			}
+
+			if (gridValue > threshold) {
+				color.grid_value = this.config.color_grid_text;
+				values.grid_value = recalculate ? this.recalculateValue(gridValue) : this.floorNumber(gridValue);
+			} else {
+				color.grid_value = this.config.color_grid_text_no_prod ? this.config.color_grid_text_no_prod : this.config.color_grid_text;
+				values.grid_value = this.floorNumber(0);
+			}
+		}
+
+		// User has defined to used different States for consuming from and feeding to the grid
+		if (grid_different === true) {
+			let gridConsumeValue = valuesObj['grid_consuming'];
+			let gridFeedValue = valuesObj['grid_feed'];
+			let gridValue = 0;
+
+			if (gridConsumeValue > threshold && gridFeedValue === 0) {
+				line_animation.grid_to_house = true;
+				gridValue = gridConsumeValue;
+			}
+
+			if (gridFeedValue > threshold && gridConsumeValue === 0) {
+				line_animation.solar_to_grid = true;
+				gridValue = gridFeedValue;
+			}
+
+			if (gridValue > threshold) {
+				color.grid_value = this.config.color_grid_text;
+				values.grid_value = recalculate ? this.recalculateValue(gridValue) : this.floorNumber(gridValue);
+			} else {
+				color.grid_value = this.config.color_grid_text_no_prod ? this.config.color_grid_text_no_prod : this.config.color_grid_text;
+				values.grid_value = this.floorNumber(0);
+			}
+		}
+
+		// Car charge
+		if (valuesObj['car_charge'] != undefined) {
+			if (valuesObj['car_charge'] > threshold) {
+				line_animation.house_to_car = true;
+			}
+			if (valuesObj['car_charge'] > threshold || valuesObj['car_plugged']) {
+				values.car_plugged = true;
+			}
+
+			values.car_value = recalculate ? this.recalculateValue(valuesObj['car_charge']) : this.floorNumber(valuesObj['car_charge']);
+		}
+
+		if (valuesObj['car_percent'] != undefined) {
+			values.car_percent = valuesObj['car_percent'];
+		}
+
+		if (valuesObj['car_charge'] != undefined && valuesObj['consumption'] === undefined) {
+			if (valuesObj['car_charge'] > threshold) {
+				line_animation.house_to_car = true;
+			}
+		}
+
+		// Battery Charge
+		if (valuesObj['battery_charge'] != undefined && battery_different === false) {
+			let batteryValue = valuesObj['battery_charge'];
+			if (battery_reverse) {
+				if (batteryValue > threshold) {
+					line_animation.battery_to_house = true;
+					dataObj.battery_animation.direction = 'discharge';
+				}
+				if (batteryValue < (threshold * -1)) {
+					// Display as positive
+					batteryValue = batteryValue * -1;
+					line_animation.solar_to_battery = true;
+					dataObj.battery_animation.direction = 'charge';
+				}
+			} else {
+				if (batteryValue > threshold) {
+					line_animation.solar_to_battery = true;
+					dataObj.battery_animation.direction = 'charge';
+				}
+				if (batteryValue < (threshold * -1)) {
+					// Display as positive
+					batteryValue = batteryValue * -1;
+					line_animation.battery_to_house = true;
+					dataObj.battery_animation.direction = 'discharge';
+				}
+			}
+
+			if (batteryValue > threshold) {
+				color.battery_value = this.config.color_battery_text;
+				values.battery_value = recalculate ? this.recalculateValue(batteryValue) : this.floorNumber(batteryValue);
+			} else {
+				color.battery_value = this.config.color_battery_text_no_prod ? this.config.color_battery_text_no_prod : this.config.color_battery_text;
+				values.battery_value = this.floorNumber(0);
+			}
+		}
+
+		// User has defined to used different States for charging and discharging the battery
+		if (battery_different === true) {
+			let batteryChargeValue = valuesObj['battery_charge'];
+			let batteryDischargeValue = valuesObj['battery_discharge'];
+			let batteryValue = 0;
+
+			if (batteryChargeValue > threshold && batteryDischargeValue === 0) {
+				line_animation.solar_to_battery = true;
+				batteryValue = batteryChargeValue;
+				dataObj.battery_animation.direction = 'charge';
+			}
+
+			if (batteryDischargeValue > threshold && batteryChargeValue === 0) {
+				line_animation.battery_to_house = true;
+				batteryValue = batteryDischargeValue;
+				dataObj.battery_animation.direction = 'discharge';
+			}
+
+			if (batteryValue > threshold) {
+				color.battery_value = this.config.color_battery_text;
+				values.battery_value = recalculate ? this.recalculateValue(batteryValue) : this.floorNumber(batteryValue);
+			} else {
+				color.battery_value = this.config.color_battery_text_no_prod ? this.config.color_battery_text_no_prod : this.config.color_battery_text;
+				values.battery_value = this.floorNumber(0);
+			}
+		}
+
+		// Battery percent
+		if (valuesObj['battery_percent'] != undefined && valuesObj['battery_charge'] != undefined) {
+			values.battery_percent = valuesObj['battery_percent'];
+		}
+
+		// Custom Circle - 0
+		if (valuesObj['custom0'] != undefined) {
+			if (valuesObj['custom0'] > threshold) {
+				line_animation.house_to_custom0 = true;
+				color.custom0_value = this.config.color_custom0_text;
+				values.custom0_value = recalculate ? this.recalculateValue(valuesObj['custom0']) : this.floorNumber(valuesObj['custom0']);
+			} else {
+				color.custom0_value = this.config.color_custom0_text_no_prod ? this.config.color_custom0_text_no_prod : this.config.color_custom0_text;
+				values.custom0_value = this.floorNumber(0);
+			}
+		}
+
+		// Custom Circle - 1
+		if (valuesObj['custom1'] != undefined) {
+			if (valuesObj['custom1'] > threshold) {
+				line_animation.house_to_custom1 = true;
+				color.custom1_value = this.config.color_custom1_text;
+				values.custom1_value = recalculate ? this.recalculateValue(valuesObj['custom1']) : this.floorNumber(valuesObj['custom1']);
+			} else {
+				color.custom1_value = this.config.color_custom1_text_no_prod ? this.config.color_custom1_text_no_prod : this.config.color_custom1_text;
+				values.custom1_value = this.floorNumber(0);
+			}
+		}
+
+		// Custom Circle - 2
+		if (valuesObj['custom2'] != undefined) {
+			if (valuesObj['custom2'] > threshold) {
+				line_animation.house_to_custom2 = true;
+				color.custom2_value = this.config.color_custom2_text;
+				values.custom2_value = recalculate ? this.recalculateValue(valuesObj['custom2']) : this.floorNumber(valuesObj['custom2']);
+			} else {
+				color.custom2_value = this.config.color_custom2_text_no_prod ? this.config.color_custom2_text_no_prod : this.config.color_custom2_text;
+				values.custom2_value = this.floorNumber(0);
+			}
+		}
+
+		// Custom Circle - 3
+		if (valuesObj['custom3'] != undefined) {
+			if (valuesObj['custom3'] > threshold) {
+				line_animation.house_to_custom3 = true;
+				color.custom3_value = this.config.color_custom3_text;
+				values.custom3_value = recalculate ? this.recalculateValue(valuesObj['custom3']) : this.floorNumber(valuesObj['custom3']);
+			} else {
+				color.custom3_value = this.config.color_custom3_text_no_prod ? this.config.color_custom3_text_no_prod : this.config.color_custom3_text;
+				values.custom3_value = this.floorNumber(0);
+			}
+		}
+
+		// Battery substraction from Consumption
+		if (calculate_consumption) {
+			// Check, which direction we have
+			let tmpValue = parseFloat(values.consumption_value);
+
+			// Fallback if no charging
+			let tmpResult = tmpValue;
+
+			if (dataObj.battery_animation.direction == 'charge') {
+				tmpResult = tmpValue - parseFloat(values.battery_value);
+			}
+
+			if (dataObj.battery_animation.direction == 'discharge') {
+				tmpResult = tmpValue + parseFloat(values.battery_value);
+			}
+
+			// Set the Value
+			values.consumption_value = tmpResult;
+		}
+
+		// House netto - Reduce House consumption with Custom-Circle and Car-Charge
+		if (house_netto) {
+			let tmpValue = parseFloat(values.consumption_value);
+			let tmpResult = tmpValue;
+
+			if (values.car_value) {
+				tmpResult = tmpValue - parseFloat(values.car_value);
+			}
+
+			if (values.custom0_value0) {
+				tmpResult = tmpResult - parseFloat(values.custom0_value);
+			}
+			if (values.custom1_value) {
+				tmpResult = tmpResult - parseFloat(values.custom1_value);
+			}
+			if (values.custom2_value) {
+				tmpResult = tmpResult - parseFloat(values.custom2_value);
+			}
+			if (values.custom3_value) {
+				tmpResult = tmpResult - parseFloat(values.custom3_value);
+			}
+
+			// Set the Value
+			values.consumption_value = tmpResult;
+		}
+
+		// After the things are done, we need to recalculate the consumption
+
+		if (house_netto || calculate_consumption) {
+			values.consumption_value = this.floorNumber(values.consumption_value);
+		}
+
 		// Build the Values and Animations to be read inside Javascript - called every time a value changes
-		dataObj.animations = JSON.parse(JSON.stringify(line_animation));
-		dataObj.values = dataValueObj;
+		dataObj.animations = line_animation;
+		dataObj.values = values;
+		dataObj.color = color;
 
 		await this.setStateAsync("data", JSON.stringify(dataObj), true);
-		await this.setStateAsync("configuration", JSON.stringify(parameterObj), true);
 	}
 }
 
