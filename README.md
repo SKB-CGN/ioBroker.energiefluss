@@ -97,8 +97,8 @@ Display is possible via the instance link. This can then also be inserted into a
 - Verwenden Sie verschiedene Zustuende fuer Ihre Batterie
 - Fuegen Sie 4 eigene Kreise fuer ein Verbrauchsgeruet mit unterschiedlichem Text, Werten und Symbolen hinzu
 - Alle Werte von W in kW umrechnen
-- Wuehlen Sie, wie viele Dezimalstellen Sie anzeigen muechten (0, 1, 2) - fuer Werte und Akkuladung
-- Wuehlen Sie die Einheit (Freitext)
+- Waehlen Sie, wie viele Dezimalstellen Sie anzeigen moechten (0, 1, 2) - fuer Werte und Akkuladung
+- Waehlen Sie die Einheit (Freitext)
 - Ziehen Sie den Verbrauch des Autos und der Zusatzgeraete vom Verbrauch im Haus ab
 - Alle Datenpunkte kuennen ueber den Objekt-Browser ausgewaehlt werden
 
