@@ -110,11 +110,13 @@ Anzeige ist ueber den Instanz Link mueglich. Dieser kann dann auch in ein iFrame
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+- If consumption is negative, this was not displayed
+- Elements can now be selected (rectangle or circle)
+
 ### 1.0.4 (2022-08-23)
 - Threshold for the user-defined elements was not always adopted
 - Increased number of animation points to 5
-- If consumption is negative, this was not displayed
-- Elements can now be selected (rectangle or circle)
 
 ### 1.0.2 (2022-08-23)
 - Data point load reduced by 90%, as the configuration is now only loaded when it starts or changes (previously when the values changed)
