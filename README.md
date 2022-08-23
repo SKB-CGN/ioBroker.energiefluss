@@ -68,49 +68,49 @@ Display is possible via the instance link. This can then also be inserted into a
 
 ## Funktionen
 **Design:**
-- Ändern Sie die Farbe jedes Elements
-- Elemente können ausgewählt werden (Kreis oder Rechteck)
-- Texte innerhalb der Elemente können geändert werden
-- %-Texte können auch andere Farben haben
-- Definieren Sie verschiedene Farben für jede Linie
-- verschiedene Farben für jede Animation auf der Linie definieren
-- Dicke der Elemente und Linien änderbar
-- Fülle die Elemente mit verschiedenen Farben
+- ï¿½ndern Sie die Farbe jedes Elements
+- Elemente kï¿½nnen ausgewï¿½hlt werden (Kreis oder Rechteck)
+- Texte innerhalb der Elemente kï¿½nnen geï¿½ndert werden
+- %-Texte kï¿½nnen auch andere Farben haben
+- Definieren Sie verschiedene Farben fï¿½r jede Linie
+- verschiedene Farben fï¿½r jede Animation auf der Linie definieren
+- Dicke der Elemente und Linien ï¿½nderbar
+- Fï¿½lle die Elemente mit verschiedenen Farben
 - Schatten des Elemente ein-/ausblenden
 - Radius des Kreises anpassbar
-- Höhe und Breite des Rechtecks anpassbar
-- Definieren Sie Ihre eigene Farbe und Deckkraft für die Schatten (rgba-unterstützt)
-- Schriftarten der Werte und Texte ändern (eigene Schriftarten können importiert werden)
-- Ändern Sie die Schriftgröße für Label, Werte und %-Texte
-- Definieren Sie eine Farbe für das Autosymbol, wenn es geladen wird
-- Einige Werte können unterschiedliche Farben haben, wenn ihr Wert Null ist (Verbrauch, Produktion, Netz und Batterie)
+- Hï¿½he und Breite des Rechtecks anpassbar
+- Definieren Sie Ihre eigene Farbe und Deckkraft fï¿½r die Schatten (rgba-unterstï¿½tzt)
+- Schriftarten der Werte und Texte ï¿½ndern (eigene Schriftarten kï¿½nnen importiert werden)
+- ï¿½ndern Sie die Schriftgrï¿½ï¿½e fï¿½r Label, Werte und %-Texte
+- Definieren Sie eine Farbe fï¿½r das Autosymbol, wenn es geladen wird
+- Einige Werte kï¿½nnen unterschiedliche Farben haben, wenn ihr Wert Null ist (Verbrauch, Produktion, Netz und Batterie)
 - Batterie-Icon kann beim Laden und Entladen animiert werden
-- Anzahl der animierten Punkte auf der Linie auswählbar (1-5)
+- Anzahl der animierten Punkte auf der Linie auswï¿½hlbar (1-5)
 
 **Technisch:**
-- Datenpunkte für jedes Element definieren
+- Datenpunkte fï¿½r jedes Element definieren
 - Batterieprozentsatz innerhalb des Auto- oder Batteriekreises anzeigen
-- unterschiedliche ZustÃ¤nde für Einspeisung oder Bezug aus dem Netz verwenden
-- Einstellungen umkehren, wenn Ihre Werte negativ sind (für Verbrauch, Netzeinspeisung, Laden-/Entladen der Batterie)
-- Verwenden Sie positive oder negative Werte für den Verbrauch
-- Berechnen Sie Ihren Verbrauch über Erzeugung und Netzeinspeisung, wenn Sie keinen Stromzähler haben
-- Verwenden Sie verschiedene Zustände für Ihre Batterie
-- Fügen Sie 4 eigene Kreise für ein Verbrauchsgerät mit unterschiedlichem Text, Werten und Symbolen hinzu
+- unterschiedliche ZustÃ¤nde fï¿½r Einspeisung oder Bezug aus dem Netz verwenden
+- Einstellungen umkehren, wenn Ihre Werte negativ sind (fï¿½r Verbrauch, Netzeinspeisung, Laden-/Entladen der Batterie)
+- Verwenden Sie positive oder negative Werte fï¿½r den Verbrauch
+- Berechnen Sie Ihren Verbrauch ï¿½ber Erzeugung und Netzeinspeisung, wenn Sie keinen Stromzï¿½hler haben
+- Verwenden Sie verschiedene Zustï¿½nde fï¿½r Ihre Batterie
+- Fï¿½gen Sie 4 eigene Kreise fï¿½r ein Verbrauchsgerï¿½t mit unterschiedlichem Text, Werten und Symbolen hinzu
 - Alle Werte von W in kW umrechnen
-- Wählen Sie, wie viele Dezimalstellen Sie anzeigen möchten (0, 1, 2) - für Werte und Akkuladung
-- Wählen Sie die Einheit (Freitext)
+- Wï¿½hlen Sie, wie viele Dezimalstellen Sie anzeigen mï¿½chten (0, 1, 2) - fï¿½r Werte und Akkuladung
+- Wï¿½hlen Sie die Einheit (Freitext)
 - Ziehen Sie den Verbrauch des Autos und der ZusatzgerÃ¤te vom Verbrauch im Haus ab
-- Alle Datenpunkte können über den Objekt-Browser ausgewÃ¤hlt werden
+- Alle Datenpunkte kï¿½nnen ï¿½ber den Objekt-Browser ausgewÃ¤hlt werden
 
 ## Implementierung
-Anzeige ist über den Instanz Link möglich. Dieser kann dann auch in ein iFrame oder HTML Widget eingefügt werden.
+Anzeige ist ï¿½ber den Instanz Link mï¿½glich. Dieser kann dann auch in ein iFrame oder HTML Widget eingefï¿½gt werden.
 
 ## Changelog
 <!--
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 1.0.2 (2022-08-23)
 - Threshold for the user-defined elements was not always adopted
 - Increased number of animation points to 5
 - If consumption is negative, this was not displayed
