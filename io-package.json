@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "energiefluss",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "news": {
+      "1.0.7": {
+        "en": "fixed house element not showing up, if calculate consumption is activated and value is not calculated on start-up\nfixed README for Github",
+        "de": "festes hauselement, das nicht angezeigt wird, wenn der verbrauch aktiviert wird und der wert nicht bei der inbetriebnahme berechnet wird\nfeste README für Github",
+        "ru": "фиксированный элемент дома, не показывающий вверх, если расчетное потребление активируется и стоимость не рассчитывается на запуск\nфиксированное README для Github",
+        "pt": "elemento fixo da casa não aparecendo, se o cálculo do consumo é ativado e o valor não é calculado no start-up\nrEADME fixo para Github",
+        "nl": "als de consumptie wordt geactiveerd en de waarde is niet berekend op start-up\nvertaling:",
+        "fr": "élément de maison fixe non affiché, si la consommation est activée et la valeur n'est pas calculée au démarrage\nrEADME fixe pour Github",
+        "it": "elemento fisso della casa che non si presenta, se il calcolo del consumo è attivato e il valore non è calcolato sull'avvio\nrEADME fisso per Github",
+        "es": "elemento de la casa fija no aparece, si se activa el consumo calculado y el valor no se calcula sobre la puesta en marcha\nrEADME fijo para Github",
+        "pl": "stały element domowy nie pokazujący, jeśli obliczenie konsumpcji jest aktywowane, a wartość nie jest obliczana na początku\nrEADME for Github",
+        "zh-cn": "固定住房要素没有显示,如果使用计算消费,则不计算开工的数值。\nb. 吉隆布的固定排减量"
+      },
       "1.0.6": {
         "en": "If consumption is negative, this was not displayed\nElements can now be selected (rectangle or circle)\nThreshold for the user-defined elements was not always adopted\nIncreased number of animation points to 5\nData point load reduced by 90%, as the configuration is now only loaded when it starts or changes (previously when the values changed)\nIcons are realigned when resizing the element\nCleaned up the admin interface",
         "de": "Wenn der Verbrauch negativ ist, wurde dies nicht angezeigt\nElemente können nun ausgewählt werden (Rectangle oder Kreis)\nSchwelle für die benutzerdefinierten Elemente wurde nicht immer angenommen\nErhöhte Anzahl von Animationspunkten auf 5\nDatenpunktbelastung um 90,% reduziert, da die Konfiguration jetzt nur dann geladen wird, wenn sie beginnt oder ändert (vorher, wenn die Werte geändert werden)\nIcons werden beim Resizing des Elements neu ausgerichtet\nDie Admin-Schnittstelle gereinigt",
@@ -74,18 +86,6 @@
         "es": "corregida casa-consumo-calculación no trabajando bajo algunas circunstancias\nposibilidad de cambiar el radio círculo",
         "pl": "poprawiona kalkulacja domowa nie działa w niektórych okolicznościach\nmożliwość zmiany promienia okręgu",
         "zh-cn": "b. 在某些情况下未工作的住房消费升级\nd. 改变中地层的可能性"
-      },
-      "0.8.3": {
-        "en": "Correction of House-consumption calculation in combination with house-netto-calculation\nchanged battery animation if battery is fully charged or empty and no progress is detected",
-        "de": "Korrektur der Hausverbrauchsberechnung in Kombination mit Haus-Netto-Berechnung\ngeänderte batterieanimation, wenn die batterie vollständig geladen oder leer ist und kein fortschritt erkannt wird",
-        "ru": "Исправление расчетов House-consumption в комбинации с дома-нетто-расчётом\nизменена анимация батареи, если батарея полностью заряжена или пуста, и никакий прогресс не обнаружен",
-        "pt": "Correção do cálculo do consumo doméstico em combinação com a casa-rede-calculação\nanimação de bateria alterada se a bateria estiver totalmente carregada ou vazia e nenhum progresso for detectado",
-        "nl": "Vertaling:\nverandering van batterij animatie als batterij volledig wordt aangeklaagd of leeg en geen vooruitgang wordt ontdekt",
-        "fr": "Correction du calcul de la consommation de maison en combinaison avec le calcul de l ' établissement d ' un réseau\nchangement d'animation de la batterie si la batterie est entièrement chargée ou vide et aucun progrès n'est détecté",
-        "it": "Correzione del calcolo della casa-consumo in combinazione con la casa-netto-calcolo\nl'animazione della batteria modificata se la batteria è completamente carica o vuota e nessun progresso viene rilevato",
-        "es": "Corrección del cálculo del consumo de la casa en combinación con el cálculo de la red de la casa\ncambiar la animación de la batería si la batería está completamente cargada o vacía y no se detecta progreso",
-        "pl": "Wykorzystanie obliczeń z House’a w połączeniu z obliczeniami domowymi\nzmieniona animacja baterii, jeśli bateria jest w pełni naładowana lub pusta, nie wykrywa się żadnych postępów",
-        "zh-cn": "B. 结合住房-网上图-提高住房消费计算\n如果电池被完全指控或空调,则电离破裂,发现没有进展。"
       }
     },
     "titleLang": {

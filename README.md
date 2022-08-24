@@ -110,7 +110,7 @@ Anzeige ist ueber den Instanz Link mueglich. Dieser kann dann auch in ein iFrame
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 1.0.7 (2022-08-24)
 - fixed house element not showing up, if calculate consumption is activated and value is not calculated on start-up
 - fixed README for Github
 
