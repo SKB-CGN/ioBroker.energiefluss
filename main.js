@@ -465,28 +465,27 @@ class Energiefluss extends utils.Adapter {
 	 */
 	async getInitialValues(obj) {
 		let tmpObj = {};
-		Object.entries(obj).forEach(entry => {
-			const [key, value] = entry;
-			this.getForeignState(value, (err, stateValue) => {
-				// Check, if key is a number
-				if (stateValue) {
-					if (typeof (stateValue.val) === 'number') {
-						if (!key.includes("percent")) {
-							tmpObj[key] = stateValue.val;
-						} else {
-							tmpObj[key] = stateValue.val;
-						}
+		for (var key of Object.keys(obj)) {
+			const value = obj[key];
+			const stateValue = await this.getForeignStateAsync(value);
+			if (stateValue) {
+				if (typeof (stateValue.val) === 'number') {
+					if (!key.includes("percent")) {
+						tmpObj[key] = stateValue.val;
+					} else {
+						tmpObj[key] = stateValue.val;
 					}
-
-					if (typeof (stateValue.val) === 'boolean') {
-						tmpObj[key] = stateValue.val ? true : false;
-					}
-				} else {
-					this.log.warn("The adapter could not find the state " + value + "! Please review the config!");
 				}
-			});
-
-		});
+				if (typeof (stateValue.val) === 'boolean') {
+					tmpObj[key] = stateValue.val ? true : false;
+				}
+			} else {
+				this.log.warn("The adapter could not find the state " + value + "! Please review the config!");
+			}
+		}
+		if (calculate_consumption) {
+			tmpObj.consumption = 0;
+		}
 		return tmpObj;
 	}
 
@@ -709,6 +708,9 @@ class Energiefluss extends utils.Adapter {
 		parameterObj.values.values = valueObj;
 
 		await this.setStateAsync("configuration", JSON.stringify(parameterObj), true);
+
+		this.log.debug('Configuration build up successfull!');
+		this.log.debug('Elements to be displayed: ' + JSON.stringify(elementsObj));
 	}
 
 	async buildDataJSON() {

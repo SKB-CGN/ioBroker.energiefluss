@@ -31,15 +31,15 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 **Design:**
 - change the color of each item
 - Elements can be selected (circle or rectangle)
-- Texts inside the circles can be modified
+- Texts inside the elements can be modified
 - %-texts can have different colors as well
 - define different colors for each line
 - define different colors for each animation on the line
-- change thickness of the circles and lines
-- fill the circles with different colors
+- change thickness of the elments and lines
+- fill the elements with different colors
 - show/hide shadows of the elements
 - change radius of the circles
-- change width and height of the rectangle
+- change width,height and corner rounds of the rectangle
 - define your own color and opacity for the shadows (rgba supported)
 - change fontfaces of the values and texts (own fonts can be imported)
 - change the font size for label, values and %-texts
@@ -49,14 +49,14 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 - number of animation dots selectable (1-5)
 
 **Technical:**
-- define Datapoints for each circle
-- show battery percent inside car or battery circle
+- define Datapoints for each element
+- show battery percent inside car or battery element
 - use different states for feeding into or consuming from the grid
 - reverse settings if your values are negative (for consumption, feeding the grid, charging-/discharging the battery)
 - use positive or negative values for consumption
 - calculcate your consumption via production and grid-feed-in, if you do not have a powermeter
 - use different states for your battery
-- add 4 own circles for a consuming device with different text, values and icon
+- add 4 own elements for a consuming device with different text, values and icon
 - convert all values from W into kW
 - Choose, how many decimal places you want to display (0, 1, 2) - for values and battery charging
 - choose the unit (freetext)
@@ -78,7 +78,7 @@ Display is possible via the instance link. This can then also be inserted into a
 - Fuelle die Elemente mit verschiedenen Farben
 - Schatten des Elemente ein-/ausblenden
 - Radius des Kreises anpassbar
-- Hoehe und Breite des Rechtecks anpassbar
+- Hoehe, Breite und Eckenradius des Rechtecks anpassbar
 - Definieren Sie Ihre eigene Farbe und Deckkraft fuer die Schatten (rgba-unterstuetzt)
 - Schriftarten der Werte und Texte aendern (eigene Schriftarten koennen importiert werden)
 - Aendern Sie die Schriftgroessee fuer Label, Werte und %-Texte
@@ -89,13 +89,13 @@ Display is possible via the instance link. This can then also be inserted into a
 
 **Technisch:**
 - Datenpunkte fuer jedes Element definieren
-- Batterieprozentsatz innerhalb des Auto- oder Batteriekreises anzeigen
+- Batterieprozentsatz innerhalb des Auto- oder Batterie-Elements anzeigen
 - unterschiedliche Zustaende fuer Einspeisung oder Bezug aus dem Netz verwenden
 - Einstellungen umkehren, wenn Ihre Werte negativ sind (fuer Verbrauch, Netzeinspeisung, Laden-/Entladen der Batterie)
 - Verwenden Sie positive oder negative Werte fuer den Verbrauch
 - Berechnen Sie Ihren Verbrauch ueber Erzeugung und Netzeinspeisung, wenn Sie keinen Stromzuehler haben
 - Verwenden Sie verschiedene Zustuende fuer Ihre Batterie
-- Fuegen Sie 4 eigene Kreise fuer ein Verbrauchsgeruet mit unterschiedlichem Text, Werten und Symbolen hinzu
+- Fuegen Sie 4 eigene Elemente fuer ein Verbrauchsgeraet mit unterschiedlichem Text, Werten und Symbolen hinzu
 - Alle Werte von W in kW umrechnen
 - Waehlen Sie, wie viele Dezimalstellen Sie anzeigen moechten (0, 1, 2) - fuer Werte und Akkuladung
 - Waehlen Sie die Einheit (Freitext)
@@ -110,6 +110,10 @@ Anzeige ist ueber den Instanz Link mueglich. Dieser kann dann auch in ein iFrame
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+- fixed house element not showing up, if calculate consumption is activated and value is not calculated on start-up
+- fixed README for Github
+
 ### 1.0.6 (2022-08-23)
 - If consumption is negative, this was not displayed
 - Elements can now be selected (rectangle or circle)
