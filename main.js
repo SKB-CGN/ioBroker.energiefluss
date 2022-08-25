@@ -247,7 +247,8 @@ class Energiefluss extends utils.Adapter {
 
 			parameterObj.lines.style = {
 				line_size: this.config.line_size,
-				animation_dots: this.config.animation_dots
+				animation_width: this.config.animation_width,
+				animation: this.config.animation
 			}
 
 			// Fonts

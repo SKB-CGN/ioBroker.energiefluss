@@ -79,6 +79,10 @@
 				});
 			});
 
+			$(".line_preview").change(function (e) {
+				linePreview(this.id);
+			});
+
 			// Check, which Element is choosen
 			if ($("#element_type").val() == 'rect') {
 				$(".display_circle").css("display", "none");
@@ -87,6 +91,8 @@
 				$(".display_rect").css("display", "none");
 				$(".display_circle").css("display", "block");
 			}
+
+			linePreview();
 		}
 
 		// This will be called by the admin adapter when the user presses the save button
@@ -182,6 +188,39 @@
 				callback(selectId);
 			});
 		}
+
+		function linePreview(id) {
+			// Collect all Values
+			let stroke = "";
+			let total = 136;
+			let l_width = $("#animation_width").val();
+			let l_amount = $("#animation_dots").val();
+			let l_distance = $("#animation_distance").val();
+			let l_length = $("#animation_length").val();
+			let l_thickness = $("#line_size").val();
+
+			for (let i = 0; i < l_amount; i++) {
+				if (l_distance > 0 && l_length > 0) {
+					stroke += l_length + " ";
+					if (i != l_amount - 1) {
+						stroke += l_distance + " ";
+						total -= l_distance;
+					}
+					total -= l_length;
+				}
+			}
+			if (l_amount > 0 && l_length > 0 && l_distance) {
+				stroke += " " + total;
+			}
+			// Reset the Value, if we run into negativ
+			if (total < 0) {
+				$("#" + id).val($("#" + id).val() - 1);
+			}
+			$("#animation").val(stroke);
+			$(".animation").css("stroke-dasharray", stroke);
+			$(".animation").css("stroke-width", l_width);
+			$(".path").css("stroke-width", l_thickness);
+		}
 	</script>
 	<style>
 		body {
@@ -204,6 +243,32 @@
 
 		.m #dialog-select-member .modal-footer {
 			margin-left: 0rem;
+		}
+
+		.path {
+			fill: none;
+			stroke-width: 8px;
+		}
+
+		#svg_line_preview {
+			border: 1px solid black;
+		}
+
+		#preview_line_bg {
+			stroke: black;
+		}
+
+		.animation {
+			animation: dashdraw 2s linear infinite;
+			stroke: #ffce4a;
+			stroke-dasharray: 1 135;
+			stroke-linecap: round;
+		}
+
+		@keyframes dashdraw {
+			to {
+				stroke-dashoffset: -135;
+			}
 		}
 	</style>
 
@@ -1196,19 +1261,54 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s4">
-					<input class="value" id="line_size" type="number" placeholder="6" min="2" max="18" />
+					<input class="value line_preview" id="line_size" type="number" placeholder="6" min="2" max="18" />
 					<span class="translate" data-lang="line_size">Thickness of the line (in px)</span>
 				</div>
+			</div>
+			<div class="row">
+				<div class="col s12">
+					<h6 class="title translate" data-lang="animation">Animation</h6>
+				</div>
+			</div>
+			<div class="row">
 				<div class="input-field col s4">
-					<select id="animation_dots" class="value">
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-						<option value="5">5</option>
-					</select>
+					<input class="value" type="hidden" id="animation" />
+					<input class="value line_preview" id="animation_dots" type="number" placeholder="6" min="1"
+						max="30" />
 					<span class="translate" data-lang="animation_dots">Number of animation dots on
 						the line</span>
+				</div>
+				<div class="input-field col s4">
+					<input class="value line_preview" id="animation_distance" type="number" placeholder="6" min="1"
+						max="100" />
+					<span class="translate" data-lang="animation_distance">Distance between the dots on the line</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s4">
+					<input class="value line_preview" id="animation_length" type="number" placeholder="6" min="1"
+						max="50" />
+					<span class="translate" data-lang="animation_length">Length of each dot on the line</span>
+				</div>
+				<div class="input-field col s4">
+					<input class="value line_preview" id="animation_width" type="number" placeholder="6" min="1"
+						max="50" />
+					<span class="translate" data-lang="animation_width">Width of each dot on the line</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s4">
+					<span class="translate" data-lang="ex_custom_preview">Preview</span>
+				</div>
+				<div class="col s4">
+					<svg viewBox="-5 0 100 50" class="" width="350" height="50" id="svg_line_preview"
+						preserveAspectRatio="xMinYMid meet">
+						<defs>
+							<path id="preview_line" d="M 0,25 h 324" />
+						</defs>
+						<use class="all_elm path" xlink:href="#preview_line" id="preview_line_bg" />
+						<use class="all_elm animation" xlink:href="#preview_line" id="preview_line_anim" />
+					</svg>
 				</div>
 			</div>
 			<div class="row">
@@ -1237,7 +1337,7 @@
 			</div>
 			<div class="row display_rect">
 				<div class="input-field col s4">
-					<input class="value" id="rect_height" type="number" placeholder="100" min="50" max="150" />
+					<input class="value" id="rect_height" type="number" placeholder="100" min="50" max="110" />
 					<span class="translate" data-lang="ex_rect_height">Height of the rectangle (in px)</span>
 				</div>
 				<div class="input-field col s4">

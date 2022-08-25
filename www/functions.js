@@ -130,26 +130,22 @@ function initConfig() {
             const [key, value] = entry;
             $('#line_' + key).css("stroke", value ? value : config.lines.color.default);
         });
-        $('.path').css("stroke-width", config.lines.style.line_size);
 
-        // Animation Dots
-        switch (config.lines.style.animation_dots) {
-            case '1':
-                $('.animation').css("stroke-dasharray", "4 132");
-                break;
-            case '2':
-                $('.animation').css("stroke-dasharray", "4 12 4 116");
-                break;
-            case '3':
-                $('.animation').css("stroke-dasharray", "4 12 4 12 4 100");
-                break;
-            case '4':
-                $('.animation').css("stroke-dasharray", "4 12 4 12 4 12 4 84");
-                break;
-            case '5':
-                $('.animation').css("stroke-dasharray", "4 12 4 12 4 12 4 12 4 68");
-                break;
-        }
+
+        Object.entries(config.lines.style).forEach(entry => {
+            const [key, value] = entry;
+            switch (key) {
+                case 'animation':
+                    $('.animation').css("stroke-dasharray", value);
+                    break;
+                case 'animation_width':
+                    $(".animation").css("stroke-width", value);
+                    break;
+                case 'line_size':
+                    $('.line').css("stroke-width", value);
+                    break;
+            }
+        });
 
         // Process fonts
         Object.entries(config.fonts).forEach(entry => {

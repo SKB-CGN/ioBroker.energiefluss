@@ -50,7 +50,7 @@ circle {
     translate: 0px 50px;
 }
 
-.path {
+.line {
     fill: none;
 }
 
@@ -61,25 +61,15 @@ circle {
 }
 
 .animation {
-    /* animation: cons_anim 3s infinite steps(150);*/
     animation: dashdraw 2s linear infinite;
     stroke-dasharray: 4 12 4 12 4 100;
     stroke-linecap: round;
+    fill: none;
 }
 
 @keyframes dashdraw {
     to {
         stroke-dashoffset: -135;
-    }
-}
-
-@keyframes cons_anim {
-    0% {
-        stroke-dashoffset: 250;
-    }
-
-    100% {
-        stroke-dashoffset: -22;
     }
 }
 
