@@ -1,4 +1,5 @@
 {
+    "animation": "Animatie",
     "animation_color_battery_to_house": "kleur van de animatie tussen batterij en huis (standaard: leeg)",
     "animation_color_grid_to_battery": "kleur van de animatie tussen openbaar netwerk en batterij (standaard: leeg)",
     "animation_color_grid_to_house": "kleur van de animatie tussen openbaar netwerk en huis (standaard: leeg)",

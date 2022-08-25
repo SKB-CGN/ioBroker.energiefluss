@@ -1,4 +1,5 @@
 {
+    "animation": "Animazione",
     "animation_color_battery_to_house": "colore dell'animazione tra batteria e casa (default: vuoto)",
     "animation_color_grid_to_battery": "colore dell'animazione tra griglia pubblica e batteria (default: vuoto)",
     "animation_color_grid_to_house": "colore dell'animazione tra griglia pubblica e casa (default: vuoto)",

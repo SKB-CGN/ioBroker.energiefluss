@@ -1,4 +1,5 @@
 {
+    "animation": "Animación",
     "animation_color_battery_to_house": "color de la animación entre la batería y la casa (predeterminado: vacío)",
     "animation_color_grid_to_battery": "color de la animación entre la red pública y la batería (predeterminado: vacío)",
     "animation_color_grid_to_house": "color de la animación entre la cuadrícula pública y la casa (predeterminado: vacío)",

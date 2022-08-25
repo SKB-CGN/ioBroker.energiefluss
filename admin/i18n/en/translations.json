@@ -1,4 +1,5 @@
 {
+    "animation": "Animation",
     "animation_color_battery_to_house": "color of the animation between battery and house (default: empty)",
     "animation_color_grid_to_battery": "color of the animation between public grid and battery (default: empty)",
     "animation_color_grid_to_house": "color of the animation between public grid and house (default: empty)",

@@ -46,7 +46,7 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 - define a color for the the car icon, if its charging
 - Some Values can have different colors, if their value is zero (consumption, production, grid and battery)
 - Battery icon can be animated while charging or discharging
-- number of animation dots selectable (1-5)
+- number of animation dots, their distance between each other, length and width selectable
 
 **Technical:**
 - define Datapoints for each element
@@ -85,7 +85,7 @@ Display is possible via the instance link. This can then also be inserted into a
 - Definieren Sie eine Farbe fuer das Autosymbol, wenn es geladen wird
 - Einige Werte koennen unterschiedliche Farben haben, wenn ihr Wert Null ist (Verbrauch, Produktion, Netz und Batterie)
 - Batterie-Icon kann beim Laden und Entladen animiert werden
-- Anzahl der animierten Punkte auf der Linie auswaehlbar (1-5)
+- Anzahl der animierten Punkte auf der Linie, sowie deren Abstand, Laenge und Dicke auswaehlbar
 
 **Technisch:**
 - Datenpunkte fuer jedes Element definieren
@@ -110,6 +110,10 @@ Anzeige ist ueber den Instanz Link mueglich. Dieser kann dann auch in ein iFrame
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+- Translations optimized (Grid/Gitter or other waste words removed not acceptable)
+- Animation dots fully customizeable (length, width, amount)
+
 ### 1.0.7 (2022-08-24)
 - fixed house element not showing up, if calculate consumption is activated and value is not calculated on start-up
 - fixed README for Github

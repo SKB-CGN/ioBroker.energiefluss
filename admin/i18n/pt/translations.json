@@ -1,4 +1,5 @@
 {
+    "animation": "Animação",
     "animation_color_battery_to_house": "cor da animação entre bateria e casa (padrão: vazio)",
     "animation_color_grid_to_battery": "cor da animação entre grade pública e bateria (padrão: vazio)",
     "animation_color_grid_to_house": "cor da animação entre grade pública e casa (padrão: vazio)",

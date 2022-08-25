@@ -1,4 +1,5 @@
 {
+    "animation": "动画",
     "animation_color_battery_to_house": "电池和房子之间动画的颜色（默认：空）",
     "animation_color_grid_to_battery": "公共电网和电池之间动画的颜色（默认：空）",
     "animation_color_grid_to_house": "公共网格和房屋之间的动画颜色（默认：空）",

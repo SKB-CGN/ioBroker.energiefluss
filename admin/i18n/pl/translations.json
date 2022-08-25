@@ -1,4 +1,5 @@
 {
+    "animation": "Animacja",
     "animation_color_battery_to_house": "kolor animacji między baterią a domem (domyślnie: pusty)",
     "animation_color_grid_to_battery": "kolor animacji między publiczną siatką a baterią (domyślnie: pusty)",
     "animation_color_grid_to_house": "kolor animacji pomiędzy siatką publiczną a domem (domyślnie: pusty)",
