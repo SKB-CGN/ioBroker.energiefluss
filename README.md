@@ -29,6 +29,10 @@ Installation via Github Cat possible. To do this, go to custom and enter the Git
 Installation ueber die Github Katze in ioBroker moeglich. Hierzu auf benutzerdefiniert gehen und die Github Adresse von hier angeben.
 
 ## Support
+If you like my work und you would like to support me, you can do so here:
+[![Donate](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://www.paypal.me/StephanKreyenborg)
+
+## Unterstuetzung
 Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du dies hier tun:
 [![Donate](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://www.paypal.me/StephanKreyenborg)
 
