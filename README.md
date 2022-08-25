@@ -17,11 +17,16 @@
 **Tests:** ![Test and Release](https://github.com/SKB-CGN/ioBroker.energiefluss/workflows/Test%20and%20Release/badge.svg)
 
 ## Energiefluss adapter for ioBroker
+Es stellt einen animierten Energiefluss fuer Photovoltaik, Batterie, Hausverbrauch, Einspeisung, Auto-Ladung und bis zu 4 benutzerdefinierte Elemente (Kreis oder Rechteck).
 
-Es stellt einen animierten Energiefluss fuer Photovoltaik, Batterie, Hausverbrauch, Einspeisung, Auto-Ladung und einen benutzerdefinierten Kreis bereit.
+## Energiefluss adapter for ioBroker
+It provides an animated energyflow for photovoltaics, battery, house-consumption, grid-feed-in, car charge and up to 4 possible elements (circle or rectangle).
 
 ## Installation
-Installation ueber die Github Katze in ioBroker moeglich
+Installation via Github Cat possible. To do this, go to custom and enter the Github address from here.
+
+## Installation
+Installation ueber die Github Katze in ioBroker moeglich. Hierzu auf benutzerdefiniert gehen und die Github Adresse von hier angeben.
 
 ## Support
 Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du dies hier tun:
@@ -100,10 +105,10 @@ Display is possible via the instance link. This can then also be inserted into a
 - Waehlen Sie, wie viele Dezimalstellen Sie anzeigen moechten (0, 1, 2) - fuer Werte und Akkuladung
 - Waehlen Sie die Einheit (Freitext)
 - Ziehen Sie den Verbrauch des Autos und der Zusatzgeraete vom Verbrauch im Haus ab
-- Alle Datenpunkte kuennen ueber den Objekt-Browser ausgewaehlt werden
+- Alle Datenpunkte koennen ueber den Objekt-Browser ausgewaehlt werden
 
 ## Implementierung
-Anzeige ist ueber den Instanz Link mueglich. Dieser kann dann auch in ein iFrame oder HTML Widget eingefuegt werden.
+Anzeige ist ueber den Instanz Link moeglich. Dieser kann dann auch in ein iFrame oder HTML Widget eingefuegt werden.
 
 ## Changelog
 <!--
