@@ -110,7 +110,7 @@ Anzeige ist ueber den Instanz Link mueglich. Dieser kann dann auch in ein iFrame
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 1.1.0 (2022-08-25)
 - Translations optimized (Grid/Gitter or other waste words removed not acceptable)
 - Animation dots fully customizeable (length, width, amount)
 
