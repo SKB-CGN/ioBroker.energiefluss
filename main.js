@@ -248,7 +248,9 @@ class Energiefluss extends utils.Adapter {
 			parameterObj.lines.style = {
 				line_size: this.config.line_size,
 				animation_width: this.config.animation_width,
-				animation: this.config.animation
+				animation: this.config.animation,
+				animation_duration: this.config.animation_duration,
+				animation_linecap: this.config.animation_linecap
 			}
 
 			// Fonts
@@ -785,13 +787,23 @@ class Energiefluss extends utils.Adapter {
 					line_animation.grid_to_house = true;
 				}
 				if (gridValue < (threshold * -1)) {
-					// Display as positive
-					gridValue = gridValue * -1;
-					line_animation.solar_to_grid = true;
+					// Check, if we have production
+					if (valuesObj['production'] > 0) {
+						// Display as positive
+						gridValue = gridValue * -1;
+						line_animation.solar_to_grid = true;
+					} else {
+						gridValue = 0;
+					}
 				}
 			} else {
 				if (gridValue > threshold) {
-					line_animation.solar_to_grid = true;
+					// Check, if we have production
+					if (valuesObj['production'] > 0) {
+						line_animation.solar_to_grid = true;
+					} else {
+						gridValue = 0;
+					}
 				}
 				if (gridValue < (threshold * -1)) {
 					// Display as positive
@@ -821,8 +833,13 @@ class Energiefluss extends utils.Adapter {
 			}
 
 			if (gridFeedValue > threshold && gridConsumeValue === 0) {
-				line_animation.solar_to_grid = true;
-				gridValue = gridFeedValue;
+				// Check, if we have production
+				if (valuesObj['production'] > 0) {
+					line_animation.solar_to_grid = true;
+					gridValue = gridFeedValue;
+				} else {
+					gridValue = 0;
+				}
 			}
 
 			if (gridValue > threshold) {

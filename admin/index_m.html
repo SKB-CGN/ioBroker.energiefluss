@@ -198,6 +198,9 @@
 			let l_distance = $("#animation_distance").val();
 			let l_length = $("#animation_length").val();
 			let l_thickness = $("#line_size").val();
+			let l_duration = $("#animation_duration").val();
+			let l_linecap = $("#animation_linecap").val();
+
 
 			for (let i = 0; i < l_amount; i++) {
 				if (l_distance > 0 && l_length > 0) {
@@ -219,6 +222,8 @@
 			$("#animation").val(stroke);
 			$(".animation").css("stroke-dasharray", stroke);
 			$(".animation").css("stroke-width", l_width);
+			$(".animation").css("animation-duration", (l_duration / 1.5) + "ms");
+			$(".animation").css("stroke-linecap", l_linecap);
 			$(".path").css("stroke-width", l_thickness);
 		}
 	</script>
@@ -259,7 +264,10 @@
 		}
 
 		.animation {
-			animation: dashdraw 2s linear infinite;
+			animation-name: dashdraw;
+			animation-duration: 2000ms;
+			animation-timing-function: linear;
+			animation-iteration-count: infinite;
 			stroke: #ffce4a;
 			stroke-dasharray: 1 135;
 			stroke-linecap: round;
@@ -1294,6 +1302,25 @@
 					<input class="value line_preview" id="animation_width" type="number" placeholder="6" min="1"
 						max="50" />
 					<span class="translate" data-lang="animation_width">Width of each dot on the line</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s4">
+					<input class="value line_preview" id="animation_duration" type="number" placeholder="2000" min="1"
+						max="5000" />
+					<span class="translate" data-lang="animation_duration">Duration of the animation in ms (1 second are
+						1000ms)</span>
+				</div>
+				<div class="input-field col s4">
+					<select id="animation_linecap" class="value line_preview">
+						<option value="butt" class="translate" data-lang="animation_linecap_butt">rectangular ends
+							trimmed at the endpoints</option>
+						<option value="round" class="translate" data-lang="animation_linecap_round">rounded ends (beyond
+							the endpoints)</option>
+						<option value="square" class="translate" data-lang="animation_linecap_square">square ends
+							(beyond the endpoints)</option>
+					</select>
+					<span class="translate" data-lang="animation_linecap">Appearance of line ends</span>
 				</div>
 			</div>
 			<div class="row">

@@ -55,7 +55,7 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 - define a color for the the car icon, if its charging
 - Some Values can have different colors, if their value is zero (consumption, production, grid and battery)
 - Battery icon can be animated while charging or discharging
-- number of animation dots, their distance between each other, length and width selectable
+- number of animation dots, their distance between each other, length, duration, style and width selectable
 
 **Technical:**
 - define Datapoints for each element
@@ -94,7 +94,7 @@ Display is possible via the instance link. This can then also be inserted into a
 - Definieren Sie eine Farbe fuer das Autosymbol, wenn es geladen wird
 - Einige Werte koennen unterschiedliche Farben haben, wenn ihr Wert Null ist (Verbrauch, Produktion, Netz und Batterie)
 - Batterie-Icon kann beim Laden und Entladen animiert werden
-- Anzahl der animierten Punkte auf der Linie, sowie deren Abstand, Laenge und Dicke auswaehlbar
+- Anzahl der animierten Punkte auf der Linie, sowie deren Abstand, Laenge, Dauer, Stil und Dicke auswaehlbar
 
 **Technisch:**
 - Datenpunkte fuer jedes Element definieren
@@ -119,8 +119,12 @@ Anzeige ist ueber den Instanz Link moeglich. Dieser kann dann auch in ein iFrame
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+- 2 new Animation Options: Duration of the Animation length and Line-End-Style (round, square, butt) customizeable
+- Removed Animation line from Production to Grid, if no production is detected but inductive consumers feed the grid with back-flow
+
 ### 1.1.0 (2022-08-25)
-- Translations optimized (Grid/Gitter or other waste words removed not acceptable)
+- Translations optimized (Grid/Gitter or other waste words removed as not acceptable)
 - Animation dots fully customizeable (length, width, amount)
 
 ### 1.0.7 (2022-08-24)

@@ -141,6 +141,12 @@ function initConfig() {
                 case 'animation_width':
                     $(".animation").css("stroke-width", value);
                     break;
+                case 'animation_linecap':
+                    $(".animation").css("stroke-linecap", value);
+                    break;
+                case 'animation_duration':
+                    $(".animation").css("animation-duration", value + "ms");
+                    break;
                 case 'line_size':
                     $('.line').css("stroke-width", value);
                     break;

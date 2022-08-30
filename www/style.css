@@ -61,7 +61,10 @@ circle {
 }
 
 .animation {
-    animation: dashdraw 2s linear infinite;
+    animation-name: dashdraw;
+    animation-duration: 2000ms;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
     stroke-dasharray: 4 12 4 12 4 100;
     stroke-linecap: round;
     fill: none;
