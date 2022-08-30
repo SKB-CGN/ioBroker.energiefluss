@@ -119,7 +119,7 @@ Anzeige ist ueber den Instanz Link moeglich. Dieser kann dann auch in ein iFrame
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 1.1.1 (2022-08-30)
 - 2 new Animation Options: Duration of the Animation length and Line-End-Style (round, square, butt) customizeable
 - Removed Animation line from Production to Grid, if no production is detected but inductive consumers feed the grid with back-flow
 
