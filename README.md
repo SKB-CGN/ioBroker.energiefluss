@@ -20,7 +20,7 @@
 It provides an animated energyflow of the current consumption for photovoltaics, battery, house-consumption, grid-feed-in (grid-consumption), car charge and up to 4 possible elements (circle or rectangle).
 
 ## Energiefluss adapter fuer ioBroker
-Es stellt einen animierten Energiefluss des aktuellen Verbrauchs fuer Photovoltaik, Batterie, Hausverbrauch, Einspeisung (Netzbezug), Auto-Ladung und bis zu 4 benutzerdefinierte Elemente (Kreis oder Rechteck) zur Verfügung.
+Es stellt einen animierten Energiefluss des aktuellen Verbrauchs fuer Photovoltaik, Batterie, Hausverbrauch, Einspeisung (Netzbezug), Auto-Ladung und bis zu 4 benutzerdefinierte Elemente (Kreis oder Rechteck) zur Verfï¿½gung.
 
 ## Installation
 Installation via Github Cat possible. To do this, go to custom and enter the Github address from here.
@@ -96,7 +96,7 @@ Display is possible via the instance link. This can then also be inserted into a
 - Einige Werte koennen unterschiedliche Farben haben, wenn ihr Wert Null ist (Verbrauch, Produktion, Netz und Batterie)
 - Batterie-Icon kann beim Laden und Entladen animiert werden
 - Anzahl der animierten Punkte auf der Linie, sowie deren Abstand, Laenge, Dauer, Stil und Dicke auswaehlbar
-- Verbleibende Lade-/Entladezeit anzeigen (ist abhängig von Batterieprozent und Batteriekapazitaet)
+- Verbleibende Lade-/Entladezeit anzeigen (ist abhï¿½ngig von Batterieprozent und Batteriekapazitaet)
 
 **Technisch:**
 - Datenpunkte fuer jedes Element definieren
@@ -121,7 +121,7 @@ Anzeige ist ueber den Instanz Link moeglich. Dieser kann dann auch in ein iFrame
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 1.2.0 (2022-09-02)
 - Added text for Battery Remaining. Shows the remaining charge or discharge time (battery-capacity and datapoint for battery-percent need to be provided)
 - corrected Error "Cannot parse JSON: undefined"
 - fixed some translations
