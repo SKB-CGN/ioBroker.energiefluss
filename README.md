@@ -84,7 +84,7 @@ Display is possible via the instance link. This can then also be inserted into a
 - %-Texte koennen auch andere Farben haben
 - Definieren Sie verschiedene Farben fuer jede Linie
 - verschiedene Farben fuer jede Animation auf der Linie definieren
-- Dicke der Elemente und Linien uenderbar
+- Dicke der Elemente und Linien aenderbar
 - Fuelle die Elemente mit verschiedenen Farben
 - Schatten des Elemente ein-/ausblenden
 - Radius des Kreises anpassbar
