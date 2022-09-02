@@ -57,17 +57,28 @@ servConn.init({
                         count++;
                     }
                     if (count > 0) {
+                        let configOk = false;
+                        let dataOk = false;
                         console.log('Received ' + count + ' states.');
                         console.log('Polling active!');
                         try {
                             config = JSON.parse(states[objID[0]].val);
+                            configOk = true;
+                        } catch (error) {
+                            console.log('Error while parsing configuration JSON-Object! ' + error);
+                        }
+                        try {
                             data = JSON.parse(states[objID[1]].val);
+                            dataOk = true;
+                        } catch (error) {
+                            console.log('Error while parsing data JSON-Object! ' + error);
+                        }
+
+                        if (configOk && dataOk) {
                             initConfig();
                             updateValues();
                             $('#svg_image').fadeIn("middle")
                             $('#loading').fadeOut("middle").addClass('hidden');
-                        } catch (error) {
-                            console.log('Error while parsing JSON-Object!');
                         }
                     }
                 } else {
