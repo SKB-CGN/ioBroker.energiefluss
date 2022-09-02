@@ -36,6 +36,8 @@ let custom0, custom1, custom2, custom3;
 let fraction;
 let fraction_battery;
 let threshold;
+let battery_info;
+let battery_capacity;
 
 /* Data Objects */
 let valuesObj = {};
@@ -122,6 +124,8 @@ class Energiefluss extends utils.Adapter {
 			fraction = this.config.fraction;
 			fraction_battery = this.config.fraction_battery;
 			threshold = this.config.threshold ? this.config.threshold : 0;
+			battery_info = this.config.battery_capacity_info ? true : false;
+			battery_capacity = this.config.battery_capacity ? this.config.battery_capacity : 0;
 
 			recalculate = this.config.recalculate ? true : false;
 			this.log.info("Starting Energiefluss Adapter");
@@ -270,6 +274,7 @@ class Energiefluss extends utils.Adapter {
 				production: this.config.label_production,
 				grid: this.config.label_grid,
 				battery: this.config.label_battery,
+				battery_remaining: this.config.label_battery_remaining,
 				car: this.config.label_car,
 				custom0: this.config.label_custom0,
 				custom1: this.config.label_custom1,
@@ -316,6 +321,9 @@ class Energiefluss extends utils.Adapter {
 
 			// Build the Configuration JSON
 			this.buildConfigJSON();
+
+			// Build the Data JSON
+			this.buildDataJSON();
 		} else {
 			this.log.warn("No production datapoint set");
 		}
@@ -456,11 +464,58 @@ class Energiefluss extends utils.Adapter {
 	recalculateValue(value) {
 		return (Math.round((value / 1000) * 100) / 100).toFixed(fraction);
 	}
+
 	/**
 	 * @param {number} value
 	 */
 	floorNumber(value) {
 		return (Math.round(value * 100) / 100).toFixed(fraction);
+	}
+
+	/**
+	 *  @param {number}	minutes
+	 */
+	getMinHours(minutes) {
+		let mins = minutes;
+		let m = mins % 60;
+		let h = (mins - m) / 60;
+		let HHMM = (h < 10 ? "0" : "") + h.toString() + ":" + (m < 10 ? "0" : "") + m.toString();
+		return HHMM;
+	}
+
+	/**
+	 *  @param {number}	percent
+	 *  @param {string}	direction
+	 *  @param {number}	energy
+	 */
+	calculateBatteryRemaining(percent, direction, energy) {
+		let rest = 0;
+		let mins = 0;
+		let result = "";
+		let watts = recalculate ? energy * 1000 : energy;
+		let string = this.config.label_battery_remaining;
+		if (percent > 0 && energy > 0) {
+			if (direction == "charge") {
+				// Get the Rest to Full Charge
+				rest = battery_capacity - ((battery_capacity * percent) / 100);
+			}
+
+			if (direction == "discharge") {
+				// Get the Rest to Full Discharge
+				rest = (battery_capacity * percent) / 100;
+			}
+
+			mins = Math.round((rest / watts) * 60);
+			if (mins > 0) {
+				result = this.getMinHours(mins);
+			} else {
+				result = "--:--";
+			}
+			string += ": " + result + "h";
+		} else {
+			string += ": --:--h";
+		}
+		return string;
 	}
 
 	/**
@@ -512,6 +567,7 @@ class Energiefluss extends utils.Adapter {
 			production_text: false,
 			grid_text: false,
 			battery_text: false,
+			battery_remaining_text: false,
 			car_text: false,
 			custom0_text: false,
 			custom1_text: false,
@@ -634,6 +690,9 @@ class Energiefluss extends utils.Adapter {
 		// Battery percent
 		if (valuesObj['battery_percent'] != undefined && valuesObj['battery_charge'] != undefined) {
 			valueObj.battery_percent = true;
+			if (battery_info === true && battery_capacity > 0) {
+				textObj.battery_remaining_text = true;
+			}
 		}
 
 		// Custom Circle - 0
@@ -730,6 +789,7 @@ class Energiefluss extends utils.Adapter {
 			car_plugged: this.config.color_car_plugged,
 			car_percent: this.config.color_car_percent,
 			battery_value: this.config.color_battery_text,
+			battery_remaining: this.config.color_battery_text,
 			battery_percent: this.config.color_battery_percent,
 			custom0_value: this.config.color_custom0_text,
 			custom1_value: this.config.color_custom1_text,
@@ -939,6 +999,9 @@ class Energiefluss extends utils.Adapter {
 		// Battery percent
 		if (valuesObj['battery_percent'] != undefined && valuesObj['battery_charge'] != undefined) {
 			values.battery_percent = valuesObj['battery_percent'];
+			if (battery_info === true) {
+				values.battery_remaining_text = this.calculateBatteryRemaining(values.battery_percent, dataObj.battery_animation.direction, parseFloat(values.battery_value));
+			}
 		}
 
 		// Custom Circle - 0

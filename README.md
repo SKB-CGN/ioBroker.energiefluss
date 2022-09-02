@@ -56,6 +56,7 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 - Some Values can have different colors, if their value is zero (consumption, production, grid and battery)
 - Battery icon can be animated while charging or discharging
 - number of animation dots, their distance between each other, length, duration, style and width selectable
+- Display the remaining time of charging your battery (depends on percent and capacity)
 
 **Technical:**
 - define Datapoints for each element
@@ -95,6 +96,7 @@ Display is possible via the instance link. This can then also be inserted into a
 - Einige Werte koennen unterschiedliche Farben haben, wenn ihr Wert Null ist (Verbrauch, Produktion, Netz und Batterie)
 - Batterie-Icon kann beim Laden und Entladen animiert werden
 - Anzahl der animierten Punkte auf der Linie, sowie deren Abstand, Laenge, Dauer, Stil und Dicke auswaehlbar
+- Verbleibende Lade-/Entladezeit anzeigen (ist abhängig von Batterieprozent und Batteriekapazitaet)
 
 **Technisch:**
 - Datenpunkte fuer jedes Element definieren
@@ -119,6 +121,11 @@ Anzeige ist ueber den Instanz Link moeglich. Dieser kann dann auch in ein iFrame
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+- Added text for Battery Remaining. Shows the remaining charge or discharge time (battery-capacity and datapoint for battery-percent need to be provided)
+- corrected Error "Cannot parse JSON: undefined"
+- fixed some translations
+
 ### 1.1.1 (2022-08-30)
 - 2 new Animation Options: Duration of the Animation length and Line-End-Style (round, square, butt) customizeable
 - Removed Animation line from Production to Grid, if no production is detected but inductive consumers feed the grid with back-flow

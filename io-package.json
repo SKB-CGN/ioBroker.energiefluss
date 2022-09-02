@@ -223,7 +223,7 @@
         "label_battery_remaining": "Restzeit",
         "label_production": "Erzeugung",
         "label_car": "Auto",
-	"battery_capacity_info":false
+        "battery_capacity_info": false
     },
     "objects": [],
     "instanceObjects": []
