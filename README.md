@@ -48,12 +48,12 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 - fill the elements with different colors
 - show/hide shadows of the elements
 - change radius of the circles
-- change width,height and corner rounds of the rectangle
+- change width, height and corner rounds of the rectangle
 - define your own color and opacity for the shadows (rgba supported)
 - change fontfaces of the values and texts (own fonts can be imported)
 - change the font size for label, values and %-texts
 - define a color for the the car icon, if its charging
-- Some Values can have different colors, if their value is zero (consumption, production, grid and battery)
+- Some Values can have different colors, if their value is below a threshold (consumption, production, grid and battery)
 - Battery icon can be animated while charging or discharging
 - number of animation dots, their distance between each other, length, duration, style and width selectable
 - Display the remaining time of charging your battery (depends on percent and capacity)
@@ -72,6 +72,7 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 - choose the unit (freetext)
 - Subtract the consumption of the car and additional equipment from the consumption in the house
 - All objects can be choosen via the object-browser
+- define a threshold, to display only values above
 
 ## Implementation
 Display is possible via the instance link. This can then also be inserted into an iFrame or HTML widget..
@@ -93,7 +94,7 @@ Display is possible via the instance link. This can then also be inserted into a
 - Schriftarten der Werte und Texte aendern (eigene Schriftarten koennen importiert werden)
 - Aendern Sie die Schriftgroessee fuer Label, Werte und %-Texte
 - Definieren Sie eine Farbe fuer das Autosymbol, wenn es geladen wird
-- Einige Werte koennen unterschiedliche Farben haben, wenn ihr Wert Null ist (Verbrauch, Produktion, Netz und Batterie)
+- Einige Werte koennen unterschiedliche Farben haben, wenn ihr Wert unterhalb eines Schwellenwerts ist (Verbrauch, Produktion, Netz und Batterie)
 - Batterie-Icon kann beim Laden und Entladen animiert werden
 - Anzahl der animierten Punkte auf der Linie, sowie deren Abstand, Laenge, Dauer, Stil und Dicke auswaehlbar
 - Verbleibende Lade-/Entladezeit anzeigen (ist abhängig von Batterieprozent und Batteriekapazitaet)
@@ -112,6 +113,7 @@ Display is possible via the instance link. This can then also be inserted into a
 - Waehlen Sie die Einheit (Freitext)
 - Ziehen Sie den Verbrauch des Autos und der Zusatzgeraete vom Verbrauch im Haus ab
 - Alle Datenpunkte koennen ueber den Objekt-Browser ausgewaehlt werden
+- Definieren Sie einen Schwellenwert, um nur Werte darüber anzuzeigen
 
 ## Implementierung
 Anzeige ist ueber den Instanz Link moeglich. Dieser kann dann auch in ein iFrame oder HTML Widget eingefuegt werden.
@@ -122,6 +124,10 @@ Anzeige ist ueber den Instanz Link moeglich. Dieser kann dann auch in ein iFrame
 	### **WORK IN PROGRESS**
 -->
 ### **WORK IN PROGRESS**
+- Color and font-size of battery-remaining time changeable
+- Color of all icons changeable (one color for all icons)
+
+### 1.2.0 (2022-09-02)
 - Added text for Battery Remaining. Shows the remaining charge or discharge time (battery-capacity and datapoint for battery-percent need to be provided)
 - corrected Error "Cannot parse JSON: undefined"
 - fixed some translations

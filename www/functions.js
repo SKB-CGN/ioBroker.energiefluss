@@ -127,22 +127,13 @@ servConn.init({
 
 function initConfig() {
     try {
-
-        // Colors - Values
-        /*
-        Object.entries(config.values.color).forEach(entry => {
-            const [key, value] = entry;
-            $('#' + key).parent().css("fill", value);
-        });
-        */
-
         // Colors - Lines
         Object.entries(config.lines.color).forEach(entry => {
             const [key, value] = entry;
             $('#line_' + key).css("stroke", value ? value : config.lines.color.default);
         });
 
-
+        // Styles
         Object.entries(config.lines.style).forEach(entry => {
             const [key, value] = entry;
             switch (key) {
@@ -188,6 +179,9 @@ function initConfig() {
                     break;
                 case 'font_size_unit_percent':
                     $('.unit_percent').css("font-size", value + "px");
+                    break;
+                case 'font_size_remaining':
+                    $('#battery_remaining_text').css("font-size", value + "px");
                     break;
             }
         });
@@ -244,7 +238,7 @@ function initConfig() {
             }
         });
 
-        // Colors - elements
+        // Colors - Elements
         Object.entries(config.elements.color).forEach(entry => {
             const [key, value] = entry;
             $('#' + key).css("stroke", value);
@@ -311,8 +305,14 @@ function initConfig() {
             const [key, value] = entry;
             $("#" + key + "_text").text(value);
         });
-        // Color of the Labels inside the circle
-        $(".text").css("fill", config.texts.color);
+        // Color of the Labels inside the Elements
+        $(".text").css("fill", config.texts.color.default);
+
+        // Color of the Icons inside the Elements
+        $('.icon_color').css("fill", config.icons.color.default ? config.icons.color.default : "");
+
+        // Color of the Label of the remaining Battery time
+        $("#battery_remaining_text").css("fill", config.texts.color.battery_remaining);
 
         /* Process Elements to be shown */
         /* Visibility */
@@ -337,7 +337,7 @@ function initConfig() {
             }
         });
         // Icons
-        Object.entries(config.icons).forEach(entry => {
+        Object.entries(config.icons.icons).forEach(entry => {
             const [key, value] = entry;
             $('#icon_' + key).css("visibility", value ? "visible" : "hidden");
         });

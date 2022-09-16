@@ -64,10 +64,14 @@ let parameterObj = {
 	},
 	fonts: {},
 	general: {},
-	icons: {},
+	icons: {
+		icons: {},
+		color: {}
+	},
 	texts: {
 		texts: {},
-		labels: {}
+		labels: {},
+		color: {}
 	},
 	values: {
 		values: {}
@@ -191,7 +195,7 @@ class Energiefluss extends utils.Adapter {
 			await this.deleteStateAsync('HTML');
 
 			/* Build Parameter */
-			// Colors of the circles
+			// Colors of the Elements
 			parameterObj.elements.color = {
 				house: this.config.color_house,
 				grid: this.config.color_grid,
@@ -204,7 +208,7 @@ class Energiefluss extends utils.Adapter {
 				custom3: this.config.color_custom3
 			}
 
-			// Fills of the Circles
+			// Fills of the Elements
 			parameterObj.elements.fill = {
 				house: this.config.fill_color_house,
 				grid: this.config.fill_color_grid,
@@ -265,7 +269,8 @@ class Energiefluss extends utils.Adapter {
 				font_size_value: this.config.font_size_value,
 				font_size_percent: this.config.font_size_percent,
 				font_size_unit: this.config.font_size_unit,
-				font_size_unit_percent: this.config.font_size_unit_percent
+				font_size_unit_percent: this.config.font_size_unit_percent,
+				font_size_remaining: this.config.font_size_remaining,
 			}
 
 			// Labels
@@ -283,7 +288,13 @@ class Energiefluss extends utils.Adapter {
 			}
 
 			// Label Color
-			parameterObj.texts.color = this.config.color_label;
+			parameterObj.texts.color.default = this.config.color_label;
+
+			// Label Battery Remaining Time Color
+			parameterObj.texts.color.battery_remaining = this.config.color_battery_remain;
+
+			// Icon Color
+			parameterObj.icons.color.default = this.config.color_icon;
 
 			// Custom's
 			parameterObj.custom_symbol = {
@@ -764,7 +775,7 @@ class Energiefluss extends utils.Adapter {
 
 		// Build the Parameters to be read inside Javascript on Webpage - called once
 		parameterObj.elements.elements = elementsObj;
-		parameterObj.icons = iconObj;
+		parameterObj.icons.icons = iconObj;
 		parameterObj.lines.lines = linesObj;
 		parameterObj.texts.texts = textObj;
 		parameterObj.values.values = valueObj;
