@@ -97,7 +97,7 @@ Display is possible via the instance link. This can then also be inserted into a
 - Einige Werte koennen unterschiedliche Farben haben, wenn ihr Wert unterhalb eines Schwellenwerts ist (Verbrauch, Produktion, Netz und Batterie)
 - Batterie-Icon kann beim Laden und Entladen animiert werden
 - Anzahl der animierten Punkte auf der Linie, sowie deren Abstand, Laenge, Dauer, Stil und Dicke auswaehlbar
-- Verbleibende Lade-/Entladezeit anzeigen (ist abh�ngig von Batterieprozent und Batteriekapazitaet)
+- Verbleibende Lade-/Entladezeit anzeigen (ist abhaengig von Batterieprozent und Batteriekapazitaet)
 
 **Technisch:**
 - Datenpunkte fuer jedes Element definieren
