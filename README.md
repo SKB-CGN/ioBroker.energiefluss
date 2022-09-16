@@ -97,7 +97,7 @@ Display is possible via the instance link. This can then also be inserted into a
 - Einige Werte koennen unterschiedliche Farben haben, wenn ihr Wert unterhalb eines Schwellenwerts ist (Verbrauch, Produktion, Netz und Batterie)
 - Batterie-Icon kann beim Laden und Entladen animiert werden
 - Anzahl der animierten Punkte auf der Linie, sowie deren Abstand, Laenge, Dauer, Stil und Dicke auswaehlbar
-- Verbleibende Lade-/Entladezeit anzeigen (ist abhängig von Batterieprozent und Batteriekapazitaet)
+- Verbleibende Lade-/Entladezeit anzeigen (ist abhï¿½ngig von Batterieprozent und Batteriekapazitaet)
 
 **Technisch:**
 - Datenpunkte fuer jedes Element definieren
@@ -113,7 +113,7 @@ Display is possible via the instance link. This can then also be inserted into a
 - Waehlen Sie die Einheit (Freitext)
 - Ziehen Sie den Verbrauch des Autos und der Zusatzgeraete vom Verbrauch im Haus ab
 - Alle Datenpunkte koennen ueber den Objekt-Browser ausgewaehlt werden
-- Definieren Sie einen Schwellenwert, um nur Werte darüber anzuzeigen
+- Definieren Sie einen Schwellenwert, um nur Werte darï¿½ber anzuzeigen
 
 ## Implementierung
 Anzeige ist ueber den Instanz Link moeglich. Dieser kann dann auch in ein iFrame oder HTML Widget eingefuegt werden.
@@ -123,7 +123,7 @@ Anzeige ist ueber den Instanz Link moeglich. Dieser kann dann auch in ein iFrame
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 1.2.1 (2022-09-16)
 - Color and font-size of battery-remaining time changeable
 - Color of all icons changeable (one color for all icons)
 
