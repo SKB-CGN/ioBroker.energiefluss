@@ -66,7 +66,7 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 - use positive or negative values for consumption
 - calculcate your consumption via production and grid-feed-in, if you do not have a powermeter
 - use different states for your battery
-- add 4 own elements for a consuming device with different text, values and icon
+- add 4 own elements for a consuming device with different text, values and icon (1 element can be configured as additional car-charge)
 - convert all values from W into kW
 - Choose, how many decimal places you want to display (0, 1, 2) - for values and battery charging
 - choose the unit (freetext)
@@ -97,7 +97,7 @@ Display is possible via the instance link. This can then also be inserted into a
 - Einige Werte koennen unterschiedliche Farben haben, wenn ihr Wert unterhalb eines Schwellenwerts ist (Verbrauch, Produktion, Netz und Batterie)
 - Batterie-Icon kann beim Laden und Entladen animiert werden
 - Anzahl der animierten Punkte auf der Linie, sowie deren Abstand, Laenge, Dauer, Stil und Dicke auswaehlbar
-- Verbleibende Lade-/Entladezeit anzeigen (ist abhaengig von Batterieprozent und Batteriekapazitaet)
+- Verbleibende Lade-/Entladezeit der Batterie anzeigen (ist abhaengig von Batterieprozent und Batteriekapazitaet)
 
 **Technisch:**
 - Datenpunkte fuer jedes Element definieren
@@ -107,13 +107,13 @@ Display is possible via the instance link. This can then also be inserted into a
 - Verwenden Sie positive oder negative Werte fuer den Verbrauch
 - Berechnen Sie Ihren Verbrauch ueber Erzeugung und Netzeinspeisung, wenn Sie keinen Stromzuehler haben
 - Verwenden Sie verschiedene Zustuende fuer Ihre Batterie
-- Fuegen Sie 4 eigene Elemente fuer ein Verbrauchsgeraet mit unterschiedlichem Text, Werten und Symbolen hinzu
+- Fuegen Sie 4 eigene Elemente fuer ein Verbrauchsgeraet mit unterschiedlichem Text, Werten und Symbolen hinzu (1 Element kann als weiterer Auto-Ladepunkt konfiguriert werden)
 - Alle Werte von W in kW umrechnen
 - Waehlen Sie, wie viele Dezimalstellen Sie anzeigen moechten (0, 1, 2) - fuer Werte und Akkuladung
 - Waehlen Sie die Einheit (Freitext)
 - Ziehen Sie den Verbrauch des Autos und der Zusatzgeraete vom Verbrauch im Haus ab
 - Alle Datenpunkte koennen ueber den Objekt-Browser ausgewaehlt werden
-- Definieren Sie einen Schwellenwert, um nur Werte dar�ber anzuzeigen
+- Definieren Sie einen Schwellenwert, um nur Werte darueber anzuzeigen
 
 ## Implementierung
 Anzeige ist ueber den Instanz Link moeglich. Dieser kann dann auch in ein iFrame oder HTML Widget eingefuegt werden.
