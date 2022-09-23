@@ -462,7 +462,10 @@ function updateValues() {
         Object.entries(data.values).forEach(entry => {
             const [key, value] = entry;
             if (key == "car_plugged") {
-                $('#icon_car').css("fill", value ? data.color.car_plugged : "");
+                $('#icon_car').css("fill", value ? data.color.car_plugged : config.icons.color.default);
+            }
+            if (key == "car_custom_plugged") {
+                $('#icon_custom0').css("fill", value ? data.color.car_custom_plugged : config.icons.color.default);
             }
             // Show Battery Icon if user has no state for percents
             if (key == 'battery_value' && data.values.battery_percent == null) {
