@@ -123,7 +123,7 @@ Anzeige ist ueber den Instanz Link moeglich. Dieser kann dann auch in ein iFrame
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 1.3.0 (2022-09-23)
 - Added possibility, to configure the first custom element as car charge element with same attributes like normal car charge
 - fixed a calculation issue
 
