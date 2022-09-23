@@ -123,6 +123,10 @@ Anzeige ist ueber den Instanz Link moeglich. Dieser kann dann auch in ein iFrame
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+- Added possibility, to configure the first custom element as car charge element with same attributes like normal car charge
+- fixed a calculation issue
+
 ### 1.2.1 (2022-09-16)
 - Color and font-size of battery-remaining time changeable
 - Color of all icons changeable (one color for all icons)
