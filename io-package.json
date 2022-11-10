@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "energiefluss",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "news": {
+      "2.0.1": {
+        "en": "calculation Bug fixed",
+        "de": "berechnung Fehler behoben",
+        "ru": "расчет Bug фиксированный",
+        "pt": "cálculo Bug corrigido",
+        "nl": "calculatie Bug gemaakt",
+        "fr": "calcul Bug corrigé",
+        "it": "calcolo Bug fisso",
+        "es": "cálculo Error fijo",
+        "pl": "obliczanie Bug",
+        "uk": "розрахунок Виправлено помилку",
+        "zh-cn": "计算 Bug 固定"
+      },
       "2.0.0": {
         "en": "Added 6 more Elements. Overall 10 are available now\nremoved \"house netto consumption for all elements\"\nadded option to subtract each element from house consumption\nadded \"Position\" in Elements. Now its possible, to Realign texts, values, icons, percentages and battery text (higher or lower)\nremoved battery animation for (dis-)/charging via Javascript\nadded battery animation via CSS\nlower memory usage due to drawing only necessary elements\nfixed Translations Errors\nsome code optimizations",
         "de": "6 weitere Elemente hinzugefügt. Insgesamt 10 sind jetzt verfügbar\nentfernt \"hausnetzverbrauch für alle elemente\"\nzusätzliche möglichkeit, jedes element vom hausverbrauch zu subtrahieren\nhinzugefügt Position in Elements. Jetzt ist es möglich, Texte, Werte, Icons, Prozente und Batterietext (höher oder niedriger) neu auszurichten\nentfernte Akku-Animation für (dis-)/Ladung über Javascript\nakku-Animation über CSS\ngeringere speichernutzung durch zeichnung nur notwendiger elemente\nfeste Übersetzungen Fehler\neinige codeoptimierungen",
@@ -80,19 +93,6 @@
         "pl": "Tłumaczenia zoptymalizowane (Grid/Gitter lub inne odpady nie zostały akceptowane)\nAnimacje w pełni dostosowane (długość, szerokość, ilość)",
         "zh-cn": "翻译优化(Grid/Gitter或其他废物字被排除不可接受的)\n彻底定制(宽恕、妻子、数额)",
         "uk": "Переклади оптимізовані (вилучено Grid/Gitter або інші пусті слова неприйнятно)\nТочки анімації повністю налаштовуються (довжина, ширина, кількість)"
-      },
-      "1.0.7": {
-        "en": "fixed house element not showing up, if calculate consumption is activated and value is not calculated on start-up\nfixed README for Github",
-        "de": "festes hauselement, das nicht angezeigt wird, wenn der verbrauch aktiviert wird und der wert nicht bei der inbetriebnahme berechnet wird\nfeste README für Github",
-        "ru": "фиксированный элемент дома, не показывающий вверх, если расчетное потребление активируется и стоимость не рассчитывается на запуск\nфиксированное README для Github",
-        "pt": "elemento fixo da casa não aparecendo, se o cálculo do consumo é ativado e o valor não é calculado no start-up\nrEADME fixo para Github",
-        "nl": "als de consumptie wordt geactiveerd en de waarde is niet berekend op start-up\nvertaling:",
-        "fr": "élément de maison fixe non affiché, si la consommation est activée et la valeur n'est pas calculée au démarrage\nrEADME fixe pour Github",
-        "it": "elemento fisso della casa che non si presenta, se il calcolo del consumo è attivato e il valore non è calcolato sull'avvio\nrEADME fisso per Github",
-        "es": "elemento de la casa fija no aparece, si se activa el consumo calculado y el valor no se calcula sobre la puesta en marcha\nrEADME fijo para Github",
-        "pl": "stały element domowy nie pokazujący, jeśli obliczenie konsumpcji jest aktywowane, a wartość nie jest obliczana na początku\nrEADME for Github",
-        "zh-cn": "固定住房要素没有显示,如果使用计算消费,则不计算开工的数值。\nb. 吉隆布的固定排减量",
-        "uk": "фіксований елемент будинку не відображається, якщо обчислення споживання активовано, а значення не розраховується під час запуску\nвиправлено README для Github"
       }
     },
     "titleLang": {

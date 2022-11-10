@@ -130,8 +130,9 @@ Anzeige ist ueber den Instanz Link moeglich. Dieser kann dann auch in ein iFrame
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 2.0.1 (2022-11-10)
 - calculation Bug fixed
+
 ### 2.0.0 (2022-11-10)
 - Added 6 more Elements. Overall 10 are available now
 - removed "house netto consumption for all elements"
