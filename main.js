@@ -1397,7 +1397,7 @@ class Energiefluss extends utils.Adapter {
 			for (var key of Object.keys(house_netto)) {
 				const value = house_netto[key];
 				if (value === true) {
-					tmpResult -= parseFloat(values[key + "_value"]);
+					tmpResult -= parseFloat(values[key + "_value"]) || 0;
 				}
 			}
 
