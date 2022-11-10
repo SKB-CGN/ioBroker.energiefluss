@@ -94,7 +94,7 @@ Display is possible via the instance link. This can then also be inserted into a
 - Hoehe, Breite und Eckenradius des Rechtecks anpassbar
 - Definieren Sie Ihre eigene Farbe und Deckkraft fuer die Schatten (rgba-unterstuetzt)
 - Schriftarten der Werte und Texte aendern (eigene Schriftarten koennen importiert werden)
-- Texte, Werte, Icons, Prozentwerte und Batterietext neu ausrichten (höher oder tiefer)
+- Texte, Werte, Icons, Prozentwerte und Batterietext neu ausrichten (hï¿½her oder tiefer)
 - Aendern Sie die Schriftgroessee fuer Label, Werte und %-Texte
 - Transparenz fuer Icon, Linie und Text moeglich
 - Definieren Sie eine Farbe fuer das Autosymbol, wenn es geladen wird
@@ -130,7 +130,7 @@ Anzeige ist ueber den Instanz Link moeglich. Dieser kann dann auch in ein iFrame
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 2.0.0 (2022-11-10)
 - Added 6 more Elements. Overall 10 are available now
 - removed "house netto consumption for all elements"
 - added option to subtract each element from house consumption
