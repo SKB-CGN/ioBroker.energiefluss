@@ -31,14 +31,14 @@ let car_plugged;
 let calculate_consumption;
 let consumption_reverse;
 let recalculate;
-let house_netto;
-let custom0, custom1, custom2, custom3;
+let custom0, custom1, custom2, custom3, custom4, custom5, custom6, custom7, custom8, custom9;
+let house_netto = {}
 let fraction;
 let fraction_battery;
 let threshold;
 let battery_info;
 let battery_capacity;
-let car_custom_percent;
+let custom0_percent;
 let car_custom_plugged;
 let custom_type;
 
@@ -127,13 +127,32 @@ class Energiefluss extends utils.Adapter {
 			custom1 = this.config.custom1;
 			custom2 = this.config.custom2;
 			custom3 = this.config.custom3;
-			house_netto = this.config.house_netto;
+			custom4 = this.config.custom4;
+			custom5 = this.config.custom5;
+			custom6 = this.config.custom6;
+			custom7 = this.config.custom7;
+			custom8 = this.config.custom8;
+			custom9 = this.config.custom9;
+			house_netto = {
+				car: this.config.house_netto_car,
+				custom0: this.config.house_netto_custom0,
+				custom1: this.config.house_netto_custom1,
+				custom2: this.config.house_netto_custom2,
+				custom3: this.config.house_netto_custom3,
+				custom4: this.config.house_netto_custom4,
+				custom5: this.config.house_netto_custom5,
+				custom6: this.config.house_netto_custom6,
+				custom7: this.config.house_netto_custom7,
+				custom8: this.config.house_netto_custom8,
+				custom9: this.config.house_netto_custom9
+
+			}
 			fraction = this.config.fraction;
 			fraction_battery = this.config.fraction_battery;
 			threshold = this.config.threshold ? this.config.threshold : 0;
 			battery_info = this.config.battery_capacity_info ? true : false;
 			battery_capacity = this.config.battery_capacity ? this.config.battery_capacity : 0;
-			car_custom_percent = this.config.car_custom_percent;
+			custom0_percent = this.config.car_custom_percent;
 			car_custom_plugged = this.config.car_custom_plugged;
 			custom_type = this.config.custom_type;
 			recalculate = this.config.recalculate ? true : false;
@@ -156,7 +175,13 @@ class Energiefluss extends utils.Adapter {
 				custom1: custom1,
 				custom2: custom2,
 				custom3: custom3,
-				car_custom_percent: car_custom_percent,
+				custom4: custom4,
+				custom5: custom5,
+				custom6: custom6,
+				custom7: custom7,
+				custom8: custom8,
+				custom9: custom9,
+				custom0_percent: custom0_percent,
 				car_custom_plugged: car_custom_plugged
 			};
 			// Delete empty ones
@@ -214,7 +239,14 @@ class Energiefluss extends utils.Adapter {
 				custom0: this.config.color_custom0,
 				custom1: this.config.color_custom1,
 				custom2: this.config.color_custom2,
-				custom3: this.config.color_custom3
+				custom3: this.config.color_custom3,
+				custom4: this.config.color_custom4,
+				custom5: this.config.color_custom5,
+				custom6: this.config.color_custom6,
+				custom7: this.config.color_custom7,
+				custom8: this.config.color_custom8,
+				custom9: this.config.color_custom9
+
 			}
 
 			// Fills of the Elements
@@ -228,6 +260,12 @@ class Energiefluss extends utils.Adapter {
 				custom1: this.config.fill_color_custom1,
 				custom2: this.config.fill_color_custom2,
 				custom3: this.config.fill_color_custom3,
+				custom4: this.config.fill_color_custom4,
+				custom5: this.config.fill_color_custom5,
+				custom6: this.config.fill_color_custom6,
+				custom7: this.config.fill_color_custom7,
+				custom8: this.config.fill_color_custom8,
+				custom9: this.config.fill_color_custom9
 			}
 
 			// Colors of the lines
@@ -243,7 +281,13 @@ class Energiefluss extends utils.Adapter {
 				house_to_custom0: this.config.color_house_to_custom0,
 				house_to_custom1: this.config.color_house_to_custom1,
 				house_to_custom2: this.config.color_house_to_custom2,
-				house_to_custom3: this.config.color_house_to_custom3
+				house_to_custom3: this.config.color_house_to_custom3,
+				house_to_custom4: this.config.color_house_to_custom4,
+				house_to_custom5: this.config.color_house_to_custom5,
+				house_to_custom6: this.config.color_house_to_custom6,
+				house_to_custom7: this.config.color_house_to_custom7,
+				house_to_custom8: this.config.color_house_to_custom8,
+				house_to_custom9: this.config.color_house_to_custom9
 			}
 
 			// Animation Colors of the lines
@@ -260,6 +304,12 @@ class Energiefluss extends utils.Adapter {
 				house_to_custom1: this.config.animation_color_house_to_custom1,
 				house_to_custom2: this.config.animation_color_house_to_custom2,
 				house_to_custom3: this.config.animation_color_house_to_custom3,
+				house_to_custom4: this.config.animation_color_house_to_custom4,
+				house_to_custom5: this.config.animation_color_house_to_custom5,
+				house_to_custom6: this.config.animation_color_house_to_custom6,
+				house_to_custom7: this.config.animation_color_house_to_custom7,
+				house_to_custom8: this.config.animation_color_house_to_custom8,
+				house_to_custom9: this.config.animation_color_house_to_custom9
 			}
 
 			// Style of the Lines
@@ -280,12 +330,12 @@ class Energiefluss extends utils.Adapter {
 				font_size_percent: this.config.font_size_percent,
 				font_size_unit: this.config.font_size_unit,
 				font_size_unit_percent: this.config.font_size_unit_percent,
-				font_size_remaining: this.config.font_size_remaining,
+				font_size_remaining: this.config.font_size_remaining
 			}
 
 			// Labels
 			parameterObj.texts.labels = {
-				consumption: this.config.label_house,
+				house: this.config.label_house,
 				production: this.config.label_production,
 				grid: this.config.label_grid,
 				battery: this.config.label_battery,
@@ -294,7 +344,13 @@ class Energiefluss extends utils.Adapter {
 				custom0: this.config.label_custom0,
 				custom1: this.config.label_custom1,
 				custom2: this.config.label_custom2,
-				custom3: this.config.label_custom3
+				custom3: this.config.label_custom3,
+				custom4: this.config.label_custom4,
+				custom5: this.config.label_custom5,
+				custom6: this.config.label_custom6,
+				custom7: this.config.label_custom7,
+				custom8: this.config.label_custom8,
+				custom9: this.config.label_custom9
 			}
 
 			// Label Color
@@ -311,24 +367,40 @@ class Energiefluss extends utils.Adapter {
 				icon_custom0: this.config.custom_icon0,
 				icon_custom1: this.config.custom_icon1,
 				icon_custom2: this.config.custom_icon2,
-				icon_custom3: this.config.custom_icon3
+				icon_custom3: this.config.custom_icon3,
+				icon_custom4: this.config.custom_icon4,
+				icon_custom5: this.config.custom_icon5,
+				icon_custom6: this.config.custom_icon6,
+				icon_custom7: this.config.custom_icon7,
+				icon_custom8: this.config.custom_icon8,
+				icon_custom9: this.config.custom_icon9
 			}
 
 			// General
-			parameterObj.general.no_battery = false;
-			parameterObj.general.unit = unit;
-			parameterObj.general.battery_animation = this.config.battery_animation;
-			parameterObj.general.type = this.config.element_type;
-			parameterObj.general.custom_type = this.config.custom_type;
+			parameterObj.general = {
+				no_battery: false,
+				unit: unit,
+				battery_animation: this.config.battery_animation,
+				type: this.config.element_type,
+				custom_type: this.config.custom_type,
+				offset_icon: this.config.offset_icon || 0,
+				offset_text: this.config.offset_text || 0,
+				offset_value: this.config.offset_value || 0,
+				offset_percent: this.config.offset_percent || 0,
+				offset_remaining: this.config.offset_remaining || 0,
+				opacity: this.config.opacity || 70
+			}
 
 			// Element - Style
-			parameterObj.elements.style.size = this.config.element_size || 2;
-			parameterObj.elements.style.circle_radius = this.config.circle_radius || 50;
-			parameterObj.elements.style.shadow = this.config.element_shadow;
-			parameterObj.elements.style.shadow_color = this.config.element_shadow_color;
-			parameterObj.elements.style.rect_height = this.config.rect_height;
-			parameterObj.elements.style.rect_width = this.config.rect_width;
-			parameterObj.elements.style.rect_corner = this.config.rect_corner;
+			parameterObj.elements.style = {
+				size: this.config.element_size || 2,
+				circle_radius: this.config.circle_radius || 50,
+				shadow: this.config.element_shadow,
+				shadow_color: this.config.element_shadow_color,
+				rect_height: this.config.rect_height,
+				rect_width: this.config.rect_width,
+				rect_corner: this.config.rect_corner
+			}
 
 			// buildDataJSON will add some more details to the object
 
@@ -404,6 +476,24 @@ class Energiefluss extends utils.Adapter {
 			if (id == custom3) {
 				valuesObj['custom3'] = state.val;
 			}
+			if (id == custom4) {
+				valuesObj['custom4'] = state.val;
+			}
+			if (id == custom5) {
+				valuesObj['custom5'] = state.val;
+			}
+			if (id == custom6) {
+				valuesObj['custom6'] = state.val;
+			}
+			if (id == custom7) {
+				valuesObj['custom7'] = state.val;
+			}
+			if (id == custom8) {
+				valuesObj['custom8'] = state.val;
+			}
+			if (id == custom9) {
+				valuesObj['custom9'] = state.val;
+			}
 			if (id == production) {
 				valuesObj['production'] = state.val;
 			}
@@ -438,8 +528,8 @@ class Energiefluss extends utils.Adapter {
 			if (id == car_plugged) {
 				valuesObj['car_plugged'] = state.val;
 			}
-			if (id == car_custom_percent) {
-				valuesObj['car_custom_percent'] = state.val;
+			if (id == custom0_percent) {
+				valuesObj['custom0_percent'] = state.val;
 			}
 			if (id == car_custom_plugged) {
 				valuesObj['car_custom_plugged'] = state.val;
@@ -555,17 +645,13 @@ class Energiefluss extends utils.Adapter {
 			const stateValue = await this.getForeignStateAsync(value);
 			if (stateValue) {
 				if (typeof (stateValue.val) === 'number') {
-					if (!key.includes("percent")) {
-						tmpObj[key] = stateValue.val;
-					} else {
-						tmpObj[key] = stateValue.val;
-					}
+					tmpObj[key] = stateValue.val;
 				}
 				if (typeof (stateValue.val) === 'boolean') {
 					tmpObj[key] = stateValue.val ? true : false;
 				}
 			} else {
-				this.log.warn("The adapter could not find the state " + value + "! Please review the config!");
+				this.log.warn("The adapter could not find the state " + value + "! Please review your configuration of the adapter!");
 			}
 		}
 		if (calculate_consumption) {
@@ -586,6 +672,12 @@ class Energiefluss extends utils.Adapter {
 			custom1: false,
 			custom2: false,
 			custom3: false,
+			custom4: false,
+			custom5: false,
+			custom6: false,
+			custom7: false,
+			custom8: false,
+			custom9: false
 		};
 
 		// Texts
@@ -599,7 +691,13 @@ class Energiefluss extends utils.Adapter {
 			custom0_text: false,
 			custom1_text: false,
 			custom2_text: false,
-			custom3_text: false
+			custom3_text: false,
+			custom4_text: false,
+			custom5_text: false,
+			custom6_text: false,
+			custom7_text: false,
+			custom8_text: false,
+			custom9_text: false
 		};
 
 		// Values
@@ -609,13 +707,19 @@ class Energiefluss extends utils.Adapter {
 			grid_value: false,
 			car_value: false,
 			car_percent: false,
-			car_custom_percent: false,
+			custom0_percent: false,
 			battery_value: false,
 			battery_percent: false,
 			custom0_value: false,
 			custom1_value: false,
 			custom2_value: false,
 			custom3_value: false,
+			custom4_value: false,
+			custom5_value: false,
+			custom6_value: false,
+			custom7_value: false,
+			custom8_value: false,
+			custom9_value: false
 		};
 
 		// Icons
@@ -629,6 +733,12 @@ class Energiefluss extends utils.Adapter {
 			custom1: false,
 			custom2: false,
 			custom3: false,
+			custom4: false,
+			custom5: false,
+			custom6: false,
+			custom7: false,
+			custom8: false,
+			custom9: false
 		};
 
 		// Lines
@@ -644,6 +754,12 @@ class Energiefluss extends utils.Adapter {
 			house_to_custom1: false,
 			house_to_custom2: false,
 			house_to_custom3: false,
+			house_to_custom4: false,
+			house_to_custom5: false,
+			house_to_custom6: false,
+			house_to_custom7: false,
+			house_to_custom8: false,
+			house_to_custom9: false
 		};
 
 		// Change CSS if no battery is present
@@ -730,8 +846,8 @@ class Energiefluss extends utils.Adapter {
 			valueObj.custom0_value = true;
 			iconObj.custom0 = true;
 			if (custom_type == 'car') {
-				if (valuesObj['car_custom_percent'] != undefined) {
-					valueObj.car_custom_percent = true;
+				if (valuesObj['custom0_percent'] != undefined) {
+					valueObj.custom0_percent = true;
 				}
 			}
 		}
@@ -758,6 +874,54 @@ class Energiefluss extends utils.Adapter {
 			textObj.custom3_text = true;
 			valueObj.custom3_value = true;
 			iconObj.custom3 = true;
+		}
+
+		// Custom Circle - 4
+		if (valuesObj['custom4'] != undefined) {
+			elementsObj.custom4 = true;
+			textObj.custom4_text = true;
+			valueObj.custom4_value = true;
+			iconObj.custom4 = true;
+		}
+
+		// Custom Circle - 5
+		if (valuesObj['custom5'] != undefined) {
+			elementsObj.custom5 = true;
+			textObj.custom5_text = true;
+			valueObj.custom5_value = true;
+			iconObj.custom5 = true;
+		}
+
+		// Custom Circle - 6
+		if (valuesObj['custom6'] != undefined) {
+			elementsObj.custom6 = true;
+			textObj.custom6_text = true;
+			valueObj.custom6_value = true;
+			iconObj.custom6 = true;
+		}
+
+		// Custom Circle - 7
+		if (valuesObj['custom7'] != undefined) {
+			elementsObj.custom7 = true;
+			textObj.custom7_text = true;
+			valueObj.custom7_value = true;
+			iconObj.custom7 = true;
+		}
+
+		// Custom Circle - 8
+		if (valuesObj['custom8'] != undefined) {
+			elementsObj.custom8 = true;
+			textObj.custom8_text = true;
+			valueObj.custom8_value = true;
+			iconObj.custom8 = true;
+		}
+
+		// Custom Circle - 9
+		if (valuesObj['custom9'] != undefined) {
+			elementsObj.custom9 = true;
+			textObj.custom9_text = true;
+			valueObj.custom9_value = true;
+			iconObj.custom9 = true;
 		}
 
 		/* Build all lines */
@@ -793,6 +957,24 @@ class Energiefluss extends utils.Adapter {
 		}
 		if ((valuesObj['consumption'] != undefined && valuesObj['custom3'] != undefined)) {
 			linesObj.house_to_custom3 = true;
+		}
+		if ((valuesObj['consumption'] != undefined && valuesObj['custom4'] != undefined)) {
+			linesObj.house_to_custom4 = true;
+		}
+		if ((valuesObj['consumption'] != undefined && valuesObj['custom5'] != undefined)) {
+			linesObj.house_to_custom5 = true;
+		}
+		if ((valuesObj['consumption'] != undefined && valuesObj['custom6'] != undefined)) {
+			linesObj.house_to_custom6 = true;
+		}
+		if ((valuesObj['consumption'] != undefined && valuesObj['custom7'] != undefined)) {
+			linesObj.house_to_custom7 = true;
+		}
+		if ((valuesObj['consumption'] != undefined && valuesObj['custom8'] != undefined)) {
+			linesObj.house_to_custom8 = true;
+		}
+		if ((valuesObj['consumption'] != undefined && valuesObj['custom9'] != undefined)) {
+			linesObj.house_to_custom9 = true;
 		}
 
 		// Build the Parameters to be read inside Javascript on Webpage - called once
@@ -831,7 +1013,13 @@ class Energiefluss extends utils.Adapter {
 			custom1_value: this.config.color_custom1_text,
 			custom2_value: this.config.color_custom2_text,
 			custom3_value: this.config.color_custom3_text,
-			car_custom_percent: this.config.color_car_custom_percent,
+			custom4_value: this.config.color_custom4_text,
+			custom5_value: this.config.color_custom5_text,
+			custom6_value: this.config.color_custom6_text,
+			custom7_value: this.config.color_custom7_text,
+			custom8_value: this.config.color_custom8_text,
+			custom9_value: this.config.color_custom9_text,
+			custom0_percent: this.config.color_car_custom_percent,
 			car_custom_plugged: this.config.color_car_custom_plugged
 		}
 
@@ -848,6 +1036,12 @@ class Energiefluss extends utils.Adapter {
 			house_to_custom1: false,
 			house_to_custom2: false,
 			house_to_custom3: false,
+			house_to_custom4: false,
+			house_to_custom5: false,
+			house_to_custom6: false,
+			house_to_custom7: false,
+			house_to_custom8: false,
+			house_to_custom9: false
 		};
 
 
@@ -1058,8 +1252,8 @@ class Energiefluss extends utils.Adapter {
 			}
 
 			if (custom_type == 'car') {
-				if (valuesObj['car_custom_percent'] != undefined) {
-					values.car_custom_percent = valuesObj['car_custom_percent'];
+				if (valuesObj['custom0_percent'] != undefined) {
+					values.custom0_percent = valuesObj['custom0_percent'];
 				}
 				if (valuesObj['custom0'] > threshold || valuesObj['car_custom_plugged']) {
 					values.car_custom_plugged = true;
@@ -1103,6 +1297,78 @@ class Energiefluss extends utils.Adapter {
 			}
 		}
 
+		// Custom Circle - 4
+		if (valuesObj['custom4'] != undefined) {
+			if (valuesObj['custom4'] > threshold) {
+				line_animation.house_to_custom4 = true;
+				color.custom4_value = this.config.color_custom4_text;
+				values.custom4_value = recalculate ? this.recalculateValue(valuesObj['custom4']) : this.floorNumber(valuesObj['custom4']);
+			} else {
+				color.custom4_value = this.config.color_custom4_text_no_prod ? this.config.color_custom4_text_no_prod : this.config.color_custom4_text;
+				values.custom4_value = this.floorNumber(0);
+			}
+		}
+
+		// Custom Circle - 5
+		if (valuesObj['custom5'] != undefined) {
+			if (valuesObj['custom5'] > threshold) {
+				line_animation.house_to_custom5 = true;
+				color.custom5_value = this.config.color_custom5_text;
+				values.custom5_value = recalculate ? this.recalculateValue(valuesObj['custom5']) : this.floorNumber(valuesObj['custom5']);
+			} else {
+				color.custom5_value = this.config.color_custom5_text_no_prod ? this.config.color_custom5_text_no_prod : this.config.color_custom5_text;
+				values.custom5_value = this.floorNumber(0);
+			}
+		}
+
+		// Custom Circle - 6
+		if (valuesObj['custom6'] != undefined) {
+			if (valuesObj['custom6'] > threshold) {
+				line_animation.house_to_custom6 = true;
+				color.custom6_value = this.config.color_custom6_text;
+				values.custom6_value = recalculate ? this.recalculateValue(valuesObj['custom6']) : this.floorNumber(valuesObj['custom6']);
+			} else {
+				color.custom6_value = this.config.color_custom6_text_no_prod ? this.config.color_custom6_text_no_prod : this.config.color_custom6_text;
+				values.custom6_value = this.floorNumber(0);
+			}
+		}
+
+		// Custom Circle - 7
+		if (valuesObj['custom7'] != undefined) {
+			if (valuesObj['custom7'] > threshold) {
+				line_animation.house_to_custom7 = true;
+				color.custom7_value = this.config.color_custom7_text;
+				values.custom7_value = recalculate ? this.recalculateValue(valuesObj['custom7']) : this.floorNumber(valuesObj['custom7']);
+			} else {
+				color.custom7_value = this.config.color_custom7_text_no_prod ? this.config.color_custom7_text_no_prod : this.config.color_custom7_text;
+				values.custom7_value = this.floorNumber(0);
+			}
+		}
+
+		// Custom Circle - 8
+		if (valuesObj['custom8'] != undefined) {
+			if (valuesObj['custom8'] > threshold) {
+				line_animation.house_to_custom8 = true;
+				color.custom8_value = this.config.color_custom8_text;
+				values.custom8_value = recalculate ? this.recalculateValue(valuesObj['custom8']) : this.floorNumber(valuesObj['custom8']);
+			} else {
+				color.custom8_value = this.config.color_custom8_text_no_prod ? this.config.color_custom8_text_no_prod : this.config.color_custom8_text;
+				values.custom8_value = this.floorNumber(0);
+			}
+		}
+
+		// Custom Circle - 9
+		if (valuesObj['custom9'] != undefined) {
+			if (valuesObj['custom9'] > threshold) {
+				line_animation.house_to_custom9 = true;
+				color.custom9_value = this.config.color_custom9_text;
+				values.custom9_value = recalculate ? this.recalculateValue(valuesObj['custom9']) : this.floorNumber(valuesObj['custom9']);
+			} else {
+				color.custom9_value = this.config.color_custom9_text_no_prod ? this.config.color_custom9_text_no_prod : this.config.color_custom9_text;
+				values.custom9_value = this.floorNumber(0);
+			}
+		}
+
 		// Battery substraction from Consumption
 		if (calculate_consumption) {
 			// Check, which direction we have
@@ -1123,25 +1389,16 @@ class Energiefluss extends utils.Adapter {
 			values.consumption_value = tmpResult;
 		}
 
-		// House netto - Reduce House consumption with Custom-Circle and Car-Charge
-		if (house_netto) {
+		// House netto - Reduce consumption about the configured custom elements and the car
+		if (Object.keys(house_netto).length > 0) {
 			let tmpValue = parseFloat(values.consumption_value);
 			let tmpResult = tmpValue;
 
-			if (values.car_value) {
-				tmpResult = tmpValue - parseFloat(values.car_value);
-			}
-			if (values.custom0_value) {
-				tmpResult = tmpResult - parseFloat(values.custom0_value);
-			}
-			if (values.custom1_value) {
-				tmpResult = tmpResult - parseFloat(values.custom1_value);
-			}
-			if (values.custom2_value) {
-				tmpResult = tmpResult - parseFloat(values.custom2_value);
-			}
-			if (values.custom3_value) {
-				tmpResult = tmpResult - parseFloat(values.custom3_value);
+			for (var key of Object.keys(house_netto)) {
+				const value = house_netto[key];
+				if (value === true) {
+					tmpResult -= parseFloat(values[key + "_value"]);
+				}
 			}
 
 			// Set the Value

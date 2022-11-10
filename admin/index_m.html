@@ -65,6 +65,24 @@
 			if ($("#custom_icon3").val() != "") {
 				$("#icon_preview3").attr("d", $("#custom_icon3").val());
 			}
+			if ($("#custom_icon4").val() != "") {
+				$("#icon_preview4").attr("d", $("#custom_icon4").val());
+			}
+			if ($("#custom_icon5").val() != "") {
+				$("#icon_preview5").attr("d", $("#custom_icon5").val());
+			}
+			if ($("#custom_icon6").val() != "") {
+				$("#icon_preview6").attr("d", $("#custom_icon6").val());
+			}
+			if ($("#custom_icon7").val() != "") {
+				$("#icon_preview7").attr("d", $("#custom_icon7").val());
+			}
+			if ($("#custom_icon8").val() != "") {
+				$("#icon_preview8").attr("d", $("#custom_icon8").val());
+			}
+			if ($("#custom_icon9").val() != "") {
+				$("#icon_preview9").attr("d", $("#custom_icon9").val());
+			}
 
 			$('.datasource').click(function () {
 				let id = $(this).closest(".row").find(".dp").attr("id");
@@ -150,6 +168,24 @@
 			});
 			$("#custom_icon3").change(function () {
 				$("#icon_preview3").attr("d", $(this).val());
+			});
+			$("#custom_icon4").change(function () {
+				$("#icon_preview4").attr("d", $(this).val());
+			});
+			$("#custom_icon5").change(function () {
+				$("#icon_preview5").attr("d", $(this).val());
+			});
+			$("#custom_icon6").change(function () {
+				$("#icon_preview6").attr("d", $(this).val());
+			});
+			$("#custom_icon7").change(function () {
+				$("#icon_preview7").attr("d", $(this).val());
+			});
+			$("#custom_icon8").change(function () {
+				$("#icon_preview8").attr("d", $(this).val());
+			});
+			$("#custom_icon9").change(function () {
+				$("#icon_preview9").attr("d", $(this).val());
 			});
 			$("#element_type").change(function () {
 				if ($(this).val() == 'rect') {
@@ -577,6 +613,13 @@
 					<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
 							class="material-icons">search</i></a>
 				</div>
+				<div class="input-field col s3">
+					<input id="house_netto_car" class="value" type="checkbox" />
+					<label for="house_netto_car" class="translate" data-lang="house_netto">Subtract this value from the
+						House consumption</label><br>
+					<span class="translate" data-lang="ex_house_netto">If activated, the value shown in the consumption
+						element will be reduced by this</span>
+				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s3"></div>
@@ -606,7 +649,7 @@
 			</div>
 			<div class="row">
 				<div class="col s12">
-					<h6 class="title translate" data-lang="custom_title1">custom element 1:</h6>
+					<h6 class="title translate" data-lang="custom1">custom element 1:</h6>
 				</div>
 			</div>
 			<div class="row">
@@ -627,11 +670,12 @@
 							class="material-icons">search</i></a>
 				</div>
 				<div class="input-field col s3">
-					<select id="custom_type" class="value">
-						<option value="car" class="translate" data-lang="auto">auto</option>
-						<option value="consumer" class="translate" data-lang="consumer">consumer</option>
-					</select>
-					<span class="translate" data-lang="ex_element_type">Type of the element</span>
+					<input id="house_netto_custom0" class="value" type="checkbox" />
+					<label for="house_netto_custom0" class="translate" data-lang="house_netto">Subtract this value from
+						the
+						House consumption</label><br>
+					<span class="translate" data-lang="ex_house_netto">If activated, the value shown in the consumption
+						element will be reduced by this</span>
 				</div>
 			</div>
 			<div class="row custom_car">
@@ -681,6 +725,13 @@
 							d="M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,6A4,4 0 0,0 8,10H10A2,2 0 0,1 12,8A2,2 0 0,1 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10A4,4 0 0,0 12,6Z" />
 					</svg>
 				</div>
+				<div class="input-field col s3">
+					<select id="custom_type" class="value">
+						<option value="car" class="translate" data-lang="auto">auto</option>
+						<option value="consumer" class="translate" data-lang="consumer">consumer</option>
+					</select>
+					<span class="translate" data-lang="ex_element_type">Type of the element</span>
+				</div>
 				<div class="input-field col s3 custom_car">
 					<a class="waves-effect waves-light btn" id="set_car_icon"><span class="translate"
 							data-lang="set_car_icon">Set Icon
@@ -692,7 +743,7 @@
 			</div>
 			<div class="row">
 				<div class="col s12">
-					<h6 class="title translate" data-lang="custom_title2">custom element 2:</h6>
+					<h6 class="title translate" data-lang="custom2">custom element 2:</h6>
 				</div>
 			</div>
 			<div class="row">
@@ -709,6 +760,14 @@
 				<div class="col s1 m2 l1">
 					<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
 							class="material-icons">search</i></a>
+				</div>
+				<div class="input-field col s3">
+					<input id="house_netto_custom1" class="value" type="checkbox" />
+					<label for="house_netto_custom1" class="translate" data-lang="house_netto">Subtract this value from
+						the
+						House consumption</label><br>
+					<span class="translate" data-lang="ex_house_netto">If activated, the value shown in the consumption
+						element will be reduced by this</span>
 				</div>
 			</div>
 			<div class="row">
@@ -727,7 +786,7 @@
 			</div>
 			<div class="row">
 				<div class="col s12">
-					<h6 class="title translate" data-lang="custom_title3">custom element 3:</h6>
+					<h6 class="title translate" data-lang="custom3">custom element 3:</h6>
 				</div>
 			</div>
 			<div class="row">
@@ -744,6 +803,14 @@
 				<div class="col s1 m2 l1">
 					<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
 							class="material-icons">search</i></a>
+				</div>
+				<div class="input-field col s3">
+					<input id="house_netto_custom2" class="value" type="checkbox" />
+					<label for="house_netto_custom2" class="translate" data-lang="house_netto">Subtract this value from
+						the
+						House consumption</label><br>
+					<span class="translate" data-lang="ex_house_netto">If activated, the value shown in the consumption
+						element will be reduced by this</span>
 				</div>
 			</div>
 			<div class="row">
@@ -762,7 +829,7 @@
 			</div>
 			<div class="row">
 				<div class="col s12">
-					<h6 class="title translate" data-lang="custom_title4">custom element 4:</h6>
+					<h6 class="title translate" data-lang="custom4">custom element 4:</h6>
 				</div>
 			</div>
 			<div class="row">
@@ -780,6 +847,14 @@
 					<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
 							class="material-icons">search</i></a>
 				</div>
+				<div class="input-field col s3">
+					<input id="house_netto_custom3" class="value" type="checkbox" />
+					<label for="house_netto_custom3" class="translate" data-lang="house_netto">Subtract this value from
+						the
+						House consumption</label><br>
+					<span class="translate" data-lang="ex_house_netto">If activated, the value shown in the consumption
+						element will be reduced by this</span>
+				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s7">
@@ -791,6 +866,264 @@
 					<span class="translate" data-lang="ex_custom_preview">Preview</span><br>
 					<svg viewBox="0 0 30 30" width="30" height="30" id="preview_svg3">
 						<path id="icon_preview3" transform="translate(0,0)"
+							d="M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,6A4,4 0 0,0 8,10H10A2,2 0 0,1 12,8A2,2 0 0,1 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10A4,4 0 0,0 12,6Z" />
+					</svg>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s12">
+					<h6 class="title translate" data-lang="custom5">custom element 5:</h6>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s3">
+					<input class="value" id="label_custom4" type="text" />
+					<label for="label_custom4" class="translate" data-lang="label">Label:</label>
+					<span class="translate" data-lang="ex_label">label inside the element</span>
+				</div>
+				<div class="input-field col s4">
+					<input class="value dp" id="custom4" type="text" />
+					<label for="custom4" class="translate" data-lang="custom">custom element</label>
+					<span class="translate" data-lang="ex_custom">Data point of your custom element</span>
+				</div>
+				<div class="col s1 m2 l1">
+					<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
+							class="material-icons">search</i></a>
+				</div>
+				<div class="input-field col s3">
+					<input id="house_netto_custom4" class="value" type="checkbox" />
+					<label for="house_netto_custom4" class="translate" data-lang="house_netto">Subtract this value from
+						the
+						House consumption</label><br>
+					<span class="translate" data-lang="ex_house_netto">If activated, the value shown in the consumption
+						element will be reduced by this</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s7">
+					<input class="value" id="custom_icon4" type="text" />
+					<label for="custom_icon4" class="translate" data-lang="custom_icon">icon inside the
+						custom element:</label>
+				</div>
+				<div class="input-field col s4">
+					<span class="translate" data-lang="ex_custom_preview">Preview</span><br>
+					<svg viewBox="0 0 30 30" width="30" height="30" id="preview_svg4">
+						<path id="icon_preview4" transform="translate(0,0)"
+							d="M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,6A4,4 0 0,0 8,10H10A2,2 0 0,1 12,8A2,2 0 0,1 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10A4,4 0 0,0 12,6Z" />
+					</svg>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s12">
+					<h6 class="title translate" data-lang="custom6">custom element 6:</h6>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s3">
+					<input class="value" id="label_custom5" type="text" />
+					<label for="label_custom5" class="translate" data-lang="label">Label:</label>
+					<span class="translate" data-lang="ex_label">label inside the element</span>
+				</div>
+				<div class="input-field col s4">
+					<input class="value dp" id="custom5" type="text" />
+					<label for="custom5" class="translate" data-lang="custom">custom element</label>
+					<span class="translate" data-lang="ex_custom">Data point of your custom element</span>
+				</div>
+				<div class="col s1 m2 l1">
+					<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
+							class="material-icons">search</i></a>
+				</div>
+				<div class="input-field col s3">
+					<input id="house_netto_custom5" class="value" type="checkbox" />
+					<label for="house_netto_custom5" class="translate" data-lang="house_netto">Subtract this value from
+						the
+						House consumption</label><br>
+					<span class="translate" data-lang="ex_house_netto">If activated, the value shown in the consumption
+						element will be reduced by this</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s7">
+					<input class="value" id="custom_icon5" type="text" />
+					<label for="custom_icon5" class="translate" data-lang="custom_icon">icon inside the
+						custom element:</label>
+				</div>
+				<div class="input-field col s4">
+					<span class="translate" data-lang="ex_custom_preview">Preview</span><br>
+					<svg viewBox="0 0 30 30" width="30" height="30" id="preview_svg5">
+						<path id="icon_preview5" transform="translate(0,0)"
+							d="M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,6A4,4 0 0,0 8,10H10A2,2 0 0,1 12,8A2,2 0 0,1 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10A4,4 0 0,0 12,6Z" />
+					</svg>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s12">
+					<h6 class="title translate" data-lang="custom7">custom element 7:</h6>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s3">
+					<input class="value" id="label_custom6" type="text" />
+					<label for="label_custom6" class="translate" data-lang="label">Label:</label>
+					<span class="translate" data-lang="ex_label">label inside the element</span>
+				</div>
+				<div class="input-field col s4">
+					<input class="value dp" id="custom6" type="text" />
+					<label for="custom6" class="translate" data-lang="custom">custom element</label>
+					<span class="translate" data-lang="ex_custom">Data point of your custom element</span>
+				</div>
+				<div class="col s1 m2 l1">
+					<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
+							class="material-icons">search</i></a>
+				</div>
+				<div class="input-field col s3">
+					<input id="house_netto_custom6" class="value" type="checkbox" />
+					<label for="house_netto_custom6" class="translate" data-lang="house_netto">Subtract this value from
+						the
+						House consumption</label><br>
+					<span class="translate" data-lang="ex_house_netto">If activated, the value shown in the consumption
+						element will be reduced by this</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s7">
+					<input class="value" id="custom_icon6" type="text" />
+					<label for="custom_icon6" class="translate" data-lang="custom_icon">icon inside the
+						custom element:</label>
+				</div>
+				<div class="input-field col s4">
+					<span class="translate" data-lang="ex_custom_preview">Preview</span><br>
+					<svg viewBox="0 0 30 30" width="30" height="30" id="preview_svg6">
+						<path id="icon_preview6" transform="translate(0,0)"
+							d="M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,6A4,4 0 0,0 8,10H10A2,2 0 0,1 12,8A2,2 0 0,1 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10A4,4 0 0,0 12,6Z" />
+					</svg>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s12">
+					<h6 class="title translate" data-lang="custom8">custom element 8:</h6>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s3">
+					<input class="value" id="label_custom7" type="text" />
+					<label for="label_custom7" class="translate" data-lang="label">Label:</label>
+					<span class="translate" data-lang="ex_label">label inside the element</span>
+				</div>
+				<div class="input-field col s4">
+					<input class="value dp" id="custom7" type="text" />
+					<label for="custom7" class="translate" data-lang="custom">custom element</label>
+					<span class="translate" data-lang="ex_custom">Data point of your custom element</span>
+				</div>
+				<div class="col s1 m2 l1">
+					<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
+							class="material-icons">search</i></a>
+				</div>
+				<div class="input-field col s3">
+					<input id="house_netto_custom7" class="value" type="checkbox" />
+					<label for="house_netto_custom7" class="translate" data-lang="house_netto">Subtract this value from
+						the
+						House consumption</label><br>
+					<span class="translate" data-lang="ex_house_netto">If activated, the value shown in the consumption
+						element will be reduced by this</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s7">
+					<input class="value" id="custom_icon7" type="text" />
+					<label for="custom_icon7" class="translate" data-lang="custom_icon">icon inside the
+						custom element:</label>
+				</div>
+				<div class="input-field col s4">
+					<span class="translate" data-lang="ex_custom_preview">Preview</span><br>
+					<svg viewBox="0 0 30 30" width="30" height="30" id="preview_svg7">
+						<path id="icon_preview7" transform="translate(0,0)"
+							d="M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,6A4,4 0 0,0 8,10H10A2,2 0 0,1 12,8A2,2 0 0,1 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10A4,4 0 0,0 12,6Z" />
+					</svg>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s12">
+					<h6 class="title translate" data-lang="custom9">custom element 9:</h6>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s3">
+					<input class="value" id="label_custom8" type="text" />
+					<label for="label_custom8" class="translate" data-lang="label">Label:</label>
+					<span class="translate" data-lang="ex_label">label inside the element</span>
+				</div>
+				<div class="input-field col s4">
+					<input class="value dp" id="custom8" type="text" />
+					<label for="custom8" class="translate" data-lang="custom">custom element</label>
+					<span class="translate" data-lang="ex_custom">Data point of your custom element</span>
+				</div>
+				<div class="col s1 m2 l1">
+					<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
+							class="material-icons">search</i></a>
+				</div>
+				<div class="input-field col s3">
+					<input id="house_netto_custom8" class="value" type="checkbox" />
+					<label for="house_netto_custom8" class="translate" data-lang="house_netto">Subtract this value from
+						the
+						House consumption</label><br>
+					<span class="translate" data-lang="ex_house_netto">If activated, the value shown in the consumption
+						element will be reduced by this</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s7">
+					<input class="value" id="custom_icon8" type="text" />
+					<label for="custom_icon8" class="translate" data-lang="custom_icon">icon inside the
+						custom element:</label>
+				</div>
+				<div class="input-field col s4">
+					<span class="translate" data-lang="ex_custom_preview">Preview</span><br>
+					<svg viewBox="0 0 30 30" width="30" height="30" id="preview_svg8">
+						<path id="icon_preview8" transform="translate(0,0)"
+							d="M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,6A4,4 0 0,0 8,10H10A2,2 0 0,1 12,8A2,2 0 0,1 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10A4,4 0 0,0 12,6Z" />
+					</svg>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s12">
+					<h6 class="title translate" data-lang="custom10">custom element 10:</h6>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s3">
+					<input class="value" id="label_custom9" type="text" />
+					<label for="label_custom9" class="translate" data-lang="label">Label:</label>
+					<span class="translate" data-lang="ex_label">label inside the element</span>
+				</div>
+				<div class="input-field col s4">
+					<input class="value dp" id="custom9" type="text" />
+					<label for="custom9" class="translate" data-lang="custom">custom element</label>
+					<span class="translate" data-lang="ex_custom">Data point of your custom element</span>
+				</div>
+				<div class="col s1 m2 l1">
+					<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
+							class="material-icons">search</i></a>
+				</div>
+				<div class="input-field col s3">
+					<input id="house_netto_custom9" class="value" type="checkbox" />
+					<label for="house_netto_custom9" class="translate" data-lang="house_netto">Subtract this value from
+						the
+						House consumption</label><br>
+					<span class="translate" data-lang="ex_house_netto">If activated, the value shown in the consumption
+						element will be reduced by this</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s7">
+					<input class="value" id="custom_icon9" type="text" />
+					<label for="custom_icon9" class="translate" data-lang="custom_icon">icon inside the
+						custom element:</label>
+				</div>
+				<div class="input-field col s4">
+					<span class="translate" data-lang="ex_custom_preview">Preview</span><br>
+					<svg viewBox="0 0 30 30" width="30" height="30" id="preview_svg9">
+						<path id="icon_preview9" transform="translate(0,0)"
 							d="M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,6A4,4 0 0,0 8,10H10A2,2 0 0,1 12,8A2,2 0 0,1 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10A4,4 0 0,0 12,6Z" />
 					</svg>
 				</div>
@@ -894,7 +1227,7 @@
 			</div>
 			<div class="row">
 				<div class="col s12">
-					<h6 class="title translate" data-lang="car">car</h6>
+					<h6 class="title translate" data-lang="auto">auto</h6>
 				</div>
 			</div>
 			<div class="row">
@@ -1091,6 +1424,180 @@
 				</div>
 				<div class="input-field col s5">
 					<input class="value color" id="color_custom3_text_no_prod" type="text" placeholder="" />
+					<span class="translate" data-lang="color_no_prod">color of the value if value is below threshold
+						(default:
+						empty)</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s12">
+					<h6 class="title translate" data-lang="custom5">custom element 5</h6>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s5">
+					<input class="value color" id="color_custom4" type="text" placeholder="#f20e40" />
+					<span class="translate" data-lang="color_custom">Outline color of the element around the custom
+						element
+						(default:
+						#f20e40)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="color_custom4_text" type="text" placeholder="#f20e40" />
+					<span class="translate" data-lang="color_custom_text">color of the value inside the
+						custom element (default: #f20e40)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="fill_color_custom4" type="text" placeholder="" />
+					<span class="translate" data-lang="fill_color">color inside the element (default: empty)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="color_custom4_text_no_prod" type="text" placeholder="" />
+					<span class="translate" data-lang="color_no_prod">color of the value if value is below threshold
+						(default:
+						empty)</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s12">
+					<h6 class="title translate" data-lang="custom6">custom element 6</h6>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s5">
+					<input class="value color" id="color_custom5" type="text" placeholder="#f20e40" />
+					<span class="translate" data-lang="color_custom">Outline color of the element around the custom
+						element
+						(default:
+						#f20e40)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="color_custom5_text" type="text" placeholder="#f20e40" />
+					<span class="translate" data-lang="color_custom_text">color of the value inside the
+						custom element (default: #f20e40)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="fill_color_custom5" type="text" placeholder="" />
+					<span class="translate" data-lang="fill_color">color inside the element (default: empty)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="color_custom5_text_no_prod" type="text" placeholder="" />
+					<span class="translate" data-lang="color_no_prod">color of the value if value is below threshold
+						(default:
+						empty)</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s12">
+					<h6 class="title translate" data-lang="custom7">custom element 7</h6>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s5">
+					<input class="value color" id="color_custom6" type="text" placeholder="#f20e40" />
+					<span class="translate" data-lang="color_custom">Outline color of the element around the custom
+						element
+						(default:
+						#f20e40)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="color_custom6_text" type="text" placeholder="#f20e40" />
+					<span class="translate" data-lang="color_custom_text">color of the value inside the
+						custom element (default: #f20e40)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="fill_color_custom6" type="text" placeholder="" />
+					<span class="translate" data-lang="fill_color">color inside the element (default: empty)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="color_custom6_text_no_prod" type="text" placeholder="" />
+					<span class="translate" data-lang="color_no_prod">color of the value if value is below threshold
+						(default:
+						empty)</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s12">
+					<h6 class="title translate" data-lang="custom8">custom element 8</h6>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s5">
+					<input class="value color" id="color_custom7" type="text" placeholder="#f20e40" />
+					<span class="translate" data-lang="color_custom">Outline color of the element around the custom
+						element
+						(default:
+						#f20e40)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="color_custom7_text" type="text" placeholder="#f20e40" />
+					<span class="translate" data-lang="color_custom_text">color of the value inside the
+						custom element (default: #f20e40)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="fill_color_custom7" type="text" placeholder="" />
+					<span class="translate" data-lang="fill_color">color inside the element (default: empty)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="color_custom7_text_no_prod" type="text" placeholder="" />
+					<span class="translate" data-lang="color_no_prod">color of the value if value is below threshold
+						(default:
+						empty)</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s12">
+					<h6 class="title translate" data-lang="custom9">custom element 9</h6>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s5">
+					<input class="value color" id="color_custom8" type="text" placeholder="#f20e40" />
+					<span class="translate" data-lang="color_custom">Outline color of the element around the custom
+						element
+						(default:
+						#f20e40)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="color_custom8_text" type="text" placeholder="#f20e40" />
+					<span class="translate" data-lang="color_custom_text">color of the value inside the
+						custom element (default: #f20e40)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="fill_color_custom8" type="text" placeholder="" />
+					<span class="translate" data-lang="fill_color">color inside the element (default: empty)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="color_custom8_text_no_prod" type="text" placeholder="" />
+					<span class="translate" data-lang="color_no_prod">color of the value if value is below threshold
+						(default:
+						empty)</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s12">
+					<h6 class="title translate" data-lang="custom10">custom element 10</h6>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s5">
+					<input class="value color" id="color_custom9" type="text" placeholder="#f20e40" />
+					<span class="translate" data-lang="color_custom">Outline color of the element around the custom
+						element
+						(default:
+						#f20e40)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="color_custom9_text" type="text" placeholder="#f20e40" />
+					<span class="translate" data-lang="color_custom_text">color of the value inside the
+						custom element (default: #f20e40)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="fill_color_custom9" type="text" placeholder="" />
+					<span class="translate" data-lang="fill_color">color inside the element (default: empty)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="color_custom9_text_no_prod" type="text" placeholder="" />
 					<span class="translate" data-lang="color_no_prod">color of the value if value is below threshold
 						(default:
 						empty)</span>
@@ -1327,6 +1834,84 @@
 						house and custom element 4 (default:
 						empty)</span>
 				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="color_house_to_custom4" type="text" placeholder="" />
+					<span class="translate" data-lang="color_house_to_custom5">color of the line between house and
+						custom
+						element 5 (default:
+						empty)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="animation_color_house_to_custom4" type="text" placeholder="" />
+					<span class="translate" data-lang="animation_color_house_to_custom5">color of the animation between
+						house and custom element 5 (default:
+						empty)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="color_house_to_custom5" type="text" placeholder="" />
+					<span class="translate" data-lang="color_house_to_custom6">color of the line between house and
+						custom
+						element 6 (default:
+						empty)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="animation_color_house_to_custom5" type="text" placeholder="" />
+					<span class="translate" data-lang="animation_color_house_to_custom6">color of the animation between
+						house and custom element 6 (default:
+						empty)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="color_house_to_custom6" type="text" placeholder="" />
+					<span class="translate" data-lang="color_house_to_custom7">color of the line between house and
+						custom
+						element 7 (default:
+						empty)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="animation_color_house_to_custom6" type="text" placeholder="" />
+					<span class="translate" data-lang="animation_color_house_to_custom7">color of the animation between
+						house and custom element 7 (default:
+						empty)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="color_house_to_custom7" type="text" placeholder="" />
+					<span class="translate" data-lang="color_house_to_custom8">color of the line between house and
+						custom
+						element 8 (default:
+						empty)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="animation_color_house_to_custom7" type="text" placeholder="" />
+					<span class="translate" data-lang="animation_color_house_to_custom8">color of the animation between
+						house and custom element 8 (default:
+						empty)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="color_house_to_custo8" type="text" placeholder="" />
+					<span class="translate" data-lang="color_house_to_custom9">color of the line between house and
+						custom
+						element 9 (default:
+						empty)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="animation_color_house_to_custom8" type="text" placeholder="" />
+					<span class="translate" data-lang="animation_color_house_to_custom9">color of the animation between
+						house and custom element 9 (default:
+						empty)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="color_house_to_custom9" type="text" placeholder="" />
+					<span class="translate" data-lang="color_house_to_custom10">color of the line between house and
+						custom
+						element 10 (default:
+						empty)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="animation_color_house_to_custom9" type="text" placeholder="" />
+					<span class="translate" data-lang="animation_color_house_to_custom10">color of the animation between
+						house and custom element 10 (default:
+						empty)</span>
+				</div>
 			</div>
 			<div class="row" style="height:100px;">
 				<a class="btn"><span class="translate" data-lang="reset_colors_to_default"
@@ -1494,16 +2079,63 @@
 			</div>
 			<div class="row display_rect">
 				<div class="input-field col s4">
-					<input class="value" id="rect_height" type="number" placeholder="100" min="50" max="110" />
+					<input class="value" id="rect_height" type="number" placeholder="100" min="50" max="100" />
 					<span class="translate" data-lang="ex_rect_height">Height of the rectangle (in px)</span>
 				</div>
 				<div class="input-field col s4">
-					<input class="value" id="rect_width" type="number" placeholder="100" min="50" max="150" />
+					<input class="value" id="rect_width" type="number" placeholder="100" min="50" max="100" />
 					<span class="translate" data-lang="ex_rect_width">Width of the rectangle (in px)</span>
 				</div>
 				<div class="input-field col s4">
 					<input class="value" id="rect_corner" type="number" placeholder="15" min="0" max="30" />
 					<span class="translate" data-lang="ex_rect_corner">Radius of rounded corners (in px)</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s12">
+					<h6 class="title translate" data-lang="position">positions</h6>
+				</div>
+				<div class="col s12">
+					<span class="translate" data-lang="ex_offset">Here you can re-position the elements. Higher numbers
+						move the elements more down. Lower or minus numbers move them up (Default: 0)</span>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="input-field col s4">
+					<input class="value" id="offset_icon" type="number" placeholder="0" min="-10" max="20" />
+					<span class="translate" data-lang="ex_offset_icon">offset of the icon inside the element</span>
+				</div>
+				<div class="input-field col s4">
+					<input class="value" id="offset_text" type="number" placeholder="0" min="-10" max="20" />
+					<span class="translate" data-lang="ex_offset_text">offset of the text inside the element</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s4">
+					<input class="value" id="offset_value" type="number" placeholder="0" min="-10" max="20" />
+					<span class="translate" data-lang="ex_offset_value">offset of the value inside the element</span>
+				</div>
+				<div class="input-field col s4">
+					<input class="value" id="offset_percent" type="number" placeholder="0" min="-10" max="20" />
+					<span class="translate" data-lang="ex_offset_percent">offset of the percent value inside the
+						element</span>
+				</div>
+				<div class="input-field col s4">
+					<input class="value" id="offset_remaining" type="number" placeholder="0" min="-10" max="20" />
+					<span class="translate" data-lang="ex_offset_remaining">offset of the battery remaining text below
+						the battery element</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s12">
+					<h6 class="title translate" data-lang="opacity">opacity</h6>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s4">
+					<input class="value" id="opacity" type="number" min="0" max="100" step="1" placeholder="70">
+					<span class="translate" data-lang="ex_opacity">opacity for the icon, text and line</span>
 				</div>
 			</div>
 		</div>
@@ -1547,15 +2179,6 @@
 						E.g. 10
 						for values greater than 10 or -10 Watts / or 0.01 for values greater than 0.01 or -0.01
 						kW. This value affects the color too.</span>
-				</div>
-				<div class="input-field col s4"></div>
-				<div class="col s1 m2 l1"></div>
-				<div class="input-field col s4">
-					<input id="house_netto" class="value" type="checkbox" />
-					<label for="house_netto" class="translate" data-lang="house_netto">Display the house net
-						consumption</label><br>
-					<span class="translate" data-lang="ex_house_netto">Subtract the consumption of the car and
-						additional equipment from the consumption in the house</span>
 				</div>
 			</div>
 		</div>

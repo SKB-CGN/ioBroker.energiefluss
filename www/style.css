@@ -1,3 +1,73 @@
+/* Icons for Battery */
+:root {
+    --empty: 'M16,20H8V6H16M16.67,4H15V2H9V4H7.33A1.33,1.33 0 0,0 6,5.33V20.67C6,21.4 6.6,22 7.33,22H16.67A1.33,1.33 0 0,0 18,20.67V5.33C18,4.6 17.4,4 16.67,4Z';
+    --low: 'M16 20H8V6H16M16.67 4H15V2H9V4H7.33C6.6 4 6 4.6 6 5.33V20.67C6 21.4 6.6 22 7.33 22H16.67C17.41 22 18 21.41 18 20.67V5.33C18 4.6 17.4 4 16.67 4M15 16H9V19H15V16';
+    --medium: 'M16 20H8V6H16M16.67 4H15V2H9V4H7.33C6.6 4 6 4.6 6 5.33V20.67C6 21.4 6.6 22 7.33 22H16.67C17.41 22 18 21.41 18 20.67V5.33C18 4.6 17.4 4 16.67 4M15 16H9V19H15V16M15 11.5H9V14.5H15V11.5Z';
+    --high: 'M16 20H8V6H16M16.67 4H15V2H9V4H7.33C6.6 4 6 4.6 6 5.33V20.67C6 21.4 6.6 22 7.33 22H16.67C17.41 22 18 21.41 18 20.67V5.33C18 4.6 17.4 4 16.67 4M15 16H9V19H15V16M15 7H9V10H15V7M15 11.5H9V14.5H15V11.5Z';
+}
+
+.battery_empty {
+    d: path(var(--empty));
+}
+
+.battery_low {
+    d: path(var(--low));
+}
+
+.battery_medium {
+    d: path(var(--medium));
+}
+
+.battery_high {
+    d: path(var(--high));
+}
+
+.battery_charge {
+    animation: charge 4s linear infinite;
+}
+
+.battery_discharge {
+    animation: discharge 4s linear infinite;
+}
+
+/* Animation for battery */
+@keyframes charge {
+    0% {
+        d: path(var(--empty));
+    }
+
+    25% {
+        d: path(var(--low));
+    }
+
+    50% {
+        d: path(var(--medium));
+    }
+
+    75% {
+        d: path(var(--high));
+    }
+}
+
+@keyframes discharge {
+    0% {
+        d: path(var(--high));
+    }
+
+    25% {
+        d: path(var(--medium));
+    }
+
+    50% {
+        d: path(var(--low));
+    }
+
+    75% {
+
+        d: path(var(--empty));
+    }
+}
+
 html,
 body {
     background: transparent;
@@ -16,10 +86,6 @@ body {
     z-index: 101;
     color: #333;
     font-weight: bold;
-}
-
-.hidden {
-    display: none !important;
 }
 
 #svg_image {
@@ -46,10 +112,6 @@ circle {
     margin-left: -9em;
 }
 
-.icon_set {
-    translate: 0px 50px;
-}
-
 .line {
     fill: none;
 }
@@ -57,7 +119,11 @@ circle {
 .icon_color,
 .line,
 .text {
-    opacity: 0.7;
+    opacity: 70%;
+}
+
+text {
+    text-rendering: geometricPrecision;
 }
 
 .animation {
@@ -68,16 +134,13 @@ circle {
     stroke-dasharray: 4 12 4 12 4 100;
     stroke-linecap: round;
     fill: none;
+    text-rendering: optimizeSpeed;
 }
 
 @keyframes dashdraw {
     to {
-        stroke-dashoffset: -135;
+        stroke-dashoffset: -136;
     }
-}
-
-.all_elm {
-    visibility: hidden;
 }
 
 #span_error {
@@ -86,4 +149,8 @@ circle {
 
 text {
     text-anchor: middle;
+}
+
+#placeholder_battery {
+    display: none;
 }

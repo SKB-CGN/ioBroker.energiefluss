@@ -51,7 +51,9 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 - change width, height and corner rounds of the rectangle
 - define your own color and opacity for the shadows (rgba supported)
 - change fontfaces of the values and texts (own fonts can be imported)
+- Realign texts, values, icons, percentages and battery text (higher or lower)
 - change the font size for label, values and %-texts
+- Transparency for icon, line and text possible
 - define a color for the the car icon, if its charging
 - Some Values can have different colors, if their value is below a threshold (consumption, production, grid and battery)
 - Battery icon can be animated while charging or discharging
@@ -66,16 +68,16 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 - use positive or negative values for consumption
 - calculcate your consumption via production and grid-feed-in, if you do not have a powermeter
 - use different states for your battery
-- add 4 own elements for a consuming device with different text, values and icon (1 element can be configured as additional car-charge)
+- add 10 own elements for a consuming device with different text, values and icon (1 element can be configured as additional car-charge)
 - convert all values from W into kW
 - Choose, how many decimal places you want to display (0, 1, 2) - for values and battery charging
 - choose the unit (freetext)
-- Subtract the consumption of the car and additional equipment from the consumption in the house
+- Subtract the consumption of the car and additional equipment from the consumption in the house (selectable)
 - All objects can be choosen via the object-browser
 - define a threshold, to display only values above
 
 ## Implementation
-Display is possible via the instance link. This can then also be inserted into an iFrame or HTML widget..
+Display is possible via the instance link. This can then also be inserted into an iFrame or HTML widget.
 
 ## Funktionen
 **Design:**
@@ -92,7 +94,9 @@ Display is possible via the instance link. This can then also be inserted into a
 - Hoehe, Breite und Eckenradius des Rechtecks anpassbar
 - Definieren Sie Ihre eigene Farbe und Deckkraft fuer die Schatten (rgba-unterstuetzt)
 - Schriftarten der Werte und Texte aendern (eigene Schriftarten koennen importiert werden)
+- Texte, Werte, Icons, Prozentwerte und Batterietext neu ausrichten (höher oder tiefer)
 - Aendern Sie die Schriftgroessee fuer Label, Werte und %-Texte
+- Transparenz fuer Icon, Linie und Text moeglich
 - Definieren Sie eine Farbe fuer das Autosymbol, wenn es geladen wird
 - Einige Werte koennen unterschiedliche Farben haben, wenn ihr Wert unterhalb eines Schwellenwerts ist (Verbrauch, Produktion, Netz und Batterie)
 - Batterie-Icon kann beim Laden und Entladen animiert werden
@@ -106,23 +110,37 @@ Display is possible via the instance link. This can then also be inserted into a
 - Einstellungen umkehren, wenn Ihre Werte negativ sind (fuer Verbrauch, Netzeinspeisung, Laden-/Entladen der Batterie)
 - Verwenden Sie positive oder negative Werte fuer den Verbrauch
 - Berechnen Sie Ihren Verbrauch ueber Erzeugung und Netzeinspeisung, wenn Sie keinen Stromzuehler haben
-- Verwenden Sie verschiedene Zustuende fuer Ihre Batterie
-- Fuegen Sie 4 eigene Elemente fuer ein Verbrauchsgeraet mit unterschiedlichem Text, Werten und Symbolen hinzu (1 Element kann als weiterer Auto-Ladepunkt konfiguriert werden)
+- Verwenden Sie verschiedene Zustaende fuer Ihre Batterie
+- Fuegen Sie 10 eigene Elemente fuer ein Verbrauchsgeraet mit unterschiedlichem Text, Werten und Symbolen hinzu (1 Element kann als weiterer Auto-Ladepunkt konfiguriert werden)
 - Alle Werte von W in kW umrechnen
 - Waehlen Sie, wie viele Dezimalstellen Sie anzeigen moechten (0, 1, 2) - fuer Werte und Akkuladung
 - Waehlen Sie die Einheit (Freitext)
-- Ziehen Sie den Verbrauch des Autos und der Zusatzgeraete vom Verbrauch im Haus ab
+- Ziehen Sie den Verbrauch des Autos und der Zusatzgeraete vom Verbrauch im Haus ab (auswaehlbar)
 - Alle Datenpunkte koennen ueber den Objekt-Browser ausgewaehlt werden
 - Definieren Sie einen Schwellenwert, um nur Werte darueber anzuzeigen
 
 ## Implementierung
 Anzeige ist ueber den Instanz Link moeglich. Dieser kann dann auch in ein iFrame oder HTML Widget eingefuegt werden.
 
+## Custom Elements / Benutzerderfinierte Elemente
+![Description / Beschreibung](doc/custom_elements.png)
+
 ## Changelog
 <!--
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+- Added 6 more Elements. Overall 10 are available now
+- removed "house netto consumption for all elements"
+- added option to subtract each element from house consumption
+- added "Position" in Elements. Now its possible, to Realign texts, values, icons, percentages and battery text (higher or lower)
+- removed battery animation for (dis-)/charging via Javascript
+- added battery animation via CSS
+- lower memory usage due to drawing only necessary elements
+- fixed Translations Errors
+- some code optimizations
+
 ### 1.3.0 (2022-09-23)
 - Added possibility, to configure the first custom element as car charge element with same attributes like normal car charge
 - fixed a calculation issue

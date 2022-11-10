@@ -2,185 +2,79 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>Energiefluss</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1,height=device-height">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <link rel="apple-touch-icon" sizes="57x57" href="icons/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="icons/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="icons/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="icons/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="icons/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="icons/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="icons/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="icons/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="icons/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="icons/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
-    <link rel="manifest" href="manifest.json">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="icons/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff">
     <link rel="stylesheet" href="style.css?v=20220824">
+    <style id="style_animation"></style>
+    <style id="style_element"></style>
+    <style id="style_fonts"></style>
+    <!-- <script src="https://code.jquery.com/jquery-3.5.0.js"></script> -->
+
+    <!-- <script src="dev.js"></script> -->
     <script src="../../lib/js/jquery-3.2.1.min.js"></script>
     <script src="../../socket.io/socket.io.js"></script>
     <script src="conn.js"></script>
-    <script src="functions.js?v=20220824"></script>
+    <script src="instance.js"></script>
+    <script src="functions.js?"></script>
+    <!--
+<script>
+
+        $(document).ready(function () {
+            initConfig();
+            updateValues();
+            $('#svg_image').fadeIn("middle")
+            $('#loading').fadeOut("middle").addClass('hidden');
+        });
+    </script>
+    -->
 </head>
 
 <body>
     <div id="loading">Loading Config and Values ...<br><span id="span_error"></span></div>
-    <svg viewBox="-5 0 510 510" class="" preserveAspectRatio="xMinYMid meet" id="svg_image">
+    <svg viewBox="-5 0 540 532" class="" preserveAspectRatio="xMinYMid meet" id="svg_image">
         <defs>
             <!-- Pathes -->
-            <path id="solar_to_battery" d="M 230,88 v 142 l 0,0 h -142" />
-            <path id="solar_to_grid" d="M 250,88 v 324" />
-            <path id="solar_to_house" d="M 270,88 v 142 l 0,0 h 142" />
-            <path id="house_to_car" d="M 448,286 v 124" />
-            <path id="grid_to_house" d="M 270,412 v -142 l 0,0 h 142" />
-            <path id="grid_to_battery" d="M 230,412 v -142 l 0,0 h -142" />
-            <path id="battery_to_house" d="M 88,250 h 324" />
-            <path id="house_to_custom0" d="M 448,210 v -120" />
-            <path id="house_to_custom1" d="M 476,222 l142,-142" />
-            <path id="house_to_custom2" d="M 488,250 h 120" />
-            <path id="house_to_custom3" d="M 476,280 l142,142" />
+            <path id="solar_to_battery" d="M 242,88 v 154 l 0,0 h -154" />
+            <path id="solar_to_grid" d="M 262,88 v 348" />
+            <path id="solar_to_house" d="M 282,88 v 154 l 0,0 h 154" />
+            <path id="house_to_car" d="M 472,302 v 132" />
+            <path id="grid_to_house" d="M 282,436 v -154 l 0,0 h 154" />
+            <path id="grid_to_battery" d="M 242,436 v -154 l 0,0 h -154" />
+            <path id="battery_to_house" d="M088,262 h 348" />
+            <path id="house_to_custom0" d="M472,222 v -132" />
+            <path id="house_to_custom1" d="M500,234 v 220" transform="rotate(225, 500,234)" />
+            <path id="house_to_custom2" d="M512,262h 132" />
+            <path id="house_to_custom3" d="M500,290 v220" transform="rotate(315, 500,290)" />
+            <path id="house_to_custom4" d="M457,225 v-160" transform="rotate(-22.5, 457,225)" />
+            <path id="house_to_custom5" d="M487,225 v160" transform="rotate(202.5, 487,225)" />
+            <path id="house_to_custom6" d="M509,247 v160" transform="rotate(247.5, 509,247)" />
+            <path id="house_to_custom7" d="M509,277 v160" transform="rotate(292.5, 509,277)" />
+            <path id="house_to_custom8" d="M487,299 v160" transform="rotate(337.5, 487,299)" />
+            <path id="house_to_custom9" d="M457,299 v160" transform="rotate(22.5, 457,299)" />
         </defs>
 
+        <!-- Usages -->
         <!-- Lines -->
-        <use class="line all_elm" xlink:href="#solar_to_battery" id="line_solar_to_battery" />
-        <use class="line all_elm" xlink:href="#solar_to_grid" id="line_solar_to_grid" />
-        <use class="line all_elm" xlink:href="#solar_to_house" id="line_solar_to_house" />
-        <use class="line all_elm" xlink:href="#house_to_car" id="line_house_to_car" />
-        <use class="line all_elm" xlink:href="#grid_to_house" id="line_grid_to_house" />
-        <use class="line all_elm" xlink:href="#grid_to_battery" id="line_grid_to_battery" />
-        <use class="line all_elm" xlink:href="#battery_to_house" id="line_battery_to_house" />
-        <use class="line all_elm" xlink:href="#house_to_custom0" id="line_house_to_custom0" />
-        <use class="line all_elm" xlink:href="#house_to_custom1" id="line_house_to_custom1" />
-        <use class="line all_elm" xlink:href="#house_to_custom2" id="line_house_to_custom2" />
-        <use class="line all_elm" xlink:href="#house_to_custom3" id="line_house_to_custom3" />
+        <g id="placeholder_lines" class="placeholders"></g>
 
         <!-- Animation -->
-        <use class="all_elm animation" xlink:href="#solar_to_house" id="anim_solar_to_house" />
-        <use class="all_elm animation" xlink:href="#grid_to_house" id="anim_grid_to_house" />
-        <use class="all_elm animation" xlink:href="#solar_to_grid" id="anim_solar_to_grid" />
-        <use class="all_elm animation" xlink:href="#house_to_car" id="anim_house_to_car" />
-        <use class="all_elm animation" xlink:href="#grid_to_battery" id="anim_grid_to_battery" />
-        <use class="all_elm animation" xlink:href="#solar_to_battery" id="anim_solar_to_battery" />
-        <use class="all_elm animation" xlink:href="#battery_to_house" id="anim_battery_to_house" />
-        <use class="all_elm animation" xlink:href="#house_to_custom0" id="anim_house_to_custom0" />
-        <use class="all_elm animation" xlink:href="#house_to_custom1" id="anim_house_to_custom1" />
-        <use class="all_elm animation" xlink:href="#house_to_custom2" id="anim_house_to_custom2" />
-        <use class="all_elm animation" xlink:href="#house_to_custom3" id="anim_house_to_custom3" />
+        <g id="placeholder_animations" class="placeholders"></g>
 
-        <!-- Usages -->
         <!-- Circles or Rectangles -->
-        <g id="placeholder"></g>
-
-        <!-- Icons -->
-        <path id="icon_house" transform="translate(436,207)" class="icon_color all_elm"
-            data-default="translate(436,207)"
-            d="M0,21V10L7.5,5L15,10V21H10V14H5V21H0M24,2V21H17V8.93L16,8.27V6H14V6.93L10,4.27V2H24M21,14H19V16H21V14M21,10H19V12H21V10M21,6H19V8H21V6Z" />
-        <path id="icon_production" transform="translate(238,8)" class="icon_color all_elm"
-            data-default="translate(238,8)"
-            d="M4,2H20A2,2 0 0,1 22,4V14A2,2 0 0,1 20,16H15V20H18V22H13V16H11V22H6V20H9V16H4A2,2 0 0,1 2,14V4A2,2 0 0,1 4,2M4,4V8H11V4H4M4,14H11V10H4V14M20,14V10H13V14H20M20,4H13V8H20V4Z" />
-        <path id="icon_grid" transform="translate(238,406)" class="icon_color all_elm" data-default="translate(238,406)"
-            d="M8.28,5.45L6.5,4.55L7.76,2H16.23L17.5,4.55L15.72,5.44L15,4H9L8.28,5.45M18.62,8H14.09L13.3,5H10.7L9.91,8H5.38L4.1,10.55L5.89,11.44L6.62,10H17.38L18.1,11.45L19.89,10.56L18.62,8M17.77,22H15.7L15.46,21.1L12,15.9L8.53,21.1L8.3,22H6.23L9.12,11H11.19L10.83,12.35L12,14.1L13.16,12.35L12.81,11H14.88L17.77,22M11.4,15L10.5,13.65L9.32,18.13L11.4,15M14.68,18.12L13.5,13.64L12.6,15L14.68,18.12Z" />
-        <path id="icon_car" transform="translate(436,406)" class="icon_color all_elm" data-default="translate(436,406)"
-            d="M18.92 2C18.72 1.42 18.16 1 17.5 1H6.5C5.84 1 5.29 1.42 5.08 2L3 8V16C3 16.55 3.45 17 4 17H5C5.55 17 6 16.55 6 16V15H18V16C18 16.55 18.45 17 19 17H20C20.55 17 21 16.55 21 16V8L18.92 2M6.85 3H17.14L18.22 6.11H5.77L6.85 3M19 13H5V8H19V13M7.5 9C8.33 9 9 9.67 9 10.5S8.33 12 7.5 12 6 11.33 6 10.5 6.67 9 7.5 9M16.5 9C17.33 9 18 9.67 18 10.5S17.33 12 16.5 12C15.67 12 15 11.33 15 10.5S15.67 9 16.5 9M7 20H11V18L17 21H13V23L7 20Z" />
-        <path id="icon_custom0" transform="translate(436,8)" class="icon_color all_elm" data-default="translate(436,8)"
-            d=""
-            data-id="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z" />
-        <path id="icon_custom1" transform="translate(632,8)" class="icon_color all_elm" data-default="translate(632,8)"
-            d=""
-            data-id="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z" />
-        <path id="icon_custom2" transform="translate(632,207)" class="icon_color all_elm"
-            data-default="translate(632,207)" d=""
-            data-id="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z" />
-        <path id="icon_custom3" transform="translate(632,406)" class="icon_color all_elm"
-            data-default="translate(632,406)" d=""
-            data-id="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z" />
-        <!-- High Battery -->
-        <path id="icon_battery_high" transform="translate(40,207)" class="icon_color all_elm batt_elm"
-            data-default="translate(40,207)"
-            d="M16 20H8V6H16M16.67 4H15V2H9V4H7.33C6.6 4 6 4.6 6 5.33V20.67C6 21.4 6.6 22 7.33 22H16.67C17.41 22 18 21.41 18 20.67V5.33C18 4.6 17.4 4 16.67 4M15 16H9V19H15V16M15 7H9V10H15V7M15 11.5H9V14.5H15V11.5Z" />
-        <!-- Medium Battery -->
-        <path id="icon_battery_medium" transform="translate(40,207)" class="icon_color all_elm batt_elm"
-            data-default="translate(40,207)"
-            d="M16 20H8V6H16M16.67 4H15V2H9V4H7.33C6.6 4 6 4.6 6 5.33V20.67C6 21.4 6.6 22 7.33 22H16.67C17.41 22 18 21.41 18 20.67V5.33C18 4.6 17.4 4 16.67 4M15 16H9V19H15V16M15 11.5H9V14.5H15V11.5Z" />
-        <!-- Low Battery -->
-        <path id="icon_battery_low" transform="translate(40,207)" class="icon_color all_elm batt_elm"
-            data-default="translate(40,207)"
-            d="M16 20H8V6H16M16.67 4H15V2H9V4H7.33C6.6 4 6 4.6 6 5.33V20.67C6 21.4 6.6 22 7.33 22H16.67C17.41 22 18 21.41 18 20.67V5.33C18 4.6 17.4 4 16.67 4M15 16H9V19H15V16" />
-        <!-- Empty Battery-->
-        <path id="icon_battery_empty" transform="translate(40,207)" class="icon_color all_elm batt_elm"
-            data-default="translate(40,207)"
-            d="M16,20H8V6H16M16.67,4H15V2H9V4H7.33A1.33,1.33 0 0,0 6,5.33V20.67C6,21.4 6.6,22 7.33,22H16.67A1.33,1.33 0 0,0 18,20.67V5.33C18,4.6 17.4,4 16.67,4Z" />
+        <g id="placeholder_elements" class="placeholders"></g>
 
         <!-- Values -->
-        <text class="value all_elm" x="450" y="251">
-            <tspan class="value" id="consumption_value"></tspan>
-            <tspan class="unit"></tspan>
-        </text>
-        <text class="value all_elm" x="250" y="52">
-            <tspan class="value" id="production_value"></tspan>
-            <tspan class="unit"></tspan>
-        </text>
-        <text class="value all_elm" x="250" y="450">
-            <tspan class="value" id="grid_value"></tspan>
-            <tspan class="unit"></tspan>
-        </text>
-        <text class="value all_elm" x="450" y="450">
-            <tspan class="value" id="car_value"></tspan>
-            <tspan class="unit"></tspan>
-        </text>
-        <text class="value all_elm" x="52" y="251">
-            <tspan class="value" id="battery_value"></tspan>
-            <tspan class="unit"></tspan>
-        </text>
-        <text class="value all_elm" x="450" y="52">
-            <tspan class="value" id="custom0_value"></tspan>
-            <tspan class="unit"></tspan>
-        </text>
-        <text class="value all_elm" x="646" y="52">
-            <tspan class="value" id="custom1_value"></tspan>
-            <tspan class="unit"></tspan>
-        </text>
-        <text class="value all_elm" x="646" y="251">
-            <tspan class="value" id="custom2_value"></tspan>
-            <tspan class="unit"></tspan>
-        </text>
-        <text class="value all_elm" x="646" y="450">
-            <tspan class="value" id="custom3_value"></tspan>
-            <tspan class="unit"></tspan>
-        </text>
+        <g id="placeholder_values" class="placeholders"></g>
 
-        <!-- Text -->
-        <text class="text all_elm" id="consumption_text" x="448" y="282"></text>
-        <text class="text all_elm" id="production_text" x="250" y="81"></text>
-        <text class="text all_elm" id="grid_text" x="250" y="480"></text>
-        <text class="text all_elm" id="car_text" x="448" y="480"></text>
-        <text class="text all_elm" id="battery_text" x="52" y="282"></text>
-        <text class="text all_elm" id="custom0_text" x="448" y="79"></text>
-        <text class="text all_elm" id="custom1_text" x="646" y="79"></text>
-        <text class="text all_elm" id="custom2_text" x="646" y="280"></text>
-        <text class="text all_elm" id="custom3_text" x="646" y="478"></text>
-        <text class="text all_elm" id="battery_remaining_text" x="52" y="322"></text>
+        <!-- Texts -->
+        <g id="placeholder_texts" class="placeholders"></g>
+
+        <!-- Icons -->
+        <g id="placeholder_icons" class="placeholders"></g>
 
         <!-- Percent -->
-        <text class="percent all_elm" x="448" y="466">
-            <tspan class="value" id="car_percent"></tspan>
-            <tspan class="unit_percent"></tspan>
-        </text>
-        <text class="percent all_elm" x="448" y="68">
-            <tspan class="value" id="car_custom_percent"></tspan>
-            <tspan class="unit_percent"></tspan>
-        </text>
-        <text class="percent all_elm" x="52" y="268">
-            <tspan class="value" id="battery_percent"></tspan>
-            <tspan class="unit_percent"></tspan>
-        </text>
+        <g id="placeholder_percents" class="placeholders"></g>
     </svg>
 </body>
 
