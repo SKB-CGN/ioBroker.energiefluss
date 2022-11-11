@@ -130,8 +130,9 @@ Anzeige ist ueber den Instanz Link moeglich. Dieser kann dann auch in ein iFrame
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 2.1.1 (2022-11-11)
 - fixed default value for opacity
+
 ### 2.1.0 (2022-11-11)
 - extended opacity from icon, text and line to all elements
 

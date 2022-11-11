@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "energiefluss",
-    "version": "2.1.0",
+    "version": "2.1.1",
     "news": {
+      "2.1.1": {
+        "en": "fixed default value for opacity",
+        "de": "fester standardwert für opazität",
+        "ru": "фиксированное значение по умолчанию для непрозрачности",
+        "pt": "valor padrão fixo para opacidade",
+        "nl": "gerelateerde waarde voor opaciteit",
+        "fr": "valeur par défaut fixe pour opacité",
+        "it": "valore predefinito fisso per l'opacità",
+        "es": "valor predeterminado fijo para la opacidad",
+        "pl": "domyślna wartość domyślności dla opanowania",
+        "uk": "фіксоване значення за замовчуванням для opacity",
+        "zh-cn": "固定违约率"
+      },
       "2.1.0": {
         "en": "extended opacity from icon, text and line to all elements",
         "de": "erweiterte opazität von symbol, text und zeile zu allen elementen",
@@ -80,19 +93,6 @@
         "pl": "Kolor i czcionka z upływem czasu zmieniają się\nKolor wszystkich ikon zmienia się (jeden kolor dla wszystkich ikon)",
         "zh-cn": "A. 电池和电池的制剂\n一切可改变的理由(所有神秘的颜色)",
         "uk": "Колір і розмір шрифту часу, що залишився, можна змінювати\nКолір усіх значків змінюється (один колір для всіх значків)"
-      },
-      "1.2.0": {
-        "en": "Added text for Battery Remaining. Shows the remaining charge or discharge time (battery-capacity and datapoint for battery-percent need to be provided)\ncorrected Error \"Cannot parse JSON: undefined\"\nfixed some translations",
-        "de": "Text hinzugefügt für Battery Remaining. Zeigt die verbleibende Lade- oder Entladezeit (Batterie-Kapazität und Datenpunkt für Batterieprozent)\nkorrigierter Fehler \"Cannot parse JSON: undefiniert\"\neinige übersetzungen",
-        "ru": "Добавлен текст для батареи Осталось. Показывает оставшееся время заряда или разрядки (батареи-капкость и дата-точка для батареи-процентной необходимости быть обеспечены)\nисправлена ошибка \"Cannot parse JSON: undefined\"\nисправили некоторые переводы",
-        "pt": "Texto adicionado para restante da bateria. Mostra o tempo restante de carga ou descarga (capacidade de bateria e datapoint para necessidade de bateria por cento ser fornecido)\nerro corrigido \"Não é possível analisar JSON: indefinido\"\nfixo algumas traduções",
-        "nl": "Vermeld tekst voor Battery Remining. Toont de resterende aanklacht of ontlading tijd (batterij-capaciteit en datapoint voor accu-percente behoefte om te worden verstrekt)\nvertaling:\nvertaling:",
-        "fr": "Ajout du texte pour Battery Remaining. Affiche le temps de charge ou de décharge restant (capacité de réduction et point de données pour le pourcentage de batterie doit être fourni)\nerreur corrigée \"Cannot parse JSON: undefined\"\ncorrection de quelques traductions",
-        "it": "Aggiunto il testo per il mantenimento della batteria. Mostra il tempo di carica rimanente o di scarico (la capacità di batteria e il datapoint per la batteria-percentuale devono essere forniti)\nerrore corretto \"Cannot parse JSON: non definito\"\nfisso alcune traduzioni",
-        "es": "Texto añadido para Bateria Permaneciendo. Muestra el tiempo de carga o descarga restante (capacidad de batería y punto de datos para la batería por ciento necesita ser proporcionado)\nerror corregido \"No puede parse JSON: indefinido\"\nfijo algunas traducciones",
-        "pl": "Strona dodana do Battery Remaining. Pokazuje pozostałe czasy ładowania lub wyładowania (kondensacja baterii i punkt danych dla potrzebujących baterii)\nerror „Cannot parse JSON: undefiniowane”\nustalono kilka tłumaczeń",
-        "zh-cn": "增加Battery Remaining案文。 需提供剩余费用或排放时间(需要为电池中心提供易燃能力和数据点)\n更正的Error “Cannot parse JSON:未界定”\n固定翻译",
-        "uk": "Додано текст для залишку заряду батареї. Показує час заряду або розряду, що залишився (потрібно вказати ємність батареї та дані для відсотка батареї)\nвиправлено помилку «Не вдається розібрати JSON: undefined»\nвиправлено деякі переклади"
       }
     },
     "titleLang": {
