@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "energiefluss",
-    "version": "2.1.2",
+    "version": "2.1.3",
     "news": {
+      "2.1.3": {
+        "en": "fixed depencies",
+        "de": "feste abläufe",
+        "ru": "фиксированные частоты",
+        "pt": "competências fixas",
+        "nl": "_",
+        "fr": "depencies fixes",
+        "it": "spese fisse",
+        "es": "dependencias fijas",
+        "pl": "depozyt",
+        "uk": "фіксовані недоліки",
+        "zh-cn": "固定意外费用"
+      },
       "2.1.2": {
         "en": "fixed language values",
         "de": "feste sprachwerte",
@@ -80,19 +93,6 @@
         "pl": "Dodał 6 części. Obecnie jest już 10\nusunięte zużycie netto dla wszystkich elementów”\ndokładna opcja polega na odjęciu każdego elementu z konsumpcji domów\npozycja w elementach. Teraz jest możliwe, aby tworzyć teksty, wartości, ikony, odsetki i tekst baterii (wyższy lub niższy)\nusunięta animacja (dis-)/ ładowanie przez Javascript\ndodarzenie baterii przez CSS\nniższa pamięć z powodu rysowania jedynie niezbędnych elementów\nprzepisy stały\noptymalizacja kodu",
         "uk": "Додано ще 6 елементів. Всього 10 тепер\nвидаліть \"витрата чистоти для всіх елементів\"\nдоданий варіант для відрахування кожного елемента від споживання будинку\nдодана позиція в елементах. Тепер його можливо, щоб Вирівняти тексти, значення, іконки, проценти і текст батареї (високий або нижній)\nвидалена анімація акумулятора для (диск-)/закінчення через Javascript\nдодано анімацію акумулятора за допомогою CSS\nвикористання нижчої пам'яті за рахунок малювання тільки необхідні елементи\nвиправлені помилки перекладу\nдеякі оптимізації коду",
         "zh-cn": "增加6个要素。 总的10个现可提供\n删除“所有要素的净消费”\n增加将每个因素从房屋消费中逐出去的选择。\n要件中增添了立场。 如今,它有可能获取案文、价值、背景、百分比和电池票文本(较高或较低)。\n删除(区分)/通过贾瓦的电池\n通过CSS的新增电池\n由于仅用必要的要素而使用较低的记忆\n固定翻译\n某些守则的优化"
-      },
-      "1.3.0": {
-        "en": "Added possibility, to configure the first custom element as car charge element with same attributes like normal car charge\nfixed a calculation issue",
-        "de": "Zusätzliche Möglichkeit, das erste benutzerdefinierte Element als Autoladeelement mit gleichen Attributen wie normale Autoladung zu konfigurieren\neine berechnungsfrage behoben",
-        "ru": "Добавлена возможность, чтобы настроить первый пользовательский элемент как элемент зарядки автомобиля с такими же атрибутами, как нормальный заряд автомобиля\nисправлена проблема расчета",
-        "pt": "Adicionado possibilidade, para configurar o primeiro elemento personalizado como elemento de carga do carro com os mesmos atributos como carga normal do carro\nfixou um problema de cálculo",
-        "nl": "Toegevoegd de mogelijkheid, om het eerste gebruikelijke element te bekrachtigen als auto-aanklacht met dezelfde attributen als normale autolading\neen berekeningsprobleem opgelost",
-        "fr": "Ajout de la possibilité de configurer le premier élément personnalisé comme élément de charge de voiture avec les mêmes attributs que la charge de voiture normale\nfixe un problème de calcul",
-        "it": "Aggiunta possibilità, per configurare il primo elemento personalizzato come elemento carica auto con gli stessi attributi come normale carica auto\nrisolto un problema di calcolo",
-        "es": "Posibilidad agregada, para configurar el primer elemento personalizado como elemento de carga del coche con los mismos atributos como carga normal del coche\nfija un problema de cálculo",
-        "pl": "Wstępna możliwość skonfigurowania pierwszego zwyczajowego elementu jako elementu ładowania samochodu z tymi samymi atrybutami, jak normalny ładunek samochodowy\nustalona kwestia obliczeniowa",
-        "zh-cn": "增加可能性,将第一种习俗要素与正常汽车收费等同属性要素进行配置\n固定的计算问题",
-        "uk": "Додана можливість налаштувати перший користувацький елемент як елемент зарядки автомобіля з такими ж атрибутами, як і звичайний заряд автомобіля\nвиправлено проблему розрахунку"
       }
     },
     "titleLang": {
