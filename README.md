@@ -53,7 +53,7 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 - change fontfaces of the values and texts (own fonts can be imported)
 - Realign texts, values, icons, percentages and battery text (higher or lower)
 - change the font size for label, values and %-texts
-- Transparency for icon, line and text possible
+- Transparency for icon, line, text, value, percent-value and remaining battery text possible
 - define a color for the the car icon, if its charging
 - Some Values can have different colors, if their value is below a threshold (consumption, production, grid and battery)
 - Battery icon can be animated while charging or discharging
@@ -96,7 +96,7 @@ Display is possible via the instance link. This can then also be inserted into a
 - Schriftarten der Werte und Texte aendern (eigene Schriftarten koennen importiert werden)
 - Texte, Werte, Icons, Prozentwerte und Batterietext neu ausrichten (h�her oder tiefer)
 - Aendern Sie die Schriftgroessee fuer Label, Werte und %-Texte
-- Transparenz fuer Icon, Linie und Text moeglich
+- Transparenz fuer Icon, Linie, Text, Wert, Prozent-Wert und verbleibenden Batterie Text moeglich
 - Definieren Sie eine Farbe fuer das Autosymbol, wenn es geladen wird
 - Einige Werte koennen unterschiedliche Farben haben, wenn ihr Wert unterhalb eines Schwellenwerts ist (Verbrauch, Produktion, Netz und Batterie)
 - Batterie-Icon kann beim Laden und Entladen animiert werden
@@ -130,6 +130,8 @@ Anzeige ist ueber den Instanz Link moeglich. Dieser kann dann auch in ein iFrame
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+- extended opacity from icon, text and line to all elements
 ### 2.0.2 (2022-11-11)
 - small layout fix in admin area
 
@@ -146,6 +148,7 @@ Anzeige ist ueber den Instanz Link moeglich. Dieser kann dann auch in ein iFrame
 - lower memory usage due to drawing only necessary elements
 - fixed Translations Errors
 - some code optimizations
+- Added opacity for icon, text and line (transparency can be adjusted)
 
 ### 1.3.0 (2022-09-23)
 - Added possibility, to configure the first custom element as car charge element with same attributes like normal car charge

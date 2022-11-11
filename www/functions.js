@@ -140,7 +140,7 @@ function batteryDisplay(value) {
         elm = "high";
     }
     // Display correct battery & remove all other classes
-    $("#icon_battery").removeClass().addClass("icon_color battery_" + elm);
+    $("#icon_battery").removeClass().addClass("icon battery_" + elm);
 }
 
 function batteryAnimation(direction) {
@@ -155,7 +155,7 @@ function batteryAnimation(direction) {
         }
     }
 
-    $("#icon_battery").removeClass().addClass("icon_color " + elm);
+    $("#icon_battery").removeClass().addClass("icon " + elm);
 }
 
 function initConfig() {
@@ -177,7 +177,12 @@ function initConfig() {
 
         // Load CSS into style Elements
         $("#style_element").empty().append('.shadow { -webkit-filter: drop-shadow(0px 3px 3px ' + config.elements.style.shadow_color + '); filter: drop-shadow(0px 3px 3px ' + config.elements.style.shadow_color + ');}')
-            .append('.icon_color, .line, .text { opacity: ' + config.general.opacity + '%;}');;
+            .append('.icon { opacity: ' + config.general.opacity_icon + '%;}')
+            .append('.text { opacity: ' + config.general.opacity_text + '%;}')
+            .append('.value { opacity: ' + config.general.opacity_value + '%;}')
+            .append('.percent { opacity: ' + config.general.opacity_percent + '%;}')
+            .append('.remaining { opacity: ' + config.general.opacity_remaining + '%;}')
+            .append('.line { opacity: ' + config.general.opacity_line + '%;}');
 
         // Animation
         $("#style_animation").empty()
@@ -257,7 +262,7 @@ function initConfig() {
                         icon_source = elements.icon_d[key];
                     }
                     i.setAttribute('d', icon_source);
-                    i.setAttribute('class', 'icon_color');
+                    i.setAttribute('class', 'icon');
                     i.setAttribute('style', ' fill: ' + config.icons.color.default + ';');
                     i.setAttribute('transform', 'translate(' + (elements.cx[key] - 12) + ',' + ((elements.cy[key] - 44) + config.general.offset_icon) + ')');
                     $(i).appendTo("#placeholder_icons");
@@ -269,7 +274,7 @@ function initConfig() {
                     let rem_text = elements.cy[key] + (config.general.type == 'rect' ? (config.elements.style.rect_height - 20) : (config.elements.style.circle_radius + 20)) + config.general.offset_remaining;
                     let bt = document.createElementNS('http://www.w3.org/2000/svg', 'text');
                     bt.setAttribute('id', 'battery_remaining_text');
-                    bt.setAttribute('class', 'text');
+                    bt.setAttribute('class', 'text remaining');
                     bt.setAttribute('x', elements.cx[key]);
                     bt.setAttribute('y', rem_text);
                     $(bt).appendTo("#placeholder_texts");

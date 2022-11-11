@@ -388,7 +388,12 @@ class Energiefluss extends utils.Adapter {
 				offset_value: this.config.offset_value || 0,
 				offset_percent: this.config.offset_percent || 0,
 				offset_remaining: this.config.offset_remaining || 0,
-				opacity: this.config.opacity || 70
+				opacity_icon: this.config.opacity_icon || 70,
+				opacity_text: this.config.opacity_text || 70,
+				opacity_value: this.config.opacity_value || 70,
+				opacity_percent: this.config.opacity_percent || 70,
+				opacity_remaining: this.config.opacity_remaining || 70,
+				opacity_line: this.config.opacity_line || 70
 			}
 
 			// Element - Style
