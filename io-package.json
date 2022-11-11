@@ -268,8 +268,8 @@
     "offset_remaining": 0,
     "opacity_icon": 70,
     "opacity_text": 70,
-    "opacity_value": 70,
-    "opacity_percent": 70,
+    "opacity_value": 100,
+    "opacity_percent": 100,
     "opacity_remaining": 70,
     "opacity_line": 70
   },
