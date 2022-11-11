@@ -166,7 +166,8 @@
     "supportCustoms": false,
     "dependencies": [
       {
-        "js-controller": ">=2.0.0"
+        "js-controller": ">=2.0.0",
+        "web": ">=1.7.1"
       }
     ]
   },
