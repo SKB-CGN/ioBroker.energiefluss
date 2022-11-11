@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "energiefluss",
-    "version": "2.0.1",
+    "version": "2.0.2",
     "news": {
+      "2.0.2": {
+        "en": "small layout fix in admin area",
+        "de": "kleine layout fix im admin-bereich",
+        "ru": "небольшой верстка в админ-зоне",
+        "pt": "pequena correção de layout na área de admin",
+        "nl": "kleine schuilplaats in administratie",
+        "fr": "petite mise en page fixe dans la zone admin",
+        "it": "piccolo layout fix in area di amministrazione",
+        "es": "pequeño diseño fijado en el área de administración",
+        "pl": "niewielki układ w obszarze adminowym",
+        "uk": "невелика фіксація макета в адмін зоні",
+        "zh-cn": "专区小布局"
+      },
       "2.0.1": {
         "en": "calculation Bug fixed",
         "de": "berechnung Fehler behoben",
@@ -80,19 +93,6 @@
         "pl": "2 new Animation Options: Duration of the Animation length and Line-End-Style (naboje, kwadraty, buty) – system animacji\nPrzeniesiona linia animacji z Production do Grid, jeśli nie zostanie wykryta żadna produkcja, ale indukcyjne konsumenci żywią siatkę z przepływem wstecznym",
         "zh-cn": "2 新的目标选择:安定时间和线-End-Style(四,平方,但t)\n如果发现没有生产,那么从生产转向Grid的降解线,但有的消费者用后流向的电网输送电网。",
         "uk": "2 нові параметри анімації: тривалість анімації та стиль кінця лінії (круглий, квадратний, стик) з можливістю налаштування\nВидалено лінію анімації з виробництва до мережі, якщо виробництво не виявлено, але індуктивні споживачі живлять мережу за допомогою зворотного потоку"
-      },
-      "1.1.0": {
-        "en": "Translations optimized (Grid/Gitter or other waste words removed not acceptable)\nAnimation dots fully customizeable (length, width, amount)",
-        "de": "Übersetzungen optimiert (Grid/Gitter oder andere Abfallwörter nicht akzeptabel entfernt)\nAnimation Punkte voll anpassbar (Länge, Breite, Menge)",
-        "ru": "Оптимизированные переводы (Grid/Gitter или другие отходы не принимаются)\nАнимационные точки полностью подгоняемые (длина, ширина, количество)",
-        "pt": "Traduções otimizadas (Grid/Gitter ou outras palavras de desperdício removidas não aceitável)\nPontos de animação totalmente personalizáveis (comprimento, largura, quantidade)",
-        "nl": "Vertaling optimaliseerde (Grid/Gitter of andere verspilling woorden niet aanvaardbaar)\nDieren stipjes zijn volledig op maat gemaakt",
-        "fr": "Traductions optimisées (Grid/Gitter ou autres mots de déchets supprimés non acceptables)\nDes points d'animation entièrement personnalisables (longueur, largeur, quantité)",
-        "it": "Traduzioni ottimizzate (Grid/Gitter o altre parole di rifiuto rimosse non accettabili)\nDot di animazione completamente personalizzabile (lunghezza, larghezza, quantità)",
-        "es": "Traducciones optimizadas (Grid/Gitter u otras palabras de desecho no aceptables)\nPuntos de animación completamente personalizables (longitud, ancho, cantidad)",
-        "pl": "Tłumaczenia zoptymalizowane (Grid/Gitter lub inne odpady nie zostały akceptowane)\nAnimacje w pełni dostosowane (długość, szerokość, ilość)",
-        "zh-cn": "翻译优化(Grid/Gitter或其他废物字被排除不可接受的)\n彻底定制(宽恕、妻子、数额)",
-        "uk": "Переклади оптимізовані (вилучено Grid/Gitter або інші пусті слова неприйнятно)\nТочки анімації повністю налаштовуються (довжина, ширина, кількість)"
       }
     },
     "titleLang": {
