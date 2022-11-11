@@ -130,6 +130,8 @@ Anzeige ist ueber den Instanz Link moeglich. Dieser kann dann auch in ein iFrame
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+- small layout fix in admin area
 ### 2.0.1 (2022-11-10)
 - calculation Bug fixed
 
