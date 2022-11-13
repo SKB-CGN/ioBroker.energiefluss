@@ -73,6 +73,7 @@ body {
     background: transparent;
     height: 96vh;
     width: 94vw;
+    overflow:hidden;
 }
 
 #loading {
