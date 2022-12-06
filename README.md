@@ -40,7 +40,7 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 **Design:**
 - change the color of each item
 - Elements can be selected (circle or rectangle)
-- Texts inside the elements can be modified (&ltbr&gt; works as line-break)
+- Texts inside the elements can be modified (&lt;br&gt; works as line-break)
 - %-texts can have different colors as well
 - define different colors for each line
 - define different colors for each animation on the line
@@ -84,7 +84,7 @@ Display is possible via the instance link. This can then also be inserted into a
 **Design:**
 - Aendern Sie die Farbe jedes Elements
 - Elemente koennen ausgewaehlt werden (Kreis oder Rechteck)
-- Texte innerhalb der Elemente koennen geaendert werden (&ltbr&gt; gilt als Zeilenumbruch)
+- Texte innerhalb der Elemente koennen geaendert werden (&lt;br&gt; gilt als Zeilenumbruch)
 - %-Texte koennen auch andere Farben haben
 - Definieren Sie verschiedene Farben fuer jede Linie
 - verschiedene Farben fuer jede Animation auf der Linie definieren
