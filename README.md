@@ -45,7 +45,7 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 - define different colors for each line
 - define different colors for each animation on the line
 - change thickness of the elments and lines
-- fill the elements with different colors (elements with percent values can be will according to their percent value; if no color is selected, the element is transparent)
+- fill the elements with different colors (elements with percent values can be filled according to their percent value; if no color is selected, the element is transparent)
 - show/hide shadows of the elements
 - change radius of the circles
 - change width, height and corner rounds of the rectangle
