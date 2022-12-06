@@ -132,7 +132,7 @@ Anzeige ist ueber den Instanz Link moeglich. Dieser kann dann auch in ein iFrame
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 3.0.0 (2022-12-06)
 - implemented new curved line design
 - added option for "Slim-Design" - when activated, the bigger space to the battery will be reduced
 - Elements with percent values can be filled depending on their percentage (color of font will be selected automatically)
