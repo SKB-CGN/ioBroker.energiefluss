@@ -140,6 +140,7 @@ Anzeige ist ueber den Instanz Link moeglich. Dieser kann dann auch in ein iFrame
 - Improved responsive design (if displayed in iframe, the graphic should now be displayed accordingly)
 - if no battery is configured, the layout was not working correctly - fixed
 - Line-break possible with "<br>" in label description of element
+- Battery charging from grid now displayed correctly
 
 ### 2.1.3 (2022-11-11)
 - fixed depencies
