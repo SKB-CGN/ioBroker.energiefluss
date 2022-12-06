@@ -40,12 +40,12 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 **Design:**
 - change the color of each item
 - Elements can be selected (circle or rectangle)
-- Texts inside the elements can be modified
+- Texts inside the elements can be modified (<br> works as line-break)
 - %-texts can have different colors as well
 - define different colors for each line
 - define different colors for each animation on the line
 - change thickness of the elments and lines
-- fill the elements with different colors
+- fill the elements with different colors (elements with percent values can be will according to their percent value; if no color is selected, the element is transparent)
 - show/hide shadows of the elements
 - change radius of the circles
 - change width, height and corner rounds of the rectangle
@@ -59,6 +59,7 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 - Battery icon can be animated while charging or discharging
 - number of animation dots, their distance between each other, length, duration, style and width selectable
 - Display the remaining time of charging your battery (depends on percent and capacity)
+- Slim-Design possible - reduces distance to battery element
 
 **Technical:**
 - define Datapoints for each element
@@ -83,12 +84,12 @@ Display is possible via the instance link. This can then also be inserted into a
 **Design:**
 - Aendern Sie die Farbe jedes Elements
 - Elemente koennen ausgewaehlt werden (Kreis oder Rechteck)
-- Texte innerhalb der Elemente koennen geaendert werden
+- Texte innerhalb der Elemente koennen geaendert werden (<br>gilt als Zeilenumbruch)
 - %-Texte koennen auch andere Farben haben
 - Definieren Sie verschiedene Farben fuer jede Linie
 - verschiedene Farben fuer jede Animation auf der Linie definieren
 - Dicke der Elemente und Linien aenderbar
-- Fuelle die Elemente mit verschiedenen Farben
+- Fuelle die Elemente mit verschiedenen Farben (Elemente mit Prozentwerten können auch prozentual gefüllt werden; wird keine Farbe gewählt, ist das Element transparent)
 - Schatten des Elemente ein-/ausblenden
 - Radius des Kreises anpassbar
 - Hoehe, Breite und Eckenradius des Rechtecks anpassbar
@@ -102,6 +103,7 @@ Display is possible via the instance link. This can then also be inserted into a
 - Batterie-Icon kann beim Laden und Entladen animiert werden
 - Anzahl der animierten Punkte auf der Linie, sowie deren Abstand, Laenge, Dauer, Stil und Dicke auswaehlbar
 - Verbleibende Lade-/Entladezeit der Batterie anzeigen (ist abhaengig von Batterieprozent und Batteriekapazitaet)
+- Slim-Design möglich - Kleinerer Abstand zum Batterie Element
 
 **Technisch:**
 - Datenpunkte fuer jedes Element definieren
@@ -130,6 +132,15 @@ Anzeige ist ueber den Instanz Link moeglich. Dieser kann dann auch in ein iFrame
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+- implemented new curved line design
+- added option for "Slim-Design" - when activated, the bigger space to the battery will be reduced
+- Elements with percent values can be filled depending on their percentage (color of font will be selected automatically)
+- transparency of elements activated - if no color is set, the element itself is transparent
+- Improved responsive design (if displayed in iframe, the graphic should now be displayed accordingly)
+- if no battery is configured, the layout was not working correctly - fixed
+- Line-break possible with "<br>" in label description of element
+
 ### 2.1.3 (2022-11-11)
 - fixed depencies
 

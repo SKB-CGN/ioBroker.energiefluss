@@ -71,9 +71,8 @@
 html,
 body {
     background: transparent;
-    height: 99vh;
-    width: 99vw;
-    overflow:hidden;
+    height: 96vh;
+    width: 94vw;
 }
 
 #loading {
@@ -101,7 +100,8 @@ svg {
 rect,
 circle {
     stroke-width: 2px;
-    fill: white;
+    fill: none;
+    z-index: 1;
 }
 
 .shadow {
@@ -115,11 +115,19 @@ circle {
 
 .line {
     fill: none;
+    z-index: 0;
 }
 
-.icon_color,
+.round {
+    stroke-linecap: round;
+}
+
+.icon,
 .line,
-.text {
+.text,
+.value,
+.percent,
+.remaining {
     opacity: 70%;
 }
 

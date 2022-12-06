@@ -233,7 +233,7 @@ class Energiefluss extends utils.Adapter {
 			parameterObj.elements.color = {
 				house: this.config.color_house,
 				grid: this.config.color_grid,
-				production: this.config.color_production,
+				solar: this.config.color_production,
 				battery: this.config.color_battery,
 				car: this.config.color_car,
 				custom0: this.config.color_custom0,
@@ -253,7 +253,7 @@ class Energiefluss extends utils.Adapter {
 			parameterObj.elements.fill = {
 				house: this.config.fill_color_house,
 				grid: this.config.fill_color_grid,
-				production: this.config.fill_color_production,
+				solar: this.config.fill_color_production,
 				battery: this.config.fill_color_battery,
 				car: this.config.fill_color_car,
 				custom0: this.config.fill_color_custom0,
@@ -336,7 +336,7 @@ class Energiefluss extends utils.Adapter {
 			// Labels
 			parameterObj.texts.labels = {
 				house: this.config.label_house,
-				production: this.config.label_production,
+				solar: this.config.label_production,
 				grid: this.config.label_grid,
 				battery: this.config.label_battery,
 				battery_remaining: this.config.label_battery_remaining,
@@ -381,6 +381,8 @@ class Energiefluss extends utils.Adapter {
 				no_battery: false,
 				unit: unit,
 				battery_animation: this.config.battery_animation,
+				fill_elements: this.config.fill_elements,
+				slim_design: this.config.slim_design,
 				type: this.config.element_type,
 				custom_type: this.config.custom_type,
 				offset_icon: this.config.offset_icon || 0,
@@ -390,8 +392,8 @@ class Energiefluss extends utils.Adapter {
 				offset_remaining: this.config.offset_remaining || 0,
 				opacity_icon: this.config.opacity_icon || 70,
 				opacity_text: this.config.opacity_text || 70,
-				opacity_value: this.config.opacity_value || 70,
-				opacity_percent: this.config.opacity_percent || 70,
+				opacity_value: this.config.opacity_value || 100,
+				opacity_percent: this.config.opacity_percent || 100,
 				opacity_remaining: this.config.opacity_remaining || 70,
 				opacity_line: this.config.opacity_line || 70
 			}
@@ -782,7 +784,7 @@ class Energiefluss extends utils.Adapter {
 
 		// Production
 		if (valuesObj['production'] != undefined) {
-			elementsObj.production = true;
+			elementsObj.solar = true;
 			textObj.production_text = true;
 			valueObj.production_value = true;
 			iconObj.production = true;
@@ -1181,13 +1183,21 @@ class Energiefluss extends utils.Adapter {
 				if (batteryValue < (threshold * -1)) {
 					// Display as positive
 					batteryValue = batteryValue * -1;
-					line_animation.solar_to_battery = true;
 					dataObj.battery_animation.direction = 'charge';
+					if (valuesObj['production'] == 0) {
+						line_animation.grid_to_battery = true;
+					} else {
+						line_animation.solar_to_battery = true;
+					}
 				}
 			} else {
 				if (batteryValue > threshold) {
-					line_animation.solar_to_battery = true;
 					dataObj.battery_animation.direction = 'charge';
+					if (valuesObj['production'] == 0) {
+						line_animation.grid_to_battery = true;
+					} else {
+						line_animation.solar_to_battery = true;
+					}
 				}
 				if (batteryValue < (threshold * -1)) {
 					// Display as positive
@@ -1213,9 +1223,13 @@ class Energiefluss extends utils.Adapter {
 			let batteryValue = 0;
 
 			if (batteryChargeValue > threshold && batteryDischargeValue === 0) {
-				line_animation.solar_to_battery = true;
 				batteryValue = batteryChargeValue;
 				dataObj.battery_animation.direction = 'charge';
+				if (valuesObj['production'] == 0) {
+					line_animation.grid_to_battery = true;
+				} else {
+					line_animation.solar_to_battery = true;
+				}
 			}
 
 			if (batteryDischargeValue > threshold && batteryChargeValue === 0) {

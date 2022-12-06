@@ -195,7 +195,6 @@
 					$(".display_rect").css("display", "none");
 					$(".display_circle").css("display", "block");
 				}
-				onChange();
 			});
 
 			$("#custom_type").change(function () {
@@ -2137,7 +2136,7 @@
 				</div>
 				<div class="col s12">
 					<span class="translate" data-lang="ex_opacity">Change the opacity of various elements, texts and
-						values (Default: 70)</span>
+						values</span>
 				</div>
 			</div>
 			<div class="row">
@@ -2170,6 +2169,25 @@
 						the battery element</span>
 				</div>
 			</div>
+			<div class="row">
+				<div class="col s12">
+					<h6 class="title translate" data-lang="design">Design</h6>
+				</div>
+				<div class="col s12">
+					<span class="translate" data-lang="ex_design">Change various designs of the energy flow</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s4">
+					<input id="slim_design" class="value" type="checkbox" />
+					<label for="slim_design" class="translate" data-lang="slim_design">Activate slim Design</label>
+				</div>
+				<div class="input-field col s4">
+					<input id="fill_elements" class="value" type="checkbox" />
+					<label for="fill_elements" class="translate" data-lang="fill_elements">Fill Elements depending on
+						their prozentual value</label>
+				</div>
+			</div>
 		</div>
 		<!-- TAB Other-->
 		<div id="tab-other" class="col s12">
@@ -2179,7 +2197,7 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="input-field col s3">
+				<div class="input-field col s4">
 					<input class="value" id="unit" type="text" />
 					<label for="unit" class="translate" data-lang="unit">Unit:</label>
 					<span class="translate" data-lang="ex_unit">Unit (W or kW) for displaying</span>
@@ -2195,7 +2213,6 @@
 					<span class="translate" data-lang="ex_fraction">If zero, the value will be rounded to the next
 						possible integer.</span>
 				</div>
-				<div class="col s1 m2 l1"></div>
 				<div class="input-field col s4">
 					<input id="recalculate" class="value" type="checkbox" />
 					<label for="recalculate" class="translate" data-lang="recalculate">Calculate values from W
@@ -2204,7 +2221,7 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="input-field col s3">
+				<div class="input-field col s4">
 					<input class="value" id="threshold" type="text" />
 					<label for="threshold" class="translate" data-lang="threshold">threshold:</label>
 					<span class="translate" data-lang="ex_threshold">a threshold over or under which values are handled.

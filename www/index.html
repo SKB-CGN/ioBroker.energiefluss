@@ -10,48 +10,32 @@
     <style id="style_element"></style>
     <style id="style_fonts"></style>
     <!-- <script src="https://code.jquery.com/jquery-3.5.0.js"></script> -->
-
-    <!-- <script src="dev.js"></script> -->
     <script src="../../lib/js/jquery-3.2.1.min.js"></script>
     <script src="../../socket.io/socket.io.js"></script>
     <script src="conn.js"></script>
     <script src="instance.js"></script>
-    <script src="functions.js?"></script>
-    <!--
-<script>
 
+    <script src="functions.js"></script>
+    <!--
+    <script src="dev.js"></script>
+    -->
+    <script>
+        /*
         $(document).ready(function () {
             initConfig();
             updateValues();
             $('#svg_image').fadeIn("middle")
             $('#loading').fadeOut("middle").addClass('hidden');
         });
+        */
     </script>
-    -->
 </head>
 
 <body>
     <div id="loading">Loading Config and Values ...<br><span id="span_error"></span></div>
-    <svg viewBox="-5 0 540 532" class="" preserveAspectRatio="xMinYMid meet" id="svg_image">
-        <defs>
+    <svg viewBox="0 0 540 540" class="" preserveAspectRatio="xMinYMid meet" id="svg_image">
+        <defs id="placeholder_defs" class="placeholders">
             <!-- Pathes -->
-            <path id="solar_to_battery" d="M 242,88 v 154 l 0,0 h -154" />
-            <path id="solar_to_grid" d="M 262,88 v 348" />
-            <path id="solar_to_house" d="M 282,88 v 154 l 0,0 h 154" />
-            <path id="house_to_car" d="M 472,302 v 132" />
-            <path id="grid_to_house" d="M 282,436 v -154 l 0,0 h 154" />
-            <path id="grid_to_battery" d="M 242,436 v -154 l 0,0 h -154" />
-            <path id="battery_to_house" d="M088,262 h 348" />
-            <path id="house_to_custom0" d="M472,222 v -132" />
-            <path id="house_to_custom1" d="M500,234 v 220" transform="rotate(225, 500,234)" />
-            <path id="house_to_custom2" d="M512,262h 132" />
-            <path id="house_to_custom3" d="M500,290 v220" transform="rotate(315, 500,290)" />
-            <path id="house_to_custom4" d="M457,225 v-160" transform="rotate(-22.5, 457,225)" />
-            <path id="house_to_custom5" d="M487,225 v160" transform="rotate(202.5, 487,225)" />
-            <path id="house_to_custom6" d="M509,247 v160" transform="rotate(247.5, 509,247)" />
-            <path id="house_to_custom7" d="M509,277 v160" transform="rotate(292.5, 509,277)" />
-            <path id="house_to_custom8" d="M487,299 v160" transform="rotate(337.5, 487,299)" />
-            <path id="house_to_custom9" d="M457,299 v160" transform="rotate(22.5, 457,299)" />
         </defs>
 
         <!-- Usages -->
