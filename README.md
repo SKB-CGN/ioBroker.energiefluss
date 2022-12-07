@@ -89,7 +89,7 @@ Display is possible via the instance link. This can then also be inserted into a
 - Definieren Sie verschiedene Farben fuer jede Linie
 - verschiedene Farben fuer jede Animation auf der Linie definieren
 - Dicke der Elemente und Linien aenderbar
-- Fuelle die Elemente mit verschiedenen Farben (Elemente mit Prozentwerten können auch prozentual gefüllt werden; wird keine Farbe gewählt, ist das Element transparent)
+- Fuelle die Elemente mit verschiedenen Farben (Elemente mit Prozentwerten kï¿½nnen auch prozentual gefï¿½llt werden; wird keine Farbe gewï¿½hlt, ist das Element transparent)
 - Schatten des Elemente ein-/ausblenden
 - Radius des Kreises anpassbar
 - Hoehe, Breite und Eckenradius des Rechtecks anpassbar
@@ -103,7 +103,7 @@ Display is possible via the instance link. This can then also be inserted into a
 - Batterie-Icon kann beim Laden und Entladen animiert werden
 - Anzahl der animierten Punkte auf der Linie, sowie deren Abstand, Laenge, Dauer, Stil und Dicke auswaehlbar
 - Verbleibende Lade-/Entladezeit der Batterie anzeigen (ist abhaengig von Batterieprozent und Batteriekapazitaet)
-- Slim-Design möglich - Kleinerer Abstand zum Batterie Element
+- Slim-Design mï¿½glich - Kleinerer Abstand zum Batterie Element
 
 **Technisch:**
 - Datenpunkte fuer jedes Element definieren
@@ -132,7 +132,7 @@ Anzeige ist ueber den Instanz Link moeglich. Dieser kann dann auch in ein iFrame
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 3.0.1 (2022-12-07)
 - added own description in color picker to custom elements to better identify them
 
 ### 3.0.0 (2022-12-06)

@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "energiefluss",
-    "version": "3.0.0",
+    "version": "3.0.1",
     "news": {
+      "3.0.1": {
+        "en": "added own description in color picker to custom elements to better identify them",
+        "de": "eigene beschreibung in farbe picker zu benutzerdefinierten elementen hinzugefügt, um sie besser zu identifizieren",
+        "ru": "добавлено собственное описание в цвет пикер для пользовательских элементов, чтобы лучше их определить",
+        "pt": "adicionado descrição própria no selecionador de cores para elementos personalizados para melhor identificá-los",
+        "nl": "een eigen beschrijving toegevoegd in kleurenpikker om elementen te identificeren",
+        "fr": "description propre dans le sélectionneur de couleurs à des éléments personnalisés pour mieux les identifier",
+        "it": "aggiunto la propria descrizione nel raccoglitore a colori per elementi personalizzati per identificarli meglio",
+        "es": "añadir su propia descripción en el selector de color a elementos personalizados para identificarlos mejor",
+        "pl": "dodał także własny opis w celu dopasowania elementów do potrzebnych, aby lepiej zidentyfikować ich",
+        "uk": "додано власний опис в кольорі пікірувальник на нестандартні елементи, щоб краще визначити їх",
+        "zh-cn": "在色色彩礼上添加了自己的描述,以更好地查明这些要素。"
+      },
       "3.0.0": {
         "en": "implemented new curved line design\nadded option for \"Slim-Design\" - when activated, the bigger space to the battery will be reduced\nElements with percent values can be filled depending on their percentage (color of font will be selected automatically)\ntransparency of elements activated - if no color is set, the element itself is transparent\nImproved responsive design (if displayed in iframe, the graphic should now be displayed accordingly)\nif no battery is configured, the layout was not working correctly - fixed\nLine-break possible with \"<br>\" in label description of element",
         "de": "neue gebogene linienführung\nzusätzliche Option für Slim-Design - wenn aktiviert, wird der größere Platz zum Akku reduziert\nElemente mit Prozentwerten können je nach Prozentsatz ausgefüllt werden (die Schriftfarbe wird automatisch ausgewählt)\ntransparenz der aktivierten elemente - wenn keine farbe eingestellt ist, ist das element selbst transparent\nVerbessertes ansprechendes Design (wenn in iframe angezeigt, sollte die Grafik nun entsprechend angezeigt werden)\nwenn keine batterie konfiguriert ist, funktioniert das layout nicht richtig - fixiert\nLinienbruch möglich mit <br> in der Etikettenbeschreibung des Elements",
@@ -80,19 +93,6 @@
         "pl": "niewielki układ w obszarze adminowym",
         "uk": "невелика фіксація макета в адмін зоні",
         "zh-cn": "专区小布局"
-      },
-      "2.0.1": {
-        "en": "calculation Bug fixed",
-        "de": "berechnung Fehler behoben",
-        "ru": "расчет Bug фиксированный",
-        "pt": "cálculo Bug corrigido",
-        "nl": "calculatie Bug gemaakt",
-        "fr": "calcul Bug corrigé",
-        "it": "calcolo Bug fisso",
-        "es": "cálculo Error fijo",
-        "pl": "obliczanie Bug",
-        "uk": "розрахунок Виправлено помилку",
-        "zh-cn": "计算 Bug 固定"
       }
     },
     "titleLang": {
