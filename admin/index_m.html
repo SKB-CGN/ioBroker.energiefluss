@@ -84,6 +84,15 @@
 				$("#icon_preview9").attr("d", $("#custom_icon9").val());
 			}
 
+			// First run after loading the admin page
+			$('.custom_label').each(function () {
+				change_description(this.id);
+			});
+
+			$(".line_preview").change(function () {
+				linePreview(this.id);
+			});
+
 			$('.datasource').click(function () {
 				let id = $(this).closest(".row").find(".dp").attr("id");
 				initSelectId(function (sid) {
@@ -95,10 +104,6 @@
 						}
 					});
 				});
-			});
-
-			$(".line_preview").change(function (e) {
-				linePreview(this.id);
 			});
 
 			// Check, which Element is choosen
@@ -211,6 +216,11 @@
 					$("#ex_custom_car_element").text(translateWord("ex_custom"));
 				}
 			});
+
+			$('.custom_label').change(function () {
+				change_description(this.id);
+			});
+
 		});
 		var selectId;
 
@@ -288,6 +298,19 @@
 			$(".animation").css("animation-duration", (l_duration / 1.5) + "ms");
 			$(".animation").css("stroke-linecap", l_linecap);
 			$(".path").css("stroke-width", l_thickness);
+		}
+
+		function change_description(id) {
+			console.log("Second: " + id);
+			let tmp_value = $("#" + id).val();
+			console.log("Value: " + tmp_value);
+			let value = '';
+			if (tmp_value != undefined) {
+				value = tmp_value.replace("<br>", " ");
+				console.log(id + " " + value);
+				// Copy the value to the correspondig description in color-section
+				$("#desc_" + id).text(" (" + value + ")");
+			}
 		}
 	</script>
 	<style>
@@ -652,12 +675,12 @@
 			</div>
 			<div class="row">
 				<div class="col s12">
-					<h6 class="title translate" data-lang="custom1">custom element 1:</h6>
+					<h6 class="title translate" data-lang="custom1">custom element 1</h6>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s3">
-					<input class="value" id="label_custom0" type="text" />
+					<input class="value custom_label" id="label_custom0" type="text" />
 					<label for="label_custom" class="translate" data-lang="label">Label:</label>
 					<span class="translate" data-lang="ex_label">label inside the element</span>
 				</div>
@@ -746,12 +769,12 @@
 			</div>
 			<div class="row">
 				<div class="col s12">
-					<h6 class="title translate" data-lang="custom2">custom element 2:</h6>
+					<h6 class="title translate" data-lang="custom2">custom element 2</h6>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s3">
-					<input class="value" id="label_custom1" type="text" />
+					<input class="value custom_label" id="label_custom1" type="text" />
 					<label for="label_custom1" class="translate" data-lang="label">Label:</label>
 					<span class="translate" data-lang="ex_label">label inside the element</span>
 				</div>
@@ -789,12 +812,12 @@
 			</div>
 			<div class="row">
 				<div class="col s12">
-					<h6 class="title translate" data-lang="custom3">custom element 3:</h6>
+					<h6 class="title translate" data-lang="custom3">custom element 3</h6>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s3">
-					<input class="value" id="label_custom2" type="text" />
+					<input class="value custom_label" id="label_custom2" type="text" />
 					<label for="label_custom2" class="translate" data-lang="label">Label:</label>
 					<span class="translate" data-lang="ex_label">label inside the element</span>
 				</div>
@@ -832,12 +855,12 @@
 			</div>
 			<div class="row">
 				<div class="col s12">
-					<h6 class="title translate" data-lang="custom4">custom element 4:</h6>
+					<h6 class="title translate" data-lang="custom4">custom element 4</h6>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s3">
-					<input class="value" id="label_custom3" type="text" />
+					<input class="value custom_label" id="label_custom3" type="text" />
 					<label for="label_custom3" class="translate" data-lang="label">Label:</label>
 					<span class="translate" data-lang="ex_label">label inside the element</span>
 				</div>
@@ -875,12 +898,12 @@
 			</div>
 			<div class="row">
 				<div class="col s12">
-					<h6 class="title translate" data-lang="custom5">custom element 5:</h6>
+					<h6 class="title translate" data-lang="custom5">custom element 5</h6>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s3">
-					<input class="value" id="label_custom4" type="text" />
+					<input class="value custom_label" id="label_custom4" type="text" />
 					<label for="label_custom4" class="translate" data-lang="label">Label:</label>
 					<span class="translate" data-lang="ex_label">label inside the element</span>
 				</div>
@@ -918,12 +941,12 @@
 			</div>
 			<div class="row">
 				<div class="col s12">
-					<h6 class="title translate" data-lang="custom6">custom element 6:</h6>
+					<h6 class="title translate" data-lang="custom6">custom element 6</h6>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s3">
-					<input class="value" id="label_custom5" type="text" />
+					<input class="value custom_label" id="label_custom5" type="text" />
 					<label for="label_custom5" class="translate" data-lang="label">Label:</label>
 					<span class="translate" data-lang="ex_label">label inside the element</span>
 				</div>
@@ -961,12 +984,12 @@
 			</div>
 			<div class="row">
 				<div class="col s12">
-					<h6 class="title translate" data-lang="custom7">custom element 7:</h6>
+					<h6 class="title translate" data-lang="custom7">custom element 7</h6>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s3">
-					<input class="value" id="label_custom6" type="text" />
+					<input class="value custom_label" id="label_custom6" type="text" />
 					<label for="label_custom6" class="translate" data-lang="label">Label:</label>
 					<span class="translate" data-lang="ex_label">label inside the element</span>
 				</div>
@@ -1004,12 +1027,12 @@
 			</div>
 			<div class="row">
 				<div class="col s12">
-					<h6 class="title translate" data-lang="custom8">custom element 8:</h6>
+					<h6 class="title translate" data-lang="custom8">custom element 8</h6>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s3">
-					<input class="value" id="label_custom7" type="text" />
+					<input class="value custom_label" id="label_custom7" type="text" />
 					<label for="label_custom7" class="translate" data-lang="label">Label:</label>
 					<span class="translate" data-lang="ex_label">label inside the element</span>
 				</div>
@@ -1047,12 +1070,12 @@
 			</div>
 			<div class="row">
 				<div class="col s12">
-					<h6 class="title translate" data-lang="custom9">custom element 9:</h6>
+					<h6 class="title translate" data-lang="custom9">custom element 9</h6>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s3">
-					<input class="value" id="label_custom8" type="text" />
+					<input class="value custom_label" id="label_custom8" type="text" />
 					<label for="label_custom8" class="translate" data-lang="label">Label:</label>
 					<span class="translate" data-lang="ex_label">label inside the element</span>
 				</div>
@@ -1090,12 +1113,12 @@
 			</div>
 			<div class="row">
 				<div class="col s12">
-					<h6 class="title translate" data-lang="custom10">custom element 10:</h6>
+					<h6 class="title translate" data-lang="custom10">custom element 10</h6>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s3">
-					<input class="value" id="label_custom9" type="text" />
+					<input class="value custom_label" id="label_custom9" type="text" />
 					<label for="label_custom9" class="translate" data-lang="label">Label:</label>
 					<span class="translate" data-lang="ex_label">label inside the element</span>
 				</div>
@@ -1307,7 +1330,8 @@
 			</div>
 			<div class="row">
 				<div class="col s12">
-					<h6 class="title translate" data-lang="custom1">custom element 1</h6>
+					<h6 class="title translate" data-lang="custom1">custom element 1</h6><span
+						id="desc_label_custom0"></span>
 				</div>
 			</div>
 			<div class="row">
@@ -1347,7 +1371,8 @@
 			</div>
 			<div class="row">
 				<div class="col s12">
-					<h6 class="title translate" data-lang="custom2">custom element 2</h6>
+					<h6 class="title translate" data-lang="custom2">custom element 2</h6><span
+						id="desc_label_custom1"></span>
 				</div>
 			</div>
 			<div class="row">
@@ -1376,7 +1401,8 @@
 			</div>
 			<div class="row">
 				<div class="col s12">
-					<h6 class="title translate" data-lang="custom3">custom element 3</h6>
+					<h6 class="title translate" data-lang="custom3">custom element 3</h6><span
+						id="desc_label_custom2"></span>
 				</div>
 			</div>
 			<div class="row">
@@ -1405,7 +1431,8 @@
 			</div>
 			<div class="row">
 				<div class="col s12">
-					<h6 class="title translate" data-lang="custom4">custom element 4</h6>
+					<h6 class="title translate" data-lang="custom4">custom element 4</h6><span
+						id="desc_label_custom3"></span>
 				</div>
 			</div>
 			<div class="row">
@@ -1434,7 +1461,8 @@
 			</div>
 			<div class="row">
 				<div class="col s12">
-					<h6 class="title translate" data-lang="custom5">custom element 5</h6>
+					<h6 class="title translate" data-lang="custom5">custom element 5</h6><span
+						id="desc_label_custom4"></span>
 				</div>
 			</div>
 			<div class="row">
@@ -1463,7 +1491,8 @@
 			</div>
 			<div class="row">
 				<div class="col s12">
-					<h6 class="title translate" data-lang="custom6">custom element 6</h6>
+					<h6 class="title translate" data-lang="custom6">custom element 6</h6><span
+						id="desc_label_custom5"></span>
 				</div>
 			</div>
 			<div class="row">
@@ -1492,7 +1521,8 @@
 			</div>
 			<div class="row">
 				<div class="col s12">
-					<h6 class="title translate" data-lang="custom7">custom element 7</h6>
+					<h6 class="title translate" data-lang="custom7">custom element 7</h6><span
+						id="desc_label_custom6"></span>
 				</div>
 			</div>
 			<div class="row">
@@ -1521,7 +1551,8 @@
 			</div>
 			<div class="row">
 				<div class="col s12">
-					<h6 class="title translate" data-lang="custom8">custom element 8</h6>
+					<h6 class="title translate" data-lang="custom8">custom element 8</h6><span
+						id="desc_label_custom7"></span>
 				</div>
 			</div>
 			<div class="row">
@@ -1550,7 +1581,8 @@
 			</div>
 			<div class="row">
 				<div class="col s12">
-					<h6 class="title translate" data-lang="custom9">custom element 9</h6>
+					<h6 class="title translate" data-lang="custom9">custom element 9</h6><span
+						id="desc_label_custom8"></span>
 				</div>
 			</div>
 			<div class="row">
@@ -1579,7 +1611,8 @@
 			</div>
 			<div class="row">
 				<div class="col s12">
-					<h6 class="title translate" data-lang="custom10">custom element 10</h6>
+					<h6 class="title translate" data-lang="custom10">custom element 10</h6><span
+						id="desc_label_custom9"></span>
 				</div>
 			</div>
 			<div class="row">
