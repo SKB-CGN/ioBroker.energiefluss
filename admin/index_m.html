@@ -83,6 +83,10 @@
 			if ($("#custom_icon9").val() != "") {
 				$("#icon_preview9").attr("d", $("#custom_icon9").val());
 			}
+			if ($("#custom_icon10").val() != "") {
+				$("#icon_preview10").attr("d", $("#custom_icon10").val());
+			}
+
 
 			// First run after loading the admin page
 			$('.custom_label').each(function () {
@@ -123,6 +127,13 @@
 				$("#custom_car_element").text(translateWord("car_charge_energy"));
 				$("#ex_custom_car_element").text(translateWord("ex_car_charge"));
 			}
+
+			if ($("#custom10_type").val() == 'car') {
+				$(".custom10_car").css("display", "block");
+				$(".no_custom10_car").css("display", "none");
+				$("#custom10_car_element").text(translateWord("car_charge_energy"));
+				$("#ex_custom10_car_element").text(translateWord("ex_car_charge"));
+			}
 		}
 
 		// This will be called by the admin adapter when the user presses the save button
@@ -160,6 +171,11 @@
 					"M18.92 2C18.72 1.42 18.16 1 17.5 1H6.5C5.84 1 5.29 1.42 5.08 2L3 8V16C3 16.55 3.45 17 4 17H5C5.55 17 6 16.55 6 16V15H18V16C18 16.55 18.45 17 19 17H20C20.55 17 21 16.55 21 16V8L18.92 2M6.85 3H17.14L18.22 6.11H5.77L6.85 3M19 13H5V8H19V13M7.5 9C8.33 9 9 9.67 9 10.5S8.33 12 7.5 12 6 11.33 6 10.5 6.67 9 7.5 9M16.5 9C17.33 9 18 9.67 18 10.5S17.33 12 16.5 12C15.67 12 15 11.33 15 10.5S15.67 9 16.5 9M7 20H11V18L17 21H13V23L7 20Z"
 				).change();
 			});
+			$("#set_car_icon10").click(function () {
+				$("#custom_icon10").val(
+					"M18.92 2C18.72 1.42 18.16 1 17.5 1H6.5C5.84 1 5.29 1.42 5.08 2L3 8V16C3 16.55 3.45 17 4 17H5C5.55 17 6 16.55 6 16V15H18V16C18 16.55 18.45 17 19 17H20C20.55 17 21 16.55 21 16V8L18.92 2M6.85 3H17.14L18.22 6.11H5.77L6.85 3M19 13H5V8H19V13M7.5 9C8.33 9 9 9.67 9 10.5S8.33 12 7.5 12 6 11.33 6 10.5 6.67 9 7.5 9M16.5 9C17.33 9 18 9.67 18 10.5S17.33 12 16.5 12C15.67 12 15 11.33 15 10.5S15.67 9 16.5 9M7 20H11V18L17 21H13V23L7 20Z"
+				).change();
+			});
 			$("#custom_icon0").change(function () {
 				$("#icon_preview0").attr("d", $(this).val());
 			});
@@ -192,6 +208,9 @@
 			$("#custom_icon9").change(function () {
 				$("#icon_preview9").attr("d", $(this).val());
 			});
+			$("#custom_icon10").change(function () {
+				$("#icon_preview10").attr("d", $(this).val());
+			});
 			$("#element_type").change(function () {
 				if ($(this).val() == 'rect') {
 					$(".display_circle").css("display", "none");
@@ -214,6 +233,21 @@
 					$(".no_custom_car").css("display", "block");
 					$("#custom_car_element").text(translateWord("custom"));
 					$("#ex_custom_car_element").text(translateWord("ex_custom"));
+				}
+			});
+
+			$("#custom10_type").change(function () {
+				if ($(this).val() == 'car') {
+					$(".custom10_car").css("display", "block");
+					$(".no_custom10_car").css("display", "none");
+					$("#custom10_car_element").text(translateWord("car_charge_energy"));
+					$("#ex_custom10_car_element").text(translateWord("ex_car_charge"));
+				}
+				if ($(this).val() == 'consumer') {
+					$(".custom10_car").css("display", "none");
+					$(".no_custom10_car").css("display", "block");
+					$("#custom10_car_element").text(translateWord("custom"));
+					$("#ex_custom10_car_element").text(translateWord("ex_custom"));
 				}
 			});
 
@@ -617,41 +651,43 @@
 						battery)</label>
 				</div>
 			</div>
+			<!-- --------------------------------------------------------------- -->
 			<div class="row">
 				<div class="col s12">
-					<h6 class="title translate" data-lang="car_charge">charge car</h6>
+					<h6 class="title translate" data-lang="custom11">charge car / custom element 11</h6>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s3">
-					<input class="value" id="label_car" type="text" />
-					<label for="label_car" class="translate" data-lang="label">Label:</label>
+					<input class="value custom_label" id="label_custom10" type="text" />
+					<label for="label_custom10" class="translate" data-lang="label">Label:</label>
 					<span class="translate" data-lang="ex_label">label inside the element</span>
 				</div>
 				<div class="input-field col s4">
-					<input class="value dp" id="car_charge" type="text" />
-					<label for="car_charge" class="translate" data-lang="car_charge_energy">wallbox or
-						charger:</label>
-					<span class="translate" data-lang="ex_car_charge">Data point of your charger or
-						wallbox</span>
+					<input class="value dp" id="custom10" type="text" />
+					<label for="custom10" class="translate" data-lang="custom" id="custom10_car_element">custom
+						element</label>
+					<span class="translate" data-lang="ex_custom" id="ex_custom10_car_element">Data point of your custom
+						element</span>
 				</div>
 				<div class="col s1 m2 l1">
 					<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
 							class="material-icons">search</i></a>
 				</div>
 				<div class="input-field col s3">
-					<input id="house_netto_car" class="value" type="checkbox" />
-					<label for="house_netto_car" class="translate" data-lang="house_netto">Subtract this value from the
+					<input id="house_netto_custom10" class="value" type="checkbox" />
+					<label for="house_netto_custom10" class="translate" data-lang="house_netto">Subtract this value from
+						the
 						House consumption</label><br>
 					<span class="translate" data-lang="ex_house_netto">If activated, the value shown in the consumption
 						element will be reduced by this</span>
 				</div>
 			</div>
-			<div class="row">
+			<div class="row custom10_car">
 				<div class="input-field col s3"></div>
 				<div class="input-field col s4">
-					<input class="value dp" id="car_percent" type="text" />
-					<label for="car_percent" class="translate" data-lang="car_battery_charge">Car accu level
+					<input class="value dp" id="car_custom10_percent" type="text" />
+					<label for="car_custom10_percent" class="translate" data-lang="car_battery_charge">Car accu level
 						state:</label>
 					<span class="translate" data-lang="ex_car_battery">Data point of your car accu in %</span>
 				</div>
@@ -660,11 +696,11 @@
 							class="material-icons">search</i></a>
 				</div>
 			</div>
-			<div class="row">
+			<div class="row custom10_car">
 				<div class="input-field col s3"></div>
 				<div class="input-field col s4">
-					<input class="value dp" id="car_plugged" type="text" />
-					<label for="car_plugged" class="translate" data-lang="car_plugged">car charger plugged
+					<input class="value dp" id="car_custom10_plugged" type="text" />
+					<label for="car_custom_plugged" class="translate" data-lang="car_plugged">car charger plugged
 						in:</label>
 					<span class="translate" data-lang="ex_car_plugged">Data point car charger plugged in</span>
 				</div>
@@ -672,7 +708,45 @@
 					<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
 							class="material-icons">search</i></a>
 				</div>
+				<div class="input-field col s3">
+					<a class="waves-effect waves-light btn" id="set_car_icon10"><span class="translate"
+							data-lang="set_car_icon">Set Icon
+							to car</span></a>
+				</div>
 			</div>
+			<div class="row">
+				<div class="input-field col s7">
+					<input class="value" id="custom_icon10" type="text" />
+					<label for="custom_icon10" class="translate" data-lang="custom_icon">icon inside the
+						custom element:</label>
+					<span class="translate" data-lang="ex_custom_icon1">How to get the Icon?<br>(Visit <a
+							href='https://materialdesignicons.com' target='_blank'>https://materialdesignicons.com</a>
+						and
+						search for an icon. </span>
+					<span class="translate" data-lang="ex_custom_icon2">Click the Icon and in the below row click
+						'<b>&#60;/&#62;</b>', choose 'View SVG' and copy only the text inside <b>d</b>.</span>
+					<span class="translate" data-lang="ex_custom_icon3">If you entered it correctly, it will replace the
+						current question mark icon below.</span>
+				</div>
+				<div class="input-field col s1">
+					<span class="translate" data-lang="ex_custom_preview">Preview</span><br>
+					<svg viewBox="0 0 30 30" width="30" height="30" id="preview_svg10">
+						<path id="icon_preview10" transform="translate(0,0)"
+							d="M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,6A4,4 0 0,0 8,10H10A2,2 0 0,1 12,8A2,2 0 0,1 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10A4,4 0 0,0 12,6Z" />
+					</svg>
+				</div>
+				<div class="input-field col s3">
+					<select id="custom10_type" class="value">
+						<option value="car" class="translate" data-lang="auto">auto</option>
+						<option value="consumer" class="translate" data-lang="consumer">consumer</option>
+					</select>
+					<span class="translate" data-lang="ex_element_type">Type of the element</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s7"><img src="icon_help.png"></div>
+			</div>
+			<!-- --------------------------------------------------------------- -->
 			<div class="row">
 				<div class="col s12">
 					<h6 class="title translate" data-lang="custom1">custom element 1</h6>
@@ -729,20 +803,17 @@
 					<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
 							class="material-icons">search</i></a>
 				</div>
+				<div class="input-field col s3">
+					<a class="waves-effect waves-light btn" id="set_car_icon"><span class="translate"
+							data-lang="set_car_icon">Set Icon
+							to car</span></a>
+				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s7">
 					<input class="value" id="custom_icon0" type="text" />
 					<label for="custom_icon0" class="translate" data-lang="custom_icon">icon inside the
 						custom element:</label>
-					<span class="translate" data-lang="ex_custom_icon1">How to get the Icon?<br>(Visit <a
-							href='https://materialdesignicons.com' target='_blank'>https://materialdesignicons.com</a>
-						and
-						search for an icon. </span>
-					<span class="translate" data-lang="ex_custom_icon2">Click the Icon and in the below row click
-						'<b>&#60;/&#62;</b>', choose 'View SVG' and copy only the text inside <b>d</b>.</span>
-					<span class="translate" data-lang="ex_custom_icon3">If you entered it correctly, it will replace the
-						current question mark icon below.</span>
 				</div>
 				<div class="input-field col s1">
 					<span class="translate" data-lang="ex_custom_preview">Preview</span><br>
@@ -758,14 +829,6 @@
 					</select>
 					<span class="translate" data-lang="ex_element_type">Type of the element</span>
 				</div>
-				<div class="input-field col s3 custom_car">
-					<a class="waves-effect waves-light btn" id="set_car_icon"><span class="translate"
-							data-lang="set_car_icon">Set Icon
-							to car</span></a>
-				</div>
-			</div>
-			<div class="row">
-				<div class="input-field col s7"><img src="icon_help.png"></div>
 			</div>
 			<div class="row">
 				<div class="col s12">
@@ -1253,39 +1316,6 @@
 			</div>
 			<div class="row">
 				<div class="col s12">
-					<h6 class="title translate" data-lang="auto">auto</h6>
-				</div>
-			</div>
-			<div class="row">
-				<div class="input-field col s5">
-					<input class="value color" id="color_car" type="text" placeholder="#c5902e" />
-					<span class="translate" data-lang="color_car">Outline color of the element around the car (default:
-						#c5902e)</span>
-				</div>
-				<div class="input-field col s5">
-					<input class="value color" id="color_car_text" type="text" placeholder="#c5902e" />
-					<span class="translate" data-lang="color_car_text">color of the value inside the element of
-						the
-						car
-						(default: #c5902e)</span>
-				</div>
-				<div class="input-field col s5">
-					<input class="value color" id="fill_color_car" type="text" placeholder="" />
-					<span class="translate" data-lang="fill_color">color inside the element (default: empty)</span>
-				</div>
-				<div class="input-field col s5">
-					<input class="value color" id="color_car_plugged" type="text" placeholder="#a1d343" />
-					<span class="translate" data-lang="color_car_plugged">color of the car icon if charger is
-						connected (default: #a1d343)</span>
-				</div>
-				<div class="input-field col s5">
-					<input class="value color" id="color_car_percent" type="text" placeholder="#c5902e" />
-					<span class="translate" data-lang="color_car_percent">color of the %-text inside the element of the
-						car (default: #c5902e)</span>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col s12">
 					<h6 class="title translate" data-lang="battery">battery</h6>
 				</div>
 			</div>
@@ -1326,6 +1356,47 @@
 					<input class="value color" id="color_battery_remain" type="text" placeholder="#a1d343" />
 					<span class="translate" data-lang="color_battery_remain">color of the remaining time label of the
 						battery (default: #000000)</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s12">
+					<h6 class="title translate" data-lang="custom11">car charge / custom element 11</h6><span
+						id="desc_label_custom10"></span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s5">
+					<input class="value color" id="color_custom10" type="text" placeholder="#f20e40" />
+					<span class="translate" data-lang="color_custom">Outline color of the element around the custom
+						element
+						(default:
+						#f20e40)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="color_custom10_text" type="text" placeholder="#f20e40" />
+					<span class="translate" data-lang="color_custom_text">color of the value inside the
+						custom element (default: #f20e40)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="fill_color_custom10" type="text" placeholder="" />
+					<span class="translate" data-lang="fill_color">color inside the element (default: empty)</span>
+				</div>
+				<div class="input-field col s5 no_custom10_car">
+					<input class="value color" id="color_custom10_text_no_prod" type="text" placeholder="" />
+					<span class="translate" data-lang="color_no_prod">color of the value if value is below threshold
+						(default:
+						empty)</span>
+				</div>
+				<div class="input-field col s5 custom10_car">
+					<input class="value color" id="color_car_custom10_plugged" type="text" placeholder="#a1d343" />
+					<span class="translate" data-lang="color_car_plugged">color of the car icon if charger is
+						connected (default: #a1d343)</span>
+				</div>
+				<div class="input-field col s5 custom10_car">
+					<input class="value color" id="color_car_custom10_percent" type="text" placeholder="#f20e40" />
+					<span class="translate" data-lang="color_car_custom_percent">color of the %-text inside the element
+						of the
+						car (default: #f20e40)</span>
 				</div>
 			</div>
 			<div class="row">
@@ -1756,20 +1827,6 @@
 						empty)</span>
 				</div>
 				<div class="input-field col s5">
-					<input class="value color" id="color_house_to_car" type="text" placeholder="" />
-					<span class="translate" data-lang="color_house_to_car">color of the line between house and
-						car
-						(default:
-						empty)</span>
-				</div>
-				<div class="input-field col s5">
-					<input class="value color" id="animation_color_house_to_car" type="text" placeholder="" />
-					<span class="translate" data-lang="animation_color_house_to_car">color of the animation between
-						house and car
-						(default:
-						empty)</span>
-				</div>
-				<div class="input-field col s5">
 					<input class="value color" id="color_grid_to_house" type="text" placeholder="" />
 					<span class="translate" data-lang="color_grid_to_house">color of the line between grid and house
 						(default:
@@ -1948,6 +2005,18 @@
 						house and custom element 10 (default:
 						empty)</span>
 				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="color_house_to_custom10" type="text" placeholder="" />
+					<span class="translate" data-lang="color_house_to_custom11">color of the line between house and
+						custom element 11 (default:
+						empty)</span>
+				</div>
+				<div class="input-field col s5">
+					<input class="value color" id="animation_color_house_to_custom10" type="text" placeholder="" />
+					<span class="translate" data-lang="animation_color_house_to_custom11">color of the animation between
+						house and custom element 11 (default:
+						empty)</span>
+				</div>
 			</div>
 			<div class="row" style="height:100px;">
 				<a class="btn"><span class="translate" data-lang="reset_colors_to_default"
@@ -2109,17 +2178,17 @@
 			</div>
 			<div class="row display_circle">
 				<div class="input-field col s4">
-					<input class="value" id="circle_radius" type="number" placeholder="50" min="45" max="100" />
+					<input class="value" id="circle_radius" type="number" placeholder="50" min="45" max="200" />
 					<span class="translate" data-lang="ex_circle_radius">Radius of the circle (in px)</span>
 				</div>
 			</div>
 			<div class="row display_rect">
 				<div class="input-field col s4">
-					<input class="value" id="rect_height" type="number" placeholder="100" min="50" max="100" />
+					<input class="value" id="rect_height" type="number" placeholder="100" min="50" max="200" />
 					<span class="translate" data-lang="ex_rect_height">Height of the rectangle (in px)</span>
 				</div>
 				<div class="input-field col s4">
-					<input class="value" id="rect_width" type="number" placeholder="100" min="50" max="100" />
+					<input class="value" id="rect_width" type="number" placeholder="100" min="50" max="200" />
 					<span class="translate" data-lang="ex_rect_width">Width of the rectangle (in px)</span>
 				</div>
 				<div class="input-field col s4">
@@ -2211,6 +2280,11 @@
 				</div>
 			</div>
 			<div class="row">
+				<div class="input-field col s4">
+					<input class="value" id="element_distance" type="number" placeholder="15" min="0" max="100" />
+					<span class="translate" data-lang="ex_element_distance">Distance between the elements on the
+						horizontal axis</span>
+				</div>
 				<div class="input-field col s4">
 					<input id="slim_design" class="value" type="checkbox" />
 					<label for="slim_design" class="translate" data-lang="slim_design">Activate slim Design</label>

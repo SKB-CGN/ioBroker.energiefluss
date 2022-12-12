@@ -3,51 +3,53 @@ var loaded = false;
 var states = [];
 let config;
 let data;
-let svg_width = 550;
+let svg_width = 0;
+let svg_height = 0;
 
 // Default Icon for Custom if no icon defined in settings
 let default_icon = "M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,6A4,4 0 0,0 8,10H10A2,2 0 0,1 12,8A2,2 0 0,1 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10A4,4 0 0,0 12,6Z";
 
 let elements = {
     cx: {
-        "house": 492,
-        "grid": 282,
-        "solar": 282,
-        "car": 492,
+        "test": 172,
+        "house": 487,
+        "grid": 277,
+        "solar": 277,
         "battery": 72,
-        "custom0": 492,
-        "custom1": 702,
-        "custom2": 807,
-        "custom3": 702,
-        "custom4": 387,
-        "custom5": 597,
-        "custom6": 807,
-        "custom7": 807,
-        "custom8": 597,
-        "custom9": 387
+        "custom0": 487,
+        "custom1": 697,
+        "custom2": 802,
+        "custom3": 697,
+        "custom4": 382,
+        "custom5": 592,
+        "custom6": 802,
+        "custom7": 802,
+        "custom8": 592,
+        "custom9": 382,
+        "custom10": 487
     },
     cy: {
+        "test": 52,
         "house": 262,
         "grid": 472,
         "solar": 52,
-        "car": 472,
         "battery": 262,
         "custom0": 52,
-        "custom1": (52 + 35),
+        "custom1": 87,
         "custom2": 262,
-        "custom3": (472 - 35),
+        "custom3": 437,
         "custom4": 52,
         "custom5": 52,
-        "custom6": (157 - 35),
-        "custom7": (367 + 35),
+        "custom6": 122,
+        "custom7": 402,
         "custom8": 472,
-        "custom9": 472
+        "custom9": 472,
+        "custom10": 472
     },
     value: {
         "house": "consumption_value",
         "solar": "production_value",
         "grid": "grid_value",
-        "car": "car_value",
         "battery": "battery_value",
         "custom0": "custom0_value",
         "custom1": "custom1_value",
@@ -58,13 +60,13 @@ let elements = {
         "custom6": "custom6_value",
         "custom7": "custom7_value",
         "custom8": "custom8_value",
-        "custom9": "custom9_value"
+        "custom9": "custom9_value",
+        "custom10": "custom10_value"
     },
     text: {
         "house": "consumption_text",
         "solar": "production_text",
         "grid": "grid_text",
-        "car": "car_text",
         "battery": "battery_text",
         "custom0": "custom0_text",
         "custom1": "custom1_text",
@@ -75,13 +77,13 @@ let elements = {
         "custom6": "custom6_text",
         "custom7": "custom7_text",
         "custom8": "custom8_text",
-        "custom9": "custom9_text"
+        "custom9": "custom9_text",
+        "custom10": "custom10_text"
     },
     icon_id: {
         "house": "icon_house",
         "solar": "icon_production",
         "grid": "icon_grid",
-        "car": "icon_car",
         "battery": "icon_battery",
         "custom0": "icon_custom0",
         "custom1": "icon_custom1",
@@ -92,13 +94,13 @@ let elements = {
         "custom6": "icon_custom6",
         "custom7": "icon_custom7",
         "custom8": "icon_custom8",
-        "custom9": "icon_custom9"
+        "custom9": "icon_custom9",
+        "custom10": "icon_custom10"
     },
     icon_d: {
         "house": "M0,21V10L7.5,5L15,10V21H10V14H5V21H0M24,2V21H17V8.93L16,8.27V6H14V6.93L10,4.27V2H24M21,14H19V16H21V14M21,10H19V12H21V10M21,6H19V8H21V6Z",
         "solar": "M4,2H20A2,2 0 0,1 22,4V14A2,2 0 0,1 20,16H15V20H18V22H13V16H11V22H6V20H9V16H4A2,2 0 0,1 2,14V4A2,2 0 0,1 4,2M4,4V8H11V4H4M4,14H11V10H4V14M20,14V10H13V14H20M20,4H13V8H20V4Z",
         "grid": "M8.28,5.45L6.5,4.55L7.76,2H16.23L17.5,4.55L15.72,5.44L15,4H9L8.28,5.45M18.62,8H14.09L13.3,5H10.7L9.91,8H5.38L4.1,10.55L5.89,11.44L6.62,10H17.38L18.1,11.45L19.89,10.56L18.62,8M17.77,22H15.7L15.46,21.1L12,15.9L8.53,21.1L8.3,22H6.23L9.12,11H11.19L10.83,12.35L12,14.1L13.16,12.35L12.81,11H14.88L17.77,22M11.4,15L10.5,13.65L9.32,18.13L11.4,15M14.68,18.12L13.5,13.64L12.6,15L14.68,18.12Z",
-        "car": "M18.92 2C18.72 1.42 18.16 1 17.5 1H6.5C5.84 1 5.29 1.42 5.08 2L3 8V16C3 16.55 3.45 17 4 17H5C5.55 17 6 16.55 6 16V15H18V16C18 16.55 18.45 17 19 17H20C20.55 17 21 16.55 21 16V8L18.92 2M6.85 3H17.14L18.22 6.11H5.77L6.85 3M19 13H5V8H19V13M7.5 9C8.33 9 9 9.67 9 10.5S8.33 12 7.5 12 6 11.33 6 10.5 6.67 9 7.5 9M16.5 9C17.33 9 18 9.67 18 10.5S17.33 12 16.5 12C15.67 12 15 11.33 15 10.5S15.67 9 16.5 9M7 20H11V18L17 21H13V23L7 20Z",
         "battery": "none",
         "custom0": default_icon,
         "custom1": default_icon,
@@ -109,7 +111,8 @@ let elements = {
         "custom6": default_icon,
         "custom7": default_icon,
         "custom8": default_icon,
-        "custom9": default_icon
+        "custom9": default_icon,
+        "custom10": default_icon
     }
 }
 
@@ -379,6 +382,7 @@ function connectElements(path, startElem, endElem, id) {
         // If circle is configured
         if (config.general.type == "circle") {
             startY -= 2;
+            endY -= 1;
             round = true;
         }
     }
@@ -391,7 +395,7 @@ function connectElements(path, startElem, endElem, id) {
 
         // If circle is configured
         if (config.general.type == "circle") {
-            startY -= 2;
+            startY -= 1;
             round = true;
         }
     }
@@ -404,6 +408,7 @@ function connectElements(path, startElem, endElem, id) {
         // If circle is configured
         if (config.general.type == "circle") {
             round = true;
+            startY += 1;
         }
     }
 
@@ -412,10 +417,11 @@ function connectElements(path, startElem, endElem, id) {
 }
 
 function initConfig() {
-    // If slim-design is enabled, move all elements more to the left except battery
-    let elm_offset = config.general.slim_design === true ? 105 : 0;
-
     try {
+        //
+        svg_width = 0;
+        svg_height = 0;
+
         // First remove all things
         $(".placeholders").empty();
 
@@ -444,39 +450,163 @@ function initConfig() {
             .append('.unit_percent {font-size:' + config.fonts.font_size_unit_percent + 'px;}')
             .append('#battery_remaining_text {font-size:' + config.fonts.font_size_remaining + 'px; fill: ' + config.texts.color.battery_remaining + '; transform-box: fill-box; transform-origin: center; transform:rotate(270deg);}');
 
-
         // Elements
         Object.entries(config.elements.elements).forEach(entry => {
+            // If slim-design is enabled, move all elements more to the left except battery
+            //let elm_offset_x = config.general.slim_design === true ? 350 + config.general.element_distance : 0;
+            let elm_offset_y = 0;
+            let elm_offset_x = 0;
+
             const [key, value] = entry;
             if (value === true) {
                 // Check, if we are not displaying the battery
                 if (config.general.no_battery === true) {
-                    elm_offset = 225;
+                    elm_offset_x = ((config.general.type == "circle" ? config.elements.style.circle_radius * 2 : config.elements.style.rect_width) + config.general.element_distance) * 2;
                 } else {
                     // Check, if we are displaying the slim-design
                     if (config.general.slim_design === true) {
                         if (key == "battery") {
-                            elm_offset = 0;
+                            elm_offset_x = 0;
                         } else {
-                            elm_offset = 105;
+                            elm_offset_x = (config.general.type == "circle" ? config.elements.style.circle_radius * 2 : config.elements.style.rect_width) + config.elements.style.size - config.general.element_distance;
                         }
                     }
                 }
 
+                // Check, if user has bigger radius or bigger rect width -> move elements
+                let elm_width = 0;
+                let elm_height = 0;
+                let mp_elm_x = 0;
+                let mp_elm_y = 0;
+                let mp_dist_x = 0;
+                let mp_dist_y = 0;
+
+                if (config.elements.style.circle_radius > 50 && config.general.type == "circle" ||
+                    config.elements.style.rect_width > 100 && config.general.type == "rect") {
+                    if (config.general.type == "circle") {
+                        elm_width = config.elements.style.circle_radius - 50;
+                    }
+
+                    if (config.general.type == "rect") {
+                        elm_width = config.elements.style.rect_width - 100;
+                    }
+                }
+
+                if (config.elements.style.circle_radius > 50 && config.general.type == "circle" ||
+                    config.elements.style.rect_height > 100 && config.general.type == "rect") {
+                    if (config.general.type == "circle") {
+                        elm_height = config.elements.style.circle_radius - 50;
+                    }
+
+                    if (config.general.type == "rect") {
+                        elm_height = config.elements.style.rect_height - 100;
+                    }
+                }
+
+                // Y-Axis
+                if (key == "solar" || key == "custom0" || key == "custom4" || key == "custom5") {
+                    mp_elm_y = 1;
+                }
+                if (key == "custom1") {
+                    mp_elm_y = 2;
+                }
+                if (key == "custom6") {
+                    mp_elm_y = 2.5;
+                }
+
+                if (key == "custom7") {
+                    mp_elm_y = 5.5;
+                }
+                if (key == "custom3") {
+                    mp_elm_y = 6;
+                }
+
+                if (key == "battery" || key == "house" || key == "custom2") {
+                    mp_elm_y = 4;
+                }
+
+                if (key == "grid" || key == "custom10" || key == "custom8" || key == "custom9") {
+                    mp_elm_y = 7;
+                }
+
+                // X-Axis
+                if (key == "battery") {
+                    mp_elm_x = 0.5;
+                    mp_dist_x = 0.5;
+                }
+                if (key == "test") {
+                    mp_dist_x = 0;
+                }
+                if (key == "solar" || key == "grid") {
+                    mp_elm_x = 3;
+                    mp_dist_x = 2;
+                }
+                if (key == "custom4" || key == "custom9") {
+                    mp_elm_x = 4;
+                    mp_dist_x = 3;
+                }
+
+                if (key == "custom10" || key == "custom0" || key == "house") {
+                    mp_elm_x = 5;
+                    mp_dist_x = 4;
+                }
+
+                if (key == "custom5" || key == "custom8") {
+                    mp_elm_x = 6;
+                    mp_dist_x = 5;
+                }
+
+                if (key == "custom1" || key == "custom3") {
+                    mp_elm_x = 7;
+                    mp_dist_x = 6;
+                }
+
+                if (key == "custom2" || key == "custom6" || key == "custom7") {
+                    mp_elm_x = 8;
+                    mp_dist_x = 7;
+                }
+
+                // Check, if we are displaying the slim-design
+                if (config.general.slim_design === true) {
+                    if (key != "battery") {
+                        mp_dist_x -= 1;
+                    }
+                }
+
+                // If Circle, more distance
+                if (config.general.type == "circle") {
+                    //mp_dist_x = mp_dist_x * 2;
+                    mp_elm_x = mp_elm_x * 2;
+                }
+
+                elm_offset_x -= (elm_width * mp_elm_x) + (config.general.element_distance * mp_dist_x);
+                elm_offset_y -= (elm_height * mp_elm_y) + (config.general.element_distance * mp_dist_y);
+
                 let c;
+                // TMP X,Y Variables
+                let pos_x = 0;
+                let pos_y = 0;
+
                 // Circle
                 if (config.general.type == "circle") {
                     c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-                    c.setAttribute('cx', elements.cx[key] - elm_offset);
-                    c.setAttribute('cy', elements.cy[key]);
+                    pos_x = (elements.cx[key] - elm_offset_x);
+                    //pos_y = (elements.cy[key] - (config.elements.style.circle_radius / 2) - elm_offset_y);
+                    pos_y = elements.cy[key] - elm_offset_y;
+                    c.setAttribute('cx', pos_x);
+                    c.setAttribute('cy', pos_y);
                     c.setAttribute('r', config.elements.style.circle_radius);
+                    // For remaining text
+                    pos_x -= config.elements.style.circle_radius - 5;
                 }
 
                 // Rectangle
                 if (config.general.type == "rect") {
                     c = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-                    c.setAttribute('x', (elements.cx[key] - (config.elements.style.rect_width / 2) - elm_offset));
-                    c.setAttribute('y', (elements.cy[key] - (config.elements.style.rect_height / 2)));
+                    pos_x = (elements.cx[key] - (config.elements.style.rect_width / 2) - elm_offset_x);
+                    pos_y = (elements.cy[key] - (config.elements.style.rect_height / 2) - elm_offset_y);
+                    c.setAttribute('x', pos_x);
+                    c.setAttribute('y', pos_y);
                     c.setAttribute('width', config.elements.style.rect_width);
                     c.setAttribute('height', config.elements.style.rect_height);
                     c.setAttribute('rx', config.elements.style.rect_corner);
@@ -499,8 +629,8 @@ function initConfig() {
                 // Value Elements
                 let v = document.createElementNS('http://www.w3.org/2000/svg', 'text');
                 v.setAttribute('class', 'value');
-                v.setAttribute('x', elements.cx[key] - elm_offset);
-                v.setAttribute('y', (elements.cy[key] - 8) + config.general.offset_value);
+                v.setAttribute('x', elements.cx[key] - elm_offset_x);
+                v.setAttribute('y', (elements.cy[key] - 8) - elm_offset_y + config.general.offset_value);
                 v.setAttribute('dominant-baseline', 'central');
                 v.innerHTML = '<tspan class="value" id=' + elements.value[key] + '></tspan><tspan class="unit">' + config.general.unit + '</tspan>';
                 $(v).appendTo("#placeholder_values");
@@ -522,7 +652,7 @@ function initConfig() {
                     i.setAttribute('d', icon_source);
                     i.setAttribute('class', 'icon');
                     i.setAttribute('style', ' fill: ' + config.icons.color.default + ';');
-                    i.setAttribute('transform', 'translate(' + ((elements.cx[key] - 12) - elm_offset) + ',' + ((elements.cy[key] - 44) + config.general.offset_icon) + ')');
+                    i.setAttribute('transform', 'translate(' + ((elements.cx[key] - 12) - elm_offset_x) + ',' + ((elements.cy[key] - 44) - elm_offset_y + config.general.offset_icon) + ')');
                     $(i).appendTo("#placeholder_icons");
                 }
 
@@ -532,8 +662,8 @@ function initConfig() {
                     let bt = document.createElementNS('http://www.w3.org/2000/svg', 'text');
                     bt.setAttribute('id', 'battery_remaining_text');
                     bt.setAttribute('class', 'text remaining');
-                    bt.setAttribute('x', 8);
-                    bt.setAttribute('y', elements.cy[key] + config.general.offset_remaining);
+                    bt.setAttribute('x', pos_x - config.elements.style.size - config.fonts.font_size_remaining);
+                    bt.setAttribute('y', elements.cy[key] - elm_offset_y + config.general.offset_remaining);
                     bt.setAttribute('dominant-baseline', 'middle');
                     $(bt).appendTo("#placeholder_texts");
                 }
@@ -554,7 +684,7 @@ function initConfig() {
                     let tmp_text = '';
                     l2br.forEach(function (text) {
                         if (text != "" || text != undefined) {
-                            tmp_text += '<tspan x=' + (elements.cx[key] - elm_offset) + ' dy="1em">' + text + '</tspan>';
+                            tmp_text += '<tspan x=' + (elements.cx[key] - elm_offset_x) + ' dy="1em">' + text + '</tspan>';
                         }
                     })
                     t.innerHTML = tmp_text;
@@ -563,8 +693,8 @@ function initConfig() {
                 } else {
                     t.innerHTML = l;
                 }
-                t.setAttribute('x', elements.cx[key] - elm_offset);
-                t.setAttribute('y', (elements.cy[key] + 28) + config.general.offset_text - move_to);
+                t.setAttribute('x', elements.cx[key] - elm_offset_x);
+                t.setAttribute('y', (elements.cy[key] + 28) - elm_offset_y + config.general.offset_text - move_to);
                 $(t).appendTo("#placeholder_texts");
 
                 // Percent
@@ -572,12 +702,20 @@ function initConfig() {
                 if (config.values.values[key + "_percent"] === true) {
                     let p = document.createElementNS('http://www.w3.org/2000/svg', 'text');
                     p.setAttribute('class', 'percent');
-                    p.setAttribute('x', elements.cx[key] - elm_offset);
-                    p.setAttribute('y', (elements.cy[key] + 12) + config.general.offset_percent);
+                    p.setAttribute('x', elements.cx[key] - elm_offset_x);
+                    p.setAttribute('y', (elements.cy[key] + 12) - elm_offset_y + config.general.offset_percent);
                     p.setAttribute('dominant-baseline', 'middle');
                     p.innerHTML = '<tspan class="value" id="' + key + '_percent"></tspan><tspan class="unit_percent">%</tspan>';
                     $(p).appendTo("#placeholder_percents");
                     addGradient(key, config.elements.fill[key]);
+                }
+
+                // Check for the highest value, to calculate the SVG
+                if (pos_y > svg_height) {
+                    svg_height = pos_y;
+                }
+                if (pos_x > svg_width) {
+                    svg_width = pos_x;
                 }
             }
         });
@@ -591,7 +729,6 @@ function initConfig() {
                 d.setAttribute('id', key);
                 $(d).appendTo('#placeholder_defs');
 
-
                 // Draw the Line
                 drawLine(key);
 
@@ -602,26 +739,11 @@ function initConfig() {
             }
         });
 
-        // Configure the ViewBox depending on the Elements
-        if (config.elements.elements.custom5 == true || config.elements.elements.custom8 == true) {
-            svg_width += 105;
-        }
+        // Add the last element width or height to the Width and Height
+        svg_width += (config.general.type == "circle" ? config.elements.style.circle_radius * 2 : config.elements.style.rect_width) + config.elements.style.size + 8 /* Shadow */;
+        svg_height += (config.general.type == "circle" ? config.elements.style.circle_radius : config.elements.style.rect_height) + config.elements.style.size + 8 /* Shadow */;
 
-        if (config.elements.elements.custom1 == true || config.elements.elements.custom3 == true) {
-            svg_width += 105;
-        }
-
-        if (config.elements.elements.custom2 == true || config.elements.elements.custom6 == true || config.elements.elements.custom7) {
-            svg_width += 105;
-        }
-        if (config.general.no_battery === true) {
-            svg_width -= 210;
-        }
-        if (config.general.slim_design === true) {
-            svg_width -= 105;
-        }
-
-        $('#svg_image').attr('viewBox', '0 0 ' + svg_width + ' 540');
+        $('#svg_image').attr('viewBox', '0 0 ' + svg_width + ' ' + svg_height);
 
         let date = new Date().toLocaleString();
         console.log('Config successfully applied at ' + date + '!');
@@ -661,8 +783,8 @@ function updateValues() {
     try {
         Object.entries(data.values).forEach(entry => {
             const [key, value] = entry;
-            if (key == "car_plugged") {
-                $('#icon_car').css("fill", value ? data.color.car_plugged : config.icons.color.default);
+            if (key == "car_custom10_plugged") {
+                $('#icon_custom10').css("fill", value ? data.color.car_custom10_plugged : config.icons.color.default);
             }
             if (key == "car_custom_plugged") {
                 $('#icon_custom0').css("fill", value ? data.color.car_custom_plugged : config.icons.color.default);
