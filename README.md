@@ -132,7 +132,7 @@ Anzeige ist ueber den Instanz Link moeglich. Dieser kann dann auch in ein iFrame
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 3.0.2 (2022-12-12)
 - fixed wrong resizing of layout, if config changed
 - changed static car element into custom element
 - element width and height can now be bigger than 100
