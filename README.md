@@ -17,10 +17,10 @@
 **Tests:** ![Test and Release](https://github.com/SKB-CGN/ioBroker.energiefluss/workflows/Test%20and%20Release/badge.svg)
 
 ## Energiefluss adapter for ioBroker
-It provides an animated energyflow of the current consumption for photovoltaics, battery, house-consumption, grid-feed-in (grid-consumption), car charge and up to 4 possible elements (circle or rectangle).
+It provides an animated energyflow of the current consumption for photovoltaics, battery, house-consumption, grid-feed-in (grid-consumption), car charge and up to 10 possible elements (circle or rectangle).
 
 ## Energiefluss adapter fuer ioBroker
-Es stellt einen animierten Energiefluss des aktuellen Verbrauchs fuer Photovoltaik, Batterie, Hausverbrauch, Einspeisung (Netzbezug), Auto-Ladung und bis zu 4 benutzerdefinierte Elemente (Kreis oder Rechteck) zur Verfuegung.
+Es stellt einen animierten Energiefluss des aktuellen Verbrauchs fuer Photovoltaik, Batterie, Hausverbrauch, Einspeisung (Netzbezug), Auto-Ladung und bis zu 10 benutzerdefinierte Elemente (Kreis oder Rechteck) zur Verfuegung.
 
 ## Installation
 Installation via Github Cat possible. To do this, go to custom and enter the Github address from here.
@@ -69,7 +69,7 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 - use positive or negative values for consumption
 - calculcate your consumption via production and grid-feed-in, if you do not have a powermeter
 - use different states for your battery
-- add 10 own elements for a consuming device with different text, values and icon (1 element can be configured as additional car-charge)
+- add 10 own elements for a consuming device with different text, values and icon (2 element can be configured as additional car-charge)
 - convert all values from W into kW
 - Choose, how many decimal places you want to display (0, 1, 2) - for values and battery charging
 - choose the unit (freetext)
@@ -113,7 +113,7 @@ Display is possible via the instance link. This can then also be inserted into a
 - Verwenden Sie positive oder negative Werte fuer den Verbrauch
 - Berechnen Sie Ihren Verbrauch ueber Erzeugung und Netzeinspeisung, wenn Sie keinen Stromzuehler haben
 - Verwenden Sie verschiedene Zustaende fuer Ihre Batterie
-- Fuegen Sie 10 eigene Elemente fuer ein Verbrauchsgeraet mit unterschiedlichem Text, Werten und Symbolen hinzu (1 Element kann als weiterer Auto-Ladepunkt konfiguriert werden)
+- Fuegen Sie 10 eigene Elemente fuer ein Verbrauchsgeraet mit unterschiedlichem Text, Werten und Symbolen hinzu (2 Element kann als weiterer Auto-Ladepunkt konfiguriert werden)
 - Alle Werte von W in kW umrechnen
 - Waehlen Sie, wie viele Dezimalstellen Sie anzeigen moechten (0, 1, 2) - fuer Werte und Akkuladung
 - Waehlen Sie die Einheit (Freitext)
