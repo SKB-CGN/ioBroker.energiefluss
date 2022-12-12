@@ -1,7 +1,7 @@
 {
     "common": {
         "name": "energiefluss",
-        "version": "3.0.1",
+        "version": "3.0.2",
         "news": {
             "3.0.1": {
                 "en": "added own description in color picker to custom elements to better identify them",
