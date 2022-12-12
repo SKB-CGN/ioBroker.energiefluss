@@ -256,7 +256,7 @@
         "label_battery": "Batterie",
         "label_battery_remaining": "Restzeit",
         "label_production": "Erzeugung",
-        "label_car": "Auto",
+        "label_custom10": "Auto",
         "battery_capacity_info": false,
         "color_battery_remain": "#000000",
         "color_icon": "#000000",

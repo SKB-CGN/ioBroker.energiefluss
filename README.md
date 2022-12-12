@@ -89,13 +89,13 @@ Display is possible via the instance link. This can then also be inserted into a
 - Definieren Sie verschiedene Farben fuer jede Linie
 - verschiedene Farben fuer jede Animation auf der Linie definieren
 - Dicke der Elemente und Linien aenderbar
-- Fuelle die Elemente mit verschiedenen Farben (Elemente mit Prozentwerten k�nnen auch prozentual gef�llt werden; wird keine Farbe gew�hlt, ist das Element transparent)
+- Fuelle die Elemente mit verschiedenen Farben (Elemente mit Prozentwerten koennen auch prozentual gefuellt werden; wird keine Farbe gewaehlt, ist das Element transparent)
 - Schatten des Elemente ein-/ausblenden
 - Radius des Kreises anpassbar
 - Hoehe, Breite und Eckenradius des Rechtecks anpassbar
 - Definieren Sie Ihre eigene Farbe und Deckkraft fuer die Schatten (rgba-unterstuetzt)
 - Schriftarten der Werte und Texte aendern (eigene Schriftarten koennen importiert werden)
-- Texte, Werte, Icons, Prozentwerte und Batterietext neu ausrichten (h�her oder tiefer)
+- Texte, Werte, Icons, Prozentwerte und Batterietext neu ausrichten (hoeher oder tiefer)
 - Aendern Sie die Schriftgroessee fuer Label, Werte und %-Texte
 - Transparenz fuer Icon, Linie, Text, Wert, Prozent-Wert und verbleibenden Batterie Text moeglich
 - Definieren Sie eine Farbe fuer das Autosymbol, wenn es geladen wird
@@ -103,7 +103,7 @@ Display is possible via the instance link. This can then also be inserted into a
 - Batterie-Icon kann beim Laden und Entladen animiert werden
 - Anzahl der animierten Punkte auf der Linie, sowie deren Abstand, Laenge, Dauer, Stil und Dicke auswaehlbar
 - Verbleibende Lade-/Entladezeit der Batterie anzeigen (ist abhaengig von Batterieprozent und Batteriekapazitaet)
-- Slim-Design m�glich - Kleinerer Abstand zum Batterie Element
+- Slim-Design moeglich - Kleinerer Abstand zum Batterie Element
 
 **Technisch:**
 - Datenpunkte fuer jedes Element definieren
@@ -132,6 +132,12 @@ Anzeige ist ueber den Instanz Link moeglich. Dieser kann dann auch in ein iFrame
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+- fixed wrong resizing of layout, if config changed
+- changed static car element into custom element
+- element width and height can now be bigger than 100
+- horizontal distance between circles and rectangles can be definied
+
 ### 3.0.1 (2022-12-07)
 - added own description in color picker to custom elements to better identify them
 
