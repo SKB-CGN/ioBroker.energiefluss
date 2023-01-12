@@ -132,6 +132,11 @@ Anzeige ist ueber den Instanz Link moeglich. Dieser kann dann auch in ein iFrame
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+- fixed custom line 9 coloring, which was not working
+- added own state in object browser for remaining accu
+- font size increased for some descriptions in admin panel
+
 ### 3.0.2 (2022-12-12)
 - fixed wrong resizing of layout, if config changed
 - changed static car element into custom element
