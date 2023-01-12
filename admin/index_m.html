@@ -335,15 +335,15 @@
 		}
 
 		function change_description(id) {
-			console.log("Second: " + id);
 			let tmp_value = $("#" + id).val();
-			console.log("Value: " + tmp_value);
 			let value = '';
 			if (tmp_value != undefined) {
 				value = tmp_value.replace("<br>", " ");
-				console.log(id + " " + value);
+				if (value == "") {
+					value = translateWord("ex_empty");
+				}
 				// Copy the value to the correspondig description in color-section
-				$("#desc_" + id).text(" (" + value + ")");
+				$("#desc_" + id).text(" (" + translateWord("own_description") + " " + value + ")");
 			}
 		}
 	</script>
@@ -719,14 +719,6 @@
 					<input class="value" id="custom_icon10" type="text" />
 					<label for="custom_icon10" class="translate" data-lang="custom_icon">icon inside the
 						custom element:</label>
-					<span class="translate" data-lang="ex_custom_icon1">How to get the Icon?<br>(Visit <a
-							href='https://materialdesignicons.com' target='_blank'>https://materialdesignicons.com</a>
-						and
-						search for an icon. </span>
-					<span class="translate" data-lang="ex_custom_icon2">Click the Icon and in the below row click
-						'<b>&#60;/&#62;</b>', choose 'View SVG' and copy only the text inside <b>d</b>.</span>
-					<span class="translate" data-lang="ex_custom_icon3">If you entered it correctly, it will replace the
-						current question mark icon below.</span>
 				</div>
 				<div class="input-field col s1">
 					<span class="translate" data-lang="ex_custom_preview">Preview</span><br>
@@ -742,9 +734,6 @@
 					</select>
 					<span class="translate" data-lang="ex_element_type">Type of the element</span>
 				</div>
-			</div>
-			<div class="row">
-				<div class="input-field col s7"><img src="icon_help.png"></div>
 			</div>
 			<!-- --------------------------------------------------------------- -->
 			<div class="row">
@@ -1226,24 +1215,24 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_house" type="text" placeholder="#00b5dd" />
 					<span class="translate" data-lang="color_house">Outline color of the element around the house
 						(default:
 						#00b5dd)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_house_text" type="text" placeholder="#00b5dd" />
 					<span class="translate" data-lang="color_house_text">color of the value inside the element of
 						the
 						house (default:
 						#00b5dd)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="fill_color_house" type="text" placeholder="" />
 					<span class="translate" data-lang="fill_color">color inside the element (default: empty)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_house_text_no_prod" type="text" placeholder="" />
 					<span class="translate" data-lang="color_no_prod">color of the value if value is below threshold
 						(default:
@@ -1256,13 +1245,13 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_grid" type="text" placeholder="#61687a" />
 					<span class="translate" data-lang="color_grid">Outline color of the element around the grid feed
 						(default:
 						#61687a)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_grid_text" type="text" placeholder="#61687a" />
 					<span class="translate" data-lang="color_grid_text">color of the value inside the element of
 						the
@@ -1270,12 +1259,12 @@
 						feed-in
 						(default: #61687a)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="fill_color_grid" type="text" placeholder="" />
 					<span class="translate" data-lang="fill_color">color inside the element (default:
 						empty)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_grid_text_no_prod" type="text" placeholder="" />
 					<span class="translate" data-lang="color_no_prod">color of the value if value is below threshold
 						(default:
@@ -1288,14 +1277,14 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_production" type="text" placeholder="#ffce4a" />
 					<span class="translate" data-lang="color_production">Outline color of the element around the solar
 						production
 						(default:
 						#ffce4a)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_production_text" type="text" placeholder="#ffce4a" />
 					<span class="translate" data-lang="color_production_text">color of the value inside the
 						element of
@@ -1303,11 +1292,11 @@
 						solar
 						production (default: #ffce4a)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="fill_color_production" type="text" placeholder="" />
 					<span class="translate" data-lang="fill_color">color inside the element (default: empty)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_production_text_no_prod" type="text" placeholder="" />
 					<span class="translate" data-lang="color_no_prod">color of the value if value is below threshold
 						(default:
@@ -1320,13 +1309,13 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_battery" type="text" placeholder="#a1d343" />
 					<span class="translate" data-lang="color_battery">Outline color of the element around the battery
 						(default:
 						#a1d343)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_battery_text" type="text" placeholder="#a1d343" />
 					<span class="translate" data-lang="color_battery_text">color of the value inside the element
 						of
@@ -1334,17 +1323,17 @@
 						car
 						(default: #a1d343)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="fill_color_battery" type="text" placeholder="" />
 					<span class="translate" data-lang="fill_color">color inside the element (default: empty)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_battery_text_no_prod" type="text" placeholder="" />
 					<span class="translate" data-lang="color_no_prod">color of the value if value is below threshold
 						(default:
 						empty)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_battery_percent" type="text" placeholder="#a1d343" />
 					<span class="translate" data-lang="color_battery_percent">color of the %-text inside the element
 						of
@@ -1352,7 +1341,7 @@
 						battery
 						(default: #a1d343)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_battery_remain" type="text" placeholder="#a1d343" />
 					<span class="translate" data-lang="color_battery_remain">color of the remaining time label of the
 						battery (default: #000000)</span>
@@ -1360,39 +1349,39 @@
 			</div>
 			<div class="row">
 				<div class="col s12">
-					<h6 class="title translate" data-lang="custom11">car charge / custom element 11</h6><span
-						id="desc_label_custom10"></span>
+					<h6 class="title translate" data-lang="custom11">car charge / custom element 11</h6>
+					<p id="desc_label_custom10"></p>
 				</div>
 			</div>
 			<div class="row">
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_custom10" type="text" placeholder="#f20e40" />
 					<span class="translate" data-lang="color_custom">Outline color of the element around the custom
 						element
 						(default:
 						#f20e40)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_custom10_text" type="text" placeholder="#f20e40" />
 					<span class="translate" data-lang="color_custom_text">color of the value inside the
 						custom element (default: #f20e40)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="fill_color_custom10" type="text" placeholder="" />
 					<span class="translate" data-lang="fill_color">color inside the element (default: empty)</span>
 				</div>
-				<div class="input-field col s5 no_custom10_car">
+				<div class="input-field col s6 no_custom10_car">
 					<input class="value color" id="color_custom10_text_no_prod" type="text" placeholder="" />
 					<span class="translate" data-lang="color_no_prod">color of the value if value is below threshold
 						(default:
 						empty)</span>
 				</div>
-				<div class="input-field col s5 custom10_car">
+				<div class="input-field col s6 custom10_car">
 					<input class="value color" id="color_car_custom10_plugged" type="text" placeholder="#a1d343" />
 					<span class="translate" data-lang="color_car_plugged">color of the car icon if charger is
 						connected (default: #a1d343)</span>
 				</div>
-				<div class="input-field col s5 custom10_car">
+				<div class="input-field col s6 custom10_car">
 					<input class="value color" id="color_car_custom10_percent" type="text" placeholder="#f20e40" />
 					<span class="translate" data-lang="color_car_custom_percent">color of the %-text inside the element
 						of the
@@ -1401,39 +1390,39 @@
 			</div>
 			<div class="row">
 				<div class="col s12">
-					<h6 class="title translate" data-lang="custom1">custom element 1</h6><span
-						id="desc_label_custom0"></span>
+					<h6 class="title translate" data-lang="custom1">custom element 1</h6>
+					<p id="desc_label_custom0"></p>
 				</div>
 			</div>
 			<div class="row">
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_custom0" type="text" placeholder="#f20e40" />
 					<span class="translate" data-lang="color_custom">Outline color of the element around the custom
 						element
 						(default:
 						#f20e40)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_custom0_text" type="text" placeholder="#f20e40" />
 					<span class="translate" data-lang="color_custom_text">color of the value inside the
 						custom element (default: #f20e40)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="fill_color_custom0" type="text" placeholder="" />
 					<span class="translate" data-lang="fill_color">color inside the element (default: empty)</span>
 				</div>
-				<div class="input-field col s5 no_custom_car">
+				<div class="input-field col s6 no_custom_car">
 					<input class="value color" id="color_custom0_text_no_prod" type="text" placeholder="" />
 					<span class="translate" data-lang="color_no_prod">color of the value if value is below threshold
 						(default:
 						empty)</span>
 				</div>
-				<div class="input-field col s5 custom_car">
+				<div class="input-field col s6 custom_car">
 					<input class="value color" id="color_car_custom_plugged" type="text" placeholder="#a1d343" />
 					<span class="translate" data-lang="color_car_plugged">color of the car icon if charger is
 						connected (default: #a1d343)</span>
 				</div>
-				<div class="input-field col s5 custom_car">
+				<div class="input-field col s6 custom_car">
 					<input class="value color" id="color_car_custom_percent" type="text" placeholder="#f20e40" />
 					<span class="translate" data-lang="color_car_custom_percent">color of the %-text inside the element
 						of the
@@ -1442,28 +1431,28 @@
 			</div>
 			<div class="row">
 				<div class="col s12">
-					<h6 class="title translate" data-lang="custom2">custom element 2</h6><span
-						id="desc_label_custom1"></span>
+					<h6 class="title translate" data-lang="custom2">custom element 2</h6>
+					<p id="desc_label_custom1"></p>
 				</div>
 			</div>
 			<div class="row">
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_custom1" type="text" placeholder="#f20e40" />
 					<span class="translate" data-lang="color_custom">Outline color of the element around the custom
 						element
 						(default:
 						#f20e40)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_custom1_text" type="text" placeholder="#f20e40" />
 					<span class="translate" data-lang="color_custom_text">color of the value inside the
 						custom element (default: #f20e40)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="fill_color_custom1" type="text" placeholder="" />
 					<span class="translate" data-lang="fill_color">color inside the element (default: empty)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_custom1_text_no_prod" type="text" placeholder="" />
 					<span class="translate" data-lang="color_no_prod">color of the value if value is below threshold
 						(default:
@@ -1472,28 +1461,28 @@
 			</div>
 			<div class="row">
 				<div class="col s12">
-					<h6 class="title translate" data-lang="custom3">custom element 3</h6><span
-						id="desc_label_custom2"></span>
+					<h6 class="title translate" data-lang="custom3">custom element 3</h6>
+					<p id="desc_label_custom2"></p>
 				</div>
 			</div>
 			<div class="row">
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_custom2" type="text" placeholder="#f20e40" />
 					<span class="translate" data-lang="color_custom">Outline color of the element around the custom
 						element
 						(default:
 						#f20e40)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_custom2_text" type="text" placeholder="#f20e40" />
 					<span class="translate" data-lang="color_custom_text">color of the value inside the
 						custom element (default: #f20e40)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="fill_color_custom2" type="text" placeholder="" />
 					<span class="translate" data-lang="fill_color">color inside the element (default: empty)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_custom2_text_no_prod" type="text" placeholder="" />
 					<span class="translate" data-lang="color_no_prod">color of the value if value is below threshold
 						(default:
@@ -1502,28 +1491,28 @@
 			</div>
 			<div class="row">
 				<div class="col s12">
-					<h6 class="title translate" data-lang="custom4">custom element 4</h6><span
-						id="desc_label_custom3"></span>
+					<h6 class="title translate" data-lang="custom4">custom element 4</h6>
+					<p id="desc_label_custom3"></p>
 				</div>
 			</div>
 			<div class="row">
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_custom3" type="text" placeholder="#f20e40" />
 					<span class="translate" data-lang="color_custom">Outline color of the element around the custom
 						element
 						(default:
 						#f20e40)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_custom3_text" type="text" placeholder="#f20e40" />
 					<span class="translate" data-lang="color_custom_text">color of the value inside the
 						custom element (default: #f20e40)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="fill_color_custom3" type="text" placeholder="" />
 					<span class="translate" data-lang="fill_color">color inside the element (default: empty)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_custom3_text_no_prod" type="text" placeholder="" />
 					<span class="translate" data-lang="color_no_prod">color of the value if value is below threshold
 						(default:
@@ -1532,28 +1521,28 @@
 			</div>
 			<div class="row">
 				<div class="col s12">
-					<h6 class="title translate" data-lang="custom5">custom element 5</h6><span
-						id="desc_label_custom4"></span>
+					<h6 class="title translate" data-lang="custom5">custom element 5</h6>
+					<p id="desc_label_custom4"></p>
 				</div>
 			</div>
 			<div class="row">
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_custom4" type="text" placeholder="#f20e40" />
 					<span class="translate" data-lang="color_custom">Outline color of the element around the custom
 						element
 						(default:
 						#f20e40)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_custom4_text" type="text" placeholder="#f20e40" />
 					<span class="translate" data-lang="color_custom_text">color of the value inside the
 						custom element (default: #f20e40)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="fill_color_custom4" type="text" placeholder="" />
 					<span class="translate" data-lang="fill_color">color inside the element (default: empty)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_custom4_text_no_prod" type="text" placeholder="" />
 					<span class="translate" data-lang="color_no_prod">color of the value if value is below threshold
 						(default:
@@ -1562,28 +1551,28 @@
 			</div>
 			<div class="row">
 				<div class="col s12">
-					<h6 class="title translate" data-lang="custom6">custom element 6</h6><span
-						id="desc_label_custom5"></span>
+					<h6 class="title translate" data-lang="custom6">custom element 6</h6>
+					<p id="desc_label_custom5"></p>
 				</div>
 			</div>
 			<div class="row">
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_custom5" type="text" placeholder="#f20e40" />
 					<span class="translate" data-lang="color_custom">Outline color of the element around the custom
 						element
 						(default:
 						#f20e40)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_custom5_text" type="text" placeholder="#f20e40" />
 					<span class="translate" data-lang="color_custom_text">color of the value inside the
 						custom element (default: #f20e40)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="fill_color_custom5" type="text" placeholder="" />
 					<span class="translate" data-lang="fill_color">color inside the element (default: empty)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_custom5_text_no_prod" type="text" placeholder="" />
 					<span class="translate" data-lang="color_no_prod">color of the value if value is below threshold
 						(default:
@@ -1592,28 +1581,28 @@
 			</div>
 			<div class="row">
 				<div class="col s12">
-					<h6 class="title translate" data-lang="custom7">custom element 7</h6><span
-						id="desc_label_custom6"></span>
+					<h6 class="title translate" data-lang="custom7">custom element 7</h6>
+					<p id="desc_label_custom6"></p>
 				</div>
 			</div>
 			<div class="row">
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_custom6" type="text" placeholder="#f20e40" />
 					<span class="translate" data-lang="color_custom">Outline color of the element around the custom
 						element
 						(default:
 						#f20e40)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_custom6_text" type="text" placeholder="#f20e40" />
 					<span class="translate" data-lang="color_custom_text">color of the value inside the
 						custom element (default: #f20e40)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="fill_color_custom6" type="text" placeholder="" />
 					<span class="translate" data-lang="fill_color">color inside the element (default: empty)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_custom6_text_no_prod" type="text" placeholder="" />
 					<span class="translate" data-lang="color_no_prod">color of the value if value is below threshold
 						(default:
@@ -1622,28 +1611,28 @@
 			</div>
 			<div class="row">
 				<div class="col s12">
-					<h6 class="title translate" data-lang="custom8">custom element 8</h6><span
-						id="desc_label_custom7"></span>
+					<h6 class="title translate" data-lang="custom8">custom element 8</h6>
+					<p id="desc_label_custom7"></p>
 				</div>
 			</div>
 			<div class="row">
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_custom7" type="text" placeholder="#f20e40" />
 					<span class="translate" data-lang="color_custom">Outline color of the element around the custom
 						element
 						(default:
 						#f20e40)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_custom7_text" type="text" placeholder="#f20e40" />
 					<span class="translate" data-lang="color_custom_text">color of the value inside the
 						custom element (default: #f20e40)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="fill_color_custom7" type="text" placeholder="" />
 					<span class="translate" data-lang="fill_color">color inside the element (default: empty)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_custom7_text_no_prod" type="text" placeholder="" />
 					<span class="translate" data-lang="color_no_prod">color of the value if value is below threshold
 						(default:
@@ -1652,28 +1641,28 @@
 			</div>
 			<div class="row">
 				<div class="col s12">
-					<h6 class="title translate" data-lang="custom9">custom element 9</h6><span
-						id="desc_label_custom8"></span>
+					<h6 class="title translate" data-lang="custom9">custom element 9</h6>
+					<p id="desc_label_custom8"></p>
 				</div>
 			</div>
 			<div class="row">
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_custom8" type="text" placeholder="#f20e40" />
 					<span class="translate" data-lang="color_custom">Outline color of the element around the custom
 						element
 						(default:
 						#f20e40)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_custom8_text" type="text" placeholder="#f20e40" />
 					<span class="translate" data-lang="color_custom_text">color of the value inside the
 						custom element (default: #f20e40)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="fill_color_custom8" type="text" placeholder="" />
 					<span class="translate" data-lang="fill_color">color inside the element (default: empty)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_custom8_text_no_prod" type="text" placeholder="" />
 					<span class="translate" data-lang="color_no_prod">color of the value if value is below threshold
 						(default:
@@ -1682,28 +1671,28 @@
 			</div>
 			<div class="row">
 				<div class="col s12">
-					<h6 class="title translate" data-lang="custom10">custom element 10</h6><span
-						id="desc_label_custom9"></span>
+					<h6 class="title translate" data-lang="custom10">custom element 10</h6>
+					<p id="desc_label_custom9"></p>
 				</div>
 			</div>
 			<div class="row">
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_custom9" type="text" placeholder="#f20e40" />
 					<span class="translate" data-lang="color_custom">Outline color of the element around the custom
 						element
 						(default:
 						#f20e40)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_custom9_text" type="text" placeholder="#f20e40" />
 					<span class="translate" data-lang="color_custom_text">color of the value inside the
 						custom element (default: #f20e40)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="fill_color_custom9" type="text" placeholder="" />
 					<span class="translate" data-lang="fill_color">color inside the element (default: empty)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_custom9_text_no_prod" type="text" placeholder="" />
 					<span class="translate" data-lang="color_no_prod">color of the value if value is below threshold
 						(default:
@@ -1716,14 +1705,14 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color opacity" data-format="rgb" data-opacity="true" id="element_shadow_color"
 						type="text" size="7" placeholder="rgba(0, 0, 0, .7)" />
 					<span class="translate" data-lang="ex_element_shadow">color of the shadow around the element
 						(default:
 						rgba(0, 0, 0, .7))</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input id="element_shadow" class="value" type="checkbox" />
 					<label for="element_shadow" class="translate" data-lang="cb_element_shadow">Show shadow around the
 						elements</label>
@@ -1735,7 +1724,7 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_label" type="text" size="7" placeholder="#000000" />
 					<span class="translate" data-lang="ex_element_label">color of the labeling inside the element
 						(default: #000000)</span>
@@ -1747,7 +1736,7 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_icon" type="text" size="7" placeholder="#000000" />
 					<span class="translate" data-lang="ex_icon_color">color of the icon inside the element
 						(default: #000000)</span>
@@ -1759,12 +1748,12 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_lines" type="text" placeholder="#000000" />
 					<span class="translate" data-lang="color_lines">color of the lines (default: #000000 - has
 						transparency effect)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_animation" type="text" placeholder="#ffce4a" />
 					<span class="translate" data-lang="color_animation">color of the animation on the lines
 						(default:
@@ -1778,14 +1767,14 @@
 						between the
 						elements. Standard-color above will be overwritten!</p>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_solar_to_battery" type="text" placeholder="" />
 					<span class="translate" data-lang="color_solar_to_battery">color of the line between solar and
 						battery
 						(default:
 						empty)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="animation_color_solar_to_battery" type="text" placeholder="" />
 					<span class="translate" data-lang="animation_color_solar_to_battery">color of the animation between
 						solar
@@ -1794,14 +1783,14 @@
 						(default:
 						empty)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_solar_to_grid" type="text" placeholder="" />
 					<span class="translate" data-lang="color_solar_to_grid">color of the line between solar and
 						grid
 						(default:
 						empty)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="animation_color_solar_to_grid" type="text" placeholder="" />
 					<span class="translate" data-lang="animation_color_solar_to_grid">color of the animation between
 						solar
@@ -1810,14 +1799,14 @@
 						(default:
 						empty)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_solar_to_house" type="text" placeholder="" />
 					<span class="translate" data-lang="color_solar_to_house">color of the line between solar and
 						house
 						(default:
 						empty)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="animation_color_solar_to_house" type="text" placeholder="" />
 					<span class="translate" data-lang="animation_color_solar_to_house">color of the animation between
 						solar
@@ -1826,13 +1815,13 @@
 						(default:
 						empty)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_grid_to_house" type="text" placeholder="" />
 					<span class="translate" data-lang="color_grid_to_house">color of the line between grid and house
 						(default:
 						empty)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="animation_color_grid_to_house" type="text" placeholder="" />
 					<span class="translate" data-lang="animation_color_grid_to_house">color of the animation between
 						grid
@@ -1841,13 +1830,13 @@
 						(default:
 						empty)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_grid_to_battery" type="text" placeholder="" />
 					<span class="translate" data-lang="color_grid_to_battery">color of the line between grid and battery
 						(default:
 						empty)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="animation_color_grid_to_battery" type="text" placeholder="" />
 					<span class="translate" data-lang="animation_color_grid_to_battery">color of the animation between
 						grid
@@ -1856,14 +1845,14 @@
 						(default:
 						empty)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_battery_to_house" type="text" placeholder="" />
 					<span class="translate" data-lang="color_battery_to_house">color of the line between battery and
 						house
 						(default:
 						empty)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="animation_color_battery_to_house" type="text" placeholder="" />
 					<span class="translate" data-lang="animation_color_battery_to_house">color of the animation between
 						battery
@@ -1872,146 +1861,146 @@
 						(default:
 						empty)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_house_to_custom0" type="text" placeholder="" />
 					<span class="translate" data-lang="color_house_to_custom1">color of the line between house and
 						custom
 						element 1 (default:
 						empty)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="animation_color_house_to_custom0" type="text" placeholder="" />
 					<span class="translate" data-lang="animation_color_house_to_custom1">color of the animation between
 						house and custom element 1 (default:
 						empty)</span>
 				</div>
 
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_house_to_custom1" type="text" placeholder="" />
 					<span class="translate" data-lang="color_house_to_custom2">color of the line between house and
 						custom
 						element 2 (default:
 						empty)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="animation_color_house_to_custom1" type="text" placeholder="" />
 					<span class="translate" data-lang="animation_color_house_to_custom2">color of the animation between
 						house and custom element 2 (default:
 						empty)</span>
 				</div>
 
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_house_to_custom2" type="text" placeholder="" />
 					<span class="translate" data-lang="color_house_to_custom3">color of the line between house and
 						custom
 						element 3 (default:
 						empty)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="animation_color_house_to_custom2" type="text" placeholder="" />
 					<span class="translate" data-lang="animation_color_house_to_custom3">color of the animation between
 						house and custom element 3 (default:
 						empty)</span>
 				</div>
 
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_house_to_custom3" type="text" placeholder="" />
 					<span class="translate" data-lang="color_house_to_custom4">color of the line between house and
 						custom
 						element 4 (default:
 						empty)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="animation_color_house_to_custom3" type="text" placeholder="" />
 					<span class="translate" data-lang="animation_color_house_to_custom4">color of the animation between
 						house and custom element 4 (default:
 						empty)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_house_to_custom4" type="text" placeholder="" />
 					<span class="translate" data-lang="color_house_to_custom5">color of the line between house and
 						custom
 						element 5 (default:
 						empty)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="animation_color_house_to_custom4" type="text" placeholder="" />
 					<span class="translate" data-lang="animation_color_house_to_custom5">color of the animation between
 						house and custom element 5 (default:
 						empty)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_house_to_custom5" type="text" placeholder="" />
 					<span class="translate" data-lang="color_house_to_custom6">color of the line between house and
 						custom
 						element 6 (default:
 						empty)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="animation_color_house_to_custom5" type="text" placeholder="" />
 					<span class="translate" data-lang="animation_color_house_to_custom6">color of the animation between
 						house and custom element 6 (default:
 						empty)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_house_to_custom6" type="text" placeholder="" />
 					<span class="translate" data-lang="color_house_to_custom7">color of the line between house and
 						custom
 						element 7 (default:
 						empty)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="animation_color_house_to_custom6" type="text" placeholder="" />
 					<span class="translate" data-lang="animation_color_house_to_custom7">color of the animation between
 						house and custom element 7 (default:
 						empty)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_house_to_custom7" type="text" placeholder="" />
 					<span class="translate" data-lang="color_house_to_custom8">color of the line between house and
 						custom
 						element 8 (default:
 						empty)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="animation_color_house_to_custom7" type="text" placeholder="" />
 					<span class="translate" data-lang="animation_color_house_to_custom8">color of the animation between
 						house and custom element 8 (default:
 						empty)</span>
 				</div>
-				<div class="input-field col s5">
-					<input class="value color" id="color_house_to_custo8" type="text" placeholder="" />
+				<div class="input-field col s6">
+					<input class="value color" id="color_house_to_custom8" type="text" placeholder="" />
 					<span class="translate" data-lang="color_house_to_custom9">color of the line between house and
 						custom
 						element 9 (default:
 						empty)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="animation_color_house_to_custom8" type="text" placeholder="" />
 					<span class="translate" data-lang="animation_color_house_to_custom9">color of the animation between
 						house and custom element 9 (default:
 						empty)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_house_to_custom9" type="text" placeholder="" />
 					<span class="translate" data-lang="color_house_to_custom10">color of the line between house and
 						custom
 						element 10 (default:
 						empty)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="animation_color_house_to_custom9" type="text" placeholder="" />
 					<span class="translate" data-lang="animation_color_house_to_custom10">color of the animation between
 						house and custom element 10 (default:
 						empty)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="color_house_to_custom10" type="text" placeholder="" />
 					<span class="translate" data-lang="color_house_to_custom11">color of the line between house and
 						custom element 11 (default:
 						empty)</span>
 				</div>
-				<div class="input-field col s5">
+				<div class="input-field col s6">
 					<input class="value color" id="animation_color_house_to_custom10" type="text" placeholder="" />
 					<span class="translate" data-lang="animation_color_house_to_custom11">color of the animation between
 						house and custom element 11 (default:

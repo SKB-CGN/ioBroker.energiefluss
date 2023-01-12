@@ -229,6 +229,18 @@ class Energiefluss extends utils.Adapter {
 				native: {},
 			});
 
+			await this.setObjectNotExistsAsync('battery_remaining', {
+				type: 'state',
+				common: {
+					name: 'Remaining Time of the battery',
+					type: 'string',
+					role: 'text',
+					read: true,
+					write: false,
+				},
+				native: {},
+			});
+
 			// Delete old State HTML
 			await this.deleteStateAsync('HTML');
 
@@ -668,6 +680,161 @@ class Energiefluss extends utils.Adapter {
 		if (this.config?.animation_color_house_to_car) {
 			native.animation_color_house_to_custom10 = this.config.animation_color_house_to_car;
 			native.animation_color_house_to_car = '';
+		}
+
+		if (this.config?.migrated_to_new_custom === false) {
+			//this.log.info("Custom circles will be migrated to new layout ...");
+			/* Migrate the circles to new numbering */
+			/* First read old data into array */
+			/*
+			let elmArray = new Array();
+			let colorArray = new Array();
+			let colorTextArray = new Array();
+			let colorNoProdArray = new Array();
+			let nameArray = new Array();
+			let iconArray = new Array();
+			let colorHtoC = new Array();
+			let animationArray = new Array();
+			let nettoArray = new Array();
+			for (let i = 0; i < 11; i++) {
+				elmArray[i] = eval('this.config.custom' + i);
+				colorArray[i] = eval('this.config.color_custom' + i);
+				colorTextArray[i] = eval('this.config.color_custom' + i + '_text');
+				colorNoProdArray[i] = eval('this.config.color_custom' + i + '_text_no_prod');
+				nameArray[i] = eval('this.config.label_custom' + i);
+				iconArray[i] = eval('this.config.icon_custom' + i);
+
+				colorHtoC[i] = eval('this.config.color_house_to_custom' + i);
+				animationArray[i] = eval('this.config.animation_color_house_to_custom' + i);
+				nettoArray[i] = eval('this.config.house_netto_custom' + i);
+			}
+
+			for (let i = 0; i < 11; i++) {
+				if (i == 0) {
+					eval('native.custom' + i + '=' + elmArray[4]);
+					eval('native.color_custom' + i + '=\'' + colorArray[4] + '\';');
+					eval('native.color_custom' + i + '_text =\'' + colorTextArray[4] + '\';');
+					eval('native.color_custom' + i + '_text_no_prod =\'' + colorNoProdArray[4] + '\';');
+					eval('native.label_custom' + i + '=\'' + nameArray[4] + '\';');
+					eval('native.icon_custom' + i + '=\'' + iconArray[4] + '\';');
+					eval('native.color_house_to_custom' + i + '=\'' + colorHtoC[4] + '\';');
+					eval('native.animation_color_house_to_custom' + i + '=\'' + animationArray[4] + '\';');
+					eval('native.house_netto_custom' + i + '=\'' + nettoArray[4] + '\';');
+				}
+				if (i == 1) {
+					eval('native.custom' + i + '=' + elmArray[9]);
+					eval('native.color_custom' + i + '=\'' + colorArray[9] + '\';');
+					eval('native.color_custom' + i + '_text =\'' + colorTextArray[9] + '\';');
+					eval('native.color_custom' + i + '_text_no_prod =\'' + colorNoProdArray[9] + '\';');
+					eval('native.label_custom' + i + '=\'' + nameArray[9] + '\';');
+					eval('native.icon_custom' + i + '=\'' + iconArray[9] + '\';');
+					eval('native.color_house_to_custom' + i + '=\'' + colorHtoC[9] + '\';');
+					eval('native.animation_color_house_to_custom' + i + '=\'' + animationArray[9] + '\';');
+					eval('native.house_netto_custom' + i + '=\'' + nettoArray[9] + '\';');
+				}
+				if (i == 2) {
+					eval('native.custom' + i + '=' + elmArray[0]);
+					eval('native.color_custom' + i + '=\'' + colorArray[0] + '\';');
+					eval('native.color_custom' + i + '_text =\'' + colorTextArray[0] + '\';');
+					eval('native.color_custom' + i + '_text_no_prod =\'' + colorNoProdArray[0] + '\';');
+					eval('native.label_custom' + i + '=\'' + nameArray[0] + '\';');
+					eval('native.icon_custom' + i + '=\'' + iconArray[0] + '\';');
+					eval('native.color_house_to_custom' + i + '=\'' + colorHtoC[0] + '\';');
+					eval('native.animation_color_house_to_custom' + i + '=\'' + animationArray[0] + '\';');
+					eval('native.house_netto_custom' + i + '=\'' + nettoArray[0] + '\';');
+				}
+				if (i == 3) {
+					eval('native.custom' + i + '=' + elmArray[10]);
+					eval('native.color_custom' + i + '=\'' + colorArray[10] + '\';');
+					eval('native.color_custom' + i + '_text =\'' + colorTextArray[10] + '\';');
+					eval('native.color_custom' + i + '_text_no_prod =\'' + colorNoProdArray[10] + '\';');
+					eval('native.label_custom' + i + '=\'' + nameArray[10] + '\';');
+					eval('native.icon_custom' + i + '=\'' + iconArray[10] + '\';');
+					eval('native.color_house_to_custom' + i + '=\'' + colorHtoC[10] + '\';');
+					eval('native.animation_color_house_to_custom' + i + '=\'' + animationArray[10] + '\';');
+					eval('native.house_netto_custom' + i + '=\'' + nettoArray[10] + '\';');
+				}
+				if (i == 4) {
+					eval('native.custom' + i + '=' + elmArray[5]);
+					eval('native.color_custom' + i + '=\'' + colorArray[5] + '\';');
+					eval('native.color_custom' + i + '_text =\'' + colorTextArray[5] + '\';');
+					eval('native.color_custom' + i + '_text_no_prod =\'' + colorNoProdArray[5] + '\';');
+					eval('native.label_custom' + i + '=\'' + nameArray[5] + '\';');
+					eval('native.icon_custom' + i + '=\'' + iconArray[5] + '\';');
+					eval('native.color_house_to_custom' + i + '=\'' + colorHtoC[5] + '\';');
+					eval('native.animation_color_house_to_custom' + i + '=\'' + animationArray[5] + '\';');
+					eval('native.house_netto_custom' + i + '=\'' + nettoArray[5] + '\';');
+				}
+				if (i == 5) {
+					eval('native.custom' + i + '=' + elmArray[8]);
+					eval('native.color_custom' + i + '=\'' + colorArray[8] + '\';');
+					eval('native.color_custom' + i + '_text =\'' + colorTextArray[8] + '\';');
+					eval('native.color_custom' + i + '_text_no_prod =\'' + colorNoProdArray[8] + '\';');
+					eval('native.label_custom' + i + '=\'' + nameArray[8] + '\';');
+					eval('native.icon_custom' + i + '=\'' + iconArray[8] + '\';');
+					eval('native.color_house_to_custom' + i + '=\'' + colorHtoC[8] + '\';');
+					eval('native.animation_color_house_to_custom' + i + '=\'' + animationArray[8] + '\';');
+					eval('native.house_netto_custom' + i + '=\'' + nettoArray[8] + '\';');
+				}
+				if (i == 6) {
+					eval('native.custom' + i + '=' + elmArray[1]);
+					eval('native.color_custom' + i + '=\'' + colorArray[1] + '\';');
+					eval('native.color_custom' + i + '_text =\'' + colorTextArray[1] + '\';');
+					eval('native.color_custom' + i + '_text_no_prod =\'' + colorNoProdArray[1] + '\';');
+					eval('native.label_custom' + i + '=\'' + nameArray[1] + '\';');
+					eval('native.icon_custom' + i + '=\'' + iconArray[1] + '\';');
+					eval('native.color_house_to_custom' + i + '=\'' + colorHtoC[1] + '\';');
+					eval('native.animation_color_house_to_custom' + i + '=\'' + animationArray[1] + '\';');
+					eval('native.house_netto_custom' + i + '=\'' + nettoArray[1] + '\';');
+				}
+				if (i == 7) {
+					eval('native.custom' + i + '=' + elmArray[3]);
+					eval('native.color_custom' + i + '=\'' + colorArray[3] + '\';');
+					eval('native.color_custom' + i + '_text =\'' + colorTextArray[3] + '\';');
+					eval('native.color_custom' + i + '_text_no_prod =\'' + colorNoProdArray[3] + '\';');
+					eval('native.label_custom' + i + '=\'' + nameArray[3] + '\';');
+					eval('native.icon_custom' + i + '=\'' + iconArray[3] + '\';');
+					eval('native.color_house_to_custom' + i + '=\'' + colorHtoC[3] + '\';');
+					eval('native.animation_color_house_to_custom' + i + '=\'' + animationArray[3] + '\';');
+					eval('native.house_netto_custom' + i + '=\'' + nettoArray[3] + '\';');
+				}
+				if (i == 8) {
+					eval('native.custom' + i + '=' + elmArray[6]);
+					eval('native.color_custom' + i + '=\'' + colorArray[6] + '\';');
+					eval('native.color_custom' + i + '_text =\'' + colorTextArray[6] + '\';');
+					eval('native.color_custom' + i + '_text_no_prod =\'' + colorNoProdArray[6] + '\';');
+					eval('native.label_custom' + i + '=\'' + nameArray[6] + '\';');
+					eval('native.icon_custom' + i + '=\'' + iconArray[6] + '\';');
+					eval('native.color_house_to_custom' + i + '=\'' + colorHtoC[6] + '\';');
+					eval('native.animation_color_house_to_custom' + i + '=\'' + animationArray[6] + '\';');
+					eval('native.house_netto_custom' + i + '=\'' + nettoArray[6] + '\';');
+				}
+				if (i == 9) {
+					eval('native.custom' + i + '=' + elmArray[2]);
+					eval('native.color_custom' + i + '=\'' + colorArray[2] + '\';');
+					eval('native.color_custom' + i + '_text =\'' + colorTextArray[2] + '\';');
+					eval('native.color_custom' + i + '_text_no_prod =\'' + colorNoProdArray[2] + '\';');
+					eval('native.label_custom' + i + '=\'' + nameArray[2] + '\';');
+					eval('native.icon_custom' + i + '=\'' + iconArray[2] + '\';');
+					eval('native.color_house_to_custom' + i + '=\'' + colorHtoC[2] + '\';');
+					eval('native.animation_color_house_to_custom' + i + '=\'' + animationArray[2] + '\';');
+					eval('native.house_netto_custom' + i + '=\'' + nettoArray[2] + '\';');
+				}
+				if (i == 10) {
+					eval('native.custom' + i + '=' + elmArray[7]);
+					eval('native.color_custom' + i + '=\'' + colorArray[7] + '\';');
+					eval('native.color_custom' + i + '_text =\'' + colorTextArray[7] + '\';');
+					eval('native.color_custom' + i + '_text_no_prod =\'' + colorNoProdArray[7] + '\';');
+					eval('native.label_custom' + i + '=\'' + nameArray[7] + '\';');
+					eval('native.icon_custom' + i + '=\'' + iconArray[7] + '\';');
+					eval('native.color_house_to_custom' + i + '=\'' + colorHtoC[7] + '\';');
+					eval('native.animation_color_house_to_custom' + i + '=\'' + animationArray[7] + '\';');
+					eval('native.house_netto_custom' + i + '=\'' + nettoArray[7] + '\';');
+				}
+			}
+			*/
+
+			//native.migrated_to_new_custom = true;
 		}
 
 		if (Object.keys(native).length) {
@@ -1524,6 +1691,9 @@ class Energiefluss extends utils.Adapter {
 		dataObj.color = color;
 
 		await this.setStateAsync("data", JSON.stringify(dataObj), true);
+
+		// Set Battery Remaining into own object
+		await this.setStateAsync("battery_remaining", dataObj.values.battery_remaining_text, true);
 	}
 }
 

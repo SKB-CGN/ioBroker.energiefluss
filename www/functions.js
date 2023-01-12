@@ -591,7 +591,6 @@ function initConfig() {
                 if (config.general.type == "circle") {
                     c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
                     pos_x = (elements.cx[key] - elm_offset_x);
-                    //pos_y = (elements.cy[key] - (config.elements.style.circle_radius / 2) - elm_offset_y);
                     pos_y = elements.cy[key] - elm_offset_y;
                     c.setAttribute('cx', pos_x);
                     c.setAttribute('cy', pos_y);
@@ -605,6 +604,7 @@ function initConfig() {
                     c = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
                     pos_x = (elements.cx[key] - (config.elements.style.rect_width / 2) - elm_offset_x);
                     pos_y = (elements.cy[key] - (config.elements.style.rect_height / 2) - elm_offset_y);
+                    console.log('Original-Pos Y: ' + elements.cy[key] + ' Neue-Pos: ' + pos_y);
                     c.setAttribute('x', pos_x);
                     c.setAttribute('y', pos_y);
                     c.setAttribute('width', config.elements.style.rect_width);
