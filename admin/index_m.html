@@ -307,6 +307,7 @@
 			let l_thickness = $("#line_size").val();
 			let l_duration = $("#animation_duration").val();
 			let l_linecap = $("#animation_linecap").val();
+			let l_animation = $("#animation_type").val();
 
 
 			for (let i = 0; i < l_amount; i++) {
@@ -331,6 +332,7 @@
 			$(".animation").css("stroke-width", l_width);
 			$(".animation").css("animation-duration", (l_duration / 1.5) + "ms");
 			$(".animation").css("stroke-linecap", l_linecap);
+			$(".animation").css("animation-timing-function", l_animation);
 			$(".path").css("stroke-width", l_thickness);
 		}
 
@@ -2130,6 +2132,22 @@
 							(beyond the endpoints)</option>
 					</select>
 					<span class="translate" data-lang="animation_linecap">Appearance of line ends</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s4">
+					<select id="animation_type" class="value line_preview">
+						<option value="ease" class="translate" data-lang="animation_type_ease">fast till middle of the
+							animation, slowing at the end</option>
+						<option value="ease-in" class="translate" data-lang="animation_type_ease-in">starts slowly,
+							increasing until complete</option>
+						<option value="ease-out" class="translate" data-lang="animation_type_ease-out">starts quickly,
+							slows down until end</option>
+						<option value="ease-in-out" class="translate" data-lang="animation_type_ease-in-out">slowly
+							transitioning, speeding up, and then slowing down again</option>
+						<option value="linear" class="translate" data-lang="animation_type_linear">even speed</option>
+					</select>
+					<span class="translate" data-lang="animation_type">type of animation</span>
 				</div>
 			</div>
 			<div class="row">

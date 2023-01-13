@@ -132,6 +132,11 @@ Anzeige ist ueber den Instanz Link moeglich. Dieser kann dann auch in ein iFrame
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+- fixed <br> alignment inside element
+- added new animation types to line-animation
+- cleaned up some files for future handling
+
 ### 3.0.3 (2023-01-12)
 - fixed custom line 9 coloring, which was not working
 - added own state in object browser for remaining accu

@@ -436,7 +436,7 @@ function initConfig() {
 
         // Animation
         $("#style_animation").empty()
-            .append('.animation { animation-duration:' + config.lines.style.animation_duration + 'ms; stroke-dasharray: ' + config.lines.style.animation + '; stroke-linecap: ' + config.lines.style.animation_linecap + '; stroke-width:' + config.lines.style.animation_width + 'px; }')
+            .append('.animation { animation-duration:' + config.lines.style.animation_duration + 'ms; stroke-dasharray: ' + config.lines.style.animation + '; stroke-linecap: ' + config.lines.style.animation_linecap + '; stroke-width:' + config.lines.style.animation_width + 'px; animation-timing-function:' + config.lines.style.animation_type + '}')
             .append('.line { stroke-width:' + config.lines.style.line_size + 'px; }');
 
         // Fonts
@@ -688,7 +688,7 @@ function initConfig() {
                         }
                     })
                     t.innerHTML = tmp_text;
-                    move_to = ((l2br_count - 1) * 16);
+                    move_to = ((l2br_count - 1) * config.fonts.font_size_label);
 
                 } else {
                     t.innerHTML = l;

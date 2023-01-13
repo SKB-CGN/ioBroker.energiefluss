@@ -333,7 +333,8 @@ class Energiefluss extends utils.Adapter {
 				animation_width: this.config.animation_width,
 				animation: this.config.animation,
 				animation_duration: this.config.animation_duration,
-				animation_linecap: this.config.animation_linecap
+				animation_linecap: this.config.animation_linecap,
+				animation_type: this.config.animation_type
 			}
 
 			// Fonts
@@ -1415,7 +1416,7 @@ class Energiefluss extends utils.Adapter {
 					// Display as positive
 					batteryValue = batteryValue * -1;
 					dataObj.battery_animation.direction = 'charge';
-					if (valuesObj['production'] == 0) {
+					if (batteryValue > valuesObj['production']) {
 						line_animation.grid_to_battery = true;
 					} else {
 						line_animation.solar_to_battery = true;
@@ -1424,7 +1425,7 @@ class Energiefluss extends utils.Adapter {
 			} else {
 				if (batteryValue > threshold) {
 					dataObj.battery_animation.direction = 'charge';
-					if (valuesObj['production'] == 0) {
+					if (batteryValue > valuesObj['production']) {
 						line_animation.grid_to_battery = true;
 					} else {
 						line_animation.solar_to_battery = true;
@@ -1483,6 +1484,8 @@ class Energiefluss extends utils.Adapter {
 			values.battery_percent = valuesObj['battery_percent'];
 			if (battery_info === true) {
 				values.battery_remaining_text = this.calculateBatteryRemaining(values.battery_percent, dataObj.battery_animation.direction, parseFloat(values.battery_value));
+				// Set Battery Remaining into own object
+				await this.setStateAsync("battery_remaining", values.battery_remaining_text, true);
 			}
 		}
 
@@ -1691,9 +1694,6 @@ class Energiefluss extends utils.Adapter {
 		dataObj.color = color;
 
 		await this.setStateAsync("data", JSON.stringify(dataObj), true);
-
-		// Set Battery Remaining into own object
-		await this.setStateAsync("battery_remaining", dataObj.values.battery_remaining_text, true);
 	}
 }
 
