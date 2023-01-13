@@ -132,7 +132,7 @@ Anzeige ist ueber den Instanz Link moeglich. Dieser kann dann auch in ein iFrame
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 3.1.0 (2023-01-13)
 - fixed <br> alignment inside element
 - added new animation types to line-animation
 - cleaned up some files for future handling
