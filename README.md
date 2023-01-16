@@ -129,6 +129,8 @@ Anzeige ist ueber den Instanz Link moeglich. Dieser kann dann auch in ein iFrame
 
 ## Icons
 Please have a look into the Wiki
+
+## Symbole
 Bitte ins Wiki schauen
 
 ## Changelog
