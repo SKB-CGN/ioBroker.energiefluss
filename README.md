@@ -127,6 +127,10 @@ Anzeige ist ueber den Instanz Link moeglich. Dieser kann dann auch in ein iFrame
 ## Custom Elements / Benutzerderfinierte Elemente
 ![Description / Beschreibung](doc/custom_elements.png)
 
+## Icons
+Please have a look into the Wiki
+Bitte ins Wiki schauen
+
 ## Changelog
 <!--
 	Placeholder for the next version (at the beginning of the line):
