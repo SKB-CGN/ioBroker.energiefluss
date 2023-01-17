@@ -114,6 +114,7 @@
 			if ($("#element_type").val() == 'rect') {
 				$(".display_circle").css("display", "none");
 				$(".display_rect").css("display", "block");
+				$('#animation_linecap').val('round');
 			} else {
 				$(".display_rect").css("display", "none");
 				$(".display_circle").css("display", "block");
@@ -218,6 +219,7 @@
 				} else {
 					$(".display_rect").css("display", "none");
 					$(".display_circle").css("display", "block");
+					$('#animation_linecap').val('round').change();
 				}
 			});
 
@@ -446,7 +448,7 @@
 				</div>
 				<div class="input-field col s4">
 					<input class="value dp" id="production" type="text" />
-					<label for="production" class="translate" data-lang="production">Production state:</label>
+					<label for="production" class="translate" data-lang="state_production">Production state:</label>
 					<span class="translate" data-lang="ex_production">Data point of your photovoltaic
 						production</span>
 				</div>
@@ -460,6 +462,24 @@
 					<label for="calculate_consumption" class="translate"
 						data-lang="cb_calculate_consumption">Consumption
 						Calculation via 'Production' + 'Grid'</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s3">
+					<input class="value" id="label_production0" type="text" />
+					<label for="label_production0" class="translate" data-lang="label">Label:</label>
+					<span class="translate" data-lang="ex_label">label inside the element</span>
+				</div>
+				<div class="input-field col s4">
+					<input class="value dp" id="production0" type="text" />
+					<label for="production0" class="translate" data-lang="state_production0">Production state:</label>
+					<span class="translate" data-lang="ex_production0">Data point of your additional photovoltaic
+						production</span>
+				</div>
+				<div class="col s1 m2 l1">
+					<a
+						class="btn-floating waves-effect waves-light blue table-button-add input-field datasource datasource"><i
+							class="material-icons">search</i></a>
 				</div>
 			</div>
 			<div class="row">
@@ -1307,6 +1327,38 @@
 			</div>
 			<div class="row">
 				<div class="col s12">
+					<h6 class="title translate" data-lang="production0">solar production</h6>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s6">
+					<input class="value color" id="color_production0" type="text" placeholder="#ffce4a" />
+					<span class="translate" data-lang="color_production0">Outline color of the element around the solar
+						production
+						(default:
+						#ffce4a)</span>
+				</div>
+				<div class="input-field col s6">
+					<input class="value color" id="color_production0_text" type="text" placeholder="#ffce4a" />
+					<span class="translate" data-lang="color_production0_text">color of the value inside the
+						element of
+						the
+						solar
+						production (default: #ffce4a)</span>
+				</div>
+				<div class="input-field col s6">
+					<input class="value color" id="fill_color_production0" type="text" placeholder="" />
+					<span class="translate" data-lang="fill_color">color inside the element (default: empty)</span>
+				</div>
+				<div class="input-field col s6">
+					<input class="value color" id="color_production0_text_no_prod" type="text" placeholder="" />
+					<span class="translate" data-lang="color_no_prod">color of the value if value is below threshold
+						(default:
+						empty)</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s12">
 					<h6 class="title translate" data-lang="battery">battery</h6>
 				</div>
 			</div>
@@ -1722,7 +1774,7 @@
 			</div>
 			<div class="row">
 				<div class="col s12">
-					<h6 class="title translate" data-lang="label">label</h6>
+					<h6 class="title translate" data-lang="menu_label">label</h6>
 				</div>
 			</div>
 			<div class="row">
@@ -1816,6 +1868,16 @@
 						house
 						(default:
 						empty)</span>
+				</div>
+				<div class="input-field col s6">
+					<input class="value color" id="color_solar0_to_solar" type="text" placeholder="" />
+					<span class="translate" data-lang="color_solar0_to_solar">color of the line between additional solar
+						production and solar production (default: empty)</span>
+				</div>
+				<div class="input-field col s6">
+					<input class="value color" id="animation_color_solar0_to_solar" type="text" placeholder="" />
+					<span class="translate" data-lang="animation_color_solar0_to_solar">Color of the animation between
+						additional solar-production and solar-production (default: empty)</span>
 				</div>
 				<div class="input-field col s6">
 					<input class="value color" id="color_grid_to_house" type="text" placeholder="" />
@@ -2122,7 +2184,7 @@
 					<span class="translate" data-lang="animation_duration">Duration of the animation in ms (1 second are
 						1000ms)</span>
 				</div>
-				<div class="input-field col s4">
+				<div class="input-field col s4 display_rect">
 					<select id="animation_linecap" class="value line_preview">
 						<option value="butt" class="translate" data-lang="animation_linecap_butt">rectangular ends
 							trimmed at the endpoints</option>

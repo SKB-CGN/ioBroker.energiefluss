@@ -63,13 +63,14 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 
 **Technical:**
 - define Datapoints for each element
+- 2 solar production elements possible
 - show battery percent inside car or battery element
 - use different states for feeding into or consuming from the grid
 - reverse settings if your values are negative (for consumption, feeding the grid, charging-/discharging the battery)
 - use positive or negative values for consumption
 - calculcate your consumption via production and grid-feed-in, if you do not have a powermeter
 - use different states for your battery
-- add 10 own elements for a consuming device with different text, values and icon (2 element can be configured as additional car-charge)
+- add 10 own elements for a consuming device with different text, values and icon (2 elements can be configured as additional car-charge)
 - convert all values from W into kW
 - Choose, how many decimal places you want to display (0, 1, 2) - for values and battery charging
 - choose the unit (freetext)
@@ -107,13 +108,14 @@ Display is possible via the instance link. This can then also be inserted into a
 
 **Technisch:**
 - Datenpunkte fuer jedes Element definieren
+- 2 Produktions-Elemente darstellbar
 - Batterieprozentsatz innerhalb des Auto- oder Batterie-Elements anzeigen
 - unterschiedliche Zustaende fuer Einspeisung oder Bezug aus dem Netz verwenden
 - Einstellungen umkehren, wenn Ihre Werte negativ sind (fuer Verbrauch, Netzeinspeisung, Laden-/Entladen der Batterie)
 - Verwenden Sie positive oder negative Werte fuer den Verbrauch
 - Berechnen Sie Ihren Verbrauch ueber Erzeugung und Netzeinspeisung, wenn Sie keinen Stromzuehler haben
 - Verwenden Sie verschiedene Zustaende fuer Ihre Batterie
-- Fuegen Sie 10 eigene Elemente fuer ein Verbrauchsgeraet mit unterschiedlichem Text, Werten und Symbolen hinzu (2 Element kann als weiterer Auto-Ladepunkt konfiguriert werden)
+- Fuegen Sie 10 eigene Elemente fuer ein Verbrauchsgeraet mit unterschiedlichem Text, Werten und Symbolen hinzu (2 Elemente koennen als weiterer Auto-Ladepunkt konfiguriert werden)
 - Alle Werte von W in kW umrechnen
 - Waehlen Sie, wie viele Dezimalstellen Sie anzeigen moechten (0, 1, 2) - fuer Werte und Akkuladung
 - Waehlen Sie die Einheit (Freitext)
@@ -138,6 +140,12 @@ Bitte ins Wiki schauen
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+- added second production element
+- translation fixes
+- basic data updated
+- removed some testing waste
+
 ### 3.1.0 (2023-01-13)
 - fixed <br> alignment inside element
 - added new animation types to line-animation

@@ -26,7 +26,8 @@ let elements = {
         "custom7": 802,
         "custom8": 592,
         "custom9": 382,
-        "custom10": 487
+        "custom10": 487,
+        "solar0": 72
     },
     cy: {
         "test": 52,
@@ -44,7 +45,8 @@ let elements = {
         "custom7": 402,
         "custom8": 472,
         "custom9": 472,
-        "custom10": 472
+        "custom10": 472,
+        "solar0": 52
     },
     value: {
         "house": "consumption_value",
@@ -61,7 +63,8 @@ let elements = {
         "custom7": "custom7_value",
         "custom8": "custom8_value",
         "custom9": "custom9_value",
-        "custom10": "custom10_value"
+        "custom10": "custom10_value",
+        "solar0": "production0_value"
     },
     text: {
         "house": "consumption_text",
@@ -78,7 +81,9 @@ let elements = {
         "custom7": "custom7_text",
         "custom8": "custom8_text",
         "custom9": "custom9_text",
-        "custom10": "custom10_text"
+        "custom10": "custom10_text",
+        "solar0": "production0_text"
+
     },
     icon_id: {
         "house": "icon_house",
@@ -95,11 +100,13 @@ let elements = {
         "custom7": "icon_custom7",
         "custom8": "icon_custom8",
         "custom9": "icon_custom9",
-        "custom10": "icon_custom10"
+        "custom10": "icon_custom10",
+        "solar0": "icon_production0"
     },
     icon_d: {
         "house": "M0,21V10L7.5,5L15,10V21H10V14H5V21H0M24,2V21H17V8.93L16,8.27V6H14V6.93L10,4.27V2H24M21,14H19V16H21V14M21,10H19V12H21V10M21,6H19V8H21V6Z",
         "solar": "M4,2H20A2,2 0 0,1 22,4V14A2,2 0 0,1 20,16H15V20H18V22H13V16H11V22H6V20H9V16H4A2,2 0 0,1 2,14V4A2,2 0 0,1 4,2M4,4V8H11V4H4M4,14H11V10H4V14M20,14V10H13V14H20M20,4H13V8H20V4Z",
+        "solar0": "M4,2H20A2,2 0 0,1 22,4V14A2,2 0 0,1 20,16H15V20H18V22H13V16H11V22H6V20H9V16H4A2,2 0 0,1 2,14V4A2,2 0 0,1 4,2M4,4V8H11V4H4M4,14H11V10H4V14M20,14V10H13V14H20M20,4H13V8H20V4Z",
         "grid": "M8.28,5.45L6.5,4.55L7.76,2H16.23L17.5,4.55L15.72,5.44L15,4H9L8.28,5.45M18.62,8H14.09L13.3,5H10.7L9.91,8H5.38L4.1,10.55L5.89,11.44L6.62,10H17.38L18.1,11.45L19.89,10.56L18.62,8M17.77,22H15.7L15.46,21.1L12,15.9L8.53,21.1L8.3,22H6.23L9.12,11H11.19L10.83,12.35L12,14.1L13.16,12.35L12.81,11H14.88L17.77,22M11.4,15L10.5,13.65L9.32,18.13L11.4,15M14.68,18.12L13.5,13.64L12.6,15L14.68,18.12Z",
         "battery": "none",
         "custom0": default_icon,
@@ -452,20 +459,18 @@ function initConfig() {
 
         // Elements
         Object.entries(config.elements.elements).forEach(entry => {
-            // If slim-design is enabled, move all elements more to the left except battery
-            //let elm_offset_x = config.general.slim_design === true ? 350 + config.general.element_distance : 0;
             let elm_offset_y = 0;
             let elm_offset_x = 0;
 
             const [key, value] = entry;
             if (value === true) {
                 // Check, if we are not displaying the battery
-                if (config.general.no_battery === true) {
+                if (config.general.no_battery === true && config.elements.elements.solar0 == false) {
                     elm_offset_x = ((config.general.type == "circle" ? config.elements.style.circle_radius * 2 : config.elements.style.rect_width) + config.general.element_distance) * 2;
                 } else {
                     // Check, if we are displaying the slim-design
                     if (config.general.slim_design === true) {
-                        if (key == "battery") {
+                        if (key == "battery" || key == "solar0") {
                             elm_offset_x = 0;
                         } else {
                             elm_offset_x = (config.general.type == "circle" ? config.elements.style.circle_radius * 2 : config.elements.style.rect_width) + config.elements.style.size - config.general.element_distance;
@@ -504,7 +509,7 @@ function initConfig() {
                 }
 
                 // Y-Axis
-                if (key == "solar" || key == "custom0" || key == "custom4" || key == "custom5") {
+                if (key == "solar" || key == "custom0" || key == "custom4" || key == "custom5" || key == "solar0") {
                     mp_elm_y = 1;
                 }
                 if (key == "custom1") {
@@ -513,14 +518,12 @@ function initConfig() {
                 if (key == "custom6") {
                     mp_elm_y = 2.5;
                 }
-
                 if (key == "custom7") {
                     mp_elm_y = 5.5;
                 }
                 if (key == "custom3") {
                     mp_elm_y = 6;
                 }
-
                 if (key == "battery" || key == "house" || key == "custom2") {
                     mp_elm_y = 4;
                 }
@@ -530,7 +533,7 @@ function initConfig() {
                 }
 
                 // X-Axis
-                if (key == "battery") {
+                if (key == "battery" || key == "solar0") {
                     mp_elm_x = 0.5;
                     mp_dist_x = 0.5;
                 }
@@ -571,11 +574,13 @@ function initConfig() {
                     if (key != "battery") {
                         mp_dist_x -= 1;
                     }
+                    if (key == "solar0") {
+                        mp_dist_x += 1;
+                    }
                 }
 
                 // If Circle, more distance
                 if (config.general.type == "circle") {
-                    //mp_dist_x = mp_dist_x * 2;
                     mp_elm_x = mp_elm_x * 2;
                 }
 
@@ -656,7 +661,7 @@ function initConfig() {
                     $(i).appendTo("#placeholder_icons");
                 }
 
-                // Check, if we are displaying the battery circle
+                // Check, if we are displaying the battery Element
                 if (key == "battery") {
                     // Additional Text for Battery remaining
                     let bt = document.createElementNS('http://www.w3.org/2000/svg', 'text');

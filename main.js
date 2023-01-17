@@ -14,6 +14,7 @@ const utils = require("@iobroker/adapter-core");
 /* Variables for runtime */
 let unit;
 let production;
+let production0;
 let consumption;
 let grid_feed;
 let grid_consuming;
@@ -111,6 +112,7 @@ class Energiefluss extends utils.Adapter {
 			// Initialize your adapter here
 			unit = this.config.unit;
 			production = this.config.production;
+			production0 = this.config.production0;
 			consumption = this.config.consumption;
 			consumption_reverse = this.config.consumption_reverse ? true : false;
 			grid_feed = this.config.grid_feed;
@@ -166,6 +168,7 @@ class Energiefluss extends utils.Adapter {
 			// Put all possible variables into an Object and after that, filter empty ones
 			configObj = {
 				production: production,
+				production0: production0,
 				consumption: consumption,
 				grid_feed: grid_feed,
 				grid_consuming: grid_consuming,
@@ -250,6 +253,7 @@ class Energiefluss extends utils.Adapter {
 				house: this.config.color_house,
 				grid: this.config.color_grid,
 				solar: this.config.color_production,
+				solar0: this.config.color_production0,
 				battery: this.config.color_battery,
 				custom0: this.config.color_custom0,
 				custom1: this.config.color_custom1,
@@ -269,6 +273,7 @@ class Energiefluss extends utils.Adapter {
 				house: this.config.fill_color_house,
 				grid: this.config.fill_color_grid,
 				solar: this.config.fill_color_production,
+				solar0: this.config.fill_color_production0,
 				battery: this.config.fill_color_battery,
 				custom0: this.config.fill_color_custom0,
 				custom1: this.config.fill_color_custom1,
@@ -288,6 +293,7 @@ class Energiefluss extends utils.Adapter {
 				solar_to_battery: this.config.color_solar_to_battery,
 				solar_to_grid: this.config.color_solar_to_grid,
 				solar_to_house: this.config.color_solar_to_house,
+				solar0_to_solar: this.config.color_solar0_to_solar,
 				grid_to_house: this.config.color_grid_to_house,
 				grid_to_battery: this.config.color_grid_to_battery,
 				battery_to_house: this.config.color_battery_to_house,
@@ -310,6 +316,7 @@ class Energiefluss extends utils.Adapter {
 				solar_to_battery: this.config.animation_color_solar_to_battery,
 				solar_to_grid: this.config.animation_color_solar_to_grid,
 				solar_to_house: this.config.animation_color_solar_to_house,
+				solar0_to_solar: this.config.animation_color_solar0_to_solar,
 				grid_to_house: this.config.animation_color_grid_to_house,
 				grid_to_battery: this.config.animation_color_grid_to_battery,
 				battery_to_house: this.config.animation_color_battery_to_house,
@@ -353,6 +360,7 @@ class Energiefluss extends utils.Adapter {
 			parameterObj.texts.labels = {
 				house: this.config.label_house,
 				solar: this.config.label_production,
+				solar0: this.config.label_production0,
 				grid: this.config.label_grid,
 				battery: this.config.label_battery,
 				battery_remaining: this.config.label_battery_remaining,
@@ -525,6 +533,9 @@ class Energiefluss extends utils.Adapter {
 			if (id == production) {
 				valuesObj['production'] = state.val;
 			}
+			if (id == production0) {
+				valuesObj['production0'] = state.val;
+			}
 			if (id == consumption) {
 				let consumption = state.val;
 				if (consumption_reverse) {
@@ -561,7 +572,7 @@ class Energiefluss extends utils.Adapter {
 			}
 
 			if (calculate_consumption) {
-				let prodValue = valuesObj['production'];
+				let prodValue = valuesObj['production'] + valuesObj['production0'];
 
 				let consumptionValue = 0;
 				if (grid_all_positive) {
@@ -683,161 +694,6 @@ class Energiefluss extends utils.Adapter {
 			native.animation_color_house_to_car = '';
 		}
 
-		if (this.config?.migrated_to_new_custom === false) {
-			//this.log.info("Custom circles will be migrated to new layout ...");
-			/* Migrate the circles to new numbering */
-			/* First read old data into array */
-			/*
-			let elmArray = new Array();
-			let colorArray = new Array();
-			let colorTextArray = new Array();
-			let colorNoProdArray = new Array();
-			let nameArray = new Array();
-			let iconArray = new Array();
-			let colorHtoC = new Array();
-			let animationArray = new Array();
-			let nettoArray = new Array();
-			for (let i = 0; i < 11; i++) {
-				elmArray[i] = eval('this.config.custom' + i);
-				colorArray[i] = eval('this.config.color_custom' + i);
-				colorTextArray[i] = eval('this.config.color_custom' + i + '_text');
-				colorNoProdArray[i] = eval('this.config.color_custom' + i + '_text_no_prod');
-				nameArray[i] = eval('this.config.label_custom' + i);
-				iconArray[i] = eval('this.config.icon_custom' + i);
-
-				colorHtoC[i] = eval('this.config.color_house_to_custom' + i);
-				animationArray[i] = eval('this.config.animation_color_house_to_custom' + i);
-				nettoArray[i] = eval('this.config.house_netto_custom' + i);
-			}
-
-			for (let i = 0; i < 11; i++) {
-				if (i == 0) {
-					eval('native.custom' + i + '=' + elmArray[4]);
-					eval('native.color_custom' + i + '=\'' + colorArray[4] + '\';');
-					eval('native.color_custom' + i + '_text =\'' + colorTextArray[4] + '\';');
-					eval('native.color_custom' + i + '_text_no_prod =\'' + colorNoProdArray[4] + '\';');
-					eval('native.label_custom' + i + '=\'' + nameArray[4] + '\';');
-					eval('native.icon_custom' + i + '=\'' + iconArray[4] + '\';');
-					eval('native.color_house_to_custom' + i + '=\'' + colorHtoC[4] + '\';');
-					eval('native.animation_color_house_to_custom' + i + '=\'' + animationArray[4] + '\';');
-					eval('native.house_netto_custom' + i + '=\'' + nettoArray[4] + '\';');
-				}
-				if (i == 1) {
-					eval('native.custom' + i + '=' + elmArray[9]);
-					eval('native.color_custom' + i + '=\'' + colorArray[9] + '\';');
-					eval('native.color_custom' + i + '_text =\'' + colorTextArray[9] + '\';');
-					eval('native.color_custom' + i + '_text_no_prod =\'' + colorNoProdArray[9] + '\';');
-					eval('native.label_custom' + i + '=\'' + nameArray[9] + '\';');
-					eval('native.icon_custom' + i + '=\'' + iconArray[9] + '\';');
-					eval('native.color_house_to_custom' + i + '=\'' + colorHtoC[9] + '\';');
-					eval('native.animation_color_house_to_custom' + i + '=\'' + animationArray[9] + '\';');
-					eval('native.house_netto_custom' + i + '=\'' + nettoArray[9] + '\';');
-				}
-				if (i == 2) {
-					eval('native.custom' + i + '=' + elmArray[0]);
-					eval('native.color_custom' + i + '=\'' + colorArray[0] + '\';');
-					eval('native.color_custom' + i + '_text =\'' + colorTextArray[0] + '\';');
-					eval('native.color_custom' + i + '_text_no_prod =\'' + colorNoProdArray[0] + '\';');
-					eval('native.label_custom' + i + '=\'' + nameArray[0] + '\';');
-					eval('native.icon_custom' + i + '=\'' + iconArray[0] + '\';');
-					eval('native.color_house_to_custom' + i + '=\'' + colorHtoC[0] + '\';');
-					eval('native.animation_color_house_to_custom' + i + '=\'' + animationArray[0] + '\';');
-					eval('native.house_netto_custom' + i + '=\'' + nettoArray[0] + '\';');
-				}
-				if (i == 3) {
-					eval('native.custom' + i + '=' + elmArray[10]);
-					eval('native.color_custom' + i + '=\'' + colorArray[10] + '\';');
-					eval('native.color_custom' + i + '_text =\'' + colorTextArray[10] + '\';');
-					eval('native.color_custom' + i + '_text_no_prod =\'' + colorNoProdArray[10] + '\';');
-					eval('native.label_custom' + i + '=\'' + nameArray[10] + '\';');
-					eval('native.icon_custom' + i + '=\'' + iconArray[10] + '\';');
-					eval('native.color_house_to_custom' + i + '=\'' + colorHtoC[10] + '\';');
-					eval('native.animation_color_house_to_custom' + i + '=\'' + animationArray[10] + '\';');
-					eval('native.house_netto_custom' + i + '=\'' + nettoArray[10] + '\';');
-				}
-				if (i == 4) {
-					eval('native.custom' + i + '=' + elmArray[5]);
-					eval('native.color_custom' + i + '=\'' + colorArray[5] + '\';');
-					eval('native.color_custom' + i + '_text =\'' + colorTextArray[5] + '\';');
-					eval('native.color_custom' + i + '_text_no_prod =\'' + colorNoProdArray[5] + '\';');
-					eval('native.label_custom' + i + '=\'' + nameArray[5] + '\';');
-					eval('native.icon_custom' + i + '=\'' + iconArray[5] + '\';');
-					eval('native.color_house_to_custom' + i + '=\'' + colorHtoC[5] + '\';');
-					eval('native.animation_color_house_to_custom' + i + '=\'' + animationArray[5] + '\';');
-					eval('native.house_netto_custom' + i + '=\'' + nettoArray[5] + '\';');
-				}
-				if (i == 5) {
-					eval('native.custom' + i + '=' + elmArray[8]);
-					eval('native.color_custom' + i + '=\'' + colorArray[8] + '\';');
-					eval('native.color_custom' + i + '_text =\'' + colorTextArray[8] + '\';');
-					eval('native.color_custom' + i + '_text_no_prod =\'' + colorNoProdArray[8] + '\';');
-					eval('native.label_custom' + i + '=\'' + nameArray[8] + '\';');
-					eval('native.icon_custom' + i + '=\'' + iconArray[8] + '\';');
-					eval('native.color_house_to_custom' + i + '=\'' + colorHtoC[8] + '\';');
-					eval('native.animation_color_house_to_custom' + i + '=\'' + animationArray[8] + '\';');
-					eval('native.house_netto_custom' + i + '=\'' + nettoArray[8] + '\';');
-				}
-				if (i == 6) {
-					eval('native.custom' + i + '=' + elmArray[1]);
-					eval('native.color_custom' + i + '=\'' + colorArray[1] + '\';');
-					eval('native.color_custom' + i + '_text =\'' + colorTextArray[1] + '\';');
-					eval('native.color_custom' + i + '_text_no_prod =\'' + colorNoProdArray[1] + '\';');
-					eval('native.label_custom' + i + '=\'' + nameArray[1] + '\';');
-					eval('native.icon_custom' + i + '=\'' + iconArray[1] + '\';');
-					eval('native.color_house_to_custom' + i + '=\'' + colorHtoC[1] + '\';');
-					eval('native.animation_color_house_to_custom' + i + '=\'' + animationArray[1] + '\';');
-					eval('native.house_netto_custom' + i + '=\'' + nettoArray[1] + '\';');
-				}
-				if (i == 7) {
-					eval('native.custom' + i + '=' + elmArray[3]);
-					eval('native.color_custom' + i + '=\'' + colorArray[3] + '\';');
-					eval('native.color_custom' + i + '_text =\'' + colorTextArray[3] + '\';');
-					eval('native.color_custom' + i + '_text_no_prod =\'' + colorNoProdArray[3] + '\';');
-					eval('native.label_custom' + i + '=\'' + nameArray[3] + '\';');
-					eval('native.icon_custom' + i + '=\'' + iconArray[3] + '\';');
-					eval('native.color_house_to_custom' + i + '=\'' + colorHtoC[3] + '\';');
-					eval('native.animation_color_house_to_custom' + i + '=\'' + animationArray[3] + '\';');
-					eval('native.house_netto_custom' + i + '=\'' + nettoArray[3] + '\';');
-				}
-				if (i == 8) {
-					eval('native.custom' + i + '=' + elmArray[6]);
-					eval('native.color_custom' + i + '=\'' + colorArray[6] + '\';');
-					eval('native.color_custom' + i + '_text =\'' + colorTextArray[6] + '\';');
-					eval('native.color_custom' + i + '_text_no_prod =\'' + colorNoProdArray[6] + '\';');
-					eval('native.label_custom' + i + '=\'' + nameArray[6] + '\';');
-					eval('native.icon_custom' + i + '=\'' + iconArray[6] + '\';');
-					eval('native.color_house_to_custom' + i + '=\'' + colorHtoC[6] + '\';');
-					eval('native.animation_color_house_to_custom' + i + '=\'' + animationArray[6] + '\';');
-					eval('native.house_netto_custom' + i + '=\'' + nettoArray[6] + '\';');
-				}
-				if (i == 9) {
-					eval('native.custom' + i + '=' + elmArray[2]);
-					eval('native.color_custom' + i + '=\'' + colorArray[2] + '\';');
-					eval('native.color_custom' + i + '_text =\'' + colorTextArray[2] + '\';');
-					eval('native.color_custom' + i + '_text_no_prod =\'' + colorNoProdArray[2] + '\';');
-					eval('native.label_custom' + i + '=\'' + nameArray[2] + '\';');
-					eval('native.icon_custom' + i + '=\'' + iconArray[2] + '\';');
-					eval('native.color_house_to_custom' + i + '=\'' + colorHtoC[2] + '\';');
-					eval('native.animation_color_house_to_custom' + i + '=\'' + animationArray[2] + '\';');
-					eval('native.house_netto_custom' + i + '=\'' + nettoArray[2] + '\';');
-				}
-				if (i == 10) {
-					eval('native.custom' + i + '=' + elmArray[7]);
-					eval('native.color_custom' + i + '=\'' + colorArray[7] + '\';');
-					eval('native.color_custom' + i + '_text =\'' + colorTextArray[7] + '\';');
-					eval('native.color_custom' + i + '_text_no_prod =\'' + colorNoProdArray[7] + '\';');
-					eval('native.label_custom' + i + '=\'' + nameArray[7] + '\';');
-					eval('native.icon_custom' + i + '=\'' + iconArray[7] + '\';');
-					eval('native.color_house_to_custom' + i + '=\'' + colorHtoC[7] + '\';');
-					eval('native.animation_color_house_to_custom' + i + '=\'' + animationArray[7] + '\';');
-					eval('native.house_netto_custom' + i + '=\'' + nettoArray[7] + '\';');
-				}
-			}
-			*/
-
-			//native.migrated_to_new_custom = true;
-		}
-
 		if (Object.keys(native).length) {
 			this.log.info('Migrate ' + Object.keys(native).length + ' value(s) from old Energiefluss Adapter version ...');
 			await this.extendForeignObjectAsync('system.adapter.' + this.namespace, { native: native });
@@ -912,7 +768,9 @@ class Energiefluss extends utils.Adapter {
 		// Elements - init as false
 		let elementsObj = {
 			house: false,
-			production: false,
+			// Perhaps here
+			solar: false,
+			solar0: false,
 			grid: false,
 			battery: false,
 			custom0: false,
@@ -932,6 +790,7 @@ class Energiefluss extends utils.Adapter {
 		let textObj = {
 			consumption_text: false,
 			production_text: false,
+			production0_text: false,
 			grid_text: false,
 			battery_text: false,
 			battery_remaining_text: false,
@@ -952,6 +811,7 @@ class Energiefluss extends utils.Adapter {
 		let valueObj = {
 			consumption_value: false,
 			production_value: false,
+			production0_value: false,
 			grid_value: false,
 			custom0_percent: false,
 			custom10_percent: false,
@@ -974,6 +834,7 @@ class Energiefluss extends utils.Adapter {
 		let iconObj = {
 			house: false,
 			production: false,
+			production0: false,
 			grid: false,
 			battery: false,
 			custom0: false,
@@ -991,12 +852,9 @@ class Energiefluss extends utils.Adapter {
 
 		// Lines
 		let linesObj = {
-			solar_to_house: false,
-			grid_to_house: false,
-			solar_to_grid: false,
-			grid_to_battery: false,
-			solar_to_battery: false,
 			battery_to_house: false,
+			grid_to_house: false,
+			grid_to_battery: false,
 			house_to_custom0: false,
 			house_to_custom1: false,
 			house_to_custom2: false,
@@ -1007,10 +865,14 @@ class Energiefluss extends utils.Adapter {
 			house_to_custom7: false,
 			house_to_custom8: false,
 			house_to_custom9: false,
-			house_to_custom10: false
+			house_to_custom10: false,
+			solar_to_battery: false,
+			solar_to_grid: false,
+			solar_to_house: false,
+			solar0_to_solar: false
 		};
 
-		// Change CSS if no battery is present
+		// Change parameter if no battery is present
 		if ((valuesObj['battery_charge'] === undefined || valuesObj['battery_discharge'] === undefined && battery_different) && valuesObj['battery_percent'] === undefined) {
 			parameterObj.general.no_battery = true;
 		}
@@ -1029,6 +891,14 @@ class Energiefluss extends utils.Adapter {
 			textObj.production_text = true;
 			valueObj.production_value = true;
 			iconObj.production = true;
+		}
+
+		// Production - Additional
+		if (valuesObj['production0'] != undefined) {
+			elementsObj.solar0 = true;
+			textObj.production0_text = true;
+			valueObj.production0_value = true;
+			iconObj.production0 = true;
 		}
 
 		// Grid
@@ -1195,6 +1065,9 @@ class Energiefluss extends utils.Adapter {
 		if (valuesObj['production'] != undefined && (valuesObj['grid_feed'] != undefined || valuesObj['grid_consuming'] != undefined)) {
 			linesObj.solar_to_grid = true;
 		}
+		if (valuesObj['production'] != undefined && valuesObj['production0'] != undefined) {
+			linesObj.solar0_to_solar = true;
+		}
 		if (valuesObj['battery_charge'] != undefined && valuesObj['grid_feed'] != undefined) {
 			linesObj.grid_to_battery = true;
 		}
@@ -1264,6 +1137,7 @@ class Energiefluss extends utils.Adapter {
 			consumption_value: this.config.color_house_text,
 			grid_value: this.config.color_grid_text,
 			production_value: this.config.color_production_text,
+			production0_value: this.config.color_production0_text,
 			battery_value: this.config.color_battery_text,
 			battery_remaining: this.config.color_battery_text,
 			battery_percent: this.config.color_battery_percent,
@@ -1291,6 +1165,7 @@ class Energiefluss extends utils.Adapter {
 			solar_to_grid: false,
 			grid_to_battery: false,
 			solar_to_battery: false,
+			solar0_to_solar: false,
 			battery_to_house: false,
 			house_to_custom0: false,
 			house_to_custom1: false,
@@ -1319,7 +1194,7 @@ class Energiefluss extends utils.Adapter {
 
 		// Production
 		if (valuesObj['production'] != undefined) {
-			if (valuesObj['consumption'] > threshold && valuesObj['production'] > threshold) {
+			if (valuesObj['consumption'] > threshold && (valuesObj['production'] > threshold || valuesObj['production0'] > threshold)) {
 				line_animation.solar_to_house = true;
 			}
 
@@ -1332,6 +1207,21 @@ class Energiefluss extends utils.Adapter {
 			}
 		}
 
+		// Production - Additional
+		if (valuesObj['production0'] != undefined) {
+			if (valuesObj['production0'] > threshold) {
+				line_animation.solar0_to_solar = true;
+			}
+
+			if (valuesObj['production0'] > threshold) {
+				color.production0_value = this.config.color_production0_text;
+				values.production0_value = recalculate ? this.recalculateValue(valuesObj['production0']) : this.floorNumber(valuesObj['production0']);
+			} else {
+				color.production0_value = this.config.color_production0_text_no_prod ? this.config.color_production0_text_no_prod : this.config.color_production0_text;
+				values.production0_value = this.floorNumber(0);
+			}
+		}
+
 		// Grid
 		if (valuesObj['grid_feed'] != undefined && grid_different === false) {
 			let gridValue = valuesObj['grid_feed'];
@@ -1341,7 +1231,7 @@ class Energiefluss extends utils.Adapter {
 				}
 				if (gridValue < (threshold * -1)) {
 					// Check, if we have production
-					if (valuesObj['production'] > 0) {
+					if (valuesObj['production'] > 0 || valuesObj['production0'] > 0) {
 						// Display as positive
 						gridValue = gridValue * -1;
 						line_animation.solar_to_grid = true;
@@ -1352,7 +1242,7 @@ class Energiefluss extends utils.Adapter {
 			} else {
 				if (gridValue > threshold) {
 					// Check, if we have production
-					if (valuesObj['production'] > 0) {
+					if (valuesObj['production'] > 0 || valuesObj['production0'] > 0) {
 						line_animation.solar_to_grid = true;
 					} else {
 						gridValue = 0;
@@ -1387,7 +1277,7 @@ class Energiefluss extends utils.Adapter {
 
 			if (gridFeedValue > threshold && gridConsumeValue === 0) {
 				// Check, if we have production
-				if (valuesObj['production'] > 0) {
+				if (valuesObj['production'] > 0 || valuesObj['production0'] > 0) {
 					line_animation.solar_to_grid = true;
 					gridValue = gridFeedValue;
 				} else {
@@ -1425,7 +1315,7 @@ class Energiefluss extends utils.Adapter {
 			} else {
 				if (batteryValue > threshold) {
 					dataObj.battery_animation.direction = 'charge';
-					if (batteryValue > valuesObj['production']) {
+					if (batteryValue > (valuesObj['production'] + valuesObj['production0'])) {
 						line_animation.grid_to_battery = true;
 					} else {
 						line_animation.solar_to_battery = true;
@@ -1448,7 +1338,7 @@ class Energiefluss extends utils.Adapter {
 			}
 		}
 
-		// User has defined to used different States for charging and discharging the battery
+		// User has defined to use different States for charging and discharging the battery
 		if (battery_different === true) {
 			let batteryChargeValue = valuesObj['battery_charge'];
 			let batteryDischargeValue = valuesObj['battery_discharge'];
@@ -1457,7 +1347,7 @@ class Energiefluss extends utils.Adapter {
 			if (batteryChargeValue > threshold && batteryDischargeValue === 0) {
 				batteryValue = batteryChargeValue;
 				dataObj.battery_animation.direction = 'charge';
-				if (valuesObj['production'] == 0) {
+				if (batteryValue > (valuesObj['production'] + valuesObj['production0'])) {
 					line_animation.grid_to_battery = true;
 				} else {
 					line_animation.solar_to_battery = true;
