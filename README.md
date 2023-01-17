@@ -140,7 +140,7 @@ Bitte ins Wiki schauen
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 3.2.0 (2023-01-17)
 - added second production element
 - translation fixes
 - basic data updated
