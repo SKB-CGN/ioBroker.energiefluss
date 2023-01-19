@@ -5,6 +5,7 @@ let config;
 let data;
 let svg_width = 0;
 let svg_height = 0;
+let element_animation = "default";
 
 // Default Icon for Custom if no icon defined in settings
 let default_icon = "M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,6A4,4 0 0,0 8,10H10A2,2 0 0,1 12,8A2,2 0 0,1 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10A4,4 0 0,0 12,6Z";
@@ -167,6 +168,60 @@ function batteryAnimation(direction) {
     }
 
     $("#icon_battery").removeClass().addClass("icon " + elm);
+}
+
+function elementAnimation() {
+    // Check, which Animation should be loaded
+    let animation_flow;
+    if (element_animation == "default") {
+        animation_flow = config.texts.labels;
+    } else {
+        animation_flow = config.swap_texts.labels;
+    }
+    Object.entries(animation_flow).forEach(entry => {
+        const [key, value] = entry;
+        if (value != "") {
+            let elm = $("#" + elements.text[key]);
+
+            // How many lines did we have before?
+            let elm_count = $("#" + elements.text[key] + ' tspan').length ? $("#" + elements.text[key] + ' tspan').length : 1;
+
+            let l = value;
+            let l2br_count = 0;
+            let move_to = 0;
+            let tmp_text = '';
+
+            if (l.includes("<br>")) {
+                let l2br = l.split("<br>");
+                l2br_count = l2br.length;
+
+                l2br.forEach(function (text) {
+                    if (text != "" || text != undefined) {
+                        tmp_text += '<tspan x=' + elm.attr("x") + ' dy="1em">' + text + '</tspan>';
+                    }
+                });
+                move_to = ((l2br_count - elm_count) * config.fonts.font_size_label) * -1;
+                if (elm_count > 0) {
+                    //move_to += elm_count * config.fonts.font_size_label;
+                } else {
+                    //move_to += 1 * config.fonts.font_size_label;
+                }
+                console.log(move_to);
+                elm.html(tmp_text);
+            } else {
+                elm.html(l);
+            }
+            // Move Element only, if unknown Texts are applied - Reset those ones
+            if (element_animation == "default") {
+                elm.removeAttr('transform');
+            } else {
+                elm.attr('transform', 'translate(0,' + move_to + ')');
+            }
+        }
+    });
+    // Reverse the Animation
+    element_animation = element_animation == "default" ? "swap" : "default";
+    setTimeout(elementAnimation, config.general.element_animation_time);
 }
 
 function getCoords(element) {
@@ -609,7 +664,6 @@ function initConfig() {
                     c = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
                     pos_x = (elements.cx[key] - (config.elements.style.rect_width / 2) - elm_offset_x);
                     pos_y = (elements.cy[key] - (config.elements.style.rect_height / 2) - elm_offset_y);
-                    console.log('Original-Pos Y: ' + elements.cy[key] + ' Neue-Pos: ' + pos_y);
                     c.setAttribute('x', pos_x);
                     c.setAttribute('y', pos_y);
                     c.setAttribute('width', config.elements.style.rect_width);
@@ -676,7 +730,7 @@ function initConfig() {
                 // Texts
                 // Text Elements
                 let t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-                let l = config.texts.labels[key];
+                let l = config.texts.labels[key] || "";
                 let l2br_count = 0;
                 let move_to = 0;
                 t.setAttribute('id', elements.text[key]);
@@ -743,6 +797,11 @@ function initConfig() {
                 connectElements(key, elm[0], elm[2], key);
             }
         });
+
+        // Start Animation for Element
+        if (config.general.element_animation) {
+            elementAnimation();
+        }
 
         // Add the last element width or height to the Width and Height
         svg_width += (config.general.type == "circle" ? config.elements.style.circle_radius * 2 : config.elements.style.rect_width) + config.elements.style.size + 8 /* Shadow */;

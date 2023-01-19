@@ -319,6 +319,8 @@
     "custom9": "",
     "custom_type": "consumer",
     "custom10_type": "car",
+    "element_animation": false,
+    "element_animation_time": 10000,
     "element_distance": 15,
     "element_shadow": true,
     "element_shadow_color": "rgba(0, 0, 0, .7)",

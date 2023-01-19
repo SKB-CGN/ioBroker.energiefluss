@@ -572,7 +572,11 @@ class Energiefluss extends utils.Adapter {
 			}
 
 			if (calculate_consumption) {
-				let prodValue = valuesObj['production'] + valuesObj['production0'];
+				let prodValue = valuesObj['production'];
+				if (valuesObj['production0'] != undefined) {
+					prodValue += valuesObj['production0'];
+				}
+				this.log.info("Consumption: " + prodValue);
 
 				let consumptionValue = 0;
 				if (grid_all_positive) {
