@@ -1,0 +1,13 @@
+{
+    // Boolean, number, string as is:
+    "dry": false,
+    // Arrays:
+    "plugins": [
+        "iobroker",
+        "license"
+    ],
+    // Objects
+    "exec": {
+        "before_commit": "Doing commit!"
+    }
+}
