@@ -145,7 +145,7 @@
         "type": "visualization",
         "compact": true,
         "connectionType": "local",
-        "dataSource": "poll",
+        "dataSource": "assumption",
         "materialize": true,
         "materializeTab": true,
         "adminTab": {
@@ -172,6 +172,11 @@
             },
             {
                 "web": ">=3.0.12"
+            }
+        ],
+        "globalDependencies": [
+            {
+                "admin": ">=5.2.0"
             }
         ]
     },
@@ -416,5 +421,42 @@
         "percent_shadow_color": "rgba(0, 0, 0, .7)"
     },
     "objects": [],
-    "instanceObjects": []
+    "instanceObjects": [
+        {
+            "_id": "configuration",
+            "type": "state",
+            "common": {
+                "name": "Parameters for HTML Output",
+                "type": "string",
+                "role": "state",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "data",
+            "type": "state",
+            "common": {
+                "name": "Data for HTML Output",
+                "type": "json",
+                "role": "state",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "battery_remaining",
+            "type": "state",
+            "common": {
+                "name": "Remaining Time of the battery",
+                "type": "string",
+                "role": "text",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        }
+    ]
 }
