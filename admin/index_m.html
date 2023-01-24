@@ -436,8 +436,7 @@
 			</div>
 			<div class="row">
 				<div class="col s12">
-					<h6 class="title translate" data-lang="production and consuming">production and usage
-					</h6>
+					<h6 class="title translate" data-lang="production_title">solar production</h6>
 				</div>
 			</div>
 			<div class="row">
@@ -464,6 +463,27 @@
 						Calculation via 'Production' + 'Grid'</label>
 				</div>
 			</div>
+			<!-- -->
+			<div class="row">
+				<div class="input-field col s3">
+					<input class="value" id="label_swap_production" type="text" />
+					<label for="label_swap_production" class="translate" data-lang="label">Label:</label>
+					<span class="translate" data-lang="ex_label">label inside the element</span>
+				</div>
+				<div class="input-field col s4">
+					<input class="value dp" id="swap_production" type="text" />
+					<label for="swap_production" class="translate" data-lang="ex_alternate">Alternating display in the
+						element:</label>
+					<span class="translate" data-lang="ex_alternate_desc">Alternate Data point for displaying inside the
+						element</span>
+				</div>
+				<div class="col s1 m2 l1">
+					<a
+						class="btn-floating waves-effect waves-light blue table-button-add input-field datasource datasource"><i
+							class="material-icons">search</i></a>
+				</div>
+			</div>
+			<div class="row"></div>
 			<div class="row">
 				<div class="input-field col s3">
 					<input class="value" id="label_production0" type="text" />
@@ -480,6 +500,30 @@
 					<a
 						class="btn-floating waves-effect waves-light blue table-button-add input-field datasource datasource"><i
 							class="material-icons">search</i></a>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s3">
+					<input class="value" id="label_swap_production0" type="text" />
+					<label for="label_swap_production0" class="translate" data-lang="label">Label:</label>
+					<span class="translate" data-lang="ex_label">label inside the element</span>
+				</div>
+				<div class="input-field col s4">
+					<input class="value dp" id="swap_production0" type="text" />
+					<label for="swap_production" class="translate" data-lang="ex_alternate">Alternating display in the
+						element:</label>
+					<span class="translate" data-lang="ex_alternate_desc">Alternate Data point for displaying inside the
+						element</span>
+				</div>
+				<div class="col s1 m2 l1">
+					<a
+						class="btn-floating waves-effect waves-light blue table-button-add input-field datasource datasource"><i
+							class="material-icons">search</i></a>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s12">
+					<h6 class="title translate" data-lang="consuming">Consuming</h6>
 				</div>
 			</div>
 			<div class="row">
@@ -1755,21 +1799,92 @@
 			</div>
 			<div class="row">
 				<div class="col s12">
-					<h6 class="title translate" data-lang="element">element</h6>
+					<h6 class="title translate" data-lang="shadows">shadows</h6>
 				</div>
 			</div>
 			<div class="row">
-				<div class="input-field col s6">
+				<div class="col s2">
+					<p class="translate" data-lang="title_shadow_element">element</p>
+				</div>
+				<div class="col s5">
 					<input class="value color opacity" data-format="rgb" data-opacity="true" id="element_shadow_color"
 						type="text" size="7" placeholder="rgba(0, 0, 0, .7)" />
 					<span class="translate" data-lang="ex_element_shadow">color of the shadow around the element
 						(default:
 						rgba(0, 0, 0, .7))</span>
 				</div>
-				<div class="input-field col s6">
+				<div class="col s4">
 					<input id="element_shadow" class="value" type="checkbox" />
 					<label for="element_shadow" class="translate" data-lang="cb_element_shadow">Show shadow around the
 						elements</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s2">
+					<p class="translate" data-lang="title_shadow_text">text</p>
+				</div>
+				<div class="col s5">
+					<input class="value color opacity" data-format="rgb" data-opacity="true" id="text_shadow_color"
+						type="text" size="7" placeholder="rgba(0, 0, 0, .7)" />
+					<span class="translate" data-lang="ex_text_shadow">color of the shadow around the text
+						(default:
+						rgba(0, 0, 0, .7))</span>
+				</div>
+				<div class="col s4">
+					<input id="text_shadow" class="value" type="checkbox" />
+					<label for="text_shadow" class="translate" data-lang="cb_text_shadow">Show shadow around the
+						text</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s2">
+					<p class="translate" data-lang="title_shadow_values">values</p>
+				</div>
+				<div class="col s5">
+					<input class="value color opacity" data-format="rgb" data-opacity="true" id="values_shadow_color"
+						type="text" size="7" placeholder="rgba(0, 0, 0, .7)" />
+					<span class="translate" data-lang="ex_values_shadow">color of the shadow around the values
+						(default:
+						rgba(0, 0, 0, .7))</span>
+				</div>
+				<div class="col s4">
+					<input id="values_shadow" class="value" type="checkbox" />
+					<label for="values_shadow" class="translate" data-lang="cb_values_shadow">Show shadow around the
+						values</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s2">
+					<p class="translate" data-lang="title_shadow_icons">icons</p>
+				</div>
+				<div class="col s5">
+					<input class="value color opacity" data-format="rgb" data-opacity="true" id="icons_shadow_color"
+						type="text" size="7" placeholder="rgba(0, 0, 0, .7)" />
+					<span class="translate" data-lang="ex_icons_shadow">color of the shadow around the icons
+						(default:
+						rgba(0, 0, 0, .7))</span>
+				</div>
+				<div class="col s4">
+					<input id="icons_shadow" class="value" type="checkbox" />
+					<label for="icons_shadow" class="translate" data-lang="cb_icons_shadow">Show shadow around the
+						icons</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s2">
+					<p class="translate" data-lang="title_shadow_percent">percent values</p>
+				</div>
+				<div class="col s5">
+					<input class="value color opacity" data-format="rgb" data-opacity="true" id="percent_shadow_color"
+						type="text" size="7" placeholder="rgba(0, 0, 0, .7)" />
+					<span class="translate" data-lang="ex_percent_shadow">color of the shadow around the percent values
+						(default:
+						rgba(0, 0, 0, .7))</span>
+				</div>
+				<div class="col s4">
+					<input id="percent_shadow" class="value" type="checkbox" />
+					<label for="percent_shadow" class="translate" data-lang="cb_percent_shadow">Show shadow around the
+						percent values</label>
 				</div>
 			</div>
 			<div class="row">

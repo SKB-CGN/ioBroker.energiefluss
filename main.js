@@ -49,7 +49,8 @@ let dataObj = {
 	values: {},
 	animations: {},
 	battery_animation: {},
-	color: {}
+	color: {},
+	swap_values: {}
 };
 let configObj = {};
 let subscribeArray = new Array();
@@ -70,17 +71,26 @@ let parameterObj = {
 	general: {},
 	icons: {
 		icons: {},
-		color: {}
+		color: {},
+		style: {}
 	},
 	texts: {
 		texts: {},
 		labels: {},
-		color: {}
+		color: {},
+		style: {}
 	},
 	values: {
-		values: {}
+		values: {},
+		style: {}
 	},
-	custom_symbol: {}
+	percent: {
+		style: {}
+	},
+	custom_symbol: {},
+	swap_texts: {
+		labels: {}
+	}
 };
 
 class Energiefluss extends utils.Adapter {
@@ -378,13 +388,22 @@ class Energiefluss extends utils.Adapter {
 			}
 
 			// Label Color
-			parameterObj.texts.color.default = this.config.color_label;
-
-			// Label Battery Remaining Time Color
-			parameterObj.texts.color.battery_remaining = this.config.color_battery_remain;
+			parameterObj.texts.color = {
+				default: this.config.color_label,
+				// Label Battery Remaining Time Color
+				battery_remaining: this.config.color_battery_remain
+			}
+			parameterObj.texts.style = {
+				shadow: this.config.text_shadow,
+				shadow_color: this.config.text_shadow_color,
+			}
 
 			// Icon Color
 			parameterObj.icons.color.default = this.config.color_icon;
+			parameterObj.icons.style = {
+				shadow: this.config.icons_shadow,
+				shadow_color: this.config.icons_shadow_color,
+			}
 
 			// Custom's
 			parameterObj.custom_symbol = {
@@ -433,6 +452,26 @@ class Energiefluss extends utils.Adapter {
 				rect_height: this.config.rect_height,
 				rect_width: this.config.rect_width,
 				rect_corner: this.config.rect_corner
+			}
+
+			// Percent Shadow
+			parameterObj.percent.style = {
+				shadow: this.config.percent_shadow,
+				shadow_color: this.config.percent_shadow_color,
+			}
+
+			// Values Shadow
+			parameterObj.values.style = {
+				shadow: this.config.values_shadow,
+				shadow_color: this.config.values_shadow_color,
+			}
+
+			// Swap Texts
+			parameterObj.swap_texts.labels = {
+				solar: "",
+				solar0: "",
+				grid: "",
+				house: ""
 			}
 
 			// buildDataJSON will add some more details to the object
@@ -576,7 +615,6 @@ class Energiefluss extends utils.Adapter {
 				if (valuesObj['production0'] != undefined) {
 					prodValue += valuesObj['production0'];
 				}
-				this.log.info("Consumption: " + prodValue);
 
 				let consumptionValue = 0;
 				if (grid_all_positive) {

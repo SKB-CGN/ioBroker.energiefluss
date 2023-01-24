@@ -5,7 +5,7 @@ let config;
 let data;
 let svg_width = 0;
 let svg_height = 0;
-let element_animation = "default";
+let element_animation = "swap";
 
 // Default Icon for Custom if no icon defined in settings
 let default_icon = "M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,6A4,4 0 0,0 8,10H10A2,2 0 0,1 12,8A2,2 0 0,1 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10A4,4 0 0,0 12,6Z";
@@ -140,17 +140,21 @@ function batteryDisplay(value) {
     // Decide, which Class to add
     let elm;
     if (value < 25) {
-        elm = "empty";
+        elm = 'empty';
     }
     if (value >= 25) {
-        elm = "low";
+        elm = 'low';
     }
     if (value >= 50) {
-        elm = "medium";
+        elm = 'medium';
     }
     if (value >= 75) {
-        elm = "high";
+        elm = 'high';
     }
+    if (config.icons.style.shadow === true) {
+        elm += ' icons_shadow';
+    }
+
     // Display correct battery & remove all other classes
     $("#icon_battery").removeClass().addClass("icon battery_" + elm);
 }
@@ -166,61 +170,31 @@ function batteryAnimation(direction) {
             elm = 'battery_high battery_discharge';
         }
     }
+    if (config.icons.style.shadow === true) {
+        elm += ' icons_shadow';
+    }
 
     $("#icon_battery").removeClass().addClass("icon " + elm);
 }
 
 function elementAnimation() {
     // Check, which Animation should be loaded
-    let animation_flow;
+    let fade_in, fade_out;
     if (element_animation == "default") {
-        animation_flow = config.texts.labels;
+        fade_out = $(".swap_def_text, .swap_def_value");
+        fade_in = $(".swap_swap_text, .swap_swap_value");
+        element_animation = "swap";
     } else {
-        animation_flow = config.swap_texts.labels;
+        fade_out = $(".swap_swap_text, .swap_swap_value");
+        fade_in = $(".swap_def_text, .swap_def_value");
+        element_animation = "default";
     }
-    Object.entries(animation_flow).forEach(entry => {
-        const [key, value] = entry;
-        if (value != "") {
-            let elm = $("#" + elements.text[key]);
 
-            // How many lines did we have before?
-            let elm_count = $("#" + elements.text[key] + ' tspan').length ? $("#" + elements.text[key] + ' tspan').length : 1;
-
-            let l = value;
-            let l2br_count = 0;
-            let move_to = 0;
-            let tmp_text = '';
-
-            if (l.includes("<br>")) {
-                let l2br = l.split("<br>");
-                l2br_count = l2br.length;
-
-                l2br.forEach(function (text) {
-                    if (text != "" || text != undefined) {
-                        tmp_text += '<tspan x=' + elm.attr("x") + ' dy="1em">' + text + '</tspan>';
-                    }
-                });
-                move_to = ((l2br_count - elm_count) * config.fonts.font_size_label) * -1;
-                if (elm_count > 0) {
-                    //move_to += elm_count * config.fonts.font_size_label;
-                } else {
-                    //move_to += 1 * config.fonts.font_size_label;
-                }
-                console.log(move_to);
-                elm.html(tmp_text);
-            } else {
-                elm.html(l);
-            }
-            // Move Element only, if unknown Texts are applied - Reset those ones
-            if (element_animation == "default") {
-                elm.removeAttr('transform');
-            } else {
-                elm.attr('transform', 'translate(0,' + move_to + ')');
-            }
-        }
+    fade_out.fadeOut(400, function () {
+        fade_in.fadeIn(400);
     });
-    // Reverse the Animation
-    element_animation = element_animation == "default" ? "swap" : "default";
+
+    // Timeout for Animation
     setTimeout(elementAnimation, config.general.element_animation_time);
 }
 
@@ -488,7 +462,7 @@ function initConfig() {
         $(".placeholders").empty();
 
         // Load CSS into style Elements
-        $("#style_element").empty().append('.shadow { -webkit-filter: drop-shadow(0px 3px 3px ' + config.elements.style.shadow_color + '); filter: drop-shadow(0px 3px 3px ' + config.elements.style.shadow_color + ');}')
+        $("#style_element").empty().append('.elm_shadow { -webkit-filter: drop-shadow(0px 3px 3px ' + config.elements.style.shadow_color + '); filter: drop-shadow(0px 3px 3px ' + config.elements.style.shadow_color + ');}')
             .append('.icon { opacity: ' + config.general.opacity_icon + '%;}')
             .append('.text { opacity: ' + config.general.opacity_text + '%;}')
             .append('.value { opacity: ' + config.general.opacity_value + '%;}')
@@ -510,7 +484,11 @@ function initConfig() {
             .append('.percent {font-size:' + config.fonts.font_size_percent + 'px;}')
             .append('.unit {font-size:' + config.fonts.font_size_unit + 'px;}')
             .append('.unit_percent {font-size:' + config.fonts.font_size_unit_percent + 'px;}')
-            .append('#battery_remaining_text {font-size:' + config.fonts.font_size_remaining + 'px; fill: ' + config.texts.color.battery_remaining + '; transform-box: fill-box; transform-origin: center; transform:rotate(270deg);}');
+            .append('#battery_remaining_text {font-size:' + config.fonts.font_size_remaining + 'px; fill: ' + config.texts.color.battery_remaining + '; transform-box: fill-box; transform-origin: center; transform:rotate(270deg);}')
+            .append('.text_shadow {filter: drop-shadow(3px 3px 3px ' + config.texts.style.shadow_color + ');' + ';}')
+            .append('.values_shadow {filter: drop-shadow(3px 3px 3px ' + config.values.style.shadow_color + ');' + ';}')
+            .append('.icons_shadow {filter: drop-shadow(3px 3px 3px ' + config.icons.style.shadow_color + ');' + ';}')
+            .append('.percent_shadow {filter: drop-shadow(3px 3px 3px ' + config.percent.style.shadow_color + ');' + ';}');
 
         // Elements
         Object.entries(config.elements.elements).forEach(entry => {
@@ -672,12 +650,12 @@ function initConfig() {
                 }
                 // Shadow Style Class
                 c.setAttribute('id', key);
-                let style_class = 'all_elm';
+                let elm_class = 'all_elm';
                 if (config.elements.style.shadow === true) {
-                    style_class += " shadow";
+                    elm_class += " elm_shadow";
                 }
 
-                c.setAttribute('class', style_class);
+                c.setAttribute('class', elm_class);
                 // Apply config Variables
                 let stroke = config.elements.color[key];
                 let fill = config.elements.fill[key] ? config.elements.fill[key] : 'none';
@@ -687,12 +665,34 @@ function initConfig() {
                 // Create the Value Text Elements
                 // Value Elements
                 let v = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-                v.setAttribute('class', 'value');
+                let v_class = 'value';
+                if (config.swap_texts.labels[key]) {
+                    v_class += ' swap_def_value';
+                }
+                if (config.values.style.shadow === true) {
+                    v_class += " values_shadow";
+                }
+                v.setAttribute('class', v_class);
                 v.setAttribute('x', elements.cx[key] - elm_offset_x);
                 v.setAttribute('y', (elements.cy[key] - 8) - elm_offset_y + config.general.offset_value);
                 v.setAttribute('dominant-baseline', 'central');
                 v.innerHTML = '<tspan class="value" id=' + elements.value[key] + '></tspan><tspan class="unit">' + config.general.unit + '</tspan>';
                 $(v).appendTo("#placeholder_values");
+
+                // Swap - Value Elements
+                if (config.swap_texts.labels[key]) {
+                    let sv = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                    let sv_class = 'value swap_swap_value';
+                    if (config.values.style.shadow === true) {
+                        sv_class += " values_shadow";
+                    }
+                    sv.setAttribute('class', sv_class);
+                    sv.setAttribute('x', elements.cx[key] - elm_offset_x);
+                    sv.setAttribute('y', (elements.cy[key] - 8) - elm_offset_y + config.general.offset_value);
+                    sv.setAttribute('dominant-baseline', 'central');
+                    sv.innerHTML = '<tspan class="value" id=swap_' + elements.value[key] + '></tspan><tspan class="unit">' + config.general.unit + '</tspan>';
+                    $(sv).appendTo("#placeholder_swap_values");
+                }
 
                 // Icons
                 if (elements.icon_d[key] != null) {
@@ -708,8 +708,12 @@ function initConfig() {
                     } else {
                         icon_source = elements.icon_d[key];
                     }
+                    let i_class = 'icon';
+                    if (config.icons.style.shadow === true) {
+                        i_class += " icons_shadow";
+                    }
                     i.setAttribute('d', icon_source);
-                    i.setAttribute('class', 'icon');
+                    i.setAttribute('class', i_class);
                     i.setAttribute('style', ' fill: ' + config.icons.color.default + ';');
                     i.setAttribute('transform', 'translate(' + ((elements.cx[key] - 12) - elm_offset_x) + ',' + ((elements.cy[key] - 44) - elm_offset_y + config.general.offset_icon) + ')');
                     $(i).appendTo("#placeholder_icons");
@@ -730,11 +734,18 @@ function initConfig() {
                 // Texts
                 // Text Elements
                 let t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-                let l = config.texts.labels[key] || "";
+                let l = config.texts.labels[key] || '';
                 let l2br_count = 0;
                 let move_to = 0;
                 t.setAttribute('id', elements.text[key]);
-                t.setAttribute('class', 'text');
+                let t_class = 'text';
+                if (config.swap_texts.labels[key]) {
+                    t_class += ' swap_def_text';
+                }
+                if (config.texts.style.shadow === true) {
+                    t_class += " text_shadow";
+                }
+                t.setAttribute('class', t_class);
 
                 t.setAttribute('dominant-baseline', 'middle');
                 if (l.includes("<br>")) {
@@ -747,8 +758,7 @@ function initConfig() {
                         }
                     })
                     t.innerHTML = tmp_text;
-                    move_to = ((l2br_count - 1) * config.fonts.font_size_label);
-
+                    move_to = (l2br_count * config.fonts.font_size_label);
                 } else {
                     t.innerHTML = l;
                 }
@@ -756,11 +766,48 @@ function initConfig() {
                 t.setAttribute('y', (elements.cy[key] + 28) - elm_offset_y + config.general.offset_text - move_to);
                 $(t).appendTo("#placeholder_texts");
 
+                // Swap - Text Elements
+                if (config.swap_texts.labels[key]) {
+                    let st = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                    let sl = config.swap_texts.labels[key] || '';
+                    let l2br_count_st = 0;
+                    let move_to_st = 0;
+                    st.setAttribute('id', 'swap_' + elements.text[key]);
+                    let st_class = 'text swap_swap_text';
+                    if (config.texts.style.shadow === true) {
+                        st_class += " text_shadow";
+                    }
+                    st.setAttribute('class', st_class);
+
+                    st.setAttribute('dominant-baseline', 'middle');
+                    if (sl.includes("<br>")) {
+                        let l2br_st = sl.split("<br>");
+                        l2br_count_st = l2br_st.length;
+                        let tmp_text_st = '';
+                        l2br_st.forEach(function (text) {
+                            if (text != "" || text != undefined) {
+                                tmp_text_st += '<tspan x=' + (elements.cx[key] - elm_offset_x) + ' dy="1em">' + text + '</tspan>';
+                            }
+                        })
+                        st.innerHTML = tmp_text_st;
+                        move_to_st = (l2br_count_st * config.fonts.font_size_label);
+                    } else {
+                        st.innerHTML = sl;
+                    }
+                    st.setAttribute('x', elements.cx[key] - elm_offset_x);
+                    st.setAttribute('y', (elements.cy[key] + 28) - elm_offset_y + config.general.offset_text - move_to_st);
+                    $(st).appendTo("#placeholder_swap_texts");
+                }
+
                 // Percent
                 // Check, if we have a corresponding percent for each element
                 if (config.values.values[key + "_percent"] === true) {
                     let p = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-                    p.setAttribute('class', 'percent');
+                    let p_class = 'percent';
+                    if (config.percent.style.shadow === true) {
+                        p_class += " percent_shadow";
+                    }
+                    p.setAttribute('class', p_class);
                     p.setAttribute('x', elements.cx[key] - elm_offset_x);
                     p.setAttribute('y', (elements.cy[key] + 12) - elm_offset_y + config.general.offset_percent);
                     p.setAttribute('dominant-baseline', 'middle');
@@ -800,7 +847,7 @@ function initConfig() {
 
         // Start Animation for Element
         if (config.general.element_animation) {
-            elementAnimation();
+            setTimeout(elementAnimation, config.general.element_animation_time);
         }
 
         // Add the last element width or height to the Width and Height
@@ -902,6 +949,12 @@ function updateValues() {
                 $('#' + key).text(value);
                 $('.unit').text(' ' + config.general.unit);
             }
+        });
+
+        // Swap Values
+        Object.entries(data.swap_values).forEach(entry => {
+            const [key, value] = entry;
+            $('#swap_' + key).text(value);
         });
     } catch (error) {
         console.log('Error while updating the values!' + error);
