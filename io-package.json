@@ -122,7 +122,10 @@
             "uk": "Він забезпечує анімований потік енергії для сонячних панелей, заряджання акумулятора, домашнього споживання, підключення до мережі та заряджання автомобіля."
         },
         "authors": [
-            "SKB <info@skb-web.de>"
+            {
+                "name": "SKB",
+                "email": "info@skb-web.de"
+            }
         ],
         "keywords": [
             "energy",
@@ -168,15 +171,13 @@
         "supportCustoms": false,
         "dependencies": [
             {
-                "js-controller": ">=3.3.22"
-            },
-            {
+                "js-controller": ">=3.3.22",
                 "web": ">=3.0.12"
             }
         ],
         "globalDependencies": [
             {
-                "admin": ">=5.2.0"
+                "admin": ">=5.1.28"
             }
         ]
     },
