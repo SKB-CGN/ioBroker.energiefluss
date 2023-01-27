@@ -148,7 +148,7 @@ Bitte ins Wiki schauen
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### 3.3.0 (2023-01-27)
+### **WORK IN PROGRESS**
 - define shadows for text, value, percent and icon
 - hide lines, if no animation is present on the line
 - possibility, to add a second value and description for e.g. daily summary (colors can be defined too) to production, additional production, consumption and grid. Swap time can be defined and clicking on an element will change the values and descriptions one time and will return to the timer afterwards
