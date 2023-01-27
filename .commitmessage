@@ -1,0 +1,9 @@
+chore: release v3.3.0
+
+- define shadows for text, value, percent and icon
+- hide lines, if no animation is present on the line
+- possibility, to add a second value and description for e.g. daily summary (colors can be defined too) to production, additional production, consumption and grid. Swap time can be defined and clicking on an element will change the values and descriptions one time and will return to the timer afterwards
+- automatic speed of animation can be used to easily identify the highest consumption within custom elements 1 to 11. Highest consumption will use the speed of the animation, lower consumptions will use the multiplicator of +1000 of the defined animation speed
+- added Wiki Link to admin
+- updated translations
+- some additional background changes for adding adapter to iobroker repository
