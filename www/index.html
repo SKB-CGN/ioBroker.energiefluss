@@ -9,26 +9,11 @@
     <style id="style_animation"></style>
     <style id="style_element"></style>
     <style id="style_fonts"></style>
-    <!-- <script src="https://code.jquery.com/jquery-3.5.0.js"></script> -->
     <script src="../../lib/js/jquery-3.2.1.min.js"></script>
     <script src="../../socket.io/socket.io.js"></script>
     <script src="conn.js"></script>
     <script src="instance.js"></script>
-
     <script src="functions.js"></script>
-    <!--
-    <script src="dev.js"></script>
-    -->
-    <script>
-        /*
-        $(document).ready(function () {
-            initConfig();
-            updateValues();
-            $('#svg_image').fadeIn("middle")
-            $('#loading').fadeOut("middle").addClass('hidden');
-        });
-        */
-    </script>
 </head>
 
 <body>
@@ -51,8 +36,14 @@
         <!-- Values -->
         <g id="placeholder_values" class="placeholders"></g>
 
+        <!-- Swap - Values -->
+        <g id="placeholder_swap_values" class="placeholders"></g>
+
         <!-- Texts -->
         <g id="placeholder_texts" class="placeholders"></g>
+
+        <!-- Swap Texts -->
+        <g id="placeholder_swap_texts" class="placeholders"></g>
 
         <!-- Icons -->
         <g id="placeholder_icons" class="placeholders"></g>

@@ -6,6 +6,7 @@ let data;
 let svg_width = 0;
 let svg_height = 0;
 let element_animation = "swap";
+let element_timer;
 
 // Default Icon for Custom if no icon defined in settings
 let default_icon = "M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,6A4,4 0 0,0 8,10H10A2,2 0 0,1 12,8A2,2 0 0,1 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10A4,4 0 0,0 12,6Z";
@@ -195,7 +196,7 @@ function elementAnimation() {
     });
 
     // Timeout for Animation
-    setTimeout(elementAnimation, config.general.element_animation_time);
+    element_timer = setTimeout(elementAnimation, config.general.element_animation_time);
 }
 
 function getCoords(element) {
@@ -847,7 +848,16 @@ function initConfig() {
 
         // Start Animation for Element
         if (config.general.element_animation) {
-            setTimeout(elementAnimation, config.general.element_animation_time);
+            $('#svg_image').click(function () {
+                clearTimeout(element_timer);
+                elementAnimation();
+            });
+            clearTimeout(element_timer);
+            element_timer = setTimeout(elementAnimation, config.general.element_animation_time);
+            console.log("Animation for Text and Values enabled!");
+        } else {
+            clearTimeout(element_timer);
+            console.log("Animation for Text and Values disabled!");
         }
 
         // Add the last element width or height to the Width and Height
@@ -871,12 +881,33 @@ function updateValues() {
             const [key, value] = entry;
             if (value === true) {
                 $('#anim_' + key).css("visibility", "visible");
+                if (config.general.line_visible === true) {
+                    $('#line_' + key).css("visibility", "visible");
+                }
             } else {
-                $('#anim_' + key).css("visibility", "hidden");
+                $('#anim_' + key).css({ "visibility": "hidden", "animation-duration": "" });
+                if (config.general.line_visible === true) {
+                    $('#line_' + key).css("visibility", "hidden");
+                }
             }
         });
     } catch (error) {
         console.log('Error while updating the Animations!');
+    }
+
+    /* Update the animation speed */
+    if (config.general.automatic_animation) {
+        try {
+            let i = 1;
+            for (var animation of data.automatic_animation) {
+                $('#anim_' + animation.name).css("animation-duration", (config.lines.style.animation_duration * i) + 'ms');
+                i++;
+            }
+        } catch (error) {
+            console.log('Error while updating the Animation Speeds!' + error);
+        }
+    } else {
+        $(".anim_element").css({ "animation-duration": "" });
     }
 
     /* Update the Values */

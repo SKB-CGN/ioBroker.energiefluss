@@ -71,8 +71,10 @@
 html,
 body {
     background: transparent;
-    height: 96vh;
-    width: 94vw;
+    height: 98vh;
+    width: 98vw;
+    margin: 2px;
+    padding: 0;
 }
 
 #loading {
@@ -86,6 +88,7 @@ body {
     z-index: 101;
     color: #333;
     font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 #svg_image {
@@ -104,7 +107,7 @@ circle {
     z-index: 1;
 }
 
-.shadow {
+.elm_shadow {
     -webkit-filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, .7));
     filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, .7));
 }
@@ -133,6 +136,8 @@ circle {
 
 text {
     text-rendering: geometricPrecision;
+    text-anchor: middle;
+    dominant-baseline: middle;
 }
 
 .animation {
@@ -154,12 +159,14 @@ text {
 
 #span_error {
     color: firebrick;
-}
-
-text {
-    text-anchor: middle;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 #placeholder_battery {
+    display: none;
+}
+
+.swap_swap_text,
+.swap_swap_value {
     display: none;
 }

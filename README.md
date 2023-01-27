@@ -40,13 +40,16 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 **Design:**
 - change the color of each item
 - Elements can be selected (circle or rectangle)
+- define a timer for swapping values and descriptions inside the element
 - Texts inside the elements can be modified (&lt;br&gt; works as line-break)
 - %-texts can have different colors as well
 - define different colors for each line
+- lines can be hidden, if no animation is active on the line
 - define different colors for each animation on the line
 - change thickness of the elments and lines
 - fill the elements with different colors (elements with percent values can be filled according to their percent value; if no color is selected, the element is transparent)
 - show/hide shadows of the elements
+- shadow for values, descriptions and icons can be defined
 - change radius of the circles
 - change width, height and corner rounds of the rectangle
 - define your own color and opacity for the shadows (rgba supported)
@@ -58,11 +61,12 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 - Some Values can have different colors, if their value is below a threshold (consumption, production, grid and battery)
 - Battery icon can be animated while charging or discharging
 - number of animation dots, their distance between each other, length, duration, style and width selectable
+- automatic speed of animation can be used to easily identify the highest consumption within custom elements 1 to 11 
 - Display the remaining time of charging your battery (depends on percent and capacity)
 - Slim-Design possible - reduces distance to battery element
 
 **Technical:**
-- define Datapoints for each element
+- define Datapoints for each element (add a second datapoint to production, additional production, consumption and grid as display for e.g. daily summary) 
 - 2 solar production elements possible
 - show battery percent inside car or battery element
 - use different states for feeding into or consuming from the grid
@@ -85,13 +89,16 @@ Display is possible via the instance link. This can then also be inserted into a
 **Design:**
 - Aendern Sie die Farbe jedes Elements
 - Elemente koennen ausgewaehlt werden (Kreis oder Rechteck)
+- Zeitintervall einstellbar, um wechselnde Anzeigen innerhalb der Elemente darzustellen
 - Texte innerhalb der Elemente koennen geaendert werden (&lt;br&gt; gilt als Zeilenumbruch)
 - %-Texte koennen auch andere Farben haben
 - Definieren Sie verschiedene Farben fuer jede Linie
+- Linien koennen ausgeblendet werden, wenn keine Animation auf der Linie stattfindet
 - verschiedene Farben fuer jede Animation auf der Linie definieren
 - Dicke der Elemente und Linien aenderbar
 - Fuelle die Elemente mit verschiedenen Farben (Elemente mit Prozentwerten koennen auch prozentual gefuellt werden; wird keine Farbe gewaehlt, ist das Element transparent)
-- Schatten des Elemente ein-/ausblenden
+- Schatten der Elemente ein-/ausblenden
+- Schatten für Werte, Beschreibungen und Icons koennen definiert werden
 - Radius des Kreises anpassbar
 - Hoehe, Breite und Eckenradius des Rechtecks anpassbar
 - Definieren Sie Ihre eigene Farbe und Deckkraft fuer die Schatten (rgba-unterstuetzt)
@@ -103,11 +110,12 @@ Display is possible via the instance link. This can then also be inserted into a
 - Einige Werte koennen unterschiedliche Farben haben, wenn ihr Wert unterhalb eines Schwellenwerts ist (Verbrauch, Produktion, Netz und Batterie)
 - Batterie-Icon kann beim Laden und Entladen animiert werden
 - Anzahl der animierten Punkte auf der Linie, sowie deren Abstand, Laenge, Dauer, Stil und Dicke auswaehlbar
+- automatische Animationsgeschwindigkeit kann verwendet werden, um den höchsten Verbrauch innerhalb der benutzerdefinierten Elemente 1 bis 11 einfach zu identifizieren
 - Verbleibende Lade-/Entladezeit der Batterie anzeigen (ist abhaengig von Batterieprozent und Batteriekapazitaet)
 - Slim-Design moeglich - Kleinerer Abstand zum Batterie Element
 
 **Technisch:**
-- Datenpunkte fuer jedes Element definieren
+- Datenpunkte fuer jedes Element definieren (fuege einen zweiten Datenpunkt zu den Elementen Produktion, Zusatzproduktion, Verbrauch und Netz hinzu, um diesen z.B. als Tageszusammenfassung zu nutzen
 - 2 Produktions-Elemente darstellbar
 - Batterieprozentsatz innerhalb des Auto- oder Batterie-Elements anzeigen
 - unterschiedliche Zustaende fuer Einspeisung oder Bezug aus dem Netz verwenden
@@ -140,6 +148,14 @@ Bitte ins Wiki schauen
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+- define shadows for text, value, percent and icon
+- hide lines, if no animation is present on the line
+- possibility, to add a second value and description for e.g. daily summary (colors can be defined too) to production, additional production, consumption and grid. Swap time can be defined and clicking on an element will change the values and descriptions one time and will return to the timer afterwards
+- automatic speed of animation can be used to easily identify the highest consumption within custom elements 1 to 11. Highest consumption will use the speed of the animation, lower consumptions will use the multiplicator of +1000 of the defined animation speed
+- added Wiki Link to admin
+- updated translations
+- some additional background changes for adding adapter to iobroker repository
 ### 3.2.0 (2023-01-17)
 - added second production element
 - translation fixes

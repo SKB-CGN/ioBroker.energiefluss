@@ -30,6 +30,7 @@ let calculate_consumption;
 let consumption_reverse;
 let recalculate;
 let custom0, custom1, custom2, custom3, custom4, custom5, custom6, custom7, custom8, custom9, custom10;
+let swap_consumption, swap_production, swap_production0, swap_grid;
 let house_netto = {}
 let fraction;
 let fraction_battery;
@@ -42,6 +43,7 @@ let car_custom_plugged;
 let car_custom10_plugged;
 let custom_type;
 let custom10_type;
+let automatic_animation = false;
 
 /* Data Objects */
 let valuesObj = {};
@@ -50,7 +52,8 @@ let dataObj = {
 	animations: {},
 	battery_animation: {},
 	color: {},
-	swap_values: {}
+	swap_values: {},
+	automatic_animation: {}
 };
 let configObj = {};
 let subscribeArray = new Array();
@@ -135,7 +138,8 @@ class Energiefluss extends utils.Adapter {
 			battery_discharge = this.config.battery_discharge;
 			battery_different = this.config.battery_different;
 			battery_reverse = this.config.battery_reverse ? true : false;
-			calculate_consumption = this.config.calculate_consumption;
+			calculate_consumption = this.config.calculate_consumption ? true : false;
+			automatic_animation = this.config.automatic_animation ? true : false;
 			custom0 = this.config.custom0;
 			custom1 = this.config.custom1;
 			custom2 = this.config.custom2;
@@ -172,6 +176,10 @@ class Energiefluss extends utils.Adapter {
 			custom_type = this.config.custom_type;
 			custom10_type = this.config.custom10_type;
 			recalculate = this.config.recalculate ? true : false;
+			swap_consumption = this.config.swap_consumption;
+			swap_grid = this.config.swap_grid;
+			swap_production = this.config.swap_production;
+			swap_production0 = this.config.swap_production0;
 
 			this.log.info("Starting Energiefluss Adapter");
 
@@ -200,6 +208,10 @@ class Energiefluss extends utils.Adapter {
 				car_custom_plugged: car_custom_plugged,
 				custom10_percent: custom10_percent,
 				car_custom10_plugged: car_custom10_plugged,
+				swap_consumption: swap_consumption,
+				swap_production: swap_production,
+				swap_production0: swap_production0,
+				swap_grid: swap_grid
 			};
 			// Delete empty ones
 			configObj = Object.entries(configObj).reduce((a, [k, v]) => (v ? (a[k] = v, a) : a), {})
@@ -222,8 +234,8 @@ class Energiefluss extends utils.Adapter {
 				type: 'state',
 				common: {
 					name: 'Parameters for HTML Output',
-					type: 'string',
-					role: 'json',
+					type: 'json',
+					role: 'state',
 					read: true,
 					write: false,
 				},
@@ -234,8 +246,8 @@ class Energiefluss extends utils.Adapter {
 				type: 'state',
 				common: {
 					name: 'Data for HTML Output',
-					type: 'string',
-					role: 'json',
+					type: 'json',
+					role: 'state',
 					read: true,
 					write: false,
 				},
@@ -440,7 +452,11 @@ class Energiefluss extends utils.Adapter {
 				opacity_percent: this.config.opacity_percent || 100,
 				opacity_remaining: this.config.opacity_remaining || 70,
 				opacity_line: this.config.opacity_line || 70,
-				element_distance: this.config.element_distance || 15
+				element_distance: this.config.element_distance || 15,
+				element_animation: this.config.element_animation,
+				element_animation_time: this.config.element_animation_time || 5000,
+				line_visible: this.config.line_visible,
+				automatic_animation: automatic_animation
 			}
 
 			// Element - Style
@@ -468,10 +484,10 @@ class Energiefluss extends utils.Adapter {
 
 			// Swap Texts
 			parameterObj.swap_texts.labels = {
-				solar: "",
-				solar0: "",
-				grid: "",
-				house: ""
+				solar: this.config.label_swap_production,
+				solar0: this.config.label_swap_production0,
+				grid: this.config.label_swap_grid,
+				house: this.config.label_swap_consumption
 			}
 
 			// buildDataJSON will add some more details to the object
@@ -609,7 +625,18 @@ class Energiefluss extends utils.Adapter {
 			if (id == car_custom_plugged) {
 				valuesObj['car_custom_plugged'] = state.val;
 			}
-
+			if (id == swap_consumption) {
+				valuesObj['swap_consumption'] = state.val;
+			}
+			if (id == swap_production) {
+				valuesObj['swap_production'] = state.val;
+			}
+			if (id == swap_production0) {
+				valuesObj['swap_production0'] = state.val;
+			}
+			if (id == swap_grid) {
+				valuesObj['swap_grid'] = state.val;
+			}
 			if (calculate_consumption) {
 				let prodValue = valuesObj['production'];
 				if (valuesObj['production0'] != undefined) {
@@ -680,6 +707,7 @@ class Energiefluss extends utils.Adapter {
 
 	async migrateConfig() {
 		const native = {};
+
 		if (this.config?.car_charge) {
 			native.custom10 = this.config.car_charge;
 			native.car_charge = '';
@@ -1169,6 +1197,22 @@ class Energiefluss extends utils.Adapter {
 	async buildDataJSON() {
 		// Reset Battery Animation
 		dataObj.battery_animation.direction = 'none';
+
+		// Swap Values for Elements
+		let swap_values = {};
+		if (valuesObj['swap_consumption'] != undefined) {
+			swap_values.consumption_value = recalculate ? this.recalculateValue(valuesObj['swap_consumption']) : this.floorNumber(valuesObj['swap_consumption']);
+		}
+		if (valuesObj['swap_production'] != undefined) {
+			swap_values.production_value = recalculate ? this.recalculateValue(valuesObj['swap_production']) : this.floorNumber(valuesObj['swap_production']);
+		}
+		if (valuesObj['swap_production0'] != undefined) {
+			swap_values.production0_value = recalculate ? this.recalculateValue(valuesObj['swap_production0']) : this.floorNumber(valuesObj['swap_production0']);
+		}
+		if (valuesObj['swap_grid'] != undefined) {
+			swap_values.grid_value = recalculate ? this.recalculateValue(valuesObj['swap_grid']) : this.floorNumber(valuesObj['swap_grid']);
+		}
+
 		let values = {
 			car_custom10_plugged: false,
 			car_custom_plugged: false
@@ -1197,7 +1241,11 @@ class Energiefluss extends utils.Adapter {
 			custom0_percent: this.config.color_car_custom_percent,
 			car_custom_plugged: this.config.color_car_custom_plugged,
 			custom10_percent: this.config.color_car_custom10_percent,
-			car_custom10_plugged: this.config.color_car_custom10_plugged
+			car_custom10_plugged: this.config.color_car_custom10_plugged,
+			swap_consumption_value: this.config.swap_color_house_text,
+			swap_grid_value: this.config.swap_color_grid_text,
+			swap_production_value: this.config.swap_color_production_text,
+			swap_production0_value: this.config.swap_color_production0_text,
 		}
 
 		// Line-Animation
@@ -1222,6 +1270,8 @@ class Energiefluss extends utils.Adapter {
 			house_to_custom10: false,
 		};
 
+		// Automatic Animation
+		let auto_animation = [];
 
 		// Consumption
 		if (valuesObj['consumption'] != undefined) {
@@ -1427,6 +1477,7 @@ class Energiefluss extends utils.Adapter {
 				line_animation.house_to_custom10 = true;
 				color.custom10_value = this.config.color_custom10_text;
 				values.custom10_value = recalculate ? this.recalculateValue(valuesObj['custom10']) : this.floorNumber(valuesObj['custom10']);
+				auto_animation.push({ name: "house_to_custom10", value: values.custom10_value });
 			} else {
 				if (custom10_type == 'car') {
 					color.custom10_value = this.config.color_custom10_text;
@@ -1452,6 +1503,7 @@ class Energiefluss extends utils.Adapter {
 				line_animation.house_to_custom0 = true;
 				color.custom0_value = this.config.color_custom0_text;
 				values.custom0_value = recalculate ? this.recalculateValue(valuesObj['custom0']) : this.floorNumber(valuesObj['custom0']);
+				auto_animation.push({ name: "house_to_custom0", value: values.custom0_value });
 			} else {
 				if (custom_type == 'car') {
 					color.custom0_value = this.config.color_custom0_text;
@@ -1477,6 +1529,7 @@ class Energiefluss extends utils.Adapter {
 				line_animation.house_to_custom1 = true;
 				color.custom1_value = this.config.color_custom1_text;
 				values.custom1_value = recalculate ? this.recalculateValue(valuesObj['custom1']) : this.floorNumber(valuesObj['custom1']);
+				auto_animation.push({ name: "house_to_custom1", value: values.custom1_value });
 			} else {
 				color.custom1_value = this.config.color_custom1_text_no_prod ? this.config.color_custom1_text_no_prod : this.config.color_custom1_text;
 				values.custom1_value = this.floorNumber(0);
@@ -1489,6 +1542,7 @@ class Energiefluss extends utils.Adapter {
 				line_animation.house_to_custom2 = true;
 				color.custom2_value = this.config.color_custom2_text;
 				values.custom2_value = recalculate ? this.recalculateValue(valuesObj['custom2']) : this.floorNumber(valuesObj['custom2']);
+				auto_animation.push({ name: "house_to_custom2", value: values.custom2_value });
 			} else {
 				color.custom2_value = this.config.color_custom2_text_no_prod ? this.config.color_custom2_text_no_prod : this.config.color_custom2_text;
 				values.custom2_value = this.floorNumber(0);
@@ -1501,6 +1555,7 @@ class Energiefluss extends utils.Adapter {
 				line_animation.house_to_custom3 = true;
 				color.custom3_value = this.config.color_custom3_text;
 				values.custom3_value = recalculate ? this.recalculateValue(valuesObj['custom3']) : this.floorNumber(valuesObj['custom3']);
+				auto_animation.push({ name: "house_to_custom3", value: values.custom3_value });
 			} else {
 				color.custom3_value = this.config.color_custom3_text_no_prod ? this.config.color_custom3_text_no_prod : this.config.color_custom3_text;
 				values.custom3_value = this.floorNumber(0);
@@ -1513,6 +1568,7 @@ class Energiefluss extends utils.Adapter {
 				line_animation.house_to_custom4 = true;
 				color.custom4_value = this.config.color_custom4_text;
 				values.custom4_value = recalculate ? this.recalculateValue(valuesObj['custom4']) : this.floorNumber(valuesObj['custom4']);
+				auto_animation.push({ name: "house_to_custom4", value: values.custom4_value });
 			} else {
 				color.custom4_value = this.config.color_custom4_text_no_prod ? this.config.color_custom4_text_no_prod : this.config.color_custom4_text;
 				values.custom4_value = this.floorNumber(0);
@@ -1525,6 +1581,7 @@ class Energiefluss extends utils.Adapter {
 				line_animation.house_to_custom5 = true;
 				color.custom5_value = this.config.color_custom5_text;
 				values.custom5_value = recalculate ? this.recalculateValue(valuesObj['custom5']) : this.floorNumber(valuesObj['custom5']);
+				auto_animation.push({ name: "house_to_custom5", value: values.custom5_value });
 			} else {
 				color.custom5_value = this.config.color_custom5_text_no_prod ? this.config.color_custom5_text_no_prod : this.config.color_custom5_text;
 				values.custom5_value = this.floorNumber(0);
@@ -1537,6 +1594,7 @@ class Energiefluss extends utils.Adapter {
 				line_animation.house_to_custom6 = true;
 				color.custom6_value = this.config.color_custom6_text;
 				values.custom6_value = recalculate ? this.recalculateValue(valuesObj['custom6']) : this.floorNumber(valuesObj['custom6']);
+				auto_animation.push({ name: "house_to_custom6", value: values.custom6_value });
 			} else {
 				color.custom6_value = this.config.color_custom6_text_no_prod ? this.config.color_custom6_text_no_prod : this.config.color_custom6_text;
 				values.custom6_value = this.floorNumber(0);
@@ -1549,6 +1607,7 @@ class Energiefluss extends utils.Adapter {
 				line_animation.house_to_custom7 = true;
 				color.custom7_value = this.config.color_custom7_text;
 				values.custom7_value = recalculate ? this.recalculateValue(valuesObj['custom7']) : this.floorNumber(valuesObj['custom7']);
+				auto_animation.push({ name: "house_to_custom7", value: values.custom7_value });
 			} else {
 				color.custom7_value = this.config.color_custom7_text_no_prod ? this.config.color_custom7_text_no_prod : this.config.color_custom7_text;
 				values.custom7_value = this.floorNumber(0);
@@ -1561,6 +1620,7 @@ class Energiefluss extends utils.Adapter {
 				line_animation.house_to_custom8 = true;
 				color.custom8_value = this.config.color_custom8_text;
 				values.custom8_value = recalculate ? this.recalculateValue(valuesObj['custom8']) : this.floorNumber(valuesObj['custom8']);
+				auto_animation.push({ name: "house_to_custom8", value: values.custom8_value });
 			} else {
 				color.custom8_value = this.config.color_custom8_text_no_prod ? this.config.color_custom8_text_no_prod : this.config.color_custom8_text;
 				values.custom8_value = this.floorNumber(0);
@@ -1573,6 +1633,7 @@ class Energiefluss extends utils.Adapter {
 				line_animation.house_to_custom9 = true;
 				color.custom9_value = this.config.color_custom9_text;
 				values.custom9_value = recalculate ? this.recalculateValue(valuesObj['custom9']) : this.floorNumber(valuesObj['custom9']);
+				auto_animation.push({ name: "house_to_custom9", value: values.custom9_value });
 			} else {
 				color.custom9_value = this.config.color_custom9_text_no_prod ? this.config.color_custom9_text_no_prod : this.config.color_custom9_text;
 				values.custom9_value = this.floorNumber(0);
@@ -1599,6 +1660,11 @@ class Energiefluss extends utils.Adapter {
 			values.consumption_value = tmpResult;
 		}
 
+		// Sort Animation
+		if (automatic_animation) {
+			auto_animation = auto_animation.slice().sort((a, b) => b.value - a.value);
+		}
+
 		// House netto - Reduce consumption about the configured custom elements and the car
 		if (Object.keys(house_netto).length > 0) {
 			let tmpValue = parseFloat(values.consumption_value);
@@ -1623,7 +1689,9 @@ class Energiefluss extends utils.Adapter {
 		// Build the Values and Animations to be read inside Javascript - called every time a value changes
 		dataObj.animations = line_animation;
 		dataObj.values = values;
+		dataObj.swap_values = swap_values;
 		dataObj.color = color;
+		dataObj.automatic_animation = auto_animation;
 
 		await this.setStateAsync("data", JSON.stringify(dataObj), true);
 	}

@@ -419,12 +419,14 @@
 		<div class="row">
 			<div class="col s12">
 				<ul class="tabs">
-					<li class="tab col s3"><a href="#tab-main" class="translate active">Main settings</a></li>
-					<li class="tab col s3"><a href="#tab-color" class="translate" data-lang="color-settings">Color
+					<li class="tab col s2"><a href="#tab-main" class="translate active">Main settings</a></li>
+					<li class="tab col s2"><a href="#tab-color" class="translate" data-lang="color-settings">Color
 							settings</a></li>
-					<li class="tab col s3"><a href="#tab-fonts" class="translate" data-lang="font-and-line">font and
+					<li class="tab col s2"><a href="#tab-fonts" class="translate" data-lang="font-and-line">font and
 							line</a></li>
-					<li class="tab col s3"><a href="#tab-other" class="translate" data-lang="other">Other</a></li>
+					<li class="tab col s2"><a href="#tab-other" class="translate" data-lang="other">Other</a></li>
+					<li class="tab col s2"><a href="https://github.com/SKB-CGN/ioBroker.energiefluss/wiki"
+							target="_blank" class="translate" data-lang="wiki">Wiki</a></li>
 				</ul>
 			</div>
 		</div>
@@ -463,7 +465,6 @@
 						Calculation via 'Production' + 'Grid'</label>
 				</div>
 			</div>
-			<!-- -->
 			<div class="row">
 				<div class="input-field col s3">
 					<input class="value" id="label_swap_production" type="text" />
@@ -483,7 +484,11 @@
 							class="material-icons">search</i></a>
 				</div>
 			</div>
-			<div class="row"></div>
+			<div class="row">
+				<div class="col s12">
+					<h6 class="title translate" data-lang="production0">additional solar production</h6>
+				</div>
+			</div>
 			<div class="row">
 				<div class="input-field col s3">
 					<input class="value" id="label_production0" type="text" />
@@ -510,7 +515,7 @@
 				</div>
 				<div class="input-field col s4">
 					<input class="value dp" id="swap_production0" type="text" />
-					<label for="swap_production" class="translate" data-lang="ex_alternate">Alternating display in the
+					<label for="swap_production0" class="translate" data-lang="ex_alternate">Alternating display in the
 						element:</label>
 					<span class="translate" data-lang="ex_alternate_desc">Alternate Data point for displaying inside the
 						element</span>
@@ -545,6 +550,25 @@
 					<input id="consumption_reverse" class="value" type="checkbox" />
 					<label for="consumption_reverse" class="translate" data-lang="cb_consumption_reverse">Consumption is
 						negative</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s3">
+					<input class="value" id="label_swap_consumption" type="text" />
+					<label for="label_swap_consumption" class="translate" data-lang="label">Label:</label>
+					<span class="translate" data-lang="ex_label">label inside the element</span>
+				</div>
+				<div class="input-field col s4">
+					<input class="value dp" id="swap_consumption" type="text" />
+					<label for="swap_consumption" class="translate" data-lang="ex_alternate">Alternating display in the
+						element:</label>
+					<span class="translate" data-lang="ex_alternate_desc">Alternate Data point for displaying inside the
+						element</span>
+				</div>
+				<div class="col s1 m2 l1">
+					<a
+						class="btn-floating waves-effect waves-light blue table-button-add input-field datasource datasource"><i
+							class="material-icons">search</i></a>
 				</div>
 			</div>
 			<div class="row">
@@ -598,9 +622,24 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="input-field col s3"></div>
-				<div class="input-field col s4"></div>
-				<div class="col s1 m2 l1">&nbsp;</div>
+
+				<div class="input-field col s3">
+					<input class="value" id="label_swap_grid" type="text" />
+					<label for="label_swap_grid" class="translate" data-lang="label">Label:</label>
+					<span class="translate" data-lang="ex_label">label inside the element</span>
+				</div>
+				<div class="input-field col s4">
+					<input class="value dp" id="swap_grid" type="text" />
+					<label for="swap_grid" class="translate" data-lang="ex_alternate">Alternating display in the
+						element:</label>
+					<span class="translate" data-lang="ex_alternate_desc">Alternate Data point for displaying inside the
+						element</span>
+				</div>
+				<div class="col s1 m2 l1">
+					<a
+						class="btn-floating waves-effect waves-light blue table-button-add input-field datasource datasource"><i
+							class="material-icons">search</i></a>
+				</div>
 				<div class="input-field col s3">
 					<input id="grid_all_positive" class="value" type="checkbox" />
 					<label for="grid_all_positive" class="translate" data-lang="cb_grid_all_positive">Use
@@ -1304,6 +1343,11 @@
 						(default:
 						empty)</span>
 				</div>
+				<div class="input-field col s6">
+					<input class="value color" id="swap_color_house_text" type="text" placeholder="#00b5dd" />
+					<span class="translate" data-lang="swap_color_house_text">color of the alternate value inside the
+						element of the house (default: #00b5dd)</span>
+				</div>
 			</div>
 			<div class="row">
 				<div class="col s12">
@@ -1335,6 +1379,15 @@
 					<span class="translate" data-lang="color_no_prod">color of the value if value is below threshold
 						(default:
 						empty)</span>
+				</div>
+				<div class="input-field col s6">
+					<input class="value color" id="swap_color_grid_text" type="text" placeholder="#61687a" />
+					<span class="translate" data-lang="swap_color_grid_text">color of the alternate value inside the
+						element of
+						the
+						net
+						feed-in
+						(default: #61687a)</span>
 				</div>
 			</div>
 			<div class="row">
@@ -1368,10 +1421,19 @@
 						(default:
 						empty)</span>
 				</div>
+				<div class="input-field col s6">
+					<input class="value color" id="swap_color_production_text" type="text" placeholder="#ffce4a" />
+					<span class="translate" data-lang="swap_color_production_text">color of the alternate value inside
+						the
+						element of
+						the
+						solar
+						production (default: #ffce4a)</span>
+				</div>
 			</div>
 			<div class="row">
 				<div class="col s12">
-					<h6 class="title translate" data-lang="production0">solar production</h6>
+					<h6 class="title translate" data-lang="production0">additional solar production</h6>
 				</div>
 			</div>
 			<div class="row">
@@ -1399,6 +1461,15 @@
 					<span class="translate" data-lang="color_no_prod">color of the value if value is below threshold
 						(default:
 						empty)</span>
+				</div>
+				<div class="input-field col s6">
+					<input class="value color" id="swap_color_production0_text" type="text" placeholder="#ffce4a" />
+					<span class="translate" data-lang="swap_color_production0_text">color of the alternate value inside
+						the
+						element of
+						the
+						solar
+						production (default: #ffce4a)</span>
 				</div>
 			</div>
 			<div class="row">
@@ -2260,6 +2331,11 @@
 					<input class="value line_preview" id="line_size" type="number" placeholder="6" min="2" max="18" />
 					<span class="translate" data-lang="line_size">Thickness of the line (in px)</span>
 				</div>
+				<div class="input-field col s4">
+					<input id="line_visible" class="value" type="checkbox" />
+					<label for="line_visible" class="translate" data-lang="line_visible">Only show the line when the
+						animation is running (hides the line otherwise)</label>
+				</div>
 			</div>
 			<div class="row">
 				<div class="col s12">
@@ -2299,16 +2375,14 @@
 					<span class="translate" data-lang="animation_duration">Duration of the animation in ms (1 second are
 						1000ms)</span>
 				</div>
-				<div class="input-field col s4 display_rect">
-					<select id="animation_linecap" class="value line_preview">
-						<option value="butt" class="translate" data-lang="animation_linecap_butt">rectangular ends
-							trimmed at the endpoints</option>
-						<option value="round" class="translate" data-lang="animation_linecap_round">rounded ends (beyond
-							the endpoints)</option>
-						<option value="square" class="translate" data-lang="animation_linecap_square">square ends
-							(beyond the endpoints)</option>
-					</select>
-					<span class="translate" data-lang="animation_linecap">Appearance of line ends</span>
+				<div class="input-field col s4">
+					<input id="automatic_animation" class="value" type="checkbox" />
+					<label for="automatic_animation" class="translate" data-lang="cb_automatic_animation">Activate
+						automatic animation for consuming </label> <span class="translate"
+						data-lang="ex_automatic_animation">(if activated, the animation will calculate the
+						speed
+						depending on the consumption - higher consumption, higher speed - maximum speed is the duration
+						of the animation)</span>
 				</div>
 			</div>
 			<div class="row">
@@ -2326,6 +2400,17 @@
 					</select>
 					<span class="translate" data-lang="animation_type">type of animation</span>
 				</div>
+				<div class="input-field col s4 display_rect">
+					<select id="animation_linecap" class="value line_preview">
+						<option value="butt" class="translate" data-lang="animation_linecap_butt">rectangular ends
+							trimmed at the endpoints</option>
+						<option value="round" class="translate" data-lang="animation_linecap_round">rounded ends (beyond
+							the endpoints)</option>
+						<option value="square" class="translate" data-lang="animation_linecap_square">square ends
+							(beyond the endpoints)</option>
+					</select>
+					<span class="translate" data-lang="animation_linecap">Appearance of line ends</span>
+				</div>
 			</div>
 			<div class="row">
 				<div class="col s4">
@@ -2340,6 +2425,25 @@
 						<use class="all_elm path" xlink:href="#preview_line" id="preview_line_bg" />
 						<use class="all_elm animation" xlink:href="#preview_line" id="preview_line_anim" />
 					</svg>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s12">
+					<h6 class="title translate" data-lang="title_element_animation">element animation</h6>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s4">
+					<input class="value" id="element_animation_time" type="number" placeholder="5000" min="1"
+						max="10000" />
+					<span class="translate" data-lang="element_animation">swap text and values inside the element every
+						x
+						milliseconds</span>
+				</div>
+				<div class="input-field col s4">
+					<input id="element_animation" class="value" type="checkbox" />
+					<label for="element_animation" class="translate" data-lang="cb_element_animation">Activate values
+						and text swapping</label>
 				</div>
 			</div>
 			<div class="row">
