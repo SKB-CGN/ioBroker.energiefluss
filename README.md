@@ -148,6 +148,8 @@ Bitte ins Wiki schauen
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+- fixed versioning
 ### 3.3.0 (2023-01-27)
 - define shadows for text, value, percent and icon
 - hide lines, if no animation is present on the line
