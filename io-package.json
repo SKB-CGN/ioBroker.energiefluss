@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "energiefluss",
-    "version": "3.3.0",
+    "version": "3.3.1",
     "news": {
+      "3.3.1": {
+        "en": "fixed versioning",
+        "de": "feste version",
+        "ru": "фиксированная версия",
+        "pt": "versão fixa",
+        "nl": "vertaling:",
+        "fr": "version fixe",
+        "it": "versione fissa",
+        "es": "versión fija",
+        "pl": "wersja stała",
+        "uk": "фіксована версія",
+        "zh-cn": "固定版本"
+      },
       "3.3.0": {
         "en": "define shadows for text, value, percent and icon\nhide lines, if no animation is present on the line\npossibility, to add a second value and description for e.g. daily summary (colors can be defined too) to production, additional production, consumption and grid. Swap time can be defined and clicking on an element will change the values and descriptions one time and will return to the timer afterwards\nautomatic speed of animation can be used to easily identify the highest consumption within custom elements 1 to 11. Highest consumption will use the speed of the animation, lower consumptions will use the multiplicator of +1000 of the defined animation speed\nadded Wiki Link to admin\nupdated translations\nsome additional background changes for adding adapter to iobroker repository",
         "de": "schatten für text, wert, prozent und symbol definieren\nversteckte linien, wenn keine animation auf der linie vorhanden ist\nmöglichkeit, einen zweiten Wert und eine Beschreibung für z.B. tägliche Zusammenfassung (Farben können auch definiert werden) zur Produktion, zusätzliche Produktion, Verbrauch und Gitter hinzuzufügen. Swap-Zeit kann definiert werden und ein Klick auf ein Element ändert die Werte und Beschreibungen einmal und wird danach zum Timer zurückkehren\nautomatische Animationsgeschwindigkeit kann verwendet werden, um den höchsten Verbrauch innerhalb der benutzerdefinierten Elemente 1 bis 11 leicht zu identifizieren. Höchster Verbrauch wird die Geschwindigkeit der Animation verwenden, niedriger Verbrauch wird den Multiplikator von +1000 der definierten Animationsgeschwindigkeit verwenden\nwiki Link zu admin\naktualisierung der übersetzungen\neinige zusätzliche hintergrundänderungen für das hinzufügen von adapter zu iobroker repository",
@@ -80,19 +93,6 @@
         "pl": "nowy zakrzywiony projekt\ndodana opcja dla Slim-Design – gdy zostanie uruchomiona, większa przestrzeń do baterii zostanie zredukowana\nElementy o wartości % mogą być wypełnione w zależności od ich procenta (kolor czcionek automatycznie zostanie wybrany)\nprzejście elementów aktywowanych – jeśli nie ma koloru, sam element jest przejrzysty\nPoprawiony wygląd reagujący (jeśli wyświetlany w iframe, grafik powinien być wyświetlany zgodnie z danymi)\njeśli żadna bateria nie została skonfigurowana, to układ nie działał prawidłowo – naprawiono\nLinia jest możliwa z <br> w opisie elementu",
         "uk": "реалізовано новий дизайн кривих ліній\nдоданий варіант для Slim-Design - при активації більший простір до акумулятора буде зменшено\nЕлементи з відсотками значення можуть бути заповнені в залежності від їх відсотка (кольор шрифту буде вибрано автоматично)\nпрозорість елементів, активованих - якщо не встановлено колір, то сам елемент прозорий\nУдосконалено чуйний дизайн (якщо відображається в iframe, то графіка повинна бути відображена відповідно)\nякщо немає акумулятора, то макет не працює правильно - фіксований\nЛінія-брелок можливо з <br> в описі мітки елемента",
         "zh-cn": "实施的新线路设计\n消除转让的附加选择——在启动时,将减少电池的最大空间。\n可按其百分比(自动选定独裁剂)填补其价值的要素\n启动的要素的透明度——如果没有色彩,该要素本身就透明。\n改进反应设计(如在i框架内展示,现在应相应地展示图表)。\n如果没有对电池进行配置,则该装置没有正确地工作-固定固定。\n对要素的标签说明中可能有<br>"
-      },
-      "2.1.3": {
-        "en": "fixed depencies",
-        "de": "feste abläufe",
-        "ru": "фиксированные частоты",
-        "pt": "competências fixas",
-        "nl": "_",
-        "fr": "depencies fixes",
-        "it": "spese fisse",
-        "es": "dependencias fijas",
-        "pl": "depozyt",
-        "uk": "фіксовані недоліки",
-        "zh-cn": "固定意外费用"
       }
     },
     "titleLang": {
