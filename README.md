@@ -148,7 +148,7 @@ Bitte ins Wiki schauen
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 3.3.0 (2023-01-27)
 - define shadows for text, value, percent and icon
 - hide lines, if no animation is present on the line
 - possibility, to add a second value and description for e.g. daily summary (colors can be defined too) to production, additional production, consumption and grid. Swap time can be defined and clicking on an element will change the values and descriptions one time and will return to the timer afterwards
@@ -156,6 +156,7 @@ Bitte ins Wiki schauen
 - added Wiki Link to admin
 - updated translations
 - some additional background changes for adding adapter to iobroker repository
+
 ### 3.2.0 (2023-01-17)
 - added second production element
 - translation fixes
