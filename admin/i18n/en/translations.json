@@ -120,6 +120,7 @@
     "custom_icon": "icon inside the custom element:",
     "custom_label": "labeling inside the custom element:",
     "design": "layout",
+    "disable_icons": "disable all icons inside the layout",
     "element": "element",
     "element_animation": "swap text and values inside the element every x milliseconds",
     "elements": "elements",

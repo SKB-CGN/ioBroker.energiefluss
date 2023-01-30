@@ -456,7 +456,8 @@ class Energiefluss extends utils.Adapter {
 				element_animation: this.config.element_animation,
 				element_animation_time: this.config.element_animation_time || 5000,
 				line_visible: this.config.line_visible,
-				automatic_animation: automatic_animation
+				automatic_animation: automatic_animation,
+				disable_icons: this.config.disable_icons
 			}
 
 			// Element - Style
@@ -1272,6 +1273,7 @@ class Energiefluss extends utils.Adapter {
 
 		// Automatic Animation
 		let auto_animation = [];
+		let auto_animation_output = [];
 
 		// Consumption
 		if (valuesObj['consumption'] != undefined) {
@@ -1640,6 +1642,25 @@ class Energiefluss extends utils.Adapter {
 			}
 		}
 
+		// Sort Animation
+		if (automatic_animation) {
+			// First, get the Consumption
+			let tmpConsumption = parseFloat(values.consumption_value);
+
+			// LineSpeed
+			let tmpSpeed = parameterObj.lines.style.animation_duration;
+
+			auto_animation.sort((a, b) => parseFloat(b.value) - parseFloat(a.value));
+
+			let step = tmpSpeed / tmpConsumption;
+			for (let animation of auto_animation) {
+				auto_animation_output.push({
+					name: animation.name,
+					duration: Math.round(tmpSpeed + (tmpSpeed - (step * animation.value)))
+				});
+			}
+		}
+
 		// Battery substraction from Consumption
 		if (calculate_consumption) {
 			// Check, which direction we have
@@ -1658,11 +1679,6 @@ class Energiefluss extends utils.Adapter {
 
 			// Set the Value
 			values.consumption_value = tmpResult;
-		}
-
-		// Sort Animation
-		if (automatic_animation) {
-			auto_animation = auto_animation.slice().sort((a, b) => b.value - a.value);
 		}
 
 		// House netto - Reduce consumption about the configured custom elements and the car
@@ -1691,7 +1707,7 @@ class Energiefluss extends utils.Adapter {
 		dataObj.values = values;
 		dataObj.swap_values = swap_values;
 		dataObj.color = color;
-		dataObj.automatic_animation = auto_animation;
+		dataObj.automatic_animation = auto_animation_output;
 
 		await this.setStateAsync("data", JSON.stringify(dataObj), true);
 	}

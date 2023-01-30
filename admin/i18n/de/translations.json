@@ -120,6 +120,7 @@
     "custom_icon": "Symbol innerhalb des benutzerdefinierten Elements:",
     "custom_label": "Beschriftung innerhalb des benutzerdefinierten Elements:",
     "design": "Layout",
+    "disable_icons": "Deaktivieren Sie alle Symbole im Layout",
     "element": "Element",
     "element_animation": "Text und Werte innerhalb des Elements alle x Millisekunden tauschen",
     "elements": "Elemente",

@@ -120,6 +120,7 @@
     "custom_icon": "ikona wewnątrz elementu niestandardowego:",
     "custom_label": "etykietowanie wewnątrz elementu niestandardowego:",
     "design": "układ",
+    "disable_icons": "wyłącz wszystkie ikony w układzie",
     "element": "element",
     "element_animation": "zamieniaj tekst i wartości wewnątrz elementu co x milisekund",
     "elements": "elementy",

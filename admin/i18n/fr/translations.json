@@ -120,6 +120,7 @@
     "custom_icon": "icône à l'intérieur de l'élément personnalisé :",
     "custom_label": "étiquetage à l'intérieur de l'élément personnalisé :",
     "design": "disposition",
+    "disable_icons": "désactiver toutes les icônes à l'intérieur de la mise en page",
     "element": "élément",
     "element_animation": "échanger le texte et les valeurs à l'intérieur de l'élément toutes les x millisecondes",
     "elements": "éléments",

@@ -120,6 +120,7 @@
     "custom_icon": "ícone dentro do elemento personalizado:",
     "custom_label": "rotulagem dentro do elemento personalizado:",
     "design": "disposição",
+    "disable_icons": "desativar todos os ícones dentro do layout",
     "element": "elemento",
     "element_animation": "troque texto e valores dentro do elemento a cada x milissegundos",
     "elements": "elementos",

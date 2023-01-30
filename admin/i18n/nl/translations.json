@@ -120,6 +120,7 @@
     "custom_icon": "pictogram in het aangepaste element:",
     "custom_label": "labeling binnen het aangepaste element:",
     "design": "indeling",
+    "disable_icons": "schakel alle pictogrammen in de lay-out uit",
     "element": "element",
     "element_animation": "verwissel tekst en waarden binnen het element elke x milliseconden",
     "elements": "elementen",

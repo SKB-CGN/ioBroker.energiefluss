@@ -120,6 +120,7 @@
     "custom_icon": "icono dentro del elemento personalizado:",
     "custom_label": "etiquetado dentro del elemento personalizado:",
     "design": "diseño",
+    "disable_icons": "desactivar todos los iconos dentro del diseño",
     "element": "elemento",
     "element_animation": "intercambiar texto y valores dentro del elemento cada x milisegundos",
     "elements": "elementos",

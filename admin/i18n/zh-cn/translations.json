@@ -120,6 +120,7 @@
     "custom_icon": "自定义元素内的图标：",
     "custom_label": "自定义元素内的标签：",
     "design": "布局",
+    "disable_icons": "禁用布局内的所有图标",
     "element": "元素",
     "element_animation": "每 x 毫秒交换元素内的文本和值",
     "elements": "元素",

@@ -696,28 +696,30 @@ function initConfig() {
                 }
 
                 // Icons
-                if (elements.icon_d[key] != null) {
-                    let i = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-                    let icon_source;
-                    i.setAttribute('id', elements.icon_id[key]);
-                    if (config.custom_symbol.hasOwnProperty("icon_" + key)) {
-                        if (config.custom_symbol["icon_" + key].length != 0) {
-                            icon_source = config.custom_symbol["icon_" + key];
+                if (config.general.disable_icons === false) {
+                    if (elements.icon_d[key] != null) {
+                        let i = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                        let icon_source;
+                        i.setAttribute('id', elements.icon_id[key]);
+                        if (config.custom_symbol.hasOwnProperty("icon_" + key)) {
+                            if (config.custom_symbol["icon_" + key].length != 0) {
+                                icon_source = config.custom_symbol["icon_" + key];
+                            } else {
+                                icon_source = elements.icon_d[key];
+                            }
                         } else {
                             icon_source = elements.icon_d[key];
                         }
-                    } else {
-                        icon_source = elements.icon_d[key];
+                        let i_class = 'icon';
+                        if (config.icons.style.shadow === true) {
+                            i_class += " icons_shadow";
+                        }
+                        i.setAttribute('d', icon_source);
+                        i.setAttribute('class', i_class);
+                        i.setAttribute('style', ' fill: ' + config.icons.color.default + ';');
+                        i.setAttribute('transform', 'translate(' + ((elements.cx[key] - 12) - elm_offset_x) + ',' + ((elements.cy[key] - 44) - elm_offset_y + config.general.offset_icon) + ')');
+                        $(i).appendTo("#placeholder_icons");
                     }
-                    let i_class = 'icon';
-                    if (config.icons.style.shadow === true) {
-                        i_class += " icons_shadow";
-                    }
-                    i.setAttribute('d', icon_source);
-                    i.setAttribute('class', i_class);
-                    i.setAttribute('style', ' fill: ' + config.icons.color.default + ';');
-                    i.setAttribute('transform', 'translate(' + ((elements.cx[key] - 12) - elm_offset_x) + ',' + ((elements.cy[key] - 44) - elm_offset_y + config.general.offset_icon) + ')');
-                    $(i).appendTo("#placeholder_icons");
                 }
 
                 // Check, if we are displaying the battery Element
@@ -900,8 +902,7 @@ function updateValues() {
         try {
             let i = 1;
             for (var animation of data.automatic_animation) {
-                $('#anim_' + animation.name).css("animation-duration", (config.lines.style.animation_duration * i) + 'ms');
-                i++;
+                $('#anim_' + animation.name).css("animation-duration", (animation.duration) + 'ms');
             }
         } catch (error) {
             console.log('Error while updating the Animation Speeds!' + error);
