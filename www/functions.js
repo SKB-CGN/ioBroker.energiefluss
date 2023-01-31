@@ -906,9 +906,7 @@ function updateValues() {
                 let curr = $('#anim_' + animation.name).css("animation-duration");
                 let val = animation.duration / 1000;
                 let percent = (val / 100) * 10;
-                console.log("Current: " + curr + " New: " + val + " Percent: " + percent);
                 if ((parseFloat(val) - parseFloat(curr)) > percent || (parseFloat(curr) - parseFloat(val)) > percent) {
-                    console.log("Animation changed!");
                     $('#anim_' + animation.name).css("animation-duration", (animation.duration) + 'ms');
                 }
             }
