@@ -902,7 +902,15 @@ function updateValues() {
         try {
             let i = 1;
             for (var animation of data.automatic_animation) {
-                $('#anim_' + animation.name).css("animation-duration", (animation.duration) + 'ms');
+                // Blocker, for "jumping" dots on the animation - if Difference is more than 10% -> update the animation
+                let curr = $('#anim_' + animation.name).css("animation-duration");
+                let val = animation.duration / 1000;
+                let percent = (val / 100) * 10;
+                console.log("Current: " + curr + " New: " + val + " Percent: " + percent);
+                if ((parseFloat(val) - parseFloat(curr)) > percent || (parseFloat(curr) - parseFloat(val)) > percent) {
+                    console.log("Animation changed!");
+                    $('#anim_' + animation.name).css("animation-duration", (animation.duration) + 'ms');
+                }
             }
         } catch (error) {
             console.log('Error while updating the Animation Speeds!' + error);
