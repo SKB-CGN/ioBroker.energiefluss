@@ -491,8 +491,6 @@ class Energiefluss extends utils.Adapter {
 				house: this.config.label_swap_consumption
 			}
 
-			// buildDataJSON will add some more details to the object
-
 			// In order to get state updates, you need to subscribe to them. The following line adds a subscription for our variable we have created above.
 			this.subscribeForeignStates(subscribeArray);
 			// You can also add a subscription for multiple states. The following line watches all states starting with "lights."
@@ -1652,11 +1650,15 @@ class Energiefluss extends utils.Adapter {
 
 			auto_animation.sort((a, b) => parseFloat(b.value) - parseFloat(a.value));
 
-			let step = tmpSpeed / tmpConsumption;
+			//let step = tmpSpeed / tmpConsumption;
 			for (let animation of auto_animation) {
 				auto_animation_output.push({
 					name: animation.name,
+					/*
+					Old Calculation - for reference
 					duration: Math.round(tmpSpeed + (tmpSpeed - (step * animation.value)))
+					*/
+					duration: Math.round((tmpConsumption / animation.value) * tmpSpeed)
 				});
 			}
 		}
