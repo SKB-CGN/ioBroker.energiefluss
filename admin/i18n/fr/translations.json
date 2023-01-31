@@ -119,6 +119,7 @@
     "custom9": "élément personnalisé 9",
     "custom_icon": "icône à l'intérieur de l'élément personnalisé :",
     "custom_label": "étiquetage à l'intérieur de l'élément personnalisé :",
+    "debounce_percent": "Si vous utilisez l'animation automatique, les points d'animation peuvent scintiller/sauter si la consommation change beaucoup. Définissez un pourcentage, pour faire rebondir l'animation sur la ligne. Plus la valeur est élevée, plus le rebond est important.",
     "design": "disposition",
     "disable_icons": "désactiver toutes les icônes à l'intérieur de la mise en page",
     "element": "élément",

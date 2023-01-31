@@ -905,7 +905,7 @@ function updateValues() {
                 // Blocker, for "jumping" dots on the animation - if Difference is more than 10% -> update the animation
                 let curr = $('#anim_' + animation.name).css("animation-duration");
                 let val = animation.duration / 1000;
-                let percent = (val / 100) * 10;
+                let percent = (val / 100) * parseInt(config.general.debounce_percent);
                 if ((parseFloat(val) - parseFloat(curr)) > percent || (parseFloat(curr) - parseFloat(val)) > percent) {
                     $('#anim_' + animation.name).css("animation-duration", (animation.duration) + 'ms');
                 }

@@ -119,6 +119,7 @@
     "custom9": "elemento personalizado 9",
     "custom_icon": "ícone dentro do elemento personalizado:",
     "custom_label": "rotulagem dentro do elemento personalizado:",
+    "debounce_percent": "Se estiver usando a animação automática, os pontos de animação podem piscar/pular, se o consumo estiver mudando muito. Defina uma porcentagem, para debounce a animação na linha. Quanto maior o valor, mais debounce.",
     "design": "disposição",
     "disable_icons": "desativar todos os ícones dentro do layout",
     "element": "elemento",

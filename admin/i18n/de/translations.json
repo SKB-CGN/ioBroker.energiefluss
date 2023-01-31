@@ -119,6 +119,7 @@
     "custom9": "benutzerdefiniertes Element 9",
     "custom_icon": "Symbol innerhalb des benutzerdefinierten Elements:",
     "custom_label": "Beschriftung innerhalb des benutzerdefinierten Elements:",
+    "debounce_percent": "Wenn Sie die automatische Animation verwenden, können die Animationspunkte flackern/springen, wenn sich der Verbrauch stark ändert. Definieren Sie einen Prozentsatz, um die Animation auf der Linie zu entprellen. Je höher der Wert, desto mehr Entprellung.",
     "design": "Layout",
     "disable_icons": "Deaktivieren Sie alle Symbole im Layout",
     "element": "Element",

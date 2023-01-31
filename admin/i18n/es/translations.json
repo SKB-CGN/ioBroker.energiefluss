@@ -119,6 +119,7 @@
     "custom9": "elemento personalizado 9",
     "custom_icon": "icono dentro del elemento personalizado:",
     "custom_label": "etiquetado dentro del elemento personalizado:",
+    "debounce_percent": "Si usa la animación automática, los puntos de animación podrían parpadear/saltar, si el consumo está cambiando mucho. Defina un porcentaje, para rebotar la animación en la línea. Cuanto más alto sea el valor, más rebote.",
     "design": "diseño",
     "disable_icons": "desactivar todos los iconos dentro del diseño",
     "element": "elemento",

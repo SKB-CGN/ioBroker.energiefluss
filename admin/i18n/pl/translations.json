@@ -119,6 +119,7 @@
     "custom9": "element niestandardowy 9",
     "custom_icon": "ikona wewnątrz elementu niestandardowego:",
     "custom_label": "etykietowanie wewnątrz elementu niestandardowego:",
+    "debounce_percent": "W przypadku korzystania z automatycznej animacji kropki animacji mogą migotać/skakać, jeśli konsumpcja bardzo się zmienia. Zdefiniuj procent, aby odbić animację na linii. Im wyższa wartość, tym większe odbicia.",
     "design": "układ",
     "disable_icons": "wyłącz wszystkie ikony w układzie",
     "element": "element",

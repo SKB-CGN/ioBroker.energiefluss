@@ -457,7 +457,8 @@ class Energiefluss extends utils.Adapter {
 				element_animation_time: this.config.element_animation_time || 5000,
 				line_visible: this.config.line_visible,
 				automatic_animation: automatic_animation,
-				disable_icons: this.config.disable_icons
+				disable_icons: this.config.disable_icons,
+				debounce_percent: this.config.debounce_percent
 			}
 
 			// Element - Style

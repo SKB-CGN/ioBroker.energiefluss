@@ -432,7 +432,8 @@
         "icons_shadow_color": "rgba(0, 0, 0, .7)",
         "percent_shadow": false,
         "percent_shadow_color": "rgba(0, 0, 0, .7)",
-        "disable_icons": false
+        "disable_icons": false,
+        "debounce_percent": 10
     },
     "objects": [],
     "instanceObjects": [

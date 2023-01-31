@@ -119,6 +119,7 @@
     "custom9": "custom element 9",
     "custom_icon": "icon inside the custom element:",
     "custom_label": "labeling inside the custom element:",
+    "debounce_percent": "If using the automatic animation, the animation dots could flicker/jump, if the consuming is changing a lot. Define a percentage, to debounce the animation on the line. The higher the value, the more debounce.",
     "design": "layout",
     "disable_icons": "disable all icons inside the layout",
     "element": "element",
