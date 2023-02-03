@@ -148,12 +148,12 @@ Bitte ins Wiki schauen
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 3.4.0 (2023-02-03)
 - updated automatic animation to better handling speed and values
 - removed the "MUST" of having an production datapoint set. Adapter can now be used as normal EnergyFlow
 - enabled Strings as Datapoint Values (was implemented before, but not activated)
 - Possibility added, to remove the icons inside the elements
-- 
+-
 
 ### 3.3.1 (2023-01-27)
 - fixed versioning
