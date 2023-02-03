@@ -1,8 +1,21 @@
 {
     "common": {
         "name": "energiefluss",
-        "version": "3.3.1",
+        "version": "3.4.0",
         "news": {
+            "3.4.0": {
+                "en": "not translated",
+                "de": "not translated",
+                "ru": "not translated",
+                "pt": "not translated",
+                "nl": "not translated",
+                "fr": "not translated",
+                "it": "not translated",
+                "es": "not translated",
+                "pl": "not translated",
+                "uk": "not translated",
+                "zh-cn": "not translated"
+            },
             "3.3.1": {
                 "en": "fixed versioning",
                 "de": "feste version",
