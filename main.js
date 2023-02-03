@@ -121,394 +121,391 @@ class Energiefluss extends utils.Adapter {
 		if (await this.migrateConfig()) {
 			return;
 		}
-		if (this.config.production) {
-			// Initialize your adapter here
-			unit = this.config.unit;
-			production = this.config.production;
-			production0 = this.config.production0;
-			consumption = this.config.consumption;
-			consumption_reverse = this.config.consumption_reverse ? true : false;
-			grid_feed = this.config.grid_feed;
-			grid_consuming = this.config.grid_consuming;
-			grid_different = this.config.grid_different;
-			grid_reverse = this.config.grid_reverse ? true : false;
-			grid_all_positive = this.config.grid_all_positive ? true : false;
-			battery_percent = this.config.battery_percent;
-			battery_charge = this.config.battery_charge;
-			battery_discharge = this.config.battery_discharge;
-			battery_different = this.config.battery_different;
-			battery_reverse = this.config.battery_reverse ? true : false;
-			calculate_consumption = this.config.calculate_consumption ? true : false;
-			automatic_animation = this.config.automatic_animation ? true : false;
-			custom0 = this.config.custom0;
-			custom1 = this.config.custom1;
-			custom2 = this.config.custom2;
-			custom3 = this.config.custom3;
-			custom4 = this.config.custom4;
-			custom5 = this.config.custom5;
-			custom6 = this.config.custom6;
-			custom7 = this.config.custom7;
-			custom8 = this.config.custom8;
-			custom9 = this.config.custom9;
-			custom10 = this.config.custom10;
-			house_netto = {
-				custom0: this.config.house_netto_custom0,
-				custom1: this.config.house_netto_custom1,
-				custom2: this.config.house_netto_custom2,
-				custom3: this.config.house_netto_custom3,
-				custom4: this.config.house_netto_custom4,
-				custom5: this.config.house_netto_custom5,
-				custom6: this.config.house_netto_custom6,
-				custom7: this.config.house_netto_custom7,
-				custom8: this.config.house_netto_custom8,
-				custom9: this.config.house_netto_custom9,
-				custom10: this.config.house_netto_custom10,
-			}
-			fraction = this.config.fraction;
-			fraction_battery = this.config.fraction_battery;
-			threshold = this.config.threshold ? this.config.threshold : 0;
-			battery_info = this.config.battery_capacity_info ? true : false;
-			battery_capacity = this.config.battery_capacity ? this.config.battery_capacity : 0;
-			custom0_percent = this.config.car_custom_percent;
-			car_custom_plugged = this.config.car_custom_plugged;
-			custom10_percent = this.config.car_custom10_percent;
-			car_custom10_plugged = this.config.car_custom10_plugged;
-			custom_type = this.config.custom_type;
-			custom10_type = this.config.custom10_type;
-			recalculate = this.config.recalculate ? true : false;
-			swap_consumption = this.config.swap_consumption;
-			swap_grid = this.config.swap_grid;
-			swap_production = this.config.swap_production;
-			swap_production0 = this.config.swap_production0;
 
-			this.log.info("Starting Energiefluss Adapter");
-
-			// Put all possible variables into an Object and after that, filter empty ones
-			configObj = {
-				production: production,
-				production0: production0,
-				consumption: consumption,
-				grid_feed: grid_feed,
-				grid_consuming: grid_consuming,
-				battery_charge: battery_charge,
-				battery_discharge: battery_discharge,
-				battery_percent: battery_percent,
-				custom0: custom0,
-				custom1: custom1,
-				custom2: custom2,
-				custom3: custom3,
-				custom4: custom4,
-				custom5: custom5,
-				custom6: custom6,
-				custom7: custom7,
-				custom8: custom8,
-				custom9: custom9,
-				custom10: custom10,
-				custom0_percent: custom0_percent,
-				car_custom_plugged: car_custom_plugged,
-				custom10_percent: custom10_percent,
-				car_custom10_plugged: car_custom10_plugged,
-				swap_consumption: swap_consumption,
-				swap_production: swap_production,
-				swap_production0: swap_production0,
-				swap_grid: swap_grid
-			};
-			// Delete empty ones
-			configObj = Object.entries(configObj).reduce((a, [k, v]) => (v ? (a[k] = v, a) : a), {})
-			this.log.debug("Added States for subscribing: " + JSON.stringify(configObj));
-
-			// Load all Data once before subscribing
-			valuesObj = await this.getInitialValues(configObj);
-
-			// Build array for subscribing to states
-			subscribeArray = Object.values(configObj);
-
-			this.log.debug("Requesting the following states: " + subscribeArray.toString());
-
-			/*
-			For every state in the system there has to be also an object of type state
-			Here a simple template for a boolean variable named "testVariable"
-			Because every adapter instance uses its own unique namespace variable names can't collide with other adapters variables
-			*/
-			await this.setObjectNotExistsAsync('configuration', {
-				type: 'state',
-				common: {
-					name: 'Parameters for HTML Output',
-					type: 'json',
-					role: 'state',
-					read: true,
-					write: false,
-				},
-				native: {},
-			});
-
-			await this.setObjectNotExistsAsync('data', {
-				type: 'state',
-				common: {
-					name: 'Data for HTML Output',
-					type: 'json',
-					role: 'state',
-					read: true,
-					write: false,
-				},
-				native: {},
-			});
-
-			await this.setObjectNotExistsAsync('battery_remaining', {
-				type: 'state',
-				common: {
-					name: 'Remaining Time of the battery',
-					type: 'string',
-					role: 'text',
-					read: true,
-					write: false,
-				},
-				native: {},
-			});
-
-			// Delete old State HTML
-			await this.deleteStateAsync('HTML');
-
-			/* Build Parameter */
-			// Colors of the Elements
-			parameterObj.elements.color = {
-				house: this.config.color_house,
-				grid: this.config.color_grid,
-				solar: this.config.color_production,
-				solar0: this.config.color_production0,
-				battery: this.config.color_battery,
-				custom0: this.config.color_custom0,
-				custom1: this.config.color_custom1,
-				custom2: this.config.color_custom2,
-				custom3: this.config.color_custom3,
-				custom4: this.config.color_custom4,
-				custom5: this.config.color_custom5,
-				custom6: this.config.color_custom6,
-				custom7: this.config.color_custom7,
-				custom8: this.config.color_custom8,
-				custom9: this.config.color_custom9,
-				custom10: this.config.color_custom10
-			}
-
-			// Fills of the Elements
-			parameterObj.elements.fill = {
-				house: this.config.fill_color_house,
-				grid: this.config.fill_color_grid,
-				solar: this.config.fill_color_production,
-				solar0: this.config.fill_color_production0,
-				battery: this.config.fill_color_battery,
-				custom0: this.config.fill_color_custom0,
-				custom1: this.config.fill_color_custom1,
-				custom2: this.config.fill_color_custom2,
-				custom3: this.config.fill_color_custom3,
-				custom4: this.config.fill_color_custom4,
-				custom5: this.config.fill_color_custom5,
-				custom6: this.config.fill_color_custom6,
-				custom7: this.config.fill_color_custom7,
-				custom8: this.config.fill_color_custom8,
-				custom9: this.config.fill_color_custom9,
-				custom10: this.config.fill_color_custom10
-			}
-
-			// Colors of the lines
-			parameterObj.lines.color = {
-				solar_to_battery: this.config.color_solar_to_battery,
-				solar_to_grid: this.config.color_solar_to_grid,
-				solar_to_house: this.config.color_solar_to_house,
-				solar0_to_solar: this.config.color_solar0_to_solar,
-				grid_to_house: this.config.color_grid_to_house,
-				grid_to_battery: this.config.color_grid_to_battery,
-				battery_to_house: this.config.color_battery_to_house,
-				default: this.config.color_lines,
-				house_to_custom0: this.config.color_house_to_custom0,
-				house_to_custom1: this.config.color_house_to_custom1,
-				house_to_custom2: this.config.color_house_to_custom2,
-				house_to_custom3: this.config.color_house_to_custom3,
-				house_to_custom4: this.config.color_house_to_custom4,
-				house_to_custom5: this.config.color_house_to_custom5,
-				house_to_custom6: this.config.color_house_to_custom6,
-				house_to_custom7: this.config.color_house_to_custom7,
-				house_to_custom8: this.config.color_house_to_custom8,
-				house_to_custom9: this.config.color_house_to_custom9,
-				house_to_custom10: this.config.color_house_to_custom10,
-			}
-
-			// Animation Colors of the lines
-			parameterObj.lines.animation_colors = {
-				solar_to_battery: this.config.animation_color_solar_to_battery,
-				solar_to_grid: this.config.animation_color_solar_to_grid,
-				solar_to_house: this.config.animation_color_solar_to_house,
-				solar0_to_solar: this.config.animation_color_solar0_to_solar,
-				grid_to_house: this.config.animation_color_grid_to_house,
-				grid_to_battery: this.config.animation_color_grid_to_battery,
-				battery_to_house: this.config.animation_color_battery_to_house,
-				default: this.config.color_animation,
-				house_to_custom0: this.config.animation_color_house_to_custom0,
-				house_to_custom1: this.config.animation_color_house_to_custom1,
-				house_to_custom2: this.config.animation_color_house_to_custom2,
-				house_to_custom3: this.config.animation_color_house_to_custom3,
-				house_to_custom4: this.config.animation_color_house_to_custom4,
-				house_to_custom5: this.config.animation_color_house_to_custom5,
-				house_to_custom6: this.config.animation_color_house_to_custom6,
-				house_to_custom7: this.config.animation_color_house_to_custom7,
-				house_to_custom8: this.config.animation_color_house_to_custom8,
-				house_to_custom9: this.config.animation_color_house_to_custom9,
-				house_to_custom10: this.config.animation_color_house_to_custom10
-			}
-
-			// Style of the Lines
-			parameterObj.lines.style = {
-				line_size: this.config.line_size,
-				animation_width: this.config.animation_width,
-				animation: this.config.animation,
-				animation_duration: this.config.animation_duration,
-				animation_linecap: this.config.animation_linecap,
-				animation_type: this.config.animation_type
-			}
-
-			// Fonts
-			parameterObj.fonts = {
-				font_src: this.config.font_src,
-				font: this.config.font,
-				font_size_label: this.config.font_size_label,
-				font_size_value: this.config.font_size_value,
-				font_size_percent: this.config.font_size_percent,
-				font_size_unit: this.config.font_size_unit,
-				font_size_unit_percent: this.config.font_size_unit_percent,
-				font_size_remaining: this.config.font_size_remaining
-			}
-
-			// Labels
-			parameterObj.texts.labels = {
-				house: this.config.label_house,
-				solar: this.config.label_production,
-				solar0: this.config.label_production0,
-				grid: this.config.label_grid,
-				battery: this.config.label_battery,
-				battery_remaining: this.config.label_battery_remaining,
-				custom0: this.config.label_custom0,
-				custom1: this.config.label_custom1,
-				custom2: this.config.label_custom2,
-				custom3: this.config.label_custom3,
-				custom4: this.config.label_custom4,
-				custom5: this.config.label_custom5,
-				custom6: this.config.label_custom6,
-				custom7: this.config.label_custom7,
-				custom8: this.config.label_custom8,
-				custom9: this.config.label_custom9,
-				custom10: this.config.label_custom10,
-			}
-
-			// Label Color
-			parameterObj.texts.color = {
-				default: this.config.color_label,
-				// Label Battery Remaining Time Color
-				battery_remaining: this.config.color_battery_remain
-			}
-			parameterObj.texts.style = {
-				shadow: this.config.text_shadow,
-				shadow_color: this.config.text_shadow_color,
-			}
-
-			// Icon Color
-			parameterObj.icons.color.default = this.config.color_icon;
-			parameterObj.icons.style = {
-				shadow: this.config.icons_shadow,
-				shadow_color: this.config.icons_shadow_color,
-			}
-
-			// Custom's
-			parameterObj.custom_symbol = {
-				icon_custom0: this.config.custom_icon0,
-				icon_custom1: this.config.custom_icon1,
-				icon_custom2: this.config.custom_icon2,
-				icon_custom3: this.config.custom_icon3,
-				icon_custom4: this.config.custom_icon4,
-				icon_custom5: this.config.custom_icon5,
-				icon_custom6: this.config.custom_icon6,
-				icon_custom7: this.config.custom_icon7,
-				icon_custom8: this.config.custom_icon8,
-				icon_custom9: this.config.custom_icon9,
-				icon_custom10: this.config.custom_icon10
-			}
-
-			// General
-			parameterObj.general = {
-				no_battery: false,
-				unit: unit,
-				battery_animation: this.config.battery_animation,
-				fill_elements: this.config.fill_elements,
-				slim_design: this.config.slim_design,
-				type: this.config.element_type,
-				custom_type: this.config.custom_type,
-				offset_icon: this.config.offset_icon || 0,
-				offset_text: this.config.offset_text || 0,
-				offset_value: this.config.offset_value || 0,
-				offset_percent: this.config.offset_percent || 0,
-				offset_remaining: this.config.offset_remaining || 0,
-				opacity_icon: this.config.opacity_icon || 70,
-				opacity_text: this.config.opacity_text || 70,
-				opacity_value: this.config.opacity_value || 100,
-				opacity_percent: this.config.opacity_percent || 100,
-				opacity_remaining: this.config.opacity_remaining || 70,
-				opacity_line: this.config.opacity_line || 70,
-				element_distance: this.config.element_distance || 15,
-				element_animation: this.config.element_animation,
-				element_animation_time: this.config.element_animation_time || 5000,
-				line_visible: this.config.line_visible,
-				automatic_animation: automatic_animation,
-				disable_icons: this.config.disable_icons,
-				debounce_percent: this.config.debounce_percent
-			}
-
-			// Element - Style
-			parameterObj.elements.style = {
-				size: this.config.element_size || 2,
-				circle_radius: this.config.circle_radius || 50,
-				shadow: this.config.element_shadow,
-				shadow_color: this.config.element_shadow_color,
-				rect_height: this.config.rect_height,
-				rect_width: this.config.rect_width,
-				rect_corner: this.config.rect_corner
-			}
-
-			// Percent Shadow
-			parameterObj.percent.style = {
-				shadow: this.config.percent_shadow,
-				shadow_color: this.config.percent_shadow_color,
-			}
-
-			// Values Shadow
-			parameterObj.values.style = {
-				shadow: this.config.values_shadow,
-				shadow_color: this.config.values_shadow_color,
-			}
-
-			// Swap Texts
-			parameterObj.swap_texts.labels = {
-				solar: this.config.label_swap_production,
-				solar0: this.config.label_swap_production0,
-				grid: this.config.label_swap_grid,
-				house: this.config.label_swap_consumption
-			}
-
-			// In order to get state updates, you need to subscribe to them. The following line adds a subscription for our variable we have created above.
-			this.subscribeForeignStates(subscribeArray);
-			// You can also add a subscription for multiple states. The following line watches all states starting with "lights."
-			// this.subscribeStates("lights.*");
-			// Or, if you really must, you can also watch all states. Don't do this if you don't need to. Otherwise this will cause a lot of unnecessary load on the system:
-			// this.subscribeStates("*");
-			this.log.info("Adapter started and listening to " + subscribeArray.length + " States");
-			this.log.debug("Initial Values: " + JSON.stringify(valuesObj));
-
-			// Build the Configuration JSON
-			this.buildConfigJSON();
-
-			// Build the Data JSON
-			this.buildDataJSON();
-		} else {
-			this.log.warn("No production datapoint set");
+		// Initialize your adapter here
+		unit = this.config.unit;
+		production = this.config.production;
+		production0 = this.config.production0;
+		consumption = this.config.consumption;
+		consumption_reverse = this.config.consumption_reverse ? true : false;
+		grid_feed = this.config.grid_feed;
+		grid_consuming = this.config.grid_consuming;
+		grid_different = this.config.grid_different;
+		grid_reverse = this.config.grid_reverse ? true : false;
+		grid_all_positive = this.config.grid_all_positive ? true : false;
+		battery_percent = this.config.battery_percent;
+		battery_charge = this.config.battery_charge;
+		battery_discharge = this.config.battery_discharge;
+		battery_different = this.config.battery_different;
+		battery_reverse = this.config.battery_reverse ? true : false;
+		calculate_consumption = this.config.calculate_consumption ? true : false;
+		automatic_animation = this.config.automatic_animation ? true : false;
+		custom0 = this.config.custom0;
+		custom1 = this.config.custom1;
+		custom2 = this.config.custom2;
+		custom3 = this.config.custom3;
+		custom4 = this.config.custom4;
+		custom5 = this.config.custom5;
+		custom6 = this.config.custom6;
+		custom7 = this.config.custom7;
+		custom8 = this.config.custom8;
+		custom9 = this.config.custom9;
+		custom10 = this.config.custom10;
+		house_netto = {
+			custom0: this.config.house_netto_custom0,
+			custom1: this.config.house_netto_custom1,
+			custom2: this.config.house_netto_custom2,
+			custom3: this.config.house_netto_custom3,
+			custom4: this.config.house_netto_custom4,
+			custom5: this.config.house_netto_custom5,
+			custom6: this.config.house_netto_custom6,
+			custom7: this.config.house_netto_custom7,
+			custom8: this.config.house_netto_custom8,
+			custom9: this.config.house_netto_custom9,
+			custom10: this.config.house_netto_custom10,
 		}
+		fraction = this.config.fraction;
+		fraction_battery = this.config.fraction_battery;
+		threshold = this.config.threshold ? this.config.threshold : 0;
+		battery_info = this.config.battery_capacity_info ? true : false;
+		battery_capacity = this.config.battery_capacity ? this.config.battery_capacity : 0;
+		custom0_percent = this.config.car_custom_percent;
+		car_custom_plugged = this.config.car_custom_plugged;
+		custom10_percent = this.config.car_custom10_percent;
+		car_custom10_plugged = this.config.car_custom10_plugged;
+		custom_type = this.config.custom_type;
+		custom10_type = this.config.custom10_type;
+		recalculate = this.config.recalculate ? true : false;
+		swap_consumption = this.config.swap_consumption;
+		swap_grid = this.config.swap_grid;
+		swap_production = this.config.swap_production;
+		swap_production0 = this.config.swap_production0;
+
+		this.log.info("Starting Energiefluss Adapter");
+
+		// Put all possible variables into an Object and after that, filter empty ones
+		configObj = {
+			production: production,
+			production0: production0,
+			consumption: consumption,
+			grid_feed: grid_feed,
+			grid_consuming: grid_consuming,
+			battery_charge: battery_charge,
+			battery_discharge: battery_discharge,
+			battery_percent: battery_percent,
+			custom0: custom0,
+			custom1: custom1,
+			custom2: custom2,
+			custom3: custom3,
+			custom4: custom4,
+			custom5: custom5,
+			custom6: custom6,
+			custom7: custom7,
+			custom8: custom8,
+			custom9: custom9,
+			custom10: custom10,
+			custom0_percent: custom0_percent,
+			car_custom_plugged: car_custom_plugged,
+			custom10_percent: custom10_percent,
+			car_custom10_plugged: car_custom10_plugged,
+			swap_consumption: swap_consumption,
+			swap_production: swap_production,
+			swap_production0: swap_production0,
+			swap_grid: swap_grid
+		};
+		// Delete empty ones
+		configObj = Object.entries(configObj).reduce((a, [k, v]) => (v ? (a[k] = v, a) : a), {})
+		this.log.debug("Added States for subscribing: " + JSON.stringify(configObj));
+
+		// Load all Data once before subscribing
+		valuesObj = await this.getInitialValues(configObj);
+
+		// Build array for subscribing to states
+		subscribeArray = Object.values(configObj);
+
+		this.log.debug("Requesting the following states: " + subscribeArray.toString());
+
+		/*
+		For every state in the system there has to be also an object of type state
+		Here a simple template for a boolean variable named "testVariable"
+		Because every adapter instance uses its own unique namespace variable names can't collide with other adapters variables
+		*/
+		await this.setObjectNotExistsAsync('configuration', {
+			type: 'state',
+			common: {
+				name: 'Parameters for HTML Output',
+				type: 'json',
+				role: 'state',
+				read: true,
+				write: false,
+			},
+			native: {},
+		});
+
+		await this.setObjectNotExistsAsync('data', {
+			type: 'state',
+			common: {
+				name: 'Data for HTML Output',
+				type: 'json',
+				role: 'state',
+				read: true,
+				write: false,
+			},
+			native: {},
+		});
+
+		await this.setObjectNotExistsAsync('battery_remaining', {
+			type: 'state',
+			common: {
+				name: 'Remaining Time of the battery',
+				type: 'string',
+				role: 'text',
+				read: true,
+				write: false,
+			},
+			native: {},
+		});
+
+		// Delete old State HTML
+		await this.deleteStateAsync('HTML');
+
+		/* Build Parameter */
+		// Colors of the Elements
+		parameterObj.elements.color = {
+			house: this.config.color_house,
+			grid: this.config.color_grid,
+			solar: this.config.color_production,
+			solar0: this.config.color_production0,
+			battery: this.config.color_battery,
+			custom0: this.config.color_custom0,
+			custom1: this.config.color_custom1,
+			custom2: this.config.color_custom2,
+			custom3: this.config.color_custom3,
+			custom4: this.config.color_custom4,
+			custom5: this.config.color_custom5,
+			custom6: this.config.color_custom6,
+			custom7: this.config.color_custom7,
+			custom8: this.config.color_custom8,
+			custom9: this.config.color_custom9,
+			custom10: this.config.color_custom10
+		}
+
+		// Fills of the Elements
+		parameterObj.elements.fill = {
+			house: this.config.fill_color_house,
+			grid: this.config.fill_color_grid,
+			solar: this.config.fill_color_production,
+			solar0: this.config.fill_color_production0,
+			battery: this.config.fill_color_battery,
+			custom0: this.config.fill_color_custom0,
+			custom1: this.config.fill_color_custom1,
+			custom2: this.config.fill_color_custom2,
+			custom3: this.config.fill_color_custom3,
+			custom4: this.config.fill_color_custom4,
+			custom5: this.config.fill_color_custom5,
+			custom6: this.config.fill_color_custom6,
+			custom7: this.config.fill_color_custom7,
+			custom8: this.config.fill_color_custom8,
+			custom9: this.config.fill_color_custom9,
+			custom10: this.config.fill_color_custom10
+		}
+
+		// Colors of the lines
+		parameterObj.lines.color = {
+			solar_to_battery: this.config.color_solar_to_battery,
+			solar_to_grid: this.config.color_solar_to_grid,
+			solar_to_house: this.config.color_solar_to_house,
+			solar0_to_solar: this.config.color_solar0_to_solar,
+			grid_to_house: this.config.color_grid_to_house,
+			grid_to_battery: this.config.color_grid_to_battery,
+			battery_to_house: this.config.color_battery_to_house,
+			default: this.config.color_lines,
+			house_to_custom0: this.config.color_house_to_custom0,
+			house_to_custom1: this.config.color_house_to_custom1,
+			house_to_custom2: this.config.color_house_to_custom2,
+			house_to_custom3: this.config.color_house_to_custom3,
+			house_to_custom4: this.config.color_house_to_custom4,
+			house_to_custom5: this.config.color_house_to_custom5,
+			house_to_custom6: this.config.color_house_to_custom6,
+			house_to_custom7: this.config.color_house_to_custom7,
+			house_to_custom8: this.config.color_house_to_custom8,
+			house_to_custom9: this.config.color_house_to_custom9,
+			house_to_custom10: this.config.color_house_to_custom10,
+		}
+
+		// Animation Colors of the lines
+		parameterObj.lines.animation_colors = {
+			solar_to_battery: this.config.animation_color_solar_to_battery,
+			solar_to_grid: this.config.animation_color_solar_to_grid,
+			solar_to_house: this.config.animation_color_solar_to_house,
+			solar0_to_solar: this.config.animation_color_solar0_to_solar,
+			grid_to_house: this.config.animation_color_grid_to_house,
+			grid_to_battery: this.config.animation_color_grid_to_battery,
+			battery_to_house: this.config.animation_color_battery_to_house,
+			default: this.config.color_animation,
+			house_to_custom0: this.config.animation_color_house_to_custom0,
+			house_to_custom1: this.config.animation_color_house_to_custom1,
+			house_to_custom2: this.config.animation_color_house_to_custom2,
+			house_to_custom3: this.config.animation_color_house_to_custom3,
+			house_to_custom4: this.config.animation_color_house_to_custom4,
+			house_to_custom5: this.config.animation_color_house_to_custom5,
+			house_to_custom6: this.config.animation_color_house_to_custom6,
+			house_to_custom7: this.config.animation_color_house_to_custom7,
+			house_to_custom8: this.config.animation_color_house_to_custom8,
+			house_to_custom9: this.config.animation_color_house_to_custom9,
+			house_to_custom10: this.config.animation_color_house_to_custom10
+		}
+
+		// Style of the Lines
+		parameterObj.lines.style = {
+			line_size: this.config.line_size,
+			animation_width: this.config.animation_width,
+			animation: this.config.animation,
+			animation_duration: this.config.animation_duration,
+			animation_linecap: this.config.animation_linecap,
+			animation_type: this.config.animation_type
+		}
+
+		// Fonts
+		parameterObj.fonts = {
+			font_src: this.config.font_src,
+			font: this.config.font,
+			font_size_label: this.config.font_size_label,
+			font_size_value: this.config.font_size_value,
+			font_size_percent: this.config.font_size_percent,
+			font_size_unit: this.config.font_size_unit,
+			font_size_unit_percent: this.config.font_size_unit_percent,
+			font_size_remaining: this.config.font_size_remaining
+		}
+
+		// Labels
+		parameterObj.texts.labels = {
+			house: this.config.label_house,
+			solar: this.config.label_production,
+			solar0: this.config.label_production0,
+			grid: this.config.label_grid,
+			battery: this.config.label_battery,
+			battery_remaining: this.config.label_battery_remaining,
+			custom0: this.config.label_custom0,
+			custom1: this.config.label_custom1,
+			custom2: this.config.label_custom2,
+			custom3: this.config.label_custom3,
+			custom4: this.config.label_custom4,
+			custom5: this.config.label_custom5,
+			custom6: this.config.label_custom6,
+			custom7: this.config.label_custom7,
+			custom8: this.config.label_custom8,
+			custom9: this.config.label_custom9,
+			custom10: this.config.label_custom10,
+		}
+
+		// Label Color
+		parameterObj.texts.color = {
+			default: this.config.color_label,
+			// Label Battery Remaining Time Color
+			battery_remaining: this.config.color_battery_remain
+		}
+		parameterObj.texts.style = {
+			shadow: this.config.text_shadow,
+			shadow_color: this.config.text_shadow_color,
+		}
+
+		// Icon Color
+		parameterObj.icons.color.default = this.config.color_icon;
+		parameterObj.icons.style = {
+			shadow: this.config.icons_shadow,
+			shadow_color: this.config.icons_shadow_color,
+		}
+
+		// Custom's
+		parameterObj.custom_symbol = {
+			icon_custom0: this.config.custom_icon0,
+			icon_custom1: this.config.custom_icon1,
+			icon_custom2: this.config.custom_icon2,
+			icon_custom3: this.config.custom_icon3,
+			icon_custom4: this.config.custom_icon4,
+			icon_custom5: this.config.custom_icon5,
+			icon_custom6: this.config.custom_icon6,
+			icon_custom7: this.config.custom_icon7,
+			icon_custom8: this.config.custom_icon8,
+			icon_custom9: this.config.custom_icon9,
+			icon_custom10: this.config.custom_icon10
+		}
+
+		// General
+		parameterObj.general = {
+			no_battery: false,
+			unit: unit,
+			battery_animation: this.config.battery_animation,
+			fill_elements: this.config.fill_elements,
+			slim_design: this.config.slim_design,
+			type: this.config.element_type,
+			custom_type: this.config.custom_type,
+			offset_icon: this.config.offset_icon || 0,
+			offset_text: this.config.offset_text || 0,
+			offset_value: this.config.offset_value || 0,
+			offset_percent: this.config.offset_percent || 0,
+			offset_remaining: this.config.offset_remaining || 0,
+			opacity_icon: this.config.opacity_icon || 70,
+			opacity_text: this.config.opacity_text || 70,
+			opacity_value: this.config.opacity_value || 100,
+			opacity_percent: this.config.opacity_percent || 100,
+			opacity_remaining: this.config.opacity_remaining || 70,
+			opacity_line: this.config.opacity_line || 70,
+			element_distance: this.config.element_distance || 15,
+			element_animation: this.config.element_animation,
+			element_animation_time: this.config.element_animation_time || 5000,
+			line_visible: this.config.line_visible,
+			automatic_animation: automatic_animation,
+			disable_icons: this.config.disable_icons,
+			debounce_percent: this.config.debounce_percent
+		}
+
+		// Element - Style
+		parameterObj.elements.style = {
+			size: this.config.element_size || 2,
+			circle_radius: this.config.circle_radius || 50,
+			shadow: this.config.element_shadow,
+			shadow_color: this.config.element_shadow_color,
+			rect_height: this.config.rect_height,
+			rect_width: this.config.rect_width,
+			rect_corner: this.config.rect_corner
+		}
+
+		// Percent Shadow
+		parameterObj.percent.style = {
+			shadow: this.config.percent_shadow,
+			shadow_color: this.config.percent_shadow_color,
+		}
+
+		// Values Shadow
+		parameterObj.values.style = {
+			shadow: this.config.values_shadow,
+			shadow_color: this.config.values_shadow_color,
+		}
+
+		// Swap Texts
+		parameterObj.swap_texts.labels = {
+			solar: this.config.label_swap_production,
+			solar0: this.config.label_swap_production0,
+			grid: this.config.label_swap_grid,
+			house: this.config.label_swap_consumption
+		}
+
+		// In order to get state updates, you need to subscribe to them. The following line adds a subscription for our variable we have created above.
+		this.subscribeForeignStates(subscribeArray);
+		// You can also add a subscription for multiple states. The following line watches all states starting with "lights."
+		// this.subscribeStates("lights.*");
+		// Or, if you really must, you can also watch all states. Don't do this if you don't need to. Otherwise this will cause a lot of unnecessary load on the system:
+		// this.subscribeStates("*");
+		this.log.info("Adapter started and listening to " + subscribeArray.length + " States");
+		this.log.debug("Initial Values: " + JSON.stringify(valuesObj));
+
+		// Build the Configuration JSON
+		this.buildConfigJSON();
+
+		// Build the Data JSON
+		this.buildDataJSON();
 	}
 
 	/**
@@ -823,6 +820,9 @@ class Energiefluss extends utils.Adapter {
 				}
 				if (typeof (stateValue.val) === 'boolean') {
 					tmpObj[key] = stateValue.val ? true : false;
+				}
+				if (typeof (stateValue.val) === 'string') {
+					tmpObj[key] = Number(stateValue.val);
 				}
 			} else {
 				this.log.warn("The adapter could not find the state " + value + "! Please review your configuration of the adapter!");

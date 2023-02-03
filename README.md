@@ -98,7 +98,7 @@ Display is possible via the instance link. This can then also be inserted into a
 - Dicke der Elemente und Linien aenderbar
 - Fuelle die Elemente mit verschiedenen Farben (Elemente mit Prozentwerten koennen auch prozentual gefuellt werden; wird keine Farbe gewaehlt, ist das Element transparent)
 - Schatten der Elemente ein-/ausblenden
-- Schatten für Werte, Beschreibungen und Icons koennen definiert werden
+- Schatten fuer Werte, Beschreibungen und Icons koennen definiert werden
 - Radius des Kreises anpassbar
 - Hoehe, Breite und Eckenradius des Rechtecks anpassbar
 - Definieren Sie Ihre eigene Farbe und Deckkraft fuer die Schatten (rgba-unterstuetzt)
@@ -148,6 +148,13 @@ Bitte ins Wiki schauen
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+- updated automatic animation to better handling speed and values
+- removed the "MUST" of having an production datapoint set. Adapter can now be used as normal EnergyFlow
+- enabled Strings as Datapoint Values (was implemented before, but not activated)
+- Possibility added, to remove the icons inside the elements
+- 
+
 ### 3.3.1 (2023-01-27)
 - fixed versioning
 
