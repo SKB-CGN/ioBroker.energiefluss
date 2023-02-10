@@ -152,7 +152,7 @@ Bitte ins Wiki schauen
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 3.5.0 (2023-02-10)
 - added third production point. If used, the Slim-Design is deactivated (#101)
 - All values can be in W or kW. The adapter converts the values appropriately (#102)
 - 2 custom elements can now work as a balcony power plant
