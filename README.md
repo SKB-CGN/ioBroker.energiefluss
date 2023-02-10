@@ -68,6 +68,7 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 **Technical:**
 - define Datapoints for each element (add a second datapoint to production, additional production, consumption and grid as display for e.g. daily summary) 
 - 3 solar production elements possible (if 3 are configured, Slim-Design will be deactivated)
+- also for island systems (line from production to grid can be deactivated)
 - show battery percent inside car or battery element
 - use different states for feeding into or consuming from the grid
 - reverse settings if your values are negative (for consumption, feeding the grid, charging-/discharging the battery)
@@ -118,13 +119,14 @@ Display is possible via the instance link. This can then also be inserted into a
 **Technisch:**
 - Datenpunkte fuer jedes Element definieren (fuege einen zweiten Datenpunkt zu den Elementen Produktion, Zusatzproduktion, Verbrauch und Netz hinzu, um diesen z.B. als Tageszusammenfassung zu nutzen)
 - 3 Produktions-Elemente darstellbar (wenn 3 aktiv sind, wird das Slim-Design deaktiviert)
+- auch fuer Insel-Anlagen (Linie von der Produktion zum Netz kann deaktiviert werden)
 - Batterieprozentsatz innerhalb des Auto- oder Batterie-Elements anzeigen
 - unterschiedliche Zustaende fuer Einspeisung oder Bezug aus dem Netz verwenden
 - Einstellungen umkehren, wenn Ihre Werte negativ sind (fuer Verbrauch, Netzeinspeisung, Laden-/Entladen der Batterie)
 - Verwenden Sie positive oder negative Werte fuer den Verbrauch
-- Berechnen Sie Ihren Verbrauch ueber Erzeugung und Netzeinspeisung, wenn Sie keinen Stromzuehler haben
+- Berechnen Sie Ihren Verbrauch ueber Erzeugung und Netzeinspeisung, wenn Sie keinen Stromzaehler haben
 - Verwenden Sie verschiedene Zustaende fuer Ihre Batterie
-- Fuegen Sie 10 eigene Elemente fuer ein Verbrauchsgeraet mit unterschiedlichem Text, Werten und Symbolen hinzu (2 Elemente koennen als weiterer Auto-Ladepunkt konfiguriert werden, 2 Elemente koennen als Balkonkraftwerk genutzt werden)
+- Fuegen Sie 10 eigene Elemente als Verbraucher mit unterschiedlichem Text, Werten und Symbolen hinzu (2 Elemente koennen als weiterer Auto-Ladepunkt konfiguriert werden, 2 Elemente koennen als Balkonkraftwerk genutzt werden)
 - Alle Werte von W in kW umrechnen
 - Alle Werte koennen in W oder kW vorliegen. Der Adapter rechnet die Werte passend um
 - Waehlen Sie, wie viele Dezimalstellen Sie anzeigen moechten (0, 1, 2) - fuer Werte und Akkuladung
@@ -150,6 +152,12 @@ Bitte ins Wiki schauen
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+- added third production point. If used, the Slim-Design is deactivated (#101)
+- All values can be in W or kW. The adapter converts the values appropriately (#102)
+- 2 custom elements can now work as a balcony power plant
+- production can be configured as "No feed-in" (line will not be drawn)
+
 ### 3.4.0 (2023-02-03)
 - updated automatic animation to better handling speed and values
 - removed the "MUST" of having an production datapoint set. Adapter can now be used as normal EnergyFlow
