@@ -10,29 +10,29 @@ let element_timer;
 
 // Default Icon for Custom if no icon defined in settings
 let default_icon = "M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,6A4,4 0 0,0 8,10H10A2,2 0 0,1 12,8A2,2 0 0,1 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10A4,4 0 0,0 12,6Z";
+let default_solar = "M4,2H20A2,2 0 0,1 22,4V14A2,2 0 0,1 20,16H15V20H18V22H13V16H11V22H6V20H9V16H4A2,2 0 0,1 2,14V4A2,2 0 0,1 4,2M4,4V8H11V4H4M4,14H11V10H4V14M20,14V10H13V14H20M20,4H13V8H20V4Z";
 
 let elements = {
     cx: {
-        "test": 172,
-        "house": 487,
-        "grid": 277,
-        "solar": 277,
+        "house": 492,
+        "grid": 282,
+        "solar": 282,
         "battery": 72,
-        "custom0": 487,
-        "custom1": 697,
-        "custom2": 802,
-        "custom3": 697,
-        "custom4": 382,
-        "custom5": 592,
-        "custom6": 802,
-        "custom7": 802,
-        "custom8": 592,
-        "custom9": 382,
-        "custom10": 487,
-        "solar0": 72
+        "custom0": 492,
+        "custom1": 702,
+        "custom2": 807,
+        "custom3": 702,
+        "custom4": 387,
+        "custom5": 597,
+        "custom6": 807,
+        "custom7": 807,
+        "custom8": 597,
+        "custom9": 387,
+        "custom10": 492,
+        "solar0": 72,
+        "solar1": 177
     },
     cy: {
-        "test": 52,
         "house": 262,
         "grid": 472,
         "solar": 52,
@@ -48,7 +48,8 @@ let elements = {
         "custom8": 472,
         "custom9": 472,
         "custom10": 472,
-        "solar0": 52
+        "solar0": 52,
+        "solar1": 52
     },
     value: {
         "house": "consumption_value",
@@ -66,7 +67,8 @@ let elements = {
         "custom8": "custom8_value",
         "custom9": "custom9_value",
         "custom10": "custom10_value",
-        "solar0": "production0_value"
+        "solar0": "production0_value",
+        "solar1": "production1_value"
     },
     text: {
         "house": "consumption_text",
@@ -84,7 +86,8 @@ let elements = {
         "custom8": "custom8_text",
         "custom9": "custom9_text",
         "custom10": "custom10_text",
-        "solar0": "production0_text"
+        "solar0": "production0_text",
+        "solar1": "production1_text"
 
     },
     icon_id: {
@@ -103,12 +106,14 @@ let elements = {
         "custom8": "icon_custom8",
         "custom9": "icon_custom9",
         "custom10": "icon_custom10",
-        "solar0": "icon_production0"
+        "solar0": "icon_production0",
+        "solar1": "icon_production1"
     },
     icon_d: {
         "house": "M0,21V10L7.5,5L15,10V21H10V14H5V21H0M24,2V21H17V8.93L16,8.27V6H14V6.93L10,4.27V2H24M21,14H19V16H21V14M21,10H19V12H21V10M21,6H19V8H21V6Z",
-        "solar": "M4,2H20A2,2 0 0,1 22,4V14A2,2 0 0,1 20,16H15V20H18V22H13V16H11V22H6V20H9V16H4A2,2 0 0,1 2,14V4A2,2 0 0,1 4,2M4,4V8H11V4H4M4,14H11V10H4V14M20,14V10H13V14H20M20,4H13V8H20V4Z",
-        "solar0": "M4,2H20A2,2 0 0,1 22,4V14A2,2 0 0,1 20,16H15V20H18V22H13V16H11V22H6V20H9V16H4A2,2 0 0,1 2,14V4A2,2 0 0,1 4,2M4,4V8H11V4H4M4,14H11V10H4V14M20,14V10H13V14H20M20,4H13V8H20V4Z",
+        "solar": default_solar,
+        "solar0": default_solar,
+        "solar1": default_solar,
         "grid": "M8.28,5.45L6.5,4.55L7.76,2H16.23L17.5,4.55L15.72,5.44L15,4H9L8.28,5.45M18.62,8H14.09L13.3,5H10.7L9.91,8H5.38L4.1,10.55L5.89,11.44L6.62,10H17.38L18.1,11.45L19.89,10.56L18.62,8M17.77,22H15.7L15.46,21.1L12,15.9L8.53,21.1L8.3,22H6.23L9.12,11H11.19L10.83,12.35L12,14.1L13.16,12.35L12.81,11H14.88L17.77,22M11.4,15L10.5,13.65L9.32,18.13L11.4,15M14.68,18.12L13.5,13.64L12.6,15L14.68,18.12Z",
         "battery": "none",
         "custom0": default_icon,
@@ -271,10 +276,15 @@ function absolute(x) {
 function drawPath(path, startX, startY, endX, endY, reverse, id, round) {
     // get the path's stroke width (if one wanted to be  really precize, one could use half the stroke size)
 
-    let deltaX = (endX - startX) * 0.3;
-    let deltaY = (endY - startY) * 0.3;
+    let deltaX = 0;
+    let deltaY = 0;
+    let delta = 0;
+
+    deltaX = (endX - startX) * 0.3;
+    deltaY = (endY - startY) * 0.3;
+
     // for further calculations which ever is the shortest distance
-    let delta = deltaY < absolute(deltaX) ? deltaY : absolute(deltaX);
+    delta = deltaY < absolute(deltaX) ? deltaY : absolute(deltaX);
 
     // set sweep-flag (counter/clock-wise)
     // if start element is closer to the left edge,
@@ -424,6 +434,32 @@ function connectElements(path, startElem, endElem, id) {
         }
     }
 
+    if (id == "custom4_to_house") {
+        reverse = true;
+        endX -= 20;
+        endY -= 1;
+
+        // If circle is configured
+        if (config.general.type == "circle") {
+            startY -= 2;
+            endY -= 1;
+            round = true;
+        }
+    }
+
+    if (id == "custom9_to_house") {
+        reverse = false;
+        startX -= 20;
+        startY -= 1;
+
+        // If circle is configured
+        if (config.general.type == "circle") {
+            startY -= 2;
+            endY -= 1;
+            round = true;
+        }
+    }
+
     if (id == "grid_to_house") {
         startX -= 20;
         startY -= 1;
@@ -444,8 +480,25 @@ function connectElements(path, startElem, endElem, id) {
 
         // If circle is configured
         if (config.general.type == "circle") {
-            round = true;
             startY += 1;
+            round = true;
+        }
+    }
+
+    if (id == "house_to_custom1" || id == "house_to_custom6") {
+        endX += 20;
+        // If circle is configured
+        if (config.general.type == "circle") {
+            endY += 1;
+            round = true;
+        }
+    }
+    if (id == "house_to_custom3" || id == "house_to_custom7") {
+        startX += 20;
+        // If circle is configured
+        if (config.general.type == "circle") {
+            startY += 1;
+            round = true;
         }
     }
 
@@ -543,7 +596,7 @@ function initConfig() {
                 }
 
                 // Y-Axis
-                if (key == "solar" || key == "custom0" || key == "custom4" || key == "custom5" || key == "solar0") {
+                if (key == "solar" || key == "custom0" || key == "custom4" || key == "custom5" || key == "solar0" || key == "solar1") {
                     mp_elm_y = 1;
                 }
                 if (key == "custom1") {
@@ -571,36 +624,40 @@ function initConfig() {
                     mp_elm_x = 0.5;
                     mp_dist_x = 0.5;
                 }
+                if (key == "solar1") {
+                    mp_elm_x = 2.5;
+                    mp_dist_x = 1.5;
+                }
                 if (key == "test") {
                     mp_dist_x = 0;
                 }
                 if (key == "solar" || key == "grid") {
-                    mp_elm_x = 3;
-                    mp_dist_x = 2;
+                    mp_elm_x = 3.5;
+                    mp_dist_x = 2.5;
                 }
                 if (key == "custom4" || key == "custom9") {
-                    mp_elm_x = 4;
-                    mp_dist_x = 3;
+                    mp_elm_x = 4.5;
+                    mp_dist_x = 3.5;
                 }
 
                 if (key == "custom10" || key == "custom0" || key == "house") {
-                    mp_elm_x = 5;
-                    mp_dist_x = 4;
+                    mp_elm_x = 5.5;
+                    mp_dist_x = 4.5;
                 }
 
                 if (key == "custom5" || key == "custom8") {
-                    mp_elm_x = 6;
-                    mp_dist_x = 5;
+                    mp_elm_x = 6.5;
+                    mp_dist_x = 5.5;
                 }
 
                 if (key == "custom1" || key == "custom3") {
-                    mp_elm_x = 7;
-                    mp_dist_x = 6;
+                    mp_elm_x = 7.5;
+                    mp_dist_x = 6.5;
                 }
 
                 if (key == "custom2" || key == "custom6" || key == "custom7") {
-                    mp_elm_x = 8;
-                    mp_dist_x = 7;
+                    mp_elm_x = 8.5;
+                    mp_dist_x = 7.5;
                 }
 
                 // Check, if we are displaying the slim-design
@@ -845,6 +902,11 @@ function initConfig() {
                 let elm = key.split("_");
 
                 connectElements(key, elm[0], elm[2], key);
+
+                //
+                if (key == "custom4_to_house" || key == "custom9_to_house") {
+                    $("#anim_" + key).addClass("animation_reverse");
+                }
             }
         });
 

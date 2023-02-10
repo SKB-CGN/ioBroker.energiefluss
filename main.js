@@ -15,6 +15,7 @@ const utils = require("@iobroker/adapter-core");
 let unit;
 let production;
 let production0;
+let production1;
 let consumption;
 let grid_feed;
 let grid_consuming;
@@ -30,7 +31,7 @@ let calculate_consumption;
 let consumption_reverse;
 let recalculate;
 let custom0, custom1, custom2, custom3, custom4, custom5, custom6, custom7, custom8, custom9, custom10;
-let swap_consumption, swap_production, swap_production0, swap_grid;
+let swap_consumption, swap_production, swap_production0, swap_production1, swap_grid;
 let house_netto = {}
 let fraction;
 let fraction_battery;
@@ -41,11 +42,12 @@ let custom0_percent;
 let custom10_percent;
 let car_custom_plugged;
 let car_custom10_plugged;
-let custom_type;
-let custom10_type;
+let custom_type, custom4_type, custom9_type, custom10_type;
 let automatic_animation = false;
+let no_feed_in;
 
 /* Data Objects */
+let kwCalc = {};
 let valuesObj = {};
 let dataObj = {
 	values: {},
@@ -126,6 +128,7 @@ class Energiefluss extends utils.Adapter {
 		unit = this.config.unit;
 		production = this.config.production;
 		production0 = this.config.production0;
+		production1 = this.config.production1;
 		consumption = this.config.consumption;
 		consumption_reverse = this.config.consumption_reverse ? true : false;
 		grid_feed = this.config.grid_feed;
@@ -140,6 +143,7 @@ class Energiefluss extends utils.Adapter {
 		battery_reverse = this.config.battery_reverse ? true : false;
 		calculate_consumption = this.config.calculate_consumption ? true : false;
 		automatic_animation = this.config.automatic_animation ? true : false;
+		no_feed_in = this.config.no_feed_in ? true : false;
 		custom0 = this.config.custom0;
 		custom1 = this.config.custom1;
 		custom2 = this.config.custom2;
@@ -175,18 +179,45 @@ class Energiefluss extends utils.Adapter {
 		car_custom10_plugged = this.config.car_custom10_plugged;
 		custom_type = this.config.custom_type;
 		custom10_type = this.config.custom10_type;
+		custom4_type = this.config.custom4_type;
+		custom9_type = this.config.custom9_type;
 		recalculate = this.config.recalculate ? true : false;
 		swap_consumption = this.config.swap_consumption;
 		swap_grid = this.config.swap_grid;
 		swap_production = this.config.swap_production;
 		swap_production0 = this.config.swap_production0;
+		swap_production1 = this.config.swap_production1;
 
 		this.log.info("Starting Energiefluss Adapter");
+
+		// Put all kW Sources into an Object
+		kwCalc = {
+			production: this.config.kw_production ? true : false,
+			production0: this.config.kw_production0 ? true : false,
+			production1: this.config.kw_production1 ? true : false,
+			consumption: this.config.kw_consumption ? true : false,
+			grid_feed: this.config.kw_grid_feed ? true : false,
+			grid_consuming: this.config.kw_grid_consuming ? true : false,
+			battery_charge: this.config.kw_battery_charge ? true : false,
+			battery_discharge: this.config.kw_battery_discharge ? true : false,
+			custom0: this.config.kw_custom0 ? true : false,
+			custom1: this.config.kw_custom1 ? true : false,
+			custom2: this.config.kw_custom2 ? true : false,
+			custom3: this.config.kw_custom3 ? true : false,
+			custom4: this.config.kw_custom4 ? true : false,
+			custom5: this.config.kw_custom5 ? true : false,
+			custom6: this.config.kw_custom6 ? true : false,
+			custom7: this.config.kw_custom7 ? true : false,
+			custom8: this.config.kw_custom8 ? true : false,
+			custom9: this.config.kw_custom9 ? true : false,
+			custom10: this.config.kw_custom10 ? true : false
+		}
 
 		// Put all possible variables into an Object and after that, filter empty ones
 		configObj = {
 			production: production,
 			production0: production0,
+			production1: production1,
 			consumption: consumption,
 			grid_feed: grid_feed,
 			grid_consuming: grid_consuming,
@@ -211,6 +242,7 @@ class Energiefluss extends utils.Adapter {
 			swap_consumption: swap_consumption,
 			swap_production: swap_production,
 			swap_production0: swap_production0,
+			swap_production1: swap_production1,
 			swap_grid: swap_grid
 		};
 		// Delete empty ones
@@ -276,6 +308,7 @@ class Energiefluss extends utils.Adapter {
 			grid: this.config.color_grid,
 			solar: this.config.color_production,
 			solar0: this.config.color_production0,
+			solar1: this.config.color_production1,
 			battery: this.config.color_battery,
 			custom0: this.config.color_custom0,
 			custom1: this.config.color_custom1,
@@ -296,6 +329,7 @@ class Energiefluss extends utils.Adapter {
 			grid: this.config.fill_color_grid,
 			solar: this.config.fill_color_production,
 			solar0: this.config.fill_color_production0,
+			solar1: this.config.fill_color_production1,
 			battery: this.config.fill_color_battery,
 			custom0: this.config.fill_color_custom0,
 			custom1: this.config.fill_color_custom1,
@@ -316,6 +350,7 @@ class Energiefluss extends utils.Adapter {
 			solar_to_grid: this.config.color_solar_to_grid,
 			solar_to_house: this.config.color_solar_to_house,
 			solar0_to_solar: this.config.color_solar0_to_solar,
+			solar1_to_solar: this.config.color_solar1_to_solar,
 			grid_to_house: this.config.color_grid_to_house,
 			grid_to_battery: this.config.color_grid_to_battery,
 			battery_to_house: this.config.color_battery_to_house,
@@ -339,6 +374,7 @@ class Energiefluss extends utils.Adapter {
 			solar_to_grid: this.config.animation_color_solar_to_grid,
 			solar_to_house: this.config.animation_color_solar_to_house,
 			solar0_to_solar: this.config.animation_color_solar0_to_solar,
+			solar1_to_solar: this.config.animation_color_solar1_to_solar,
 			grid_to_house: this.config.animation_color_grid_to_house,
 			grid_to_battery: this.config.animation_color_grid_to_battery,
 			battery_to_house: this.config.animation_color_battery_to_house,
@@ -383,6 +419,7 @@ class Energiefluss extends utils.Adapter {
 			house: this.config.label_house,
 			solar: this.config.label_production,
 			solar0: this.config.label_production0,
+			solar1: this.config.label_production1,
 			grid: this.config.label_grid,
 			battery: this.config.label_battery,
 			battery_remaining: this.config.label_battery_remaining,
@@ -488,6 +525,7 @@ class Energiefluss extends utils.Adapter {
 		parameterObj.swap_texts.labels = {
 			solar: this.config.label_swap_production,
 			solar0: this.config.label_swap_production0,
+			solar1: this.config.label_swap_production1,
 			grid: this.config.label_swap_grid,
 			house: this.config.label_swap_consumption
 		}
@@ -550,65 +588,68 @@ class Energiefluss extends utils.Adapter {
 		// Production
 		if (state) {
 			if (id == custom0) {
-				valuesObj['custom0'] = state.val;
+				valuesObj['custom0'] = kwCalc["custom0"] === true ? this.kwValue(state.val) : state.val;
 			}
 			if (id == custom1) {
-				valuesObj['custom1'] = state.val;
+				valuesObj['custom1'] = kwCalc["custom1"] === true ? this.kwValue(state.val) : state.val;
 			}
 			if (id == custom2) {
-				valuesObj['custom2'] = state.val;
+				valuesObj['custom2'] = kwCalc["custom2"] === true ? this.kwValue(state.val) : state.val;
 			}
 			if (id == custom3) {
-				valuesObj['custom3'] = state.val;
+				valuesObj['custom3'] = kwCalc["custom3"] === true ? this.kwValue(state.val) : state.val;
 			}
 			if (id == custom4) {
-				valuesObj['custom4'] = state.val;
+				valuesObj['custom4'] = kwCalc["custom4"] === true ? this.kwValue(state.val) : state.val;
 			}
 			if (id == custom5) {
-				valuesObj['custom5'] = state.val;
+				valuesObj['custom5'] = kwCalc["custom5"] === true ? this.kwValue(state.val) : state.val;
 			}
 			if (id == custom6) {
-				valuesObj['custom6'] = state.val;
+				valuesObj['custom6'] = kwCalc["custom6"] === true ? this.kwValue(state.val) : state.val;
 			}
 			if (id == custom7) {
-				valuesObj['custom7'] = state.val;
+				valuesObj['custom7'] = kwCalc["custom7"] === true ? this.kwValue(state.val) : state.val;
 			}
 			if (id == custom8) {
-				valuesObj['custom8'] = state.val;
+				valuesObj['custom8'] = kwCalc["custom8"] === true ? this.kwValue(state.val) : state.val;
 			}
 			if (id == custom9) {
-				valuesObj['custom9'] = state.val;
+				valuesObj['custom9'] = kwCalc["custom9"] === true ? this.kwValue(state.val) : state.val;
 			}
 			if (id == custom10) {
-				valuesObj['custom10'] = state.val;
+				valuesObj['custom10'] = kwCalc["custom10"] === true ? this.kwValue(state.val) : state.val;
 			}
 			if (id == production) {
-				valuesObj['production'] = state.val;
+				valuesObj['production'] = kwCalc["production"] === true ? this.kwValue(state.val) : state.val;
 			}
 			if (id == production0) {
-				valuesObj['production0'] = state.val;
+				valuesObj['production0'] = kwCalc["production0"] === true ? this.kwValue(state.val) : state.val;
+			}
+			if (id == production1) {
+				valuesObj['production1'] = kwCalc["production1"] === true ? this.kwValue(state.val) : state.val;
 			}
 			if (id == consumption) {
-				let consumption = state.val;
+				let consumption = kwCalc["consumption"] === true ? this.kwValue(state.val) : state.val;
 				if (consumption_reverse) {
 					consumption = consumption * (-1);
 				}
 				valuesObj['consumption'] = consumption;
 			}
 			if (id == grid_feed) {
-				valuesObj['grid_feed'] = state.val;
+				valuesObj['grid_feed'] = kwCalc["grid_feed"] === true ? this.kwValue(state.val) : state.val;
 			}
 			if (id == grid_consuming) {
-				valuesObj['grid_consuming'] = state.val;
+				valuesObj['grid_consuming'] = kwCalc["grid_consuming"] === true ? this.kwValue(state.val) : state.val;
 			}
 			if (id == battery_percent) {
 				valuesObj['battery_percent'] = (Math.round(state.val * 100) / 100).toFixed(fraction_battery);
 			}
 			if (id == battery_charge) {
-				valuesObj['battery_charge'] = state.val;
+				valuesObj['battery_charge'] = kwCalc["battery_charge"] === true ? this.kwValue(state.val) : state.val;
 			}
 			if (id == battery_discharge) {
-				valuesObj['battery_discharge'] = state.val;
+				valuesObj['battery_discharge'] = kwCalc["battery_discharge"] === true ? this.kwValue(state.val) : state.val;
 			}
 			if (id == custom10_percent) {
 				valuesObj['custom10_percent'] = state.val;
@@ -631,6 +672,9 @@ class Energiefluss extends utils.Adapter {
 			if (id == swap_production0) {
 				valuesObj['swap_production0'] = state.val;
 			}
+			if (id == swap_production1) {
+				valuesObj['swap_production1'] = state.val;
+			}
 			if (id == swap_grid) {
 				valuesObj['swap_grid'] = state.val;
 			}
@@ -638,6 +682,9 @@ class Energiefluss extends utils.Adapter {
 				let prodValue = valuesObj['production'];
 				if (valuesObj['production0'] != undefined) {
 					prodValue += valuesObj['production0'];
+				}
+				if (valuesObj['production1'] != undefined) {
+					prodValue += valuesObj['production1'];
 				}
 
 				let consumptionValue = 0;
@@ -683,7 +730,12 @@ class Energiefluss extends utils.Adapter {
 	recalculateValue(value) {
 		return (Math.round((value / 1000) * 100) / 100).toFixed(fraction);
 	}
-
+	/**
+	 * @param {number} value
+	 */
+	kwValue(value) {
+		return (value * 1000);
+	}
 	/**
 	 * @param {number} value
 	 */
@@ -815,14 +867,14 @@ class Energiefluss extends utils.Adapter {
 			const value = obj[key];
 			const stateValue = await this.getForeignStateAsync(value);
 			if (stateValue) {
+				let tmpVal;
 				if (typeof (stateValue.val) === 'number') {
-					tmpObj[key] = stateValue.val;
-				}
-				if (typeof (stateValue.val) === 'boolean') {
-					tmpObj[key] = stateValue.val ? true : false;
+					tmpVal = kwCalc[key] === true ? this.kwValue(stateValue.val) : stateValue.val;
+					tmpObj[key] = recalculate ? this.recalculateValue(tmpVal) : this.floorNumber(tmpVal);
 				}
 				if (typeof (stateValue.val) === 'string') {
-					tmpObj[key] = Number(stateValue.val);
+					tmpVal = kwCalc[key] === true ? this.kwValue(Number(stateValue.val)) : Number(stateValue.val);
+					tmpObj[key] = recalculate ? this.recalculateValue(tmpVal) : this.floorNumber(tmpVal);
 				}
 			} else {
 				this.log.warn("The adapter could not find the state " + value + "! Please review your configuration of the adapter!");
@@ -841,6 +893,7 @@ class Energiefluss extends utils.Adapter {
 			// Perhaps here
 			solar: false,
 			solar0: false,
+			solar1: false,
 			grid: false,
 			battery: false,
 			custom0: false,
@@ -861,6 +914,7 @@ class Energiefluss extends utils.Adapter {
 			consumption_text: false,
 			production_text: false,
 			production0_text: false,
+			production1_text: false,
 			grid_text: false,
 			battery_text: false,
 			battery_remaining_text: false,
@@ -882,6 +936,7 @@ class Energiefluss extends utils.Adapter {
 			consumption_value: false,
 			production_value: false,
 			production0_value: false,
+			production1_value: false,
 			grid_value: false,
 			custom0_percent: false,
 			custom10_percent: false,
@@ -905,6 +960,7 @@ class Energiefluss extends utils.Adapter {
 			house: false,
 			production: false,
 			production0: false,
+			production1: false,
 			grid: false,
 			battery: false,
 			custom0: false,
@@ -939,7 +995,11 @@ class Energiefluss extends utils.Adapter {
 			solar_to_battery: false,
 			solar_to_grid: false,
 			solar_to_house: false,
-			solar0_to_solar: false
+			solar0_to_solar: false,
+			solar1_to_solar: false,
+			custom4_to_house: false,
+			custom9_to_house: false,
+			solar0_to_solar1: false
 		};
 
 		// Change parameter if no battery is present
@@ -969,6 +1029,14 @@ class Energiefluss extends utils.Adapter {
 			textObj.production0_text = true;
 			valueObj.production0_value = true;
 			iconObj.production0 = true;
+		}
+
+		// Production - Additional
+		if (valuesObj['production1'] != undefined) {
+			elementsObj.solar1 = true;
+			textObj.production1_text = true;
+			valueObj.production1_value = true;
+			iconObj.production1 = true;
 		}
 
 		// Grid
@@ -1132,12 +1200,26 @@ class Energiefluss extends utils.Adapter {
 		if (valuesObj['consumption'] != undefined && (valuesObj['grid_feed'] != undefined || valuesObj['grid_consuming'] != undefined)) {
 			linesObj.grid_to_house = true;
 		}
-		if (valuesObj['production'] != undefined && (valuesObj['grid_feed'] != undefined || valuesObj['grid_consuming'] != undefined)) {
+		if (valuesObj['production'] != undefined && (valuesObj['grid_feed'] != undefined || valuesObj['grid_consuming'] != undefined) && no_feed_in == false) {
 			linesObj.solar_to_grid = true;
 		}
 		if (valuesObj['production'] != undefined && valuesObj['production0'] != undefined) {
 			linesObj.solar0_to_solar = true;
 		}
+		if (valuesObj['production'] != undefined && valuesObj['production1'] != undefined) {
+			linesObj.solar1_to_solar = true;
+		}
+		/* If we have all solar-lines active, we need to change the order */
+		if (valuesObj['production'] != undefined && valuesObj['production0'] != undefined && valuesObj['production1'] != undefined) {
+			linesObj.solar1_to_solar = true;
+			linesObj.solar0_to_solar1 = true;
+			linesObj.solar0_to_solar = false;
+		}
+
+		if (valuesObj['production1'] != undefined) {
+			parameterObj.general.slim_design = false;
+		}
+
 		if (valuesObj['battery_charge'] != undefined && valuesObj['grid_feed'] != undefined) {
 			linesObj.grid_to_battery = true;
 		}
@@ -1160,7 +1242,11 @@ class Energiefluss extends utils.Adapter {
 			linesObj.house_to_custom3 = true;
 		}
 		if ((valuesObj['consumption'] != undefined && valuesObj['custom4'] != undefined)) {
-			linesObj.house_to_custom4 = true;
+			if (custom4_type == 'balcony') {
+				linesObj.custom4_to_house = true;
+			} else {
+				linesObj.house_to_custom4 = true;
+			}
 		}
 		if ((valuesObj['consumption'] != undefined && valuesObj['custom5'] != undefined)) {
 			linesObj.house_to_custom5 = true;
@@ -1175,7 +1261,11 @@ class Energiefluss extends utils.Adapter {
 			linesObj.house_to_custom8 = true;
 		}
 		if ((valuesObj['consumption'] != undefined && valuesObj['custom9'] != undefined)) {
-			linesObj.house_to_custom9 = true;
+			if (custom9_type == 'balcony') {
+				linesObj.custom9_to_house = true;
+			} else {
+				linesObj.house_to_custom9 = true;
+			}
 		}
 		if ((valuesObj['consumption'] != undefined && valuesObj['custom10'] != undefined)) {
 			linesObj.house_to_custom10 = true;
@@ -1209,6 +1299,9 @@ class Energiefluss extends utils.Adapter {
 		if (valuesObj['swap_production0'] != undefined) {
 			swap_values.production0_value = recalculate ? this.recalculateValue(valuesObj['swap_production0']) : this.floorNumber(valuesObj['swap_production0']);
 		}
+		if (valuesObj['swap_production1'] != undefined) {
+			swap_values.production1_value = recalculate ? this.recalculateValue(valuesObj['swap_production1']) : this.floorNumber(valuesObj['swap_production1']);
+		}
 		if (valuesObj['swap_grid'] != undefined) {
 			swap_values.grid_value = recalculate ? this.recalculateValue(valuesObj['swap_grid']) : this.floorNumber(valuesObj['swap_grid']);
 		}
@@ -1224,6 +1317,7 @@ class Energiefluss extends utils.Adapter {
 			grid_value: this.config.color_grid_text,
 			production_value: this.config.color_production_text,
 			production0_value: this.config.color_production0_text,
+			production1_value: this.config.color_production1_text,
 			battery_value: this.config.color_battery_text,
 			battery_remaining: this.config.color_battery_text,
 			battery_percent: this.config.color_battery_percent,
@@ -1246,6 +1340,7 @@ class Energiefluss extends utils.Adapter {
 			swap_grid_value: this.config.swap_color_grid_text,
 			swap_production_value: this.config.swap_color_production_text,
 			swap_production0_value: this.config.swap_color_production0_text,
+			swap_production1_value: this.config.swap_color_production1_text
 		}
 
 		// Line-Animation
@@ -1256,6 +1351,8 @@ class Energiefluss extends utils.Adapter {
 			grid_to_battery: false,
 			solar_to_battery: false,
 			solar0_to_solar: false,
+			solar1_to_solar: false,
+			solar0_to_solar1: false,
 			battery_to_house: false,
 			house_to_custom0: false,
 			house_to_custom1: false,
@@ -1268,6 +1365,8 @@ class Energiefluss extends utils.Adapter {
 			house_to_custom8: false,
 			house_to_custom9: false,
 			house_to_custom10: false,
+			custom4_to_house: false,
+			custom9_to_house: false
 		};
 
 		// Automatic Animation
@@ -1287,7 +1386,7 @@ class Energiefluss extends utils.Adapter {
 
 		// Production
 		if (valuesObj['production'] != undefined) {
-			if (valuesObj['consumption'] > threshold && (valuesObj['production'] > threshold || valuesObj['production0'] > threshold)) {
+			if (valuesObj['consumption'] > threshold && (valuesObj['production'] > threshold || valuesObj['production0'] > threshold || valuesObj['production1'] > threshold)) {
 				line_animation.solar_to_house = true;
 			}
 
@@ -1315,6 +1414,28 @@ class Energiefluss extends utils.Adapter {
 			}
 		}
 
+		// Production - Additional 1
+		if (valuesObj['production1'] != undefined) {
+			if (valuesObj['production1'] > threshold) {
+				line_animation.solar1_to_solar = true;
+			}
+
+			if (valuesObj['production1'] > threshold) {
+				color.production1_value = this.config.color_production1_text;
+				values.production1_value = recalculate ? this.recalculateValue(valuesObj['production1']) : this.floorNumber(valuesObj['production1']);
+			} else {
+				color.production1_value = this.config.color_production1_text_no_prod ? this.config.color_production1_text_no_prod : this.config.color_production1_text;
+				values.production1_value = this.floorNumber(0);
+			}
+		}
+
+		/* If we have all solar-lines active, we need to change the animation order */
+		if (valuesObj['production'] != undefined && valuesObj['production0'] != undefined && valuesObj['production1'] != undefined) {
+			line_animation.solar1_to_solar = valuesObj['production1'] > threshold ? true : false;
+			line_animation.solar0_to_solar1 = valuesObj['production0'] > threshold ? true : false;
+			line_animation.solar0_to_solar = false;
+		}
+
 		// Grid
 		if (valuesObj['grid_feed'] != undefined && grid_different === false) {
 			let gridValue = valuesObj['grid_feed'];
@@ -1324,7 +1445,7 @@ class Energiefluss extends utils.Adapter {
 				}
 				if (gridValue < (threshold * -1)) {
 					// Check, if we have production
-					if (valuesObj['production'] > 0 || valuesObj['production0'] > 0) {
+					if ((valuesObj['production'] > 0 || valuesObj['production0'] > 0 || valuesObj['production1'] > 0) && no_feed_in == false) {
 						// Display as positive
 						gridValue = gridValue * -1;
 						line_animation.solar_to_grid = true;
@@ -1335,7 +1456,7 @@ class Energiefluss extends utils.Adapter {
 			} else {
 				if (gridValue > threshold) {
 					// Check, if we have production
-					if (valuesObj['production'] > 0 || valuesObj['production0'] > 0) {
+					if ((valuesObj['production'] > 0 || valuesObj['production0'] > 0 || valuesObj['production1'] > 0) && no_feed_in == false) {
 						line_animation.solar_to_grid = true;
 					} else {
 						gridValue = 0;
@@ -1370,7 +1491,7 @@ class Energiefluss extends utils.Adapter {
 
 			if (gridFeedValue > threshold && gridConsumeValue === 0) {
 				// Check, if we have production
-				if (valuesObj['production'] > 0 || valuesObj['production0'] > 0) {
+				if ((valuesObj['production'] > 0 || valuesObj['production0'] > 0 || valuesObj['production1'] > 0) && no_feed_in == false) {
 					line_animation.solar_to_grid = true;
 					gridValue = gridFeedValue;
 				} else {
@@ -1408,7 +1529,7 @@ class Energiefluss extends utils.Adapter {
 			} else {
 				if (batteryValue > threshold) {
 					dataObj.battery_animation.direction = 'charge';
-					if (batteryValue > (valuesObj['production'] + valuesObj['production0'])) {
+					if (batteryValue > (valuesObj['production'] + valuesObj['production0'] + valuesObj['production1'])) {
 						line_animation.grid_to_battery = true;
 					} else {
 						line_animation.solar_to_battery = true;
@@ -1440,7 +1561,7 @@ class Energiefluss extends utils.Adapter {
 			if (batteryChargeValue > threshold && batteryDischargeValue === 0) {
 				batteryValue = batteryChargeValue;
 				dataObj.battery_animation.direction = 'charge';
-				if (batteryValue > (valuesObj['production'] + valuesObj['production0'])) {
+				if (batteryValue > (valuesObj['production'] + valuesObj['production0'] + valuesObj['production1'])) {
 					line_animation.grid_to_battery = true;
 				} else {
 					line_animation.solar_to_battery = true;
@@ -1566,10 +1687,16 @@ class Energiefluss extends utils.Adapter {
 		// Custom Circle - 4
 		if (valuesObj['custom4'] != undefined) {
 			if (valuesObj['custom4'] > threshold) {
-				line_animation.house_to_custom4 = true;
+				if (custom4_type == 'balcony') {
+					line_animation.custom4_to_house = true;
+				} else {
+					line_animation.house_to_custom4 = true;
+				}
 				color.custom4_value = this.config.color_custom4_text;
 				values.custom4_value = recalculate ? this.recalculateValue(valuesObj['custom4']) : this.floorNumber(valuesObj['custom4']);
-				auto_animation.push({ name: "house_to_custom4", value: values.custom4_value });
+				if (custom4_type == 'consumer') {
+					auto_animation.push({ name: "house_to_custom4", value: values.custom4_value });
+				}
 			} else {
 				color.custom4_value = this.config.color_custom4_text_no_prod ? this.config.color_custom4_text_no_prod : this.config.color_custom4_text;
 				values.custom4_value = this.floorNumber(0);
@@ -1631,10 +1758,16 @@ class Energiefluss extends utils.Adapter {
 		// Custom Circle - 9
 		if (valuesObj['custom9'] != undefined) {
 			if (valuesObj['custom9'] > threshold) {
-				line_animation.house_to_custom9 = true;
+				if (custom9_type == 'balcony') {
+					line_animation.custom9_to_house = true;
+				} else {
+					line_animation.house_to_custom9 = true;
+				}
 				color.custom9_value = this.config.color_custom9_text;
 				values.custom9_value = recalculate ? this.recalculateValue(valuesObj['custom9']) : this.floorNumber(valuesObj['custom9']);
-				auto_animation.push({ name: "house_to_custom9", value: values.custom9_value });
+				if (custom9_type == 'consumer') {
+					auto_animation.push({ name: "house_to_custom9", value: values.custom9_value });
+				}
 			} else {
 				color.custom9_value = this.config.color_custom9_text_no_prod ? this.config.color_custom9_text_no_prod : this.config.color_custom9_text;
 				values.custom9_value = this.floorNumber(0);

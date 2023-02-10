@@ -464,6 +464,11 @@
 						data-lang="cb_calculate_consumption">Consumption
 						Calculation via 'Production' + 'Grid'</label>
 				</div>
+				<div class="input-field col s4">
+					<input id="kw_production" class="value" type="checkbox" />
+					<label for="kw_production" class="translate" data-lang="cb_kw_explain">The source is kW/h (Default:
+						watts)</label>
+				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s3">
@@ -482,6 +487,10 @@
 					<a
 						class="btn-floating waves-effect waves-light blue table-button-add input-field datasource datasource"><i
 							class="material-icons">search</i></a>
+				</div>
+				<div class="input-field col s4">
+					<input id="no_feed_in" class="value" type="checkbox" />
+					<label for="no_feed_in" class="translate" data-lang="cb_no_feed_in">No Feed-In</label>
 				</div>
 			</div>
 			<div class="row">
@@ -506,6 +515,11 @@
 						class="btn-floating waves-effect waves-light blue table-button-add input-field datasource datasource"><i
 							class="material-icons">search</i></a>
 				</div>
+				<div class="input-field col s4">
+					<input id="kw_production0" class="value" type="checkbox" />
+					<label for="kw_production0" class="translate" data-lang="cb_kw_explain">The source is kW/h (Default:
+						watts)</label>
+				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s3">
@@ -516,6 +530,53 @@
 				<div class="input-field col s4">
 					<input class="value dp" id="swap_production0" type="text" />
 					<label for="swap_production0" class="translate" data-lang="ex_alternate">Alternating display in the
+						element:</label>
+					<span class="translate" data-lang="ex_alternate_desc">Alternate Data point for displaying inside the
+						element</span>
+				</div>
+				<div class="col s1 m2 l1">
+					<a
+						class="btn-floating waves-effect waves-light blue table-button-add input-field datasource datasource"><i
+							class="material-icons">search</i></a>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s12">
+					<h6 class="title translate" data-lang="production1">additional solar production</h6>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s3">
+					<input class="value" id="label_production1" type="text" />
+					<label for="label_production1" class="translate" data-lang="label">Label:</label>
+					<span class="translate" data-lang="ex_label">label inside the element</span>
+				</div>
+				<div class="input-field col s4">
+					<input class="value dp" id="production1" type="text" />
+					<label for="production1" class="translate" data-lang="state_production0">Production state:</label>
+					<span class="translate" data-lang="ex_production1">Data point of your second additional photovoltaic
+						production</span>
+				</div>
+				<div class="col s1 m2 l1">
+					<a
+						class="btn-floating waves-effect waves-light blue table-button-add input-field datasource datasource"><i
+							class="material-icons">search</i></a>
+				</div>
+				<div class="input-field col s4">
+					<input id="kw_production1" class="value" type="checkbox" />
+					<label for="kw_production1" class="translate" data-lang="cb_kw_explain">The source is kW/h (Default:
+						watts)</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s3">
+					<input class="value" id="label_swap_production1" type="text" />
+					<label for="label_swap_production1" class="translate" data-lang="label">Label:</label>
+					<span class="translate" data-lang="ex_label">label inside the element</span>
+				</div>
+				<div class="input-field col s4">
+					<input class="value dp" id="swap_production1" type="text" />
+					<label for="swap_production1" class="translate" data-lang="ex_alternate">Alternating display in the
 						element:</label>
 					<span class="translate" data-lang="ex_alternate_desc">Alternate Data point for displaying inside the
 						element</span>
@@ -550,6 +611,11 @@
 					<input id="consumption_reverse" class="value" type="checkbox" />
 					<label for="consumption_reverse" class="translate" data-lang="cb_consumption_reverse">Consumption is
 						negative</label>
+				</div>
+				<div class="input-field col s4">
+					<input id="kw_consumption" class="value" type="checkbox" />
+					<label for="kw_consumption" class="translate" data-lang="cb_kw_explain">The source is kW/h (Default:
+						watts)</label>
 				</div>
 			</div>
 			<div class="row">
@@ -596,16 +662,33 @@
 					<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
 							class="material-icons">search</i></a>
 				</div>
-				<div class="input-field col s3">
-					<input id="grid_different" class="value" type="checkbox" />
+				<div class="col s1 m2 l1">&nbsp;</div>
+				<div class="input-field col s4">
+					<input id="kw_grid_feed" class="value" type="checkbox" />
+					<label for="kw_grid_feed" class="translate" data-lang="cb_kw_explain">The source is kW/h (Default:
+						watts)</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s4"><input id="grid_different" class="value" type="checkbox" />
 					<label for="grid_different" class="translate" data-lang="cb_grid_different">Use different
 						states
 						for grid feed-in and
 						consuming</label>
 				</div>
+				<div class="input-field col s4"><input id="grid_all_positive" class="value" type="checkbox" />
+					<label for="grid_all_positive" class="translate" data-lang="cb_grid_all_positive">Use
+						positive for consumption <u>and</u> positive for grid feed in</label>
+				</div>
+				<div class="input-field col s4">
+					<input id="grid_reverse" class="value" type="checkbox" />
+					<label for="grid_reverse" class="translate" data-lang="cb_grid_reverse">Use positive for
+						consumption <u>and</u> negative for grid feed in</label>
+				</div>
+
 			</div>
 			<div class="row">
-				<div class="input-field col s3"></div>
+				<div class="input-field col s3">&nbsp;</div>
 				<div class="input-field col s4">
 					<input class="value dp" id="grid_consuming" type="text" />
 					<label for="grid_consuming" class="translate" data-lang="grid_consumption">Grid consuming</label>
@@ -615,14 +698,14 @@
 					<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
 							class="material-icons">search</i></a>
 				</div>
-				<div class="input-field col s3">
-					<input id="grid_reverse" class="value" type="checkbox" />
-					<label for="grid_reverse" class="translate" data-lang="cb_grid_reverse">Use positive for
-						consumption <u>and</u> negative for grid feed in</label>
+				<div class="input-field col s4">
+					<input id="kw_grid_consuming" class="value" type="checkbox" />
+					<label for="kw_grid_consuming" class="translate" data-lang="cb_kw_explain">The source is kW/h
+						(Default:
+						watts)</label>
 				</div>
 			</div>
 			<div class="row">
-
 				<div class="input-field col s3">
 					<input class="value" id="label_swap_grid" type="text" />
 					<label for="label_swap_grid" class="translate" data-lang="label">Label:</label>
@@ -639,11 +722,6 @@
 					<a
 						class="btn-floating waves-effect waves-light blue table-button-add input-field datasource datasource"><i
 							class="material-icons">search</i></a>
-				</div>
-				<div class="input-field col s3">
-					<input id="grid_all_positive" class="value" type="checkbox" />
-					<label for="grid_all_positive" class="translate" data-lang="cb_grid_all_positive">Use
-						positive for consumption <u>and</u> positive for grid feed in</label>
 				</div>
 			</div>
 			<div class="row">
@@ -674,12 +752,11 @@
 					<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
 							class="material-icons">search</i></a>
 				</div>
-				<div class="input-field col s3">
-					<input id="battery_different" class="value" type="checkbox" />
-					<label for="battery_different" class="translate" data-lang="cb_battery_different">Use
-						different
-						states for Battery charge
-						and discharge</label>
+				<div class="input-field col s4">
+					<input id="kw_battery_charge" class="value" type="checkbox" />
+					<label for="kw_battery_charge" class="translate" data-lang="cb_kw_explain">The source is kW/h
+						(Default:
+						watts)</label>
 				</div>
 			</div>
 			<div class="row">
@@ -707,11 +784,30 @@
 					<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
 							class="material-icons">search</i></a>
 				</div>
-				<div class="input-field col s3">
-					<input id="battery_reverse" class="value" type="checkbox" />
+				<div class="input-field col s4">
+					<input id="kw_battery_discharge" class="value" type="checkbox" />
+					<label for="kw_battery_discharge" class="translate" data-lang="cb_kw_explain">The source is kW/h
+						(Default:
+						watts)</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s4"><input id="battery_different" class="value" type="checkbox" />
+					<label for="battery_different" class="translate" data-lang="cb_battery_different">Use
+						different
+						states for Battery charge
+						and discharge</label>
+				</div>
+				<div class="input-field col s4"><input id="battery_reverse" class="value" type="checkbox" />
 					<label for="battery_reverse" class="translate" data-lang="cb_battery_reverse">Use negative
 						for
 						charging <u>and</u> positive for discharging</label>
+				</div>
+				<div class="input-field col s4">
+					<input id="battery_capacity_info" class="value" type="checkbox" />
+					<label for="battery_capacity_info" class="translate" data-lang="cb_battery_capacity">Show remaining
+						time of charging/discharging (this only works, if you provide the percentage of your
+						battery)</label>
 				</div>
 			</div>
 			<div class="row">
@@ -750,10 +846,7 @@
 				</div>
 				<div class="col s1 m2 l1"></div>
 				<div class="input-field col s3">
-					<input id="battery_capacity_info" class="value" type="checkbox" />
-					<label for="battery_capacity_info" class="translate" data-lang="cb_battery_capacity">Show remaining
-						time of charging/discharging (this only works, if you provide the percentage of your
-						battery)</label>
+
 				</div>
 			</div>
 			<!-- --------------------------------------------------------------- -->
@@ -779,7 +872,13 @@
 					<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
 							class="material-icons">search</i></a>
 				</div>
-				<div class="input-field col s3">
+				<div class="input-field col s4">
+					<input id="kw_custom10" class="value" type="checkbox" />
+					<label for="kw_custom10" class="translate" data-lang="cb_kw_explain">The source is kW/h
+						(Default:
+						watts)</label>
+				</div>
+				<div class="input-field col s4">
 					<input id="house_netto_custom10" class="value" type="checkbox" />
 					<label for="house_netto_custom10" class="translate" data-lang="house_netto">Subtract this value from
 						the
@@ -863,7 +962,13 @@
 					<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
 							class="material-icons">search</i></a>
 				</div>
-				<div class="input-field col s3">
+				<div class="input-field col s4">
+					<input id="kw_custom0" class="value" type="checkbox" />
+					<label for="kw_custom0" class="translate" data-lang="cb_kw_explain">The source is kW/h
+						(Default:
+						watts)</label>
+				</div>
+				<div class="input-field col s4">
 					<input id="house_netto_custom0" class="value" type="checkbox" />
 					<label for="house_netto_custom0" class="translate" data-lang="house_netto">Subtract this value from
 						the
@@ -944,7 +1049,13 @@
 					<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
 							class="material-icons">search</i></a>
 				</div>
-				<div class="input-field col s3">
+				<div class="input-field col s4">
+					<input id="kw_custom1" class="value" type="checkbox" />
+					<label for="kw_custom1" class="translate" data-lang="cb_kw_explain">The source is kW/h
+						(Default:
+						watts)</label>
+				</div>
+				<div class="input-field col s4">
 					<input id="house_netto_custom1" class="value" type="checkbox" />
 					<label for="house_netto_custom1" class="translate" data-lang="house_netto">Subtract this value from
 						the
@@ -987,7 +1098,13 @@
 					<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
 							class="material-icons">search</i></a>
 				</div>
-				<div class="input-field col s3">
+				<div class="input-field col s4">
+					<input id="kw_custom2" class="value" type="checkbox" />
+					<label for="kw_custom2" class="translate" data-lang="cb_kw_explain">The source is kW/h
+						(Default:
+						watts)</label>
+				</div>
+				<div class="input-field col s4">
 					<input id="house_netto_custom2" class="value" type="checkbox" />
 					<label for="house_netto_custom2" class="translate" data-lang="house_netto">Subtract this value from
 						the
@@ -1030,7 +1147,13 @@
 					<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
 							class="material-icons">search</i></a>
 				</div>
-				<div class="input-field col s3">
+				<div class="input-field col s4">
+					<input id="kw_custom3" class="value" type="checkbox" />
+					<label for="kw_custom3" class="translate" data-lang="cb_kw_explain">The source is kW/h
+						(Default:
+						watts)</label>
+				</div>
+				<div class="input-field col s4">
 					<input id="house_netto_custom3" class="value" type="checkbox" />
 					<label for="house_netto_custom3" class="translate" data-lang="house_netto">Subtract this value from
 						the
@@ -1073,7 +1196,13 @@
 					<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
 							class="material-icons">search</i></a>
 				</div>
-				<div class="input-field col s3">
+				<div class="input-field col s4">
+					<input id="kw_custom4" class="value" type="checkbox" />
+					<label for="kw_custom4" class="translate" data-lang="cb_kw_explain">The source is kW/h
+						(Default:
+						watts)</label>
+				</div>
+				<div class="input-field col s4">
 					<input id="house_netto_custom4" class="value" type="checkbox" />
 					<label for="house_netto_custom4" class="translate" data-lang="house_netto">Subtract this value from
 						the
@@ -1088,12 +1217,19 @@
 					<label for="custom_icon4" class="translate" data-lang="custom_icon">icon inside the
 						custom element:</label>
 				</div>
-				<div class="input-field col s4">
+				<div class="input-field col s1">
 					<span class="translate" data-lang="ex_custom_preview">Preview</span><br>
 					<svg viewBox="0 0 30 30" width="30" height="30" id="preview_svg4">
 						<path id="icon_preview4" transform="translate(0,0)"
 							d="M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,6A4,4 0 0,0 8,10H10A2,2 0 0,1 12,8A2,2 0 0,1 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10A4,4 0 0,0 12,6Z" />
 					</svg>
+				</div>
+				<div class="input-field col s3">
+					<select id="custom4_type" class="value">
+						<option value="balcony" class="translate" data-lang="balcony">balcony</option>
+						<option value="consumer" class="translate" data-lang="consumer">consumer</option>
+					</select>
+					<span class="translate" data-lang="ex_element_type">Type of the element</span>
 				</div>
 			</div>
 			<div class="row">
@@ -1116,7 +1252,13 @@
 					<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
 							class="material-icons">search</i></a>
 				</div>
-				<div class="input-field col s3">
+				<div class="input-field col s4">
+					<input id="kw_custom5" class="value" type="checkbox" />
+					<label for="kw_custom5" class="translate" data-lang="cb_kw_explain">The source is kW/h
+						(Default:
+						watts)</label>
+				</div>
+				<div class="input-field col s4">
 					<input id="house_netto_custom5" class="value" type="checkbox" />
 					<label for="house_netto_custom5" class="translate" data-lang="house_netto">Subtract this value from
 						the
@@ -1159,7 +1301,13 @@
 					<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
 							class="material-icons">search</i></a>
 				</div>
-				<div class="input-field col s3">
+				<div class="input-field col s4">
+					<input id="kw_custom6" class="value" type="checkbox" />
+					<label for="kw_custom6" class="translate" data-lang="cb_kw_explain">The source is kW/h
+						(Default:
+						watts)</label>
+				</div>
+				<div class="input-field col s4">
 					<input id="house_netto_custom6" class="value" type="checkbox" />
 					<label for="house_netto_custom6" class="translate" data-lang="house_netto">Subtract this value from
 						the
@@ -1202,7 +1350,13 @@
 					<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
 							class="material-icons">search</i></a>
 				</div>
-				<div class="input-field col s3">
+				<div class="input-field col s4">
+					<input id="kw_custom7" class="value" type="checkbox" />
+					<label for="kw_custom7" class="translate" data-lang="cb_kw_explain">The source is kW/h
+						(Default:
+						watts)</label>
+				</div>
+				<div class="input-field col s4">
 					<input id="house_netto_custom7" class="value" type="checkbox" />
 					<label for="house_netto_custom7" class="translate" data-lang="house_netto">Subtract this value from
 						the
@@ -1245,7 +1399,13 @@
 					<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
 							class="material-icons">search</i></a>
 				</div>
-				<div class="input-field col s3">
+				<div class="input-field col s4">
+					<input id="kw_custom8" class="value" type="checkbox" />
+					<label for="kw_custom8" class="translate" data-lang="cb_kw_explain">The source is kW/h
+						(Default:
+						watts)</label>
+				</div>
+				<div class="input-field col s4">
 					<input id="house_netto_custom8" class="value" type="checkbox" />
 					<label for="house_netto_custom8" class="translate" data-lang="house_netto">Subtract this value from
 						the
@@ -1288,7 +1448,13 @@
 					<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
 							class="material-icons">search</i></a>
 				</div>
-				<div class="input-field col s3">
+				<div class="input-field col s4">
+					<input id="kw_custom9" class="value" type="checkbox" />
+					<label for="kw_custom9" class="translate" data-lang="cb_kw_explain">The source is kW/h
+						(Default:
+						watts)</label>
+				</div>
+				<div class="input-field col s4">
 					<input id="house_netto_custom9" class="value" type="checkbox" />
 					<label for="house_netto_custom9" class="translate" data-lang="house_netto">Subtract this value from
 						the
@@ -1303,12 +1469,19 @@
 					<label for="custom_icon9" class="translate" data-lang="custom_icon">icon inside the
 						custom element:</label>
 				</div>
-				<div class="input-field col s4">
+				<div class="input-field col s1">
 					<span class="translate" data-lang="ex_custom_preview">Preview</span><br>
 					<svg viewBox="0 0 30 30" width="30" height="30" id="preview_svg9">
 						<path id="icon_preview9" transform="translate(0,0)"
 							d="M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,6A4,4 0 0,0 8,10H10A2,2 0 0,1 12,8A2,2 0 0,1 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10A4,4 0 0,0 12,6Z" />
 					</svg>
+				</div>
+				<div class="input-field col s3">
+					<select id="custom9_type" class="value">
+						<option value="balcony" class="translate" data-lang="balcony">balcony</option>
+						<option value="consumer" class="translate" data-lang="consumer">consumer</option>
+					</select>
+					<span class="translate" data-lang="ex_element_type">Type of the element</span>
 				</div>
 			</div>
 		</div>
@@ -1465,6 +1638,47 @@
 				<div class="input-field col s6">
 					<input class="value color" id="swap_color_production0_text" type="text" placeholder="#ffce4a" />
 					<span class="translate" data-lang="swap_color_production0_text">color of the alternate value inside
+						the
+						element of
+						the
+						solar
+						production (default: #ffce4a)</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s12">
+					<h6 class="title translate" data-lang="production1">second additional solar production</h6>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s6">
+					<input class="value color" id="color_production1" type="text" placeholder="#ffce4a" />
+					<span class="translate" data-lang="color_production1">Outline color of the element around the solar
+						production
+						(default:
+						#ffce4a)</span>
+				</div>
+				<div class="input-field col s6">
+					<input class="value color" id="color_production1_text" type="text" placeholder="#ffce4a" />
+					<span class="translate" data-lang="color_production1_text">color of the value inside the
+						element of
+						the
+						solar
+						production (default: #ffce4a)</span>
+				</div>
+				<div class="input-field col s6">
+					<input class="value color" id="fill_color_production1" type="text" placeholder="" />
+					<span class="translate" data-lang="fill_color">color inside the element (default: empty)</span>
+				</div>
+				<div class="input-field col s6">
+					<input class="value color" id="color_production1_text_no_prod" type="text" placeholder="" />
+					<span class="translate" data-lang="color_no_prod">color of the value if value is below threshold
+						(default:
+						empty)</span>
+				</div>
+				<div class="input-field col s6">
+					<input class="value color" id="swap_color_production1_text" type="text" placeholder="#ffce4a" />
+					<span class="translate" data-lang="swap_color_production1_text">color of the alternate value inside
 						the
 						element of
 						the
@@ -2063,6 +2277,16 @@
 				<div class="input-field col s6">
 					<input class="value color" id="animation_color_solar0_to_solar" type="text" placeholder="" />
 					<span class="translate" data-lang="animation_color_solar0_to_solar">Color of the animation between
+						additional solar-production and solar-production (default: empty)</span>
+				</div>
+				<div class="input-field col s6">
+					<input class="value color" id="color_solar1_to_solar" type="text" placeholder="" />
+					<span class="translate" data-lang="color_solar1_to_solar">color of the line between additional solar
+						production and solar production (default: empty)</span>
+				</div>
+				<div class="input-field col s6">
+					<input class="value color" id="animation_color_solar1_to_solar" type="text" placeholder="" />
+					<span class="translate" data-lang="animation_color_solar1_to_solar">Color of the animation between
 						additional solar-production and solar-production (default: empty)</span>
 				</div>
 				<div class="input-field col s6">

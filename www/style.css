@@ -112,10 +112,6 @@ circle {
     filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, .7));
 }
 
-.no_battery {
-    margin-left: -9em;
-}
-
 .line {
     fill: none;
     z-index: 0;
@@ -155,6 +151,10 @@ text {
     to {
         stroke-dashoffset: -136;
     }
+}
+
+.animation_reverse {
+    animation-direction: reverse;
 }
 
 #span_error {

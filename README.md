@@ -67,15 +67,16 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 
 **Technical:**
 - define Datapoints for each element (add a second datapoint to production, additional production, consumption and grid as display for e.g. daily summary) 
-- 2 solar production elements possible
+- 3 solar production elements possible (if 3 are configured, Slim-Design will be deactivated)
 - show battery percent inside car or battery element
 - use different states for feeding into or consuming from the grid
 - reverse settings if your values are negative (for consumption, feeding the grid, charging-/discharging the battery)
 - use positive or negative values for consumption
 - calculcate your consumption via production and grid-feed-in, if you do not have a powermeter
 - use different states for your battery
-- add 10 own elements for a consuming device with different text, values and icon (2 elements can be configured as additional car-charge)
+- add 10 own elements for a consuming device with different text, values and icon (2 elements can be configured as additional car-charge, 2 elements work as balcony power plant)
 - convert all values from W into kW
+- All values can be in W or kW. The adapter converts the values appropriately
 - Choose, how many decimal places you want to display (0, 1, 2) - for values and battery charging
 - choose the unit (freetext)
 - Subtract the consumption of the car and additional equipment from the consumption in the house (selectable)
@@ -110,21 +111,22 @@ Display is possible via the instance link. This can then also be inserted into a
 - Einige Werte koennen unterschiedliche Farben haben, wenn ihr Wert unterhalb eines Schwellenwerts ist (Verbrauch, Produktion, Netz und Batterie)
 - Batterie-Icon kann beim Laden und Entladen animiert werden
 - Anzahl der animierten Punkte auf der Linie, sowie deren Abstand, Laenge, Dauer, Stil und Dicke auswaehlbar
-- automatische Animationsgeschwindigkeit kann verwendet werden, um den höchsten Verbrauch innerhalb der benutzerdefinierten Elemente 1 bis 11 einfach zu identifizieren
+- automatische Animationsgeschwindigkeit kann verwendet werden, um den hoechsten Verbrauch innerhalb der benutzerdefinierten Elemente 1 bis 11 einfach zu identifizieren
 - Verbleibende Lade-/Entladezeit der Batterie anzeigen (ist abhaengig von Batterieprozent und Batteriekapazitaet)
 - Slim-Design moeglich - Kleinerer Abstand zum Batterie Element
 
 **Technisch:**
-- Datenpunkte fuer jedes Element definieren (fuege einen zweiten Datenpunkt zu den Elementen Produktion, Zusatzproduktion, Verbrauch und Netz hinzu, um diesen z.B. als Tageszusammenfassung zu nutzen
-- 2 Produktions-Elemente darstellbar
+- Datenpunkte fuer jedes Element definieren (fuege einen zweiten Datenpunkt zu den Elementen Produktion, Zusatzproduktion, Verbrauch und Netz hinzu, um diesen z.B. als Tageszusammenfassung zu nutzen)
+- 3 Produktions-Elemente darstellbar (wenn 3 aktiv sind, wird das Slim-Design deaktiviert)
 - Batterieprozentsatz innerhalb des Auto- oder Batterie-Elements anzeigen
 - unterschiedliche Zustaende fuer Einspeisung oder Bezug aus dem Netz verwenden
 - Einstellungen umkehren, wenn Ihre Werte negativ sind (fuer Verbrauch, Netzeinspeisung, Laden-/Entladen der Batterie)
 - Verwenden Sie positive oder negative Werte fuer den Verbrauch
 - Berechnen Sie Ihren Verbrauch ueber Erzeugung und Netzeinspeisung, wenn Sie keinen Stromzuehler haben
 - Verwenden Sie verschiedene Zustaende fuer Ihre Batterie
-- Fuegen Sie 10 eigene Elemente fuer ein Verbrauchsgeraet mit unterschiedlichem Text, Werten und Symbolen hinzu (2 Elemente koennen als weiterer Auto-Ladepunkt konfiguriert werden)
+- Fuegen Sie 10 eigene Elemente fuer ein Verbrauchsgeraet mit unterschiedlichem Text, Werten und Symbolen hinzu (2 Elemente koennen als weiterer Auto-Ladepunkt konfiguriert werden, 2 Elemente koennen als Balkonkraftwerk genutzt werden)
 - Alle Werte von W in kW umrechnen
+- Alle Werte koennen in W oder kW vorliegen. Der Adapter rechnet die Werte passend um
 - Waehlen Sie, wie viele Dezimalstellen Sie anzeigen moechten (0, 1, 2) - fuer Werte und Akkuladung
 - Waehlen Sie die Einheit (Freitext)
 - Ziehen Sie den Verbrauch des Autos und der Zusatzgeraete vom Verbrauch im Haus ab (auswaehlbar)
