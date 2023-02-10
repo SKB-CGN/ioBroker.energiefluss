@@ -156,7 +156,7 @@ Bitte ins Wiki schauen
 - added third production point. If used, the Slim-Design is deactivated (#101)
 - All values can be in W or kW. The adapter converts the values appropriately (#102)
 - 2 custom elements can now work as a balcony power plant
-- production can be configured as "No feed-in" (line will not be drawn)
+- production can be configured as "No feed-in" (line will not be drawn) (#105)
 
 ### 3.4.0 (2023-02-03)
 - updated automatic animation to better handling speed and values
