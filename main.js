@@ -1390,6 +1390,8 @@ class Energiefluss extends utils.Adapter {
 				line_animation.solar_to_house = true;
 			}
 
+			this.log.info("Animation: " + threshold + " Values: Prod: " + valuesObj['production'] + " Prod1: " + valuesObj['production0'] + " Prod 2: " + valuesObj['production1']);
+
 			if (valuesObj['production'] > threshold) {
 				color.production_value = this.config.color_production_text;
 				values.production_value = recalculate ? this.recalculateValue(valuesObj['production']) : this.floorNumber(valuesObj['production']);
