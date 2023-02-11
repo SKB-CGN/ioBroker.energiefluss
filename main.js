@@ -140,10 +140,10 @@ class Energiefluss extends utils.Adapter {
 		battery_charge = this.config.battery_charge;
 		battery_discharge = this.config.battery_discharge;
 		battery_different = this.config.battery_different;
-		battery_reverse = this.config.battery_reverse ? true : false;
-		calculate_consumption = this.config.calculate_consumption ? true : false;
-		automatic_animation = this.config.automatic_animation ? true : false;
-		no_feed_in = this.config.no_feed_in ? true : false;
+		battery_reverse = this.config.battery_reverse ? this.config.battery_reverse : false;
+		calculate_consumption = this.config.calculate_consumption ? this.config.calculate_consumption : false;
+		automatic_animation = this.config.automatic_animation ? this.config.automatic_animation : false;
+		no_feed_in = this.config.no_feed_in ? this.config.no_feed_in : false;
 		custom0 = this.config.custom0;
 		custom1 = this.config.custom1;
 		custom2 = this.config.custom2;
@@ -171,7 +171,7 @@ class Energiefluss extends utils.Adapter {
 		fraction = this.config.fraction;
 		fraction_battery = this.config.fraction_battery;
 		threshold = this.config.threshold ? this.config.threshold : 0;
-		battery_info = this.config.battery_capacity_info ? true : false;
+		battery_info = this.config.battery_capacity_info ? this.config.battery_capacity_info : false;
 		battery_capacity = this.config.battery_capacity ? this.config.battery_capacity : 0;
 		custom0_percent = this.config.car_custom_percent;
 		car_custom_plugged = this.config.car_custom_plugged;
@@ -1484,12 +1484,12 @@ class Energiefluss extends utils.Adapter {
 			let gridFeedValue = valuesObj['grid_feed'];
 			let gridValue = 0;
 
-			if (gridConsumeValue > threshold && gridFeedValue === 0) {
+			if (gridConsumeValue > threshold && gridFeedValue == 0) {
 				line_animation.grid_to_house = true;
 				gridValue = gridConsumeValue;
 			}
 
-			if (gridFeedValue > threshold && gridConsumeValue === 0) {
+			if (gridFeedValue > threshold && gridConsumeValue == 0) {
 				// Check, if we have production
 				if ((valuesObj['production'] > 0 || valuesObj['production0'] > 0 || valuesObj['production1'] > 0) && no_feed_in == false) {
 					line_animation.solar_to_grid = true;
@@ -1558,7 +1558,7 @@ class Energiefluss extends utils.Adapter {
 			let batteryDischargeValue = valuesObj['battery_discharge'];
 			let batteryValue = 0;
 
-			if (batteryChargeValue > threshold && batteryDischargeValue === 0) {
+			if (batteryChargeValue > threshold && batteryDischargeValue == 0) {
 				batteryValue = batteryChargeValue;
 				dataObj.battery_animation.direction = 'charge';
 				if (batteryValue > (valuesObj['production'] + valuesObj['production0'] + valuesObj['production1'])) {
@@ -1568,7 +1568,7 @@ class Energiefluss extends utils.Adapter {
 				}
 			}
 
-			if (batteryDischargeValue > threshold && batteryChargeValue === 0) {
+			if (batteryDischargeValue > threshold && batteryChargeValue == 0) {
 				line_animation.battery_to_house = true;
 				batteryValue = batteryDischargeValue;
 				dataObj.battery_animation.direction = 'discharge';
