@@ -679,22 +679,23 @@ class Energiefluss extends utils.Adapter {
 				valuesObj['swap_grid'] = state.val;
 			}
 			if (calculate_consumption) {
-				let prodValue = valuesObj['production'];
+				let prodValue = Number(valuesObj['production']);
 				if (valuesObj['production0'] != undefined) {
-					prodValue += valuesObj['production0'];
+					prodValue += Number(valuesObj['production0']);
 				}
 				if (valuesObj['production1'] != undefined) {
-					prodValue += valuesObj['production1'];
+					prodValue += Number(valuesObj['production1']);
 				}
+
 
 				let consumptionValue = 0;
 				if (grid_all_positive) {
-					consumptionValue = valuesObj['grid_consuming'] + (prodValue - valuesObj['grid_feed']);
+					consumptionValue = Number(valuesObj['grid_consuming']) + (prodValue - Number(valuesObj['grid_feed']));
 				} else {
 					if (grid_reverse) {
-						consumptionValue = valuesObj['grid_feed'] + prodValue;
+						consumptionValue = Number(valuesObj['grid_feed']) + prodValue;
 					} else {
-						consumptionValue = (valuesObj['grid_feed'] * -1) + prodValue;
+						consumptionValue = (Number(valuesObj['grid_feed']) * -1) + prodValue;
 					}
 				}
 				valuesObj['consumption'] = consumptionValue;
@@ -869,7 +870,7 @@ class Energiefluss extends utils.Adapter {
 			if (stateValue) {
 				let tmpVal;
 				if (typeof (stateValue.val) === 'number') {
-					tmpVal = kwCalc[key] === true ? this.kwValue(stateValue.val) : stateValue.val;
+					tmpVal = kwCalc[key] === true ? this.kwValue(stateValue.val) : Number(stateValue.val);
 					tmpObj[key] = recalculate ? this.recalculateValue(tmpVal) : this.floorNumber(tmpVal);
 				}
 				if (typeof (stateValue.val) === 'string') {
