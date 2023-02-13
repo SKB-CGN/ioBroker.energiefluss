@@ -181,7 +181,7 @@ class Energiefluss extends utils.Adapter {
 		custom10_type = this.config.custom10_type;
 		custom4_type = this.config.custom4_type;
 		custom9_type = this.config.custom9_type;
-		recalculate = this.config.recalculate ? true : false;
+		recalculate = this.config.recalculate ? this.config.recalculate : false;
 		swap_consumption = this.config.swap_consumption;
 		swap_grid = this.config.swap_grid;
 		swap_production = this.config.swap_production;
@@ -192,25 +192,25 @@ class Energiefluss extends utils.Adapter {
 
 		// Put all kW Sources into an Object
 		kwCalc = {
-			production: this.config.kw_production ? true : false,
-			production0: this.config.kw_production0 ? true : false,
-			production1: this.config.kw_production1 ? true : false,
-			consumption: this.config.kw_consumption ? true : false,
-			grid_feed: this.config.kw_grid_feed ? true : false,
-			grid_consuming: this.config.kw_grid_consuming ? true : false,
-			battery_charge: this.config.kw_battery_charge ? true : false,
-			battery_discharge: this.config.kw_battery_discharge ? true : false,
-			custom0: this.config.kw_custom0 ? true : false,
-			custom1: this.config.kw_custom1 ? true : false,
-			custom2: this.config.kw_custom2 ? true : false,
-			custom3: this.config.kw_custom3 ? true : false,
-			custom4: this.config.kw_custom4 ? true : false,
-			custom5: this.config.kw_custom5 ? true : false,
-			custom6: this.config.kw_custom6 ? true : false,
-			custom7: this.config.kw_custom7 ? true : false,
-			custom8: this.config.kw_custom8 ? true : false,
-			custom9: this.config.kw_custom9 ? true : false,
-			custom10: this.config.kw_custom10 ? true : false
+			production: this.config.kw_production ? this.config.kw_production : false,
+			production0: this.config.kw_production0 ? this.config.kw_production0 : false,
+			production1: this.config.kw_production1 ? this.config.kw_production1 : false,
+			consumption: this.config.kw_consumption ? this.config.kw_consumption : false,
+			grid_feed: this.config.kw_grid_feed ? this.config.kw_grid_feed : false,
+			grid_consuming: this.config.kw_grid_consuming ? this.config.kw_grid_consuming : false,
+			battery_charge: this.config.kw_battery_charge ? this.config.kw_battery_charge : false,
+			battery_discharge: this.config.kw_battery_discharge ? this.config.kw_battery_discharge : false,
+			custom0: this.config.kw_custom0 ? this.config.kw_custom0 : false,
+			custom1: this.config.kw_custom1 ? this.config.kw_custom1 : false,
+			custom2: this.config.kw_custom2 ? this.config.kw_custom2 : false,
+			custom3: this.config.kw_custom3 ? this.config.kw_custom3 : false,
+			custom4: this.config.kw_custom4 ? this.config.kw_custom4 : false,
+			custom5: this.config.kw_custom5 ? this.config.kw_custom5 : false,
+			custom6: this.config.kw_custom6 ? this.config.kw_custom6 : false,
+			custom7: this.config.kw_custom7 ? this.config.kw_custom7 : false,
+			custom8: this.config.kw_custom8 ? this.config.kw_custom8 : false,
+			custom9: this.config.kw_custom9 ? this.config.kw_custom9 : false,
+			custom10: this.config.kw_custom10 ? this.config.kw_custom10 : false
 		}
 
 		// Put all possible variables into an Object and after that, filter empty ones
@@ -495,7 +495,8 @@ class Energiefluss extends utils.Adapter {
 			line_visible: this.config.line_visible,
 			automatic_animation: automatic_animation,
 			disable_icons: this.config.disable_icons,
-			debounce_percent: this.config.debounce_percent
+			debounce_percent: this.config.debounce_percent,
+			background_color: this.config.background_color || "transparent"
 		}
 
 		// Element - Style
@@ -870,12 +871,20 @@ class Energiefluss extends utils.Adapter {
 			if (stateValue) {
 				let tmpVal;
 				if (typeof (stateValue.val) === 'number') {
-					tmpVal = kwCalc[key] === true ? this.kwValue(stateValue.val) : Number(stateValue.val);
-					tmpObj[key] = recalculate ? this.recalculateValue(tmpVal) : this.floorNumber(tmpVal);
+					if (!key.includes("percent")) {
+						tmpVal = kwCalc[key] === true ? this.kwValue(stateValue.val) : Number(stateValue.val);
+						tmpObj[key] = recalculate ? this.recalculateValue(tmpVal) : this.floorNumber(tmpVal);
+					} else {
+						tmpObj[key] = Number(stateValue.val);
+					}
 				}
 				if (typeof (stateValue.val) === 'string') {
-					tmpVal = kwCalc[key] === true ? this.kwValue(Number(stateValue.val)) : Number(stateValue.val);
-					tmpObj[key] = recalculate ? this.recalculateValue(tmpVal) : this.floorNumber(tmpVal);
+					if (!key.includes("percent")) {
+						tmpVal = kwCalc[key] === true ? this.kwValue(Number(stateValue.val)) : Number(stateValue.val);
+						tmpObj[key] = recalculate ? this.recalculateValue(tmpVal) : this.floorNumber(tmpVal);
+					} else {
+						tmpObj[key] = Number(stateValue.val);
+					}
 				}
 			} else {
 				this.log.warn("The adapter could not find the state " + value + "! Please review your configuration of the adapter!");
@@ -891,7 +900,6 @@ class Energiefluss extends utils.Adapter {
 		// Elements - init as false
 		let elementsObj = {
 			house: false,
-			// Perhaps here
 			solar: false,
 			solar0: false,
 			solar1: false,

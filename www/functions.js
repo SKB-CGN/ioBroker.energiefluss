@@ -516,7 +516,8 @@ function initConfig() {
         $(".placeholders").empty();
 
         // Load CSS into style Elements
-        $("#style_element").empty().append('.elm_shadow { -webkit-filter: drop-shadow(0px 3px 3px ' + config.elements.style.shadow_color + '); filter: drop-shadow(0px 3px 3px ' + config.elements.style.shadow_color + ');}')
+        $("#style_element").empty()
+            .append('.elm_shadow { -webkit-filter: drop-shadow(0px 3px 3px ' + config.elements.style.shadow_color + '); filter: drop-shadow(0px 3px 3px ' + config.elements.style.shadow_color + ');}')
             .append('.icon { opacity: ' + config.general.opacity_icon + '%;}')
             .append('.text { opacity: ' + config.general.opacity_text + '%;}')
             .append('.value { opacity: ' + config.general.opacity_value + '%;}')
@@ -543,6 +544,9 @@ function initConfig() {
             .append('.values_shadow {filter: drop-shadow(3px 3px 3px ' + config.values.style.shadow_color + ');' + ';}')
             .append('.icons_shadow {filter: drop-shadow(3px 3px 3px ' + config.icons.style.shadow_color + ');' + ';}')
             .append('.percent_shadow {filter: drop-shadow(3px 3px 3px ' + config.percent.style.shadow_color + ');' + ';}');
+
+        $("#style_general").empty()
+            .append('html,body { background:' + config.general.background_color + ';}');
 
         // Elements
         Object.entries(config.elements.elements).forEach(entry => {
