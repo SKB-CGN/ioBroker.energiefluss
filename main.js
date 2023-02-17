@@ -466,7 +466,9 @@ class Energiefluss extends utils.Adapter {
 			icon_custom7: this.config.custom_icon7,
 			icon_custom8: this.config.custom_icon8,
 			icon_custom9: this.config.custom_icon9,
-			icon_custom10: this.config.custom_icon10
+			icon_custom10: this.config.custom_icon10,
+			icon_production0: this.config.icon_production0,
+			icon_production1: this.config.icon_production1
 		}
 
 		// General
@@ -680,12 +682,12 @@ class Energiefluss extends utils.Adapter {
 				valuesObj['swap_grid'] = state.val;
 			}
 			if (calculate_consumption) {
-				let prodValue = Number(valuesObj['production']);
+				let prodValue = Number(valuesObj['production']) > 0 ? Number(valuesObj['production']) : 0;
 				if (valuesObj['production0'] != undefined) {
-					prodValue += Number(valuesObj['production0']);
+					prodValue += Number(valuesObj['production0']) > 0 ? Number(valuesObj['production0']) : 0;
 				}
 				if (valuesObj['production1'] != undefined) {
-					prodValue += Number(valuesObj['production1']);
+					prodValue += Number(valuesObj['production1']) > 0 ? Number(valuesObj['production1']) : 0;
 				}
 
 
@@ -1529,7 +1531,7 @@ class Energiefluss extends utils.Adapter {
 					// Display as positive
 					batteryValue = batteryValue * -1;
 					dataObj.battery_animation.direction = 'charge';
-					if (batteryValue > valuesObj['production']) {
+					if (batteryValue > (valuesObj['production'] + valuesObj['production0'] + valuesObj['production1'])) {
 						line_animation.grid_to_battery = true;
 					} else {
 						line_animation.solar_to_battery = true;
