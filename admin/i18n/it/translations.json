@@ -129,6 +129,7 @@
     "debounce_percent": "Se si utilizza l'animazione automatica, i punti dell'animazione potrebbero sfarfallare/saltare, se il consumo cambia molto. Definire una percentuale, per rimbalzare l'animazione sulla linea. Maggiore è il valore, maggiore è il rimbalzo.",
     "design": "disposizione",
     "disable_icons": "disabilita tutte le icone all'interno del layout",
+    "donate": "Se ti piace questo adattatore, considera di fare una donazione per sostenere il mio lavoro.",
     "element": "elemento",
     "element_animation": "scambia testo e valori all'interno dell'elemento ogni x millisecondi",
     "elements": "elementi",

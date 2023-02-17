@@ -129,6 +129,7 @@
     "debounce_percent": "Si vous utilisez l'animation automatique, les points d'animation peuvent scintiller/sauter si la consommation change beaucoup. Définissez un pourcentage, pour faire rebondir l'animation sur la ligne. Plus la valeur est élevée, plus le rebond est important.",
     "design": "mise en page",
     "disable_icons": "désactiver toutes les icônes à l'intérieur de la mise en page",
+    "donate": "Si vous aimez cet adaptateur, pensez à faire un don pour soutenir mon travail.",
     "element": "élément",
     "element_animation": "échanger le texte et les valeurs à l'intérieur de l'élément toutes les x millisecondes",
     "elements": "éléments",

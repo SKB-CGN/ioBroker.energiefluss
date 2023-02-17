@@ -129,6 +129,7 @@
     "debounce_percent": "Als u de automatische animatie gebruikt, kunnen de animatiepunten flikkeren/springen als de consumptie veel verandert. Definieer een percentage, om de animatie op de lijn te laten stuiteren. Hoe hoger de waarde, hoe meer debounce.",
     "design": "indeling",
     "disable_icons": "schakel alle pictogrammen in de lay-out uit",
+    "donate": "Als je deze adapter leuk vindt, overweeg dan om een ​​donatie te doen om mijn werk te ondersteunen.",
     "element": "element",
     "element_animation": "verwissel tekst en waarden binnen het element elke x milliseconden",
     "elements": "elementen",

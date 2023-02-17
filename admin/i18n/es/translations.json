@@ -129,6 +129,7 @@
     "debounce_percent": "Si usa la animación automática, los puntos de animación podrían parpadear/saltar, si el consumo está cambiando mucho. Defina un porcentaje, para rebotar la animación en la línea. Cuanto más alto sea el valor, más rebote.",
     "design": "disposición",
     "disable_icons": "desactivar todos los iconos dentro del diseño",
+    "donate": "Si le gusta este adaptador, considere hacer una donación para apoyar mi trabajo.",
     "element": "elemento",
     "element_animation": "intercambiar texto y valores dentro del elemento cada x milisegundos",
     "elements": "elementos",

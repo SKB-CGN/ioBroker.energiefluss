@@ -129,6 +129,7 @@
     "debounce_percent": "Se estiver usando a animação automática, os pontos de animação podem piscar/pular, se o consumo estiver mudando muito. Defina uma porcentagem, para debounce a animação na linha. Quanto maior o valor, mais debounce.",
     "design": "disposição",
     "disable_icons": "desativar todos os ícones dentro do layout",
+    "donate": "Se você gosta deste adaptador, considere fazer uma doação para apoiar meu trabalho.",
     "element": "elemento",
     "element_animation": "troque texto e valores dentro do elemento a cada x milissegundos",
     "elements": "elementos",
