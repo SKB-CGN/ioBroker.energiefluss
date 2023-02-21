@@ -190,6 +190,7 @@
     "ex_text_shadow": "kolor cienia wokół tekstu (domyślnie: rgba(0, 0, 0, .7))",
     "ex_threshold": "próg, powyżej lub poniżej którego obsługiwane są wartości.<br>10 dla wartości większych niż 10 lub -10 Watów / lub 0,01 dla wartości większych niż 0,01 lub -0,01 kW.<br>Ta wartość wpływa również na kolor.",
     "ex_unit": "Jednostka (W lub kW) do wyświetlenia",
+    "ex_unit_swap": "Jednostka (W lub kW) do wyświetlania alternatywnych punktów danych",
     "ex_values_shadow": "kolor cienia wokół wartości (domyślnie: rgba(0, 0, 0, .7))",
     "fill_color": "Kolor wypełnienia wewnątrz elementu (domyślnie: pusty)",
     "fill_elements": "Wypełnij elementy w zależności od ich wartości prozentowej (kolor należy określić w sekcji kolorowanie)",
@@ -253,6 +254,8 @@
     "title_shadow_percent": "wartości procentowe",
     "title_shadow_text": "tekst",
     "title_shadow_values": "wartości",
+    "title_threshold": "próg",
+    "title_unit": "jednostka",
     "unit": "jednostka:",
     "wiki": "wiki"
 }

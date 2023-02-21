@@ -190,6 +190,7 @@
     "ex_text_shadow": "couleur de l'ombre autour du texte (par défaut : rgba(0, 0, 0, .7))",
     "ex_threshold": "un seuil au-dessus ou en-dessous duquel les valeurs sont gérées.<br>10 pour les valeurs supérieures à 10 ou -10 Watts / ou 0,01 pour les valeurs supérieures à 0,01 ou -0,01 kW.<br>Cette valeur affecte également la couleur.",
     "ex_unit": "Unité (W ou kW) pour l'affichage",
+    "ex_unit_swap": "Unité (W ou kW) à afficher pour les points de données alternatifs",
     "ex_values_shadow": "couleur de l'ombre autour des valeurs (par défaut : rgba(0, 0, 0, .7))",
     "fill_color": "Couleur de remplissage à l'intérieur de l'élément (par défaut : vide)",
     "fill_elements": "Remplir les éléments en fonction de leur valeur prozentuelle (la couleur doit être définie dans la section coloration)",
@@ -253,6 +254,8 @@
     "title_shadow_percent": "valeurs en pourcentage",
     "title_shadow_text": "texte",
     "title_shadow_values": "valeurs",
+    "title_threshold": "seuil",
+    "title_unit": "unité",
     "unit": "unité:",
     "wiki": "wiki"
 }

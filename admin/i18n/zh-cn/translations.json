@@ -190,6 +190,7 @@
     "ex_text_shadow": "文本周围阴影的颜色（默认值：rgba(0, 0, 0, .7)）",
     "ex_threshold": "处理高于或低于该值的阈值。<br>10 表示大于 10 的值或 -10 瓦 / 或 0.01 表示大于 0.01 或 -0.01 千瓦的值。<br>此值也会影响颜色。",
     "ex_unit": "显示单位（W或kW）",
+    "ex_unit_swap": "用于显示备用数据点的单位（W 或 kW）",
     "ex_values_shadow": "值周围阴影的颜色（默认值：rgba(0, 0, 0, .7)）",
     "fill_color": "元素内填充颜色（默认：空白）",
     "fill_elements": "根据元素的概率值填充元素（颜色需要在着色部分定义）",
@@ -253,6 +254,8 @@
     "title_shadow_percent": "百分比值",
     "title_shadow_text": "文本",
     "title_shadow_values": "价值观",
+    "title_threshold": "临界点",
+    "title_unit": "单元",
     "unit": "单元：",
     "wiki": "维基"
 }

@@ -13,6 +13,7 @@ const utils = require("@iobroker/adapter-core");
 
 /* Variables for runtime */
 let unit;
+let unit_swap;
 let production;
 let production0;
 let production1;
@@ -126,6 +127,7 @@ class Energiefluss extends utils.Adapter {
 
 		// Initialize your adapter here
 		unit = this.config.unit;
+		unit_swap = this.config.unit_swap;
 		production = this.config.production;
 		production0 = this.config.production0;
 		production1 = this.config.production1;
@@ -475,6 +477,7 @@ class Energiefluss extends utils.Adapter {
 		parameterObj.general = {
 			no_battery: false,
 			unit: unit,
+			unit_swap: unit_swap,
 			battery_animation: this.config.battery_animation,
 			fill_elements: this.config.fill_elements,
 			slim_design: this.config.slim_design,

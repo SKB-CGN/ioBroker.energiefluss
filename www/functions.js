@@ -752,7 +752,7 @@ function initConfig() {
                     sv.setAttribute('x', elements.cx[key] - elm_offset_x);
                     sv.setAttribute('y', (elements.cy[key] - 8) - elm_offset_y + config.general.offset_value);
                     sv.setAttribute('dominant-baseline', 'central');
-                    sv.innerHTML = '<tspan class="value" id=swap_' + elements.value[key] + '></tspan><tspan class="unit">' + config.general.unit + '</tspan>';
+                    sv.innerHTML = '<tspan class="value" id=swap_' + elements.value[key] + '></tspan><tspan class="unit_swap">' + config.general.unit_swap + '</tspan>';
                     $(sv).appendTo("#placeholder_swap_values");
                 }
 
@@ -1052,6 +1052,7 @@ function updateValues() {
             } else {
                 $('#' + key).text(value);
                 $('.unit').text(' ' + config.general.unit);
+                $('.unit_swap').text(' ' + config.general.unit_swap);
             }
         });
 

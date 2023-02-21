@@ -124,6 +124,7 @@
     "custom7": "custom element 7",
     "custom8": "custom element 8",
     "custom9": "custom element 9",
+    "ex_icon": "icon inside the element:",
     "custom_icon": "icon inside the custom element:",
     "custom_label": "labeling inside the custom element:",
     "debounce_percent": "If using the automatic animation, the animation dots could flicker/jump, if the consuming is changing a lot. Define a percentage, to debounce the animation on the line. The higher the value, the more debounce.",
@@ -190,6 +191,7 @@
     "ex_text_shadow": "color of the shadow around the text (default: rgba(0, 0, 0, .7))",
     "ex_threshold": "a threshold over or under which values are handled.<br>10 for values greater than 10 or -10 Watts / or 0.01 for values greater than 0.01 or -0.01 kW.<br>This value affects the color too.",
     "ex_unit": "Unit (W or kW) for displaying",
+    "ex_unit_swap": "Unit (W or kW) for displaying for the alternate datapoints",
     "ex_values_shadow": "color of the shadow around the values (default: rgba(0, 0, 0, .7))",
     "fill_color": "Fill color inside element (default: blank)",
     "fill_elements": "Fill elements depending on their prozentual value (color need to be defined in coloring section)",
@@ -253,6 +255,8 @@
     "title_shadow_percent": "percent values",
     "title_shadow_text": "text",
     "title_shadow_values": "values",
+    "title_threshold": "threshold",
+    "title_unit": "unit",
     "unit": "unit:",
     "wiki": "wiki"
 }

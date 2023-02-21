@@ -1,21 +1,8 @@
 {
     "common": {
         "name": "energiefluss",
-        "version": "3.5.0",
+        "version": "3.4.0",
         "news": {
-            "3.5.0": {
-                "en": "added third production point. If used, the Slim-Design is deactivated (#101)\nAll values can be in W or kW. The adapter converts the values appropriately (#102)\n2 custom elements can now work as a balcony power plant\nproduction can be configured as \"No feed-in\" (line will not be drawn)",
-                "de": "dritte Produktionsstelle hinzugefügt. Bei Verwendung wird das Slim-Design deaktiviert (#101)\nAlle Werte können in W oder kW liegen. Der Adapter wandelt die Werte entsprechend um (#102)\n2 benutzerdefinierte elemente können jetzt als balkonkraftwerk arbeiten\nproduktion kann als \"keine Einspeisung\" konfiguriert werden (Linie wird nicht gezeichnet)",
-                "ru": "добавлена третья точка производства. При использовании деактивируется Slim-Design (#101)\nВсе значения могут быть в W или кВт. Адаптер конвертирует значения соответствующим образом (#102)\n2 пользовательских элемента теперь могут работать как балконная электростанция\nпроизводство может быть настроено как \"Нет фид-ин\" (линия не будет нарисована)",
-                "pt": "adicionado terceiro ponto de produção. Se usado, o Slim-Design é desativado (#101)\nTodos os valores podem ser em W ou kW. O adaptador converte os valores apropriadamente (#102)\n2 elementos personalizados agora podem trabalhar como uma planta de energia varanda\na produção pode ser configurada como \"No feed-in\" (linha não será desenhada)",
-                "nl": "voegde derde productiepunt toe. Als het gebruikt wordt, wordt de Slim-Design gedeactiveerd\nAlle waarden kunnen in W of KW zijn. De adapter bekert de waarden gepast\n2 gebruikelijke elementen kunnen nu werken als een elektriciteitscentrale\nde productie kan worden in beslag genomen als \"Geen voeding\" (line zal niet getekend worden",
-                "fr": "3ème point de production. Si utilisé, le Slim-Design est désactivé (#101)\nToutes les valeurs peuvent être en W ou en kW. L'adaptateur convertit les valeurs de manière appropriée (#102)\n2 éléments personnalisés peuvent maintenant fonctionner comme une centrale de balcon\nla production peut être configurée comme \"Pas d'alimentation\" (la ligne ne sera pas dessinée)",
-                "it": "aggiunto terzo punto di produzione. Se utilizzato, lo Slim-Design viene disattivato (#101)\nTutti i valori possono essere in W o kW. L'adattatore converte i valori in modo appropriato (#102)\n2 elementi personalizzati possono ora funzionare come una centrale di potere balcone\nla produzione può essere configurata come \"Nessun feed-in\" (la linea non sarà disegnata)",
-                "es": "añadido tercer punto de producción. Si se utiliza, el Slim-Design se desactiva (#101)\nTodos los valores pueden ser en W o kW. El adaptador convierte los valores apropiadamente (#102)\n2 elementos personalizados ahora pueden funcionar como planta de alimentación de balcón\nla producción se puede configurar como \"Ninguna entrada\" (no se dibujará la línea)",
-                "pl": "dodano trzeci punkt produkcji. W przypadku użycia Slim-Design jest deaktywowany (#101)\nWszystkie wartości mogą być w W lub KW. Adaptator otrzymuje odpowiednie wartości (#102)\n2 elementy użytkowe mogą teraz działać jako elektrownia balkony\nprodukcję można skonfigurować jako „niepotrzebny” (nie będzie rysowany)",
-                "uk": "додано третій виробничий пункт. Якщо використовується, то Slim-Design деактивується (#101)\nВсі значення можуть бути в W або кВт. Адаптер перетворює значення належним чином (#102)\n2 нестандартні елементи тепер можуть працювати як балконна електростанція\nвиробництво може бути налаштований як \"Без корму\" (лінія не буде намальована)",
-                "zh-cn": "增加第三个生产点。 如使用,Slim-Design被取消(第101号)。\n所有价值观都可以在W或千瓦。 调整者将适当数值(第102号)改为\n2 习俗分子现在可以作为手艺发电厂开展工作。\n生产可被定性为“无饲料”(不拟)"
-            },
             "3.4.0": {
                 "en": "not translated",
                 "de": "not translated",
@@ -93,6 +80,32 @@
                 "pl": "na bazie stacjonarnej linii 9 kolorów, które nie pracowały\ndodał własny stan przeglądarki obiektowej dla pozostałego przyspieszenia\nrozmiar czcionki wzrósł do niektórych opisów w panelach adminowych",
                 "uk": "фіксована замовна лінія 9 розмальовка, яка не працювала\nдодано власний стан в браузері об'єкта для решти accu\nрозмір шрифту збільшено на деякі описи в адмін панелі",
                 "zh-cn": "固定的习俗线9:没有工作。\n在剩余的拖车上添加自己的国家\n专案小组的一些说明数量增加"
+            },
+            "3.0.1": {
+                "en": "added own description in color picker to custom elements to better identify them",
+                "de": "eigene beschreibung in farbe picker zu benutzerdefinierten elementen hinzugefügt, um sie besser zu identifizieren",
+                "ru": "добавлено собственное описание в цвет пикер для пользовательских элементов, чтобы лучше их определить",
+                "pt": "adicionado descrição própria no selecionador de cores para elementos personalizados para melhor identificá-los",
+                "nl": "een eigen beschrijving toegevoegd in kleurenpikker om elementen te identificeren",
+                "fr": "description propre dans le sélectionneur de couleurs à des éléments personnalisés pour mieux les identifier",
+                "it": "aggiunto la propria descrizione nel raccoglitore a colori per elementi personalizzati per identificarli meglio",
+                "es": "añadir su propia descripción en el selector de color a elementos personalizados para identificarlos mejor",
+                "pl": "dodał także własny opis w celu dopasowania elementów do potrzebnych, aby lepiej zidentyfikować ich",
+                "uk": "додано власний опис в кольорі пікірувальник на нестандартні елементи, щоб краще визначити їх",
+                "zh-cn": "在色色彩礼上添加了自己的描述,以更好地查明这些要素。"
+            },
+            "3.0.0": {
+                "en": "implemented new curved line design\nadded option for \"Slim-Design\" - when activated, the bigger space to the battery will be reduced\nElements with percent values can be filled depending on their percentage (color of font will be selected automatically)\ntransparency of elements activated - if no color is set, the element itself is transparent\nImproved responsive design (if displayed in iframe, the graphic should now be displayed accordingly)\nif no battery is configured, the layout was not working correctly - fixed\nLine-break possible with \"<br>\" in label description of element",
+                "de": "neue gebogene linienführung\nzusätzliche Option für Slim-Design - wenn aktiviert, wird der größere Platz zum Akku reduziert\nElemente mit Prozentwerten können je nach Prozentsatz ausgefüllt werden (die Schriftfarbe wird automatisch ausgewählt)\ntransparenz der aktivierten elemente - wenn keine farbe eingestellt ist, ist das element selbst transparent\nVerbessertes ansprechendes Design (wenn in iframe angezeigt, sollte die Grafik nun entsprechend angezeigt werden)\nwenn keine batterie konfiguriert ist, funktioniert das layout nicht richtig - fixiert\nLinienbruch möglich mit <br> in der Etikettenbeschreibung des Elements",
+                "ru": "реализован новый изогнутый дизайн линии\nдобавлена опция для Slim-Design - при активации, большее пространство для батареи будет уменьшено\nЭлементы с процентными значениями можно заполнить в зависимости от их процента (цвет шрифта будет выбран автоматически)\nпрозрачность активированных элементов - если нет цвета, сам элемент является прозрачным\nУлучшенный отзывчивый дизайн (если отображается в iframe, графика теперь должна отображаться соответственно)\nесли никакая батарея не настроена, то макет не работал правильно - исправлен\nLine-break возможно с <br> в описании этикетки элемента",
+                "pt": "implementada novo design de linha curva\nopção adicionada para Slim-Design - quando ativado, o espaço maior para a bateria será reduzido\nElementos com valores por cento podem ser preenchidos dependendo de sua porcentagem (a cor da fonte será selecionada automaticamente)\ntransparência de elementos ativados - se nenhuma cor é definida, o elemento em si é transparente\nDesign responsivo melhorado (se exibido no iframe, o gráfico agora deve ser exibido de acordo)\nse nenhuma bateria estiver configurada, o layout não estava funcionando corretamente - corrigido\nLine-break possível com <br> na descrição da etiqueta do elemento",
+                "nl": "vertaling:\noptie toegevoegd voor Slim-Design - wanneer geactiveerd, zal de grotere ruimte naar de batterij worden verminderd\nElementen met percentages kunnen gevuld worden afhankelijk van hun percentage (kleur van font zal automatisch geselecteerd worden\ntransparantie van elementen geactiveerd - als er geen kleur is, is het element zelf transparant\nImproved verantwoordelijk ontwerp (als vertoond in alsrame, de grafische moet nu worden vertoond\nals er geen batterij is in beslag genomen, werkte de lay-out niet correct\nEen lijnbreak met een etiket beschrijving van elementen",
+                "fr": "mise en œuvre de nouvelles lignes courbes\noption supplémentaire pour Slim-Design - lorsque activé, l'espace plus grand pour la batterie sera réduit\nLes éléments avec des valeurs de pourcentage peuvent être remplis en fonction de leur pourcentage (la couleur de la police sera sélectionnée automatiquement)\ntransparence des éléments activés - si aucune couleur n'est définie, l'élément lui-même est transparent\nAmélioration de la conception réactive (si affichée dans iframe, le graphique doit maintenant être affiché en conséquence)\nsi aucune batterie n'est configurée, la mise en page ne fonctionnait pas correctement - fixe\nDécalage de ligne possible avec la description de l'élément",
+                "it": "implementato nuovo design linea curva\nopzione aggiunta per Slim-Design - quando attivato, lo spazio più grande alla batteria sarà ridotto\nElementi con valori percentuali possono essere riempiti a seconda della loro percentuale (il colore del carattere verrà selezionato automaticamente)\ntrasparenza degli elementi attivati - se non è impostato il colore, l'elemento stesso è trasparente\nMiglioramento del design reattivo (se visualizzato in iframe, la grafica dovrebbe ora essere visualizzata di conseguenza)\nse nessuna batteria è configurata, il layout non funziona correttamente - fisso\nPossibilità di scoppio della linea con <br> nella descrizione dell'etichetta dell'elemento",
+                "es": "implementado nuevo diseño de línea curva\nopción adicional para Slim-Design - cuando se activa, el espacio más grande a la batería se reducirá\nLos elementos con valores por ciento se pueden rellenar dependiendo de su porcentaje (color de fuente se seleccionará automáticamente)\ntransparencia de elementos activados - si no se establece ningún color, el elemento en sí es transparente\nDiseño receptivo mejorado (si se muestra en iframe, el gráfico debe mostrarse en consecuencia)\nsi no se configura la batería, el diseño no funcionaba correctamente - fijo\nRompe la línea posible con la descripción de la etiqueta de elemento",
+                "pl": "nowy zakrzywiony projekt\ndodana opcja dla Slim-Design – gdy zostanie uruchomiona, większa przestrzeń do baterii zostanie zredukowana\nElementy o wartości % mogą być wypełnione w zależności od ich procenta (kolor czcionek automatycznie zostanie wybrany)\nprzejście elementów aktywowanych – jeśli nie ma koloru, sam element jest przejrzysty\nPoprawiony wygląd reagujący (jeśli wyświetlany w iframe, grafik powinien być wyświetlany zgodnie z danymi)\njeśli żadna bateria nie została skonfigurowana, to układ nie działał prawidłowo – naprawiono\nLinia jest możliwa z <br> w opisie elementu",
+                "uk": "реалізовано новий дизайн кривих ліній\nдоданий варіант для Slim-Design - при активації більший простір до акумулятора буде зменшено\nЕлементи з відсотками значення можуть бути заповнені в залежності від їх відсотка (кольор шрифту буде вибрано автоматично)\nпрозорість елементів, активованих - якщо не встановлено колір, то сам елемент прозорий\nУдосконалено чуйний дизайн (якщо відображається в iframe, то графіка повинна бути відображена відповідно)\nякщо немає акумулятора, то макет не працює правильно - фіксований\nЛінія-брелок можливо з <br> в описі мітки елемента",
+                "zh-cn": "实施的新线路设计\n消除转让的附加选择——在启动时,将减少电池的最大空间。\n可按其百分比(自动选定独裁剂)填补其价值的要素\n启动的要素的透明度——如果没有色彩,该要素本身就透明。\n改进反应设计(如在i框架内展示,现在应相应地展示图表)。\n如果没有对电池进行配置,则该装置没有正确地工作-固定固定。\n对要素的标签说明中可能有<br>"
             }
         },
         "titleLang": {
@@ -435,6 +448,7 @@
         "swap_grid": "",
         "threshold": 0,
         "unit": "W",
+        "unit_swap": "kW/h",
         "text_shadow": false,
         "text_shadow_color": "rgba(0, 0, 0, .7)",
         "values_shadow": false,
@@ -466,7 +480,10 @@
         "kw_custom8": false,
         "kw_custom9": false,
         "kw_custom10": false,
-        "no_feed_in": false
+        "no_feed_in": false,
+        "background_color": "",
+        "icon_production0": "",
+        "icon_production1": ""
     },
     "objects": [],
     "instanceObjects": [

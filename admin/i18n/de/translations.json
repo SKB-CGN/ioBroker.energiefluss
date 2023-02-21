@@ -190,6 +190,7 @@
     "ex_text_shadow": "Farbe des Schattens um den Text (Standard: rgba(0, 0, 0, .7))",
     "ex_threshold": "eine Schwelle, über oder unter der Werte behandelt werden.<br>10 für Werte größer als 10 oder -10 Watt / oder 0,01 für Werte größer als 0,01 oder -0,01 kW.<br>Dieser Wert wirkt sich auch auf die Farbe aus.",
     "ex_unit": "Einheit (W oder kW) für die Anzeige",
+    "ex_unit_swap": "Einheit (W oder kW) zur Anzeige für die alternativen Datenpunkte",
     "ex_values_shadow": "Farbe des Schattens um die Werte (Standard: rgba(0, 0, 0, .7))",
     "fill_color": "Füllfarbe innerhalb des Elements (Standard: leer)",
     "fill_elements": "Füllen Sie Elemente abhängig von ihrem prozentualen Wert (Farbe muss im Farbbereich definiert werden)",
@@ -253,6 +254,8 @@
     "title_shadow_percent": "Prozentwerte",
     "title_shadow_text": "Text",
     "title_shadow_values": "Werte",
+    "title_threshold": "Schwelle",
+    "title_unit": "Einheit",
     "unit": "Einheit:",
     "wiki": "wiki"
 }

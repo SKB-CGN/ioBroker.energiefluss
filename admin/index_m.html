@@ -2859,7 +2859,7 @@
 		<div id="tab-other" class="col s12">
 			<div class="row">
 				<div class="col s12">
-					<h6 class="title translate" data-lang="other">Other</h6>
+					<h6 class="title translate" data-lang="title_unit">unit</h6>
 				</div>
 			</div>
 			<div class="row">
@@ -2868,6 +2868,35 @@
 					<label for="unit" class="translate" data-lang="unit">Unit:</label>
 					<span class="translate" data-lang="ex_unit">Unit (W or kW) for displaying</span>
 				</div>
+				<div class="input-field col s4">
+					<input class="value" id="unit_swap" type="text" />
+					<label for="unit" class="translate" data-lang="unit">Unit:</label>
+					<span class="translate" data-lang="ex_unit_swap">Unit (W or kW) for displaying for the swap
+						values</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s12">
+					<h6 class="title translate" data-lang="title_threshold">threshold</h6>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s4">
+					<input class="value" id="threshold" type="number" min="0" />
+					<label for="threshold" class="translate" data-lang="threshold">threshold:</label>
+					<span class="translate" data-lang="ex_threshold">a threshold over or under which values are handled.
+						E.g. 10
+						for values greater than 10 or -10 Watts / or 0.01 for values greater than 0.01 or -0.01
+						kW. This value affects the color too.</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s12">
+					<h6 class="title translate" data-lang="other">Other</h6>
+				</div>
+			</div>
+			<div class="row">
+
 				<div class="input-field col s4">
 					<select id="fraction" class="value">
 						<option value="0">0</option>
@@ -2884,16 +2913,6 @@
 					<label for="recalculate" class="translate" data-lang="recalculate">Calculate values from W
 						in
 						kW</label>
-				</div>
-			</div>
-			<div class="row">
-				<div class="input-field col s4">
-					<input class="value" id="threshold" type="number" min="0" />
-					<label for="threshold" class="translate" data-lang="threshold">threshold:</label>
-					<span class="translate" data-lang="ex_threshold">a threshold over or under which values are handled.
-						E.g. 10
-						for values greater than 10 or -10 Watts / or 0.01 for values greater than 0.01 or -0.01
-						kW. This value affects the color too.</span>
 				</div>
 			</div>
 		</div>

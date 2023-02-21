@@ -190,6 +190,7 @@
     "ex_text_shadow": "kleur van de schaduw rond de tekst (standaard: rgba(0, 0, 0, .7))",
     "ex_threshold": "een drempel waarboven of waaronder waarden worden afgehandeld.<br>10 voor waarden groter dan 10 of -10 Watt / of 0,01 voor waarden groter dan 0,01 of -0,01 kW.<br>Deze waarde heeft ook invloed op de kleur.",
     "ex_unit": "Eenheid (W of kW) voor weergave",
+    "ex_unit_swap": "Eenheid (W of kW) voor weergave voor de alternatieve datapunten",
     "ex_values_shadow": "kleur van de schaduw rond de waarden (standaard: rgba(0, 0, 0, .7))",
     "fill_color": "Vulkleur binnen element (standaard: blanco)",
     "fill_elements": "Vul elementen afhankelijk van hun toekomstige waarde (kleur moet worden gedefinieerd in kleursectie)",
@@ -253,6 +254,8 @@
     "title_shadow_percent": "procent waarden",
     "title_shadow_text": "tekst",
     "title_shadow_values": "waarden",
+    "title_threshold": "drempelwaarde",
+    "title_unit": "eenheid",
     "unit": "eenheid:",
     "wiki": "wiki"
 }
