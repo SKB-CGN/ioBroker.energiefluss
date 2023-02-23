@@ -28,6 +28,7 @@ let battery_charge;
 let battery_discharge;
 let battery_different;
 let battery_reverse;
+let battery_dod;
 let calculate_consumption;
 let consumption_reverse;
 let recalculate;
@@ -175,6 +176,7 @@ class Energiefluss extends utils.Adapter {
 		threshold = this.config.threshold ? this.config.threshold : 0;
 		battery_info = this.config.battery_capacity_info ? this.config.battery_capacity_info : false;
 		battery_capacity = this.config.battery_capacity ? this.config.battery_capacity : 0;
+		battery_dod = this.config.battery_dod ? this.config.battery_dod : 0;
 		custom0_percent = this.config.car_custom_percent;
 		car_custom_plugged = this.config.car_custom_plugged;
 		custom10_percent = this.config.car_custom10_percent;
@@ -849,7 +851,7 @@ class Energiefluss extends utils.Adapter {
 
 			if (direction == "discharge") {
 				// Get the Rest to Full Discharge
-				rest = (battery_capacity * percent) / 100;
+				rest = (battery_capacity * (percent - battery_dod) / 100;
 			}
 
 			mins = Math.round((rest / watts) * 60);
