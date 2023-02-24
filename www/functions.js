@@ -512,6 +512,10 @@ function initConfig() {
         svg_width = 0;
         svg_height = 0;
 
+        // Clear Timeout of the Element Animation
+        clearTimeout(element_timer);
+        element_animation = "swap";
+
         // First remove all things
         $(".placeholders").empty();
 
@@ -916,7 +920,7 @@ function initConfig() {
 
         // Start Animation for Element
         if (config.general.element_animation) {
-            $('#svg_image').click(function () {
+            $('#svg_image').off().click(function () {
                 clearTimeout(element_timer);
                 elementAnimation();
             });
