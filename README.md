@@ -40,7 +40,7 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 - Safari browser or some webkit of Apple Inc. iOS is not fully supported. Doesn't display the animated battery icon and remaining charging/discharging time (no fix available)
 
 ## Bekannte Probleme
-- Safari oder Browser-Erweiterungen von Applce Inc. iIOS werden nicht voll unterstützt. Sie zeigen das animierte Batterie-Symbol und die verbleibende Lade-/Entladezeit nicht an (keine Korrektur verfuegbar)
+- Safari oder Browser-Erweiterungen von Applce Inc. iIOS werden nicht voll unterstï¿½tzt. Sie zeigen das animierte Batterie-Symbol und die verbleibende Lade-/Entladezeit nicht an (keine Korrektur verfuegbar)
 
 ## Functions (german below)
 **Design:**
@@ -158,8 +158,7 @@ Bitte ins Wiki schauen
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-
-### **WORK IN PROGRESS**
+### 3.6.0 (2023-02-24)
 - error in calculation for battery charging fixed
 - unit for alternate elements can be choosen (default was same unit)
 - background color and transparency can be set (#119)
