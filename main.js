@@ -1636,11 +1636,7 @@ class Energiefluss extends utils.Adapter {
 				values.custom10_value = recalculate ? this.recalculateValue(valuesObj['custom10']) : this.floorNumber(valuesObj['custom10']);
 				auto_animation.push({ name: "house_to_custom10", value: values.custom10_value });
 			} else {
-				if (custom10_type == 'car') {
-					color.custom10_value = this.config.color_custom10_text;
-				} else {
-					color.custom10_value = this.config.color_custom10_text_no_prod ? this.config.color_custom10_text_no_prod : this.config.color_custom10_text;
-				}
+				color.custom10_value = this.config.color_custom10_text_no_prod ? this.config.color_custom10_text_no_prod : this.config.color_custom10_text;
 				values.custom10_value = this.floorNumber(0);
 			}
 
@@ -1662,11 +1658,7 @@ class Energiefluss extends utils.Adapter {
 				values.custom0_value = recalculate ? this.recalculateValue(valuesObj['custom0']) : this.floorNumber(valuesObj['custom0']);
 				auto_animation.push({ name: "house_to_custom0", value: values.custom0_value });
 			} else {
-				if (custom_type == 'car') {
-					color.custom0_value = this.config.color_custom0_text;
-				} else {
-					color.custom0_value = this.config.color_custom0_text_no_prod ? this.config.color_custom0_text_no_prod : this.config.color_custom0_text;
-				}
+				color.custom0_value = this.config.color_custom0_text_no_prod ? this.config.color_custom0_text_no_prod : this.config.color_custom0_text;
 				values.custom0_value = this.floorNumber(0);
 			}
 

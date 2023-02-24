@@ -166,7 +166,7 @@ Bitte ins Wiki schauen
 - icons can be modified for all elements - including production (all 3), grid and consumption (except battery) (#125)
 - Depth of discharging can be applied to better calculate the remaining time (#137)
 - display grid feed-in as negativ (#99)
-- 
+- Threshold value can also be applied, if consumer type is set to car (#128)
 
 ### 3.5.0 (2023-02-10)
 - added third production point. If used, the Slim-Design is deactivated (#101)
