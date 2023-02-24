@@ -39,7 +39,7 @@ Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du
 ## Known Issues
 - Safari browser or some webkit of Apple Inc. iOS is not fully supported. Doesn't display the animated battery icon and remaining charging/discharging time (no fix available)
 
-## Bekannet Probleme
+## Bekannte Probleme
 - Safari oder Browser-Erweiterungen von Applce Inc. iIOS werden nicht voll unterstützt. Sie zeigen das animierte Batterie-Symbol und die verbleibende Lade-/Entladezeit nicht an (keine Korrektur verfuegbar)
 
 ## Functions (german below)
@@ -163,9 +163,10 @@ Bitte ins Wiki schauen
 - error in calculation for battery charging fixed
 - unit for alternate elements can be choosen (default was same unit)
 - background color and transparency can be set (#119)
-- icons can be modified for all elements - including production (all), grid and consumption (except battery) (#125)
+- icons can be modified for all elements - including production (all 3), grid and consumption (except battery) (#125)
 - Depth of discharging can be applied to better calculate the remaining time (#137)
 - display grid feed-in as negativ (#99)
+- 
 
 ### 3.5.0 (2023-02-10)
 - added third production point. If used, the Slim-Design is deactivated (#101)
