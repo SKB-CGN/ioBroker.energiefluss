@@ -53,40 +53,10 @@
 				});
 			});
 
-			if ($("#custom_icon0").val() != "") {
-				$("#icon_preview0").attr("d", $("#custom_icon0").val());
-			}
-			if ($("#custom_icon1").val() != "") {
-				$("#icon_preview1").attr("d", $("#custom_icon1").val());
-			}
-			if ($("#custom_icon2").val() != "") {
-				$("#icon_preview2").attr("d", $("#custom_icon2").val());
-			}
-			if ($("#custom_icon3").val() != "") {
-				$("#icon_preview3").attr("d", $("#custom_icon3").val());
-			}
-			if ($("#custom_icon4").val() != "") {
-				$("#icon_preview4").attr("d", $("#custom_icon4").val());
-			}
-			if ($("#custom_icon5").val() != "") {
-				$("#icon_preview5").attr("d", $("#custom_icon5").val());
-			}
-			if ($("#custom_icon6").val() != "") {
-				$("#icon_preview6").attr("d", $("#custom_icon6").val());
-			}
-			if ($("#custom_icon7").val() != "") {
-				$("#icon_preview7").attr("d", $("#custom_icon7").val());
-			}
-			if ($("#custom_icon8").val() != "") {
-				$("#icon_preview8").attr("d", $("#custom_icon8").val());
-			}
-			if ($("#custom_icon9").val() != "") {
-				$("#icon_preview9").attr("d", $("#custom_icon9").val());
-			}
-			if ($("#custom_icon10").val() != "") {
-				$("#icon_preview10").attr("d", $("#custom_icon10").val());
-			}
-
+			// Preview Icons
+			$(".preview_icon").each(function () {
+				$("#" + $(this).attr('id') + "_preview").attr("d", $(this).val());
+			});
 
 			// First run after loading the admin page
 			$('.custom_label').each(function () {
@@ -177,41 +147,10 @@
 					"M18.92 2C18.72 1.42 18.16 1 17.5 1H6.5C5.84 1 5.29 1.42 5.08 2L3 8V16C3 16.55 3.45 17 4 17H5C5.55 17 6 16.55 6 16V15H18V16C18 16.55 18.45 17 19 17H20C20.55 17 21 16.55 21 16V8L18.92 2M6.85 3H17.14L18.22 6.11H5.77L6.85 3M19 13H5V8H19V13M7.5 9C8.33 9 9 9.67 9 10.5S8.33 12 7.5 12 6 11.33 6 10.5 6.67 9 7.5 9M16.5 9C17.33 9 18 9.67 18 10.5S17.33 12 16.5 12C15.67 12 15 11.33 15 10.5S15.67 9 16.5 9M7 20H11V18L17 21H13V23L7 20Z"
 				).change();
 			});
-			$("#custom_icon0").change(function () {
-				$("#icon_preview0").attr("d", $(this).val());
+			$(".preview_icon").change(function () {
+				$("#" + $(this).attr('id') + "_preview").attr("d", $(this).val());
 			});
 
-			$("#custom_icon1").change(function () {
-				$("#icon_preview1").attr("d", $(this).val());
-			});
-
-			$("#custom_icon2").change(function () {
-				$("#icon_preview2").attr("d", $(this).val());
-			});
-			$("#custom_icon3").change(function () {
-				$("#icon_preview3").attr("d", $(this).val());
-			});
-			$("#custom_icon4").change(function () {
-				$("#icon_preview4").attr("d", $(this).val());
-			});
-			$("#custom_icon5").change(function () {
-				$("#icon_preview5").attr("d", $(this).val());
-			});
-			$("#custom_icon6").change(function () {
-				$("#icon_preview6").attr("d", $(this).val());
-			});
-			$("#custom_icon7").change(function () {
-				$("#icon_preview7").attr("d", $(this).val());
-			});
-			$("#custom_icon8").change(function () {
-				$("#icon_preview8").attr("d", $(this).val());
-			});
-			$("#custom_icon9").change(function () {
-				$("#icon_preview9").attr("d", $(this).val());
-			});
-			$("#custom_icon10").change(function () {
-				$("#icon_preview10").attr("d", $(this).val());
-			});
 			$("#element_type").change(function () {
 				if ($(this).val() == 'rect') {
 					$(".display_circle").css("display", "none");
@@ -511,6 +450,19 @@
 				</div>
 			</div>
 			<div class="row">
+				<div class="input-field col s7">
+					<input class="value preview_icon" id="icon_production" type="text" />
+					<label for="icon_house" class="translate" data-lang="ex_icon">icon inside the
+						element:</label>
+				</div>
+				<div class="input-field col s1">
+					<span class="translate" data-lang="ex_custom_preview">Preview</span><br>
+					<svg viewBox="0 0 30 30" width="30" height="30" id="preview_svg_production">
+						<path id="icon_production_preview" transform="translate(0,0)" d="" />
+					</svg>
+				</div>
+			</div>
+			<div class="row">
 				<div class="col s12">
 					<h6 class="title translate" data-lang="production0">additional solar production</h6>
 				</div>
@@ -555,6 +507,19 @@
 					<a
 						class="btn-floating waves-effect waves-light blue table-button-add input-field datasource datasource"><i
 							class="material-icons">search</i></a>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s7">
+					<input class="value preview_icon" id="icon_production0" type="text" />
+					<label for="icon_house" class="translate" data-lang="ex_icon">icon inside the
+						element:</label>
+				</div>
+				<div class="input-field col s1">
+					<span class="translate" data-lang="ex_custom_preview">Preview</span><br>
+					<svg viewBox="0 0 30 30" width="30" height="30" id="preview_svg_production">
+						<path id="icon_production0_preview" transform="translate(0,0)" d="" />
+					</svg>
 				</div>
 			</div>
 			<div class="row">
@@ -605,6 +570,19 @@
 				</div>
 			</div>
 			<div class="row">
+				<div class="input-field col s7">
+					<input class="value preview_icon" id="icon_production1" type="text" />
+					<label for="icon_house" class="translate" data-lang="ex_icon">icon inside the
+						element:</label>
+				</div>
+				<div class="input-field col s1">
+					<span class="translate" data-lang="ex_custom_preview">Preview</span><br>
+					<svg viewBox="0 0 30 30" width="30" height="30" id="preview_svg_production">
+						<path id="icon_production1_preview" transform="translate(0,0)" d="" />
+					</svg>
+				</div>
+			</div>
+			<div class="row">
 				<div class="col s12">
 					<h6 class="title translate" data-lang="consuming">Consuming</h6>
 				</div>
@@ -652,6 +630,19 @@
 					<a
 						class="btn-floating waves-effect waves-light blue table-button-add input-field datasource datasource"><i
 							class="material-icons">search</i></a>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s7">
+					<input class="value preview_icon" id="icon_house" type="text" />
+					<label for="icon_house" class="translate" data-lang="ex_icon">icon inside the
+						element:</label>
+				</div>
+				<div class="input-field col s1">
+					<span class="translate" data-lang="ex_custom_preview">Preview</span><br>
+					<svg viewBox="0 0 30 30" width="30" height="30">
+						<path id="icon_house_preview" transform="translate(0,0)" d="" />
+					</svg>
 				</div>
 			</div>
 			<div class="row">
@@ -742,6 +733,19 @@
 				</div>
 			</div>
 			<div class="row">
+				<div class="input-field col s7">
+					<input class="value preview_icon" id="icon_grid" type="text" />
+					<label for="icon_house" class="translate" data-lang="ex_icon">icon inside the
+						element:</label>
+				</div>
+				<div class="input-field col s1">
+					<span class="translate" data-lang="ex_custom_preview">Preview</span><br>
+					<svg viewBox="0 0 30 30" width="30" height="30" id="preview_svg_production">
+						<path id="icon_grid_preview" transform="translate(0,0)" d="" />
+					</svg>
+				</div>
+			</div>
+			<div class="row">
 				<div class="col s12">
 					<h6 class="title translate" data-lang="battery_charge">Battery charging and
 						discharging</h6>
@@ -828,7 +832,11 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="input-field col s3"></div>
+				<div class="input-field col s3">
+					<input class="value" id="label_battery_remaining" type="text" />
+					<label for="label_battery_remaining" class="translate" data-lang="label">Label:</label>
+					<span class="translate" data-lang="ex_label_remaining">label for remaining time</span>
+				</div>
 				<div class="input-field col s4">
 					<input class="value dp" id="battery_percent" type="text" />
 					<label for="battery_percent" class="translate" data-lang="battery_percent">accu
@@ -850,9 +858,10 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s3">
-					<input class="value" id="label_battery_remaining" type="text" />
-					<label for="label_battery_remaining" class="translate" data-lang="label">Label:</label>
-					<span class="translate" data-lang="ex_label_remaining">label for remaining time</span>
+					<input class="value" id="battery_dod" type="number" min="0" max="100" />
+					<label for="battery_dod" class="translate" data-lang="dod">depth of discharge:</label>
+					<span class="translate" data-lang="ex_battery_dod">depth of discharge of your battery in
+						percent</span>
 				</div>
 				<div class="input-field col s4">
 					<input class="value dp" id="battery_capacity" type="number" placeholder="5500" />
@@ -937,14 +946,14 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s7">
-					<input class="value" id="custom_icon10" type="text" />
+					<input class="value preview_icon" id="custom_icon10" type="text" />
 					<label for="custom_icon10" class="translate" data-lang="custom_icon">icon inside the
 						custom element:</label>
 				</div>
 				<div class="input-field col s1">
 					<span class="translate" data-lang="ex_custom_preview">Preview</span><br>
-					<svg viewBox="0 0 30 30" width="30" height="30" id="preview_svg10">
-						<path id="icon_preview10" transform="translate(0,0)"
+					<svg viewBox="0 0 30 30" width="30" height="30">
+						<path id="custom_icon10_preview" transform="translate(0,0)"
 							d="M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,6A4,4 0 0,0 8,10H10A2,2 0 0,1 12,8A2,2 0 0,1 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10A4,4 0 0,0 12,6Z" />
 					</svg>
 				</div>
@@ -1027,14 +1036,14 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s7">
-					<input class="value" id="custom_icon0" type="text" />
+					<input class="value preview_icon" id="custom_icon0" type="text" />
 					<label for="custom_icon0" class="translate" data-lang="custom_icon">icon inside the
 						custom element:</label>
 				</div>
 				<div class="input-field col s1">
 					<span class="translate" data-lang="ex_custom_preview">Preview</span><br>
-					<svg viewBox="0 0 30 30" width="30" height="30" id="preview_svg0">
-						<path id="icon_preview0" transform="translate(0,0)"
+					<svg viewBox="0 0 30 30" width="30" height="30">
+						<path id="custom_icon0_preview" transform="translate(0,0)"
 							d="M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,6A4,4 0 0,0 8,10H10A2,2 0 0,1 12,8A2,2 0 0,1 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10A4,4 0 0,0 12,6Z" />
 					</svg>
 				</div>
@@ -1083,14 +1092,14 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s7">
-					<input class="value" id="custom_icon1" type="text" />
+					<input class="value preview_icon" id="custom_icon1" type="text" />
 					<label for="custom_icon1" class="translate" data-lang="custom_icon">icon inside the
 						custom element:</label>
 				</div>
 				<div class="input-field col s4">
 					<span class="translate" data-lang="ex_custom_preview">Preview</span><br>
-					<svg viewBox="0 0 30 30" width="30" height="30" id="preview_svg1">
-						<path id="icon_preview1" transform="translate(0,0)"
+					<svg viewBox="0 0 30 30" width="30" height="30">
+						<path id="custom_icon1_preview" transform="translate(0,0)"
 							d="M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,6A4,4 0 0,0 8,10H10A2,2 0 0,1 12,8A2,2 0 0,1 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10A4,4 0 0,0 12,6Z" />
 					</svg>
 				</div>
@@ -1132,14 +1141,14 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s7">
-					<input class="value" id="custom_icon2" type="text" />
+					<input class="value preview_icon" id="custom_icon2" type="text" />
 					<label for="custom_icon2" class="translate" data-lang="custom_icon">icon inside the
 						custom element:</label>
 				</div>
 				<div class="input-field col s4">
 					<span class="translate" data-lang="ex_custom_preview">Preview</span><br>
-					<svg viewBox="0 0 30 30" width="30" height="30" id="preview_svg2">
-						<path id="icon_preview2" transform="translate(0,0)"
+					<svg viewBox="0 0 30 30" width="30" height="30">
+						<path id="custom_icon2_preview" transform="translate(0,0)"
 							d="M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,6A4,4 0 0,0 8,10H10A2,2 0 0,1 12,8A2,2 0 0,1 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10A4,4 0 0,0 12,6Z" />
 					</svg>
 				</div>
@@ -1181,14 +1190,14 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s7">
-					<input class="value" id="custom_icon3" type="text" />
+					<input class="value preview_icon" id="custom_icon3" type="text" />
 					<label for="custom_icon3" class="translate" data-lang="custom_icon">icon inside the
 						custom element:</label>
 				</div>
 				<div class="input-field col s4">
 					<span class="translate" data-lang="ex_custom_preview">Preview</span><br>
-					<svg viewBox="0 0 30 30" width="30" height="30" id="preview_svg3">
-						<path id="icon_preview3" transform="translate(0,0)"
+					<svg viewBox="0 0 30 30" width="30" height="30">
+						<path id="custom_icon3_preview" transform="translate(0,0)"
 							d="M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,6A4,4 0 0,0 8,10H10A2,2 0 0,1 12,8A2,2 0 0,1 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10A4,4 0 0,0 12,6Z" />
 					</svg>
 				</div>
@@ -1230,14 +1239,14 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s7">
-					<input class="value" id="custom_icon4" type="text" />
+					<input class="value preview_icon" id="custom_icon4" type="text" />
 					<label for="custom_icon4" class="translate" data-lang="custom_icon">icon inside the
 						custom element:</label>
 				</div>
 				<div class="input-field col s1">
 					<span class="translate" data-lang="ex_custom_preview">Preview</span><br>
-					<svg viewBox="0 0 30 30" width="30" height="30" id="preview_svg4">
-						<path id="icon_preview4" transform="translate(0,0)"
+					<svg viewBox="0 0 30 30" width="30" height="30">
+						<path id="custom_icon4_preview" transform="translate(0,0)"
 							d="M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,6A4,4 0 0,0 8,10H10A2,2 0 0,1 12,8A2,2 0 0,1 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10A4,4 0 0,0 12,6Z" />
 					</svg>
 				</div>
@@ -1286,14 +1295,14 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s7">
-					<input class="value" id="custom_icon5" type="text" />
+					<input class="value preview_icon" id="custom_icon5" type="text" />
 					<label for="custom_icon5" class="translate" data-lang="custom_icon">icon inside the
 						custom element:</label>
 				</div>
 				<div class="input-field col s4">
 					<span class="translate" data-lang="ex_custom_preview">Preview</span><br>
-					<svg viewBox="0 0 30 30" width="30" height="30" id="preview_svg5">
-						<path id="icon_preview5" transform="translate(0,0)"
+					<svg viewBox="0 0 30 30" width="30" height="30">
+						<path id="custom_icon5_preview" transform="translate(0,0)"
 							d="M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,6A4,4 0 0,0 8,10H10A2,2 0 0,1 12,8A2,2 0 0,1 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10A4,4 0 0,0 12,6Z" />
 					</svg>
 				</div>
@@ -1335,14 +1344,14 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s7">
-					<input class="value" id="custom_icon6" type="text" />
+					<input class="value preview_icon" id="custom_icon6" type="text" />
 					<label for="custom_icon6" class="translate" data-lang="custom_icon">icon inside the
 						custom element:</label>
 				</div>
 				<div class="input-field col s4">
 					<span class="translate" data-lang="ex_custom_preview">Preview</span><br>
-					<svg viewBox="0 0 30 30" width="30" height="30" id="preview_svg6">
-						<path id="icon_preview6" transform="translate(0,0)"
+					<svg viewBox="0 0 30 30" width="30" height="30">
+						<path id="custom_icon6_preview" transform="translate(0,0)"
 							d="M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,6A4,4 0 0,0 8,10H10A2,2 0 0,1 12,8A2,2 0 0,1 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10A4,4 0 0,0 12,6Z" />
 					</svg>
 				</div>
@@ -1384,14 +1393,14 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s7">
-					<input class="value" id="custom_icon7" type="text" />
+					<input class="value preview_icon" id="custom_icon7" type="text" />
 					<label for="custom_icon7" class="translate" data-lang="custom_icon">icon inside the
 						custom element:</label>
 				</div>
 				<div class="input-field col s4">
 					<span class="translate" data-lang="ex_custom_preview">Preview</span><br>
-					<svg viewBox="0 0 30 30" width="30" height="30" id="preview_svg7">
-						<path id="icon_preview7" transform="translate(0,0)"
+					<svg viewBox="0 0 30 30" width="30" height="30">
+						<path id="custom_icon7_preview" transform="translate(0,0)"
 							d="M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,6A4,4 0 0,0 8,10H10A2,2 0 0,1 12,8A2,2 0 0,1 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10A4,4 0 0,0 12,6Z" />
 					</svg>
 				</div>
@@ -1433,14 +1442,14 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s7">
-					<input class="value" id="custom_icon8" type="text" />
+					<input class="value preview_icon" id="custom_icon8" type="text" />
 					<label for="custom_icon8" class="translate" data-lang="custom_icon">icon inside the
 						custom element:</label>
 				</div>
 				<div class="input-field col s4">
 					<span class="translate" data-lang="ex_custom_preview">Preview</span><br>
-					<svg viewBox="0 0 30 30" width="30" height="30" id="preview_svg8">
-						<path id="icon_preview8" transform="translate(0,0)"
+					<svg viewBox="0 0 30 30" width="30" height="30">
+						<path id="custom_icon8_preview" transform="translate(0,0)"
 							d="M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,6A4,4 0 0,0 8,10H10A2,2 0 0,1 12,8A2,2 0 0,1 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10A4,4 0 0,0 12,6Z" />
 					</svg>
 				</div>
@@ -1482,14 +1491,14 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s7">
-					<input class="value" id="custom_icon9" type="text" />
+					<input class="value preview_icon" id="custom_icon9" type="text" />
 					<label for="custom_icon9" class="translate" data-lang="custom_icon">icon inside the
 						custom element:</label>
 				</div>
 				<div class="input-field col s1">
 					<span class="translate" data-lang="ex_custom_preview">Preview</span><br>
-					<svg viewBox="0 0 30 30" width="30" height="30" id="preview_svg9">
-						<path id="icon_preview9" transform="translate(0,0)"
+					<svg viewBox="0 0 30 30" width="30" height="30">
+						<path id="custom_icon9_preview" transform="translate(0,0)"
 							d="M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,6A4,4 0 0,0 8,10H10A2,2 0 0,1 12,8A2,2 0 0,1 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10A4,4 0 0,0 12,6Z" />
 					</svg>
 				</div>
@@ -2913,6 +2922,11 @@
 					<label for="recalculate" class="translate" data-lang="recalculate">Calculate values from W
 						in
 						kW</label>
+				</div>
+				<div class="input-field col s4">
+					<input id="neg_feed_in" class="value" type="checkbox" />
+					<label for="neg_feed_in" class="translate" data-lang="neg_feed_in">Display grid feed-in as
+						negative</label>
 				</div>
 			</div>
 		</div>

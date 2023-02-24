@@ -36,6 +36,12 @@ If you like my work und you would like to support me, you can do so here:
 Wenn Dir meine Arbeit gefaellt und Du mich unterstuetzen moechtest, so kannst Du dies hier tun:
 [![Donate](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://www.paypal.me/StephanKreyenborg)
 
+## Known Issues
+- Safari browser or some webkit of Apple Inc. iOS is not fully supported. Doesn't display the animated battery icon and remaining charging/discharging time (no fix available)
+
+## Bekannet Probleme
+- Safari oder Browser-Erweiterungen von Applce Inc. iIOS werden nicht voll unterstützt. Sie zeigen das animierte Batterie-Symbol und die verbleibende Lade-/Entladezeit nicht an (keine Korrektur verfuegbar)
+
 ## Functions (german below)
 **Design:**
 - change the color of each item
@@ -152,9 +158,18 @@ Bitte ins Wiki schauen
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+
+### **WORK IN PROGRESS**
+- error in calculation for battery charging fixed
+- unit for alternate elements can be choosen (default was same unit)
+- background color and transparency can be set (#119)
+- icons can be modified for all elements - including production (all), grid and consumption (except battery) (#125)
+- Depth of discharging can be applied to better calculate the remaining time (#137)
+- display grid feed-in as negativ (#99)
+
 ### 3.5.0 (2023-02-10)
 - added third production point. If used, the Slim-Design is deactivated (#101)
-- All values can be in W or kW. The adapter converts the values appropriately (#102)
+- All values can be in W or kW. The adapter converts the values appropriately (#102, #126)
 - 2 custom elements can now work as a balcony power plant
 - production can be configured as "No feed-in" (line will not be drawn) (#105)
 

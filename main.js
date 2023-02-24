@@ -28,6 +28,7 @@ let battery_charge;
 let battery_discharge;
 let battery_different;
 let battery_reverse;
+let battery_dod;
 let calculate_consumption;
 let consumption_reverse;
 let recalculate;
@@ -46,6 +47,7 @@ let car_custom10_plugged;
 let custom_type, custom4_type, custom9_type, custom10_type;
 let automatic_animation = false;
 let no_feed_in;
+let neg_feed_in;
 
 /* Data Objects */
 let kwCalc = {};
@@ -127,12 +129,13 @@ class Energiefluss extends utils.Adapter {
 
 		// Initialize your adapter here
 		unit = this.config.unit;
+		neg_feed_in = this.config.neg_feed_in ? this.config.neg_feed_in : false;
 		unit_swap = this.config.unit_swap;
 		production = this.config.production;
 		production0 = this.config.production0;
 		production1 = this.config.production1;
 		consumption = this.config.consumption;
-		consumption_reverse = this.config.consumption_reverse ? true : false;
+		consumption_reverse = this.config.consumption_reverse ? this.config.consumption_reverse : false;
 		grid_feed = this.config.grid_feed;
 		grid_consuming = this.config.grid_consuming;
 		grid_different = this.config.grid_different;
@@ -175,6 +178,7 @@ class Energiefluss extends utils.Adapter {
 		threshold = this.config.threshold ? this.config.threshold : 0;
 		battery_info = this.config.battery_capacity_info ? this.config.battery_capacity_info : false;
 		battery_capacity = this.config.battery_capacity ? this.config.battery_capacity : 0;
+		battery_dod = this.config.battery_dod ? this.config.battery_dod : 0;
 		custom0_percent = this.config.car_custom_percent;
 		car_custom_plugged = this.config.car_custom_plugged;
 		custom10_percent = this.config.car_custom10_percent;
@@ -469,8 +473,11 @@ class Energiefluss extends utils.Adapter {
 			icon_custom8: this.config.custom_icon8,
 			icon_custom9: this.config.custom_icon9,
 			icon_custom10: this.config.custom_icon10,
-			icon_production0: this.config.icon_production0,
-			icon_production1: this.config.icon_production1
+			icon_solar: this.config.icon_production,
+			icon_solar0: this.config.icon_production0,
+			icon_solar1: this.config.icon_production1,
+			icon_grid: this.config.icon_grid,
+			icon_house: this.config.icon_house
 		}
 
 		// General
@@ -849,7 +856,7 @@ class Energiefluss extends utils.Adapter {
 
 			if (direction == "discharge") {
 				// Get the Rest to Full Discharge
-				rest = (battery_capacity * percent) / 100;
+				rest = (battery_capacity * (percent - battery_dod)) / 100;
 			}
 
 			mins = Math.round((rest / watts) * 60);
@@ -1320,6 +1327,12 @@ class Energiefluss extends utils.Adapter {
 			swap_values.grid_value = recalculate ? this.recalculateValue(valuesObj['swap_grid']) : this.floorNumber(valuesObj['swap_grid']);
 		}
 
+		// Production correction
+		let p = (valuesObj['production'] === undefined) ? 0 : valuesObj['production'];
+		let p0 = (valuesObj['production0'] === undefined) ? 0 : valuesObj['production0'];
+		let p1 = (valuesObj['production1'] === undefined) ? 0 : valuesObj['production1'];
+		let p_all = Number(p + p0 + p1);
+
 		let values = {
 			car_custom10_plugged: false,
 			car_custom_plugged: false
@@ -1522,6 +1535,14 @@ class Energiefluss extends utils.Adapter {
 			}
 		}
 
+		// Correction for negative sign for feed-in
+		if (line_animation.solar_to_grid === true) {
+			// If displaying as negative
+			if (neg_feed_in === true) {
+				values.grid_value = values.grid_value * -1;
+			}
+		}
+
 		// Battery Charge
 		if (valuesObj['battery_charge'] != undefined && battery_different === false) {
 			let batteryValue = valuesObj['battery_charge'];
@@ -1534,7 +1555,7 @@ class Energiefluss extends utils.Adapter {
 					// Display as positive
 					batteryValue = batteryValue * -1;
 					dataObj.battery_animation.direction = 'charge';
-					if (batteryValue > (valuesObj['production'] + valuesObj['production0'] + valuesObj['production1'])) {
+					if (batteryValue > p_all) {
 						line_animation.grid_to_battery = true;
 					} else {
 						line_animation.solar_to_battery = true;
@@ -1543,7 +1564,7 @@ class Energiefluss extends utils.Adapter {
 			} else {
 				if (batteryValue > threshold) {
 					dataObj.battery_animation.direction = 'charge';
-					if (batteryValue > (valuesObj['production'] + valuesObj['production0'] + valuesObj['production1'])) {
+					if (batteryValue > p_all) {
 						line_animation.grid_to_battery = true;
 					} else {
 						line_animation.solar_to_battery = true;
@@ -1575,7 +1596,7 @@ class Energiefluss extends utils.Adapter {
 			if (batteryChargeValue > threshold && batteryDischargeValue == 0) {
 				batteryValue = batteryChargeValue;
 				dataObj.battery_animation.direction = 'charge';
-				if (batteryValue > (valuesObj['production'] + valuesObj['production0'] + valuesObj['production1'])) {
+				if (batteryValue > p_all) {
 					line_animation.grid_to_battery = true;
 				} else {
 					line_animation.solar_to_battery = true;
