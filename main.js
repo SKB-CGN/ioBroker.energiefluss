@@ -600,96 +600,104 @@ class Energiefluss extends utils.Adapter {
 		// Check the corresponding state for changes
 		// Production
 		if (state) {
+			let clearValue;
+			if (typeof (state.val) === 'string') {
+				clearValue = Number(state.val.replace(/[^\d.-]/g, ''));
+				this.log.info(clearValue);
+			} else {
+				clearValue = state.val;
+			}
+
 			if (id == custom0) {
-				valuesObj['custom0'] = kwCalc["custom0"] === true ? this.kwValue(state.val) : state.val;
+				valuesObj['custom0'] = kwCalc["custom0"] === true ? this.kwValue(clearValue) : clearValue;
 			}
 			if (id == custom1) {
-				valuesObj['custom1'] = kwCalc["custom1"] === true ? this.kwValue(state.val) : state.val;
+				valuesObj['custom1'] = kwCalc["custom1"] === true ? this.kwValue(clearValue) : clearValue;
 			}
 			if (id == custom2) {
-				valuesObj['custom2'] = kwCalc["custom2"] === true ? this.kwValue(state.val) : state.val;
+				valuesObj['custom2'] = kwCalc["custom2"] === true ? this.kwValue(clearValue) : clearValue;
 			}
 			if (id == custom3) {
-				valuesObj['custom3'] = kwCalc["custom3"] === true ? this.kwValue(state.val) : state.val;
+				valuesObj['custom3'] = kwCalc["custom3"] === true ? this.kwValue(clearValue) : clearValue;
 			}
 			if (id == custom4) {
-				valuesObj['custom4'] = kwCalc["custom4"] === true ? this.kwValue(state.val) : state.val;
+				valuesObj['custom4'] = kwCalc["custom4"] === true ? this.kwValue(clearValue) : clearValue;
 			}
 			if (id == custom5) {
-				valuesObj['custom5'] = kwCalc["custom5"] === true ? this.kwValue(state.val) : state.val;
+				valuesObj['custom5'] = kwCalc["custom5"] === true ? this.kwValue(clearValue) : clearValue;
 			}
 			if (id == custom6) {
-				valuesObj['custom6'] = kwCalc["custom6"] === true ? this.kwValue(state.val) : state.val;
+				valuesObj['custom6'] = kwCalc["custom6"] === true ? this.kwValue(clearValue) : clearValue;
 			}
 			if (id == custom7) {
-				valuesObj['custom7'] = kwCalc["custom7"] === true ? this.kwValue(state.val) : state.val;
+				valuesObj['custom7'] = kwCalc["custom7"] === true ? this.kwValue(clearValue) : clearValue;
 			}
 			if (id == custom8) {
-				valuesObj['custom8'] = kwCalc["custom8"] === true ? this.kwValue(state.val) : state.val;
+				valuesObj['custom8'] = kwCalc["custom8"] === true ? this.kwValue(clearValue) : clearValue;
 			}
 			if (id == custom9) {
-				valuesObj['custom9'] = kwCalc["custom9"] === true ? this.kwValue(state.val) : state.val;
+				valuesObj['custom9'] = kwCalc["custom9"] === true ? this.kwValue(clearValue) : clearValue;
 			}
 			if (id == custom10) {
-				valuesObj['custom10'] = kwCalc["custom10"] === true ? this.kwValue(state.val) : state.val;
+				valuesObj['custom10'] = kwCalc["custom10"] === true ? this.kwValue(clearValue) : clearValue;
 			}
 			if (id == production) {
-				valuesObj['production'] = kwCalc["production"] === true ? this.kwValue(state.val) : state.val;
+				valuesObj['production'] = kwCalc["production"] === true ? this.kwValue(clearValue) : clearValue;
 			}
 			if (id == production0) {
-				valuesObj['production0'] = kwCalc["production0"] === true ? this.kwValue(state.val) : state.val;
+				valuesObj['production0'] = kwCalc["production0"] === true ? this.kwValue(clearValue) : clearValue;
 			}
 			if (id == production1) {
-				valuesObj['production1'] = kwCalc["production1"] === true ? this.kwValue(state.val) : state.val;
+				valuesObj['production1'] = kwCalc["production1"] === true ? this.kwValue(clearValue) : clearValue;
 			}
 			if (id == consumption) {
-				let consumption = kwCalc["consumption"] === true ? this.kwValue(state.val) : state.val;
+				let consumption = kwCalc["consumption"] === true ? this.kwValue(clearValue) : clearValue;
 				if (consumption_reverse) {
 					consumption = consumption * (-1);
 				}
 				valuesObj['consumption'] = consumption;
 			}
 			if (id == grid_feed) {
-				valuesObj['grid_feed'] = kwCalc["grid_feed"] === true ? this.kwValue(state.val) : state.val;
+				valuesObj['grid_feed'] = kwCalc["grid_feed"] === true ? this.kwValue(clearValue) : clearValue;
 			}
 			if (id == grid_consuming) {
-				valuesObj['grid_consuming'] = kwCalc["grid_consuming"] === true ? this.kwValue(state.val) : state.val;
+				valuesObj['grid_consuming'] = kwCalc["grid_consuming"] === true ? this.kwValue(clearValue) : clearValue;
 			}
 			if (id == battery_percent) {
-				valuesObj['battery_percent'] = (Math.round(state.val * 100) / 100).toFixed(fraction_battery);
+				valuesObj['battery_percent'] = (Math.round(clearValue * 100) / 100).toFixed(fraction_battery);
 			}
 			if (id == battery_charge) {
-				valuesObj['battery_charge'] = kwCalc["battery_charge"] === true ? this.kwValue(state.val) : state.val;
+				valuesObj['battery_charge'] = kwCalc["battery_charge"] === true ? this.kwValue(clearValue) : clearValue;
 			}
 			if (id == battery_discharge) {
-				valuesObj['battery_discharge'] = kwCalc["battery_discharge"] === true ? this.kwValue(state.val) : state.val;
+				valuesObj['battery_discharge'] = kwCalc["battery_discharge"] === true ? this.kwValue(clearValue) : clearValue;
 			}
 			if (id == custom10_percent) {
-				valuesObj['custom10_percent'] = state.val;
+				valuesObj['custom10_percent'] = clearValue;
 			}
 			if (id == car_custom10_plugged) {
-				valuesObj['car_custom10_plugged'] = state.val;
+				valuesObj['car_custom10_plugged'] = clearValue;
 			}
 			if (id == custom0_percent) {
-				valuesObj['custom0_percent'] = state.val;
+				valuesObj['custom0_percent'] = clearValue;
 			}
 			if (id == car_custom_plugged) {
-				valuesObj['car_custom_plugged'] = state.val;
+				valuesObj['car_custom_plugged'] = clearValue;
 			}
 			if (id == swap_consumption) {
-				valuesObj['swap_consumption'] = state.val;
+				valuesObj['swap_consumption'] = clearValue;
 			}
 			if (id == swap_production) {
-				valuesObj['swap_production'] = state.val;
+				valuesObj['swap_production'] = clearValue;
 			}
 			if (id == swap_production0) {
-				valuesObj['swap_production0'] = state.val;
+				valuesObj['swap_production0'] = clearValue;
 			}
 			if (id == swap_production1) {
-				valuesObj['swap_production1'] = state.val;
+				valuesObj['swap_production1'] = clearValue;
 			}
 			if (id == swap_grid) {
-				valuesObj['swap_grid'] = state.val;
+				valuesObj['swap_grid'] = clearValue;
 			}
 			if (calculate_consumption) {
 				let prodValue = Number(valuesObj['production']) > 0 ? Number(valuesObj['production']) : 0;
@@ -892,7 +900,8 @@ class Energiefluss extends utils.Adapter {
 				}
 				if (typeof (stateValue.val) === 'string') {
 					if (!key.includes("percent")) {
-						tmpVal = kwCalc[key] === true ? this.kwValue(Number(stateValue.val)) : Number(stateValue.val);
+						let clearValue = stateValue.val.replace(/[^\d.-]/g, '');
+						tmpVal = kwCalc[key] === true ? this.kwValue(Number(clearValue)) : Number(clearValue);
 						tmpObj[key] = recalculate ? this.recalculateValue(tmpVal) : this.floorNumber(tmpVal);
 					} else {
 						tmpObj[key] = Number(stateValue.val);

@@ -80,7 +80,7 @@ body {
 #loading {
     width: 100vw;
     padding: 50px;
-    height: 100vw;
+    height: 100vh;
     position: fixed;
     left: 0px;
     top: 0px;
