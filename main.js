@@ -603,7 +603,6 @@ class Energiefluss extends utils.Adapter {
 			let clearValue;
 			if (typeof (state.val) === 'string') {
 				clearValue = Number(state.val.replace(/[^\d.-]/g, ''));
-				this.log.info(clearValue);
 			} else {
 				clearValue = state.val;
 			}
