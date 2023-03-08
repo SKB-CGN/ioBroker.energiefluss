@@ -487,6 +487,7 @@ class Energiefluss extends utils.Adapter {
 			unit_swap: unit_swap,
 			battery_animation: this.config.battery_animation,
 			fill_elements: this.config.fill_elements,
+			invert_color: this.config.invert_color,
 			slim_design: this.config.slim_design,
 			type: this.config.element_type,
 			custom_type: this.config.custom_type,

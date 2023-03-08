@@ -1029,15 +1029,17 @@ function updateValues() {
                     // Apply fill to corresponding Element
                     $("#" + elm[0]).css("fill", "url(#gradient_" + elm[0] + ")");
 
-                    // Colors for the fonts need to be updated
-                    if (value >= 40) {
-                        $('#' + key).parent().css("fill", invertColor(config.elements.fill[elm[0]]));
-                    }
+					if (config.general.invert_color === true) {
+						// Colors for the fonts need to be updated
+						if (value >= 40) {
+							$('#' + key).parent().css("fill", invertColor(config.elements.fill[elm[0]]));
+						}
 
-                    if (value >= 49) {
-                        // Here we work with the Element
-                        $('#' + elm[0] + "_value").parent().css("fill", invertColor(config.elements.fill[elm[0]]));
-                    }
+						if (value >= 49) {
+							// Here we work with the Element
+							$('#' + elm[0] + "_value").parent().css("fill", invertColor(config.elements.fill[elm[0]]));
+						}
+					}
                 }
 
                 /* Handler for Battery Icon */
