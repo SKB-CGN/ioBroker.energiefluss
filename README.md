@@ -16,6 +16,7 @@
 
 **Tests:** ![Test and Release](https://github.com/SKB-CGN/ioBroker.energiefluss/workflows/Test%20and%20Release/badge.svg)
 
+## NOTE
 *This adapter is no longer maintained, as a new concept is in place: -> https://github.com/SKB-CGN/ioBroker.energiefluss-erweitert*
 
 *Dieser Adapter wird nicht mehr weiter entwickelt, da ein neues Konzept existiert: https://github.com/SKB-CGN/ioBroker.energiefluss-erweitert*
