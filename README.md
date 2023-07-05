@@ -16,6 +16,10 @@
 
 **Tests:** ![Test and Release](https://github.com/SKB-CGN/ioBroker.energiefluss/workflows/Test%20and%20Release/badge.svg)
 
+*This adapter is no longer maintained, as a new concept is in place: -> https://github.com/SKB-CGN/ioBroker.energiefluss-erweitert*
+
+*Dieser Adapter wird nicht mehr weiter entwickelt, da ein neues Konzept existiert: https://github.com/SKB-CGN/ioBroker.energiefluss-erweitert*
+
 ## Energiefluss adapter for ioBroker
 It provides an animated energyflow of the current consumption for photovoltaics, battery, house-consumption, grid-feed-in (grid-consumption), car charge and up to 10 possible elements (circle or rectangle).
 
