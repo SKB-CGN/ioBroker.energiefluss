@@ -1,4 +1,4 @@
-![Logo](admin/energiefluss.png)
+![Logo](/admin/energiefluss.png)
 
 # ioBroker.energiefluss
 
