@@ -1,4 +1,4 @@
-![Logo](admin/energiefluss.png)
+![Logo](/admin/energiefluss.png)
 
 # ioBroker.energiefluss
 
@@ -54,7 +54,7 @@
 Anzeige ist ueber den Instanz Link moeglich. Dieser kann dann auch in ein iFrame oder HTML Widget eingefuegt werden.
 
 ## Benutzerdefinierte Elemente
-![Beschreibung](docs/custom_elements.png)
+![Beschreibung](/docs/custom_elements.png)
 
 ## Symbole
 Bitte ins Wiki schauen
