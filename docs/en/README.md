@@ -54,7 +54,7 @@
 Display is possible via the instance link. This can then also be inserted into an iFrame or HTML widget.
 
 ## Custom Elements
-![Description](docs/custom_elements.png)
+![Description](/docs/custom_elements.png)
 
 ## Icons
 Please have a look into the Wiki
