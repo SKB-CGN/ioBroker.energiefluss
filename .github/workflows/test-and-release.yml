@@ -32,6 +32,7 @@ jobs:
           # Uncomment the following line if your adapter cannot be installed using 'npm ci'
           # install-command: 'npm install'
           lint: false
+          lint-command: 'npm run lint .'
 
   # Runs adapter tests on all supported node versions and OSes
   adapter-tests:
@@ -40,7 +41,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        node-version: [16.x, 18.x, 20.x]
+        node-version: [18.x, 20.x]
         os: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
