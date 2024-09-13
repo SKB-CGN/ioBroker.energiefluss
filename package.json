@@ -6,6 +6,7 @@
   "homepage": "https://github.com/SKB-CGN/ioBroker.energiefluss",
   "license": "MIT",
   "keywords": [
+    "ioBroker",
     "energy",
     "energy-flow",
     "energie",
@@ -19,7 +20,7 @@
     "canvas": "^2.11.2"
   },
   "engines": {
-    "node": ">= 16"
+    "node": ">= 18"
   },
   "dependencies": {
     "@iobroker/adapter-core": "^3.1.6"

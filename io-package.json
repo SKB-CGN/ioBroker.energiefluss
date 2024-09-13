@@ -5,121 +5,108 @@
         "news": {
             "3.6.0": {
                 "en": "error in calculation for battery charging fixed\nunit for alternate elements can be choosen (default was same unit)\nbackground color and transparency can be set (#119)\nicons can be modified for all elements - including production (all 3), grid and consumption (except battery) (#125)\nDepth of discharging can be applied to better calculate the remaining time (#137)\ndisplay grid feed-in as negativ (#99)\nThreshold value can also be applied, if consumer type is set to car (#128)",
-                "de": "fehler in der berechnung für batterieladegerät\neinheit für alternative elemente kann gewählt werden (standard war die gleiche einheit)\nhintergrundfarbe und transparenz können eingestellt werden (#119)\nicons können für alle elemente modifiziert werden - einschließlich produktion (alle 3,) netz und verbrauch (außer batterie) (#125)\nDepth of Entladen kann verwendet werden, um die verbleibende Zeit besser zu berechnen (#137)\nanzeigegittereinspeisung als negativ (#99)\nSchwellenwert kann auch angewendet werden, wenn der Verbrauchertyp auf das Auto gesetzt wird (#128)",
-                "ru": "ошибка в расчете для зарядки аккумулятора фиксированная\nблок для альтернативных элементов можно выбрать (по умолчанию был такой же блок)\nцвет фона и прозрачность можно установить (#119)\nиконки могут быть изменены для всех элементов - включая производство (все 3,) сетки и потребление (кроме батареи) (#125)\nГлубина разгрузки может применяться для лучшего расчета оставшегося времени (#137)\nотображение сетки feed-in как negativ (#99)\nЗначение порога также можно приложить, если тип потребителя установлен к машине (#128)",
-                "pt": "erro no cálculo para carregamento de bateria fixo\nunidade para elementos alternativos pode ser escolhido (o padrão era a mesma unidade)\ncor de fundo e transparência pode ser definido (#119)\nícones podem ser modificados para todos os elementos - incluindo a produção (todos 3,) grade e consumo (exceto bateria) (#125)\nA profundidade da descarga pode ser aplicada para melhor calcular o tempo restante (#137)\ndisplay grade feed-in como negativ (#99)\nValor de limiar também pode ser aplicado, se o tipo de consumidor é definido para o carro (#128)",
+                "de": "fehler in der berechnung fÃ¼r batterieladegerÃ¤t\neinheit fÃ¼r alternative elemente kann gewÃ¤hlt werden (standard war die gleiche einheit)\nhintergrundfarbe und transparenz kÃ¶nnen eingestellt werden (#119)\nicons kÃ¶nnen fÃ¼r alle elemente modifiziert werden - einschlieÃŸlich produktion (alle 3,) netz und verbrauch (auÃŸer batterie) (#125)\nDepth of Entladen kann verwendet werden, um die verbleibende Zeit besser zu berechnen (#137)\nanzeigegittereinspeisung als negativ (#99)\nSchwellenwert kann auch angewendet werden, wenn der Verbrauchertyp auf das Auto gesetzt wird (#128)",
+                "ru": "Ð¾ÑˆÐ¸Ð±ÐºÐ° Ð² Ñ€Ð°ÑÑ‡ÐµÑ‚Ðµ Ð´Ð»Ñ Ð·Ð°Ñ€ÑÐ´ÐºÐ¸ Ð°ÐºÐºÑƒÐ¼ÑƒÐ»ÑÑ‚Ð¾Ñ€Ð° Ñ„Ð¸ÐºÑÐ¸Ñ€Ð¾Ð²Ð°Ð½Ð½Ð°Ñ\nÐ±Ð»Ð¾Ðº Ð´Ð»Ñ Ð°Ð»ÑŒÑ‚ÐµÑ€Ð½Ð°Ñ‚Ð¸Ð²Ð½Ñ‹Ñ… ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¾Ð² Ð¼Ð¾Ð¶Ð½Ð¾ Ð²Ñ‹Ð±Ñ€Ð°Ñ‚ÑŒ (Ð¿Ð¾ ÑƒÐ¼Ð¾Ð»Ñ‡Ð°Ð½Ð¸ÑŽ Ð±Ñ‹Ð» Ñ‚Ð°ÐºÐ¾Ð¹ Ð¶Ðµ Ð±Ð»Ð¾Ðº)\nÑ†Ð²ÐµÑ‚ Ñ„Ð¾Ð½Ð° Ð¸ Ð¿Ñ€Ð¾Ð·Ñ€Ð°Ñ‡Ð½Ð¾ÑÑ‚ÑŒ Ð¼Ð¾Ð¶Ð½Ð¾ ÑƒÑÑ‚Ð°Ð½Ð¾Ð²Ð¸Ñ‚ÑŒ (#119)\nÐ¸ÐºÐ¾Ð½ÐºÐ¸ Ð¼Ð¾Ð³ÑƒÑ‚ Ð±Ñ‹Ñ‚ÑŒ Ð¸Ð·Ð¼ÐµÐ½ÐµÐ½Ñ‹ Ð´Ð»Ñ Ð²ÑÐµÑ… ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¾Ð² - Ð²ÐºÐ»ÑŽÑ‡Ð°Ñ Ð¿Ñ€Ð¾Ð¸Ð·Ð²Ð¾Ð´ÑÑ‚Ð²Ð¾ (Ð²ÑÐµ 3,) ÑÐµÑ‚ÐºÐ¸ Ð¸ Ð¿Ð¾Ñ‚Ñ€ÐµÐ±Ð»ÐµÐ½Ð¸Ðµ (ÐºÑ€Ð¾Ð¼Ðµ Ð±Ð°Ñ‚Ð°Ñ€ÐµÐ¸) (#125)\nÐ“Ð»ÑƒÐ±Ð¸Ð½Ð° Ñ€Ð°Ð·Ð³Ñ€ÑƒÐ·ÐºÐ¸ Ð¼Ð¾Ð¶ÐµÑ‚ Ð¿Ñ€Ð¸Ð¼ÐµÐ½ÑÑ‚ÑŒÑÑ Ð´Ð»Ñ Ð»ÑƒÑ‡ÑˆÐµÐ³Ð¾ Ñ€Ð°ÑÑ‡ÐµÑ‚Ð° Ð¾ÑÑ‚Ð°Ð²ÑˆÐµÐ³Ð¾ÑÑ Ð²Ñ€ÐµÐ¼ÐµÐ½Ð¸ (#137)\nÐ¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ ÑÐµÑ‚ÐºÐ¸ feed-in ÐºÐ°Ðº negativ (#99)\nÐ—Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ð¿Ð¾Ñ€Ð¾Ð³Ð° Ñ‚Ð°ÐºÐ¶Ðµ Ð¼Ð¾Ð¶Ð½Ð¾ Ð¿Ñ€Ð¸Ð»Ð¾Ð¶Ð¸Ñ‚ÑŒ, ÐµÑÐ»Ð¸ Ñ‚Ð¸Ð¿ Ð¿Ð¾Ñ‚Ñ€ÐµÐ±Ð¸Ñ‚ÐµÐ»Ñ ÑƒÑÑ‚Ð°Ð½Ð¾Ð²Ð»ÐµÐ½ Ðº Ð¼Ð°ÑˆÐ¸Ð½Ðµ (#128)",
+                "pt": "erro no cÃ¡lculo para carregamento de bateria fixo\nunidade para elementos alternativos pode ser escolhido (o padrÃ£o era a mesma unidade)\ncor de fundo e transparÃªncia pode ser definido (#119)\nÃ­cones podem ser modificados para todos os elementos - incluindo a produÃ§Ã£o (todos 3,) grade e consumo (exceto bateria) (#125)\nA profundidade da descarga pode ser aplicada para melhor calcular o tempo restante (#137)\ndisplay grade feed-in como negativ (#99)\nValor de limiar tambÃ©m pode ser aplicado, se o tipo de consumidor Ã© definido para o carro (#128)",
                 "nl": "error in berekeningen voor acculading gerepareerd\neenheid voor alternatieve elementen kan gekozen worden\nachtergrondkleur en transparantie kunnen worden geplaatst (119)\niconen kunnen worden aangepast voor alle elementen - inclusief productie (all 3,) grad en consumptie (except batterij) (125)\nDe diepte van ontladen kan worden aangepast om de resterende tijd te berekenen\nvertaling:\nDreigingswaarde kan ook worden toegevoegd, als consument type in de auto staat",
-                "fr": "erreur de calcul pour la charge de la batterie fixe\nunité pour les éléments alternatifs peut être choisie (par défaut, même unité)\ncouleur de fond et transparence peuvent être définies (#119)\nles icônes peuvent être modifiées pour tous les éléments, y compris le réseau de production (tous 3) et la consommation (sauf la batterie) (#125)\nLa profondeur de déchargement peut être appliquée pour mieux calculer le temps restant (#137)\nafficher le flux de grille comme negativ (#99)\nLa valeur seuil peut également être appliquée, si le type de consommateur est fixé à la voiture (#128)",
-                "it": "errore di calcolo per la ricarica della batteria\nunità per elementi alternativi può essere scelto (default era la stessa unità)\ncolore di sfondo e trasparenza possono essere impostati (#119)\nle icone possono essere modificate per tutti gli elementi - compresa la produzione (tutti 3,) griglia e consumo (eccetto batteria) (#125)\nLa profondità di scarico può essere applicata per calcolare meglio il tempo rimanente (#137)\ndisplay griglia feed-in come negativ (#99)\nValore di soglia può anche essere applicato, se il tipo di consumatore è impostato su auto (#128)",
-                "es": "error en cálculo para la carga de batería fijo\nunidad para elementos alternativos se puede elegir (por defecto era la misma unidad)\ncolor de fondo y transparencia se pueden establecer (#119)\niconos se pueden modificar para todos los elementos - incluyendo la producción (todas 3,) la rejilla y el consumo (excepto la batería) (#125)\nProfundidad de descarga se puede aplicar para calcular mejor el tiempo restante (#137)\nalimentación de la red como negativ (#99)\nTambién se puede aplicar el valor del umbral, si el tipo de consumidor se fija en el coche (#128)",
-                "pl": "błąd w obliczeniach ładowania baterii ustalono\njednostka alternatywnych elementów może być wybierana (oznaczona jako jednostka)\nkolor tła i przejrzystości może być ustawiony (#119)\nikony mogą być modyfikowane dla wszystkich elementów – w tym produkcji (wszystkie 3) sieci i konsumpcji (z wyjątkiem baterii) (#125)\nDo obliczeń pozostałych należy wyliczyć czas (#137)\ngrażenia\nWartość Thresholda może być również stosowana, jeśli typ konsumentów jest przeznaczony do samochodu (#128)",
-                "uk": "помилка в розрахунку зарядки акумулятора фіксована\nблок для альтернативних елементів можна вибрати (за замовчуванням був однаковий блок)\nфоновий колір і прозорість можна встановити (#119)\nіконки можуть бути модифіковані для всіх елементів - включаючи виробництво (всі 3,) сітки та споживання (крім акумулятора) (#125)\nГлибина відсадки може бути застосована для кращого розрахунку решти часу (#137)\nроздягання сітки корму як негатив (#99)\nПотрібна вартість також може застосовуватися, якщо споживчий тип встановлюється на автомобіль (#128)",
-                "zh-cn": "固定电池的计算错误\n候补人员单位可选择(同一单位)\n可以确定背景和透明度(第119号)\n可以对包括生产(所有3)电网和消费(电池)在内的所有要素(第125号)进行修改。\n为更好地计算剩余时间(第137号),可以采用连续履行方式。\n展示电网作为微粒(第99号)\n如果确定消费者类型以汽车(第128号)的话,也可采用抵押价值。"
-            },
-            "3.4.0": {
-                "en": "not translated",
-                "de": "not translated",
-                "ru": "not translated",
-                "pt": "not translated",
-                "nl": "not translated",
-                "fr": "not translated",
-                "it": "not translated",
-                "es": "not translated",
-                "pl": "not translated",
-                "uk": "not translated",
-                "zh-cn": "not translated"
+                "fr": "erreur de calcul pour la charge de la batterie fixe\nunitÃ© pour les Ã©lÃ©ments alternatifs peut Ãªtre choisie (par dÃ©faut, mÃªme unitÃ©)\ncouleur de fond et transparence peuvent Ãªtre dÃ©finies (#119)\nles icÃ´nes peuvent Ãªtre modifiÃ©es pour tous les Ã©lÃ©ments, y compris le rÃ©seau de production (tous 3) et la consommation (sauf la batterie) (#125)\nLa profondeur de dÃ©chargement peut Ãªtre appliquÃ©e pour mieux calculer le temps restant (#137)\nafficher le flux de grille comme negativ (#99)\nLa valeur seuil peut Ã©galement Ãªtre appliquÃ©e, si le type de consommateur est fixÃ© Ã  la voiture (#128)",
+                "it": "errore di calcolo per la ricarica della batteria\nunitÃ  per elementi alternativi puÃ² essere scelto (default era la stessa unitÃ )\ncolore di sfondo e trasparenza possono essere impostati (#119)\nle icone possono essere modificate per tutti gli elementi - compresa la produzione (tutti 3,) griglia e consumo (eccetto batteria) (#125)\nLa profonditÃ  di scarico puÃ² essere applicata per calcolare meglio il tempo rimanente (#137)\ndisplay griglia feed-in come negativ (#99)\nValore di soglia puÃ² anche essere applicato, se il tipo di consumatore Ã¨ impostato su auto (#128)",
+                "es": "error en cÃ¡lculo para la carga de baterÃ­a fijo\nunidad para elementos alternativos se puede elegir (por defecto era la misma unidad)\ncolor de fondo y transparencia se pueden establecer (#119)\niconos se pueden modificar para todos los elementos - incluyendo la producciÃ³n (todas 3,) la rejilla y el consumo (excepto la baterÃ­a) (#125)\nProfundidad de descarga se puede aplicar para calcular mejor el tiempo restante (#137)\nalimentaciÃ³n de la red como negativ (#99)\nTambiÃ©n se puede aplicar el valor del umbral, si el tipo de consumidor se fija en el coche (#128)",
+                "pl": "bÅ‚Ä…d w obliczeniach Å‚adowania baterii ustalono\njednostka alternatywnych elementÃ³w moÅ¼e byÄ‡ wybierana (oznaczona jako jednostka)\nkolor tÅ‚a i przejrzystoÅ›ci moÅ¼e byÄ‡ ustawiony (#119)\nikony mogÄ… byÄ‡ modyfikowane dla wszystkich elementÃ³w â€“ w tym produkcji (wszystkie 3) sieci i konsumpcji (z wyjÄ…tkiem baterii) (#125)\nDo obliczeÅ„ pozostaÅ‚ych naleÅ¼y wyliczyÄ‡ czas (#137)\ngraÅ¼enia\nWartoÅ›Ä‡ Thresholda moÅ¼e byÄ‡ rÃ³wnieÅ¼ stosowana, jeÅ›li typ konsumentÃ³w jest przeznaczony do samochodu (#128)",
+                "uk": "Ð¿Ð¾Ð¼Ð¸Ð»ÐºÐ° Ð² Ñ€Ð¾Ð·Ñ€Ð°Ñ…ÑƒÐ½ÐºÑƒ Ð·Ð°Ñ€ÑÐ´ÐºÐ¸ Ð°ÐºÑƒÐ¼ÑƒÐ»ÑÑ‚Ð¾Ñ€Ð° Ñ„Ñ–ÐºÑÐ¾Ð²Ð°Ð½Ð°\nÐ±Ð»Ð¾Ðº Ð´Ð»Ñ Ð°Ð»ÑŒÑ‚ÐµÑ€Ð½Ð°Ñ‚Ð¸Ð²Ð½Ð¸Ñ… ÐµÐ»ÐµÐ¼ÐµÐ½Ñ‚Ñ–Ð² Ð¼Ð¾Ð¶Ð½Ð° Ð²Ð¸Ð±Ñ€Ð°Ñ‚Ð¸ (Ð·Ð° Ð·Ð°Ð¼Ð¾Ð²Ñ‡ÑƒÐ²Ð°Ð½Ð½ÑÐ¼ Ð±ÑƒÐ² Ð¾Ð´Ð½Ð°ÐºÐ¾Ð²Ð¸Ð¹ Ð±Ð»Ð¾Ðº)\nÑ„Ð¾Ð½Ð¾Ð²Ð¸Ð¹ ÐºÐ¾Ð»Ñ–Ñ€ Ñ– Ð¿Ñ€Ð¾Ð·Ð¾Ñ€Ñ–ÑÑ‚ÑŒ Ð¼Ð¾Ð¶Ð½Ð° Ð²ÑÑ‚Ð°Ð½Ð¾Ð²Ð¸Ñ‚Ð¸ (#119)\nÑ–ÐºÐ¾Ð½ÐºÐ¸ Ð¼Ð¾Ð¶ÑƒÑ‚ÑŒ Ð±ÑƒÑ‚Ð¸ Ð¼Ð¾Ð´Ð¸Ñ„Ñ–ÐºÐ¾Ð²Ð°Ð½Ñ– Ð´Ð»Ñ Ð²ÑÑ–Ñ… ÐµÐ»ÐµÐ¼ÐµÐ½Ñ‚Ñ–Ð² - Ð²ÐºÐ»ÑŽÑ‡Ð°ÑŽÑ‡Ð¸ Ð²Ð¸Ñ€Ð¾Ð±Ð½Ð¸Ñ†Ñ‚Ð²Ð¾ (Ð²ÑÑ– 3,) ÑÑ–Ñ‚ÐºÐ¸ Ñ‚Ð° ÑÐ¿Ð¾Ð¶Ð¸Ð²Ð°Ð½Ð½Ñ (ÐºÑ€Ñ–Ð¼ Ð°ÐºÑƒÐ¼ÑƒÐ»ÑÑ‚Ð¾Ñ€Ð°) (#125)\nÐ“Ð»Ð¸Ð±Ð¸Ð½Ð° Ð²Ñ–Ð´ÑÐ°Ð´ÐºÐ¸ Ð¼Ð¾Ð¶Ðµ Ð±ÑƒÑ‚Ð¸ Ð·Ð°ÑÑ‚Ð¾ÑÐ¾Ð²Ð°Ð½Ð° Ð´Ð»Ñ ÐºÑ€Ð°Ñ‰Ð¾Ð³Ð¾ Ñ€Ð¾Ð·Ñ€Ð°Ñ…ÑƒÐ½ÐºÑƒ Ñ€ÐµÑˆÑ‚Ð¸ Ñ‡Ð°ÑÑƒ (#137)\nÑ€Ð¾Ð·Ð´ÑÐ³Ð°Ð½Ð½Ñ ÑÑ–Ñ‚ÐºÐ¸ ÐºÐ¾Ñ€Ð¼Ñƒ ÑÐº Ð½ÐµÐ³Ð°Ñ‚Ð¸Ð² (#99)\nÐŸÐ¾Ñ‚Ñ€Ñ–Ð±Ð½Ð° Ð²Ð°Ñ€Ñ‚Ñ–ÑÑ‚ÑŒ Ñ‚Ð°ÐºÐ¾Ð¶ Ð¼Ð¾Ð¶Ðµ Ð·Ð°ÑÑ‚Ð¾ÑÐ¾Ð²ÑƒÐ²Ð°Ñ‚Ð¸ÑÑ, ÑÐºÑ‰Ð¾ ÑÐ¿Ð¾Ð¶Ð¸Ð²Ñ‡Ð¸Ð¹ Ñ‚Ð¸Ð¿ Ð²ÑÑ‚Ð°Ð½Ð¾Ð²Ð»ÑŽÑ”Ñ‚ÑŒÑÑ Ð½Ð° Ð°Ð²Ñ‚Ð¾Ð¼Ð¾Ð±Ñ–Ð»ÑŒ (#128)",
+                "zh-cn": "å›ºå®šç”µæ± çš„è®¡ç®—é”™è¯¯\nå€™è¡¥äººå‘˜å•ä½å¯é€‰æ‹©(åŒä¸€å•ä½)\nå¯ä»¥ç¡®å®šèƒŒæ™¯å’Œé€æ˜Žåº¦(ç¬¬119å·)\nå¯ä»¥å¯¹åŒ…æ‹¬ç”Ÿäº§(æ‰€æœ‰3)ç”µç½‘å’Œæ¶ˆè´¹(ç”µæ± )åœ¨å†…çš„æ‰€æœ‰è¦ç´ (ç¬¬125å·)è¿›è¡Œä¿®æ”¹ã€‚\nä¸ºæ›´å¥½åœ°è®¡ç®—å‰©ä½™æ—¶é—´(ç¬¬137å·),å¯ä»¥é‡‡ç”¨è¿žç»­å±¥è¡Œæ–¹å¼ã€‚\nå±•ç¤ºç”µç½‘ä½œä¸ºå¾®ç²’(ç¬¬99å·)\nå¦‚æžœç¡®å®šæ¶ˆè´¹è€…ç±»åž‹ä»¥æ±½è½¦(ç¬¬128å·)çš„è¯,ä¹Ÿå¯é‡‡ç”¨æŠµæŠ¼ä»·å€¼ã€‚"
             },
             "3.3.1": {
                 "en": "fixed versioning",
                 "de": "feste version",
-                "ru": "фиксированная версия",
-                "pt": "versão fixa",
+                "ru": "Ñ„Ð¸ÐºÑÐ¸Ñ€Ð¾Ð²Ð°Ð½Ð½Ð°Ñ Ð²ÐµÑ€ÑÐ¸Ñ",
+                "pt": "versÃ£o fixa",
                 "nl": "vertaling:",
                 "fr": "version fixe",
                 "it": "versione fissa",
-                "es": "versión fija",
-                "pl": "wersja stała",
-                "uk": "фіксована версія",
-                "zh-cn": "固定版本"
+                "es": "versiÃ³n fija",
+                "pl": "wersja staÅ‚a",
+                "uk": "Ñ„Ñ–ÐºÑÐ¾Ð²Ð°Ð½Ð° Ð²ÐµÑ€ÑÑ–Ñ",
+                "zh-cn": "å›ºå®šç‰ˆæœ¬"
             },
             "3.3.0": {
                 "en": "define shadows for text, value, percent and icon\nhide lines, if no animation is present on the line\npossibility, to add a second value and description for e.g. daily summary (colors can be defined too) to production, additional production, consumption and grid. Swap time can be defined and clicking on an element will change the values and descriptions one time and will return to the timer afterwards\nautomatic speed of animation can be used to easily identify the highest consumption within custom elements 1 to 11. Highest consumption will use the speed of the animation, lower consumptions will use the multiplicator of +1000 of the defined animation speed\nadded Wiki Link to admin\nupdated translations\nsome additional background changes for adding adapter to iobroker repository",
-                "de": "schatten für text, wert, prozent und symbol definieren\nversteckte linien, wenn keine animation auf der linie vorhanden ist\nmöglichkeit, einen zweiten Wert und eine Beschreibung für z.B. tägliche Zusammenfassung (Farben können auch definiert werden) zur Produktion, zusätzliche Produktion, Verbrauch und Gitter hinzuzufügen. Swap-Zeit kann definiert werden und ein Klick auf ein Element ändert die Werte und Beschreibungen einmal und wird danach zum Timer zurückkehren\nautomatische Animationsgeschwindigkeit kann verwendet werden, um den höchsten Verbrauch innerhalb der benutzerdefinierten Elemente 1 bis 11 leicht zu identifizieren. Höchster Verbrauch wird die Geschwindigkeit der Animation verwenden, niedriger Verbrauch wird den Multiplikator von +1000 der definierten Animationsgeschwindigkeit verwenden\nwiki Link zu admin\naktualisierung der übersetzungen\neinige zusätzliche hintergrundänderungen für das hinzufügen von adapter zu iobroker repository",
-                "ru": "определить тени для текста, ценности, процентов и иконки\nскрыть линии, если не анимация присутствует на линии\nвозможность, добавить второе значение и описание для е.г ежедневное резюме (цветы могут быть определены также) для производства, дополнительного производства, потребления и сетки. Время свопа может быть определено и нажав на элемент изменит значения и описания один раз и вернется к таймеру после\nавтоматическая скорость анимации может быть использована для легкого определения самого высокого потребления в пределах пользовательских элементов 1 до 11. Самое высокое потребление будет использовать скорость анимации, более низкие потребление будет использовать умножитель +1000 определенной скорости анимации\nдобавил Wiki Link в админ\nобновленные переводы\nнекоторые дополнительные изменения фона для добавления адаптера к iobroker repository",
-                "pt": "definir sombras para texto, valor, porcentagem e ícone\nesconder linhas, se nenhuma animação está presente na linha\npossibilidade, adicionar um segundo valor e descrição para, por exemplo, resumo diário (as cores também podem ser definidas) para a produção, produção adicional, consumo e grade. O tempo de troca pode ser definido e clicar em um elemento irá alterar os valores e descrições uma vez e voltará ao temporizador depois\nvelocidade automática de animação pode ser usado para identificar facilmente o consumo mais alto dentro de elementos personalizados 1 a 11. O consumo mais alto usará a velocidade da animação, menores consumos usarão o multiplicador de +1000 da velocidade de animação definida\nadicionado Wiki Link para admin\ntraduções atualizadas\nalgumas alterações de fundo adicionais para adicionar adaptador ao repositório iobroker",
+                "de": "schatten fÃ¼r text, wert, prozent und symbol definieren\nversteckte linien, wenn keine animation auf der linie vorhanden ist\nmÃ¶glichkeit, einen zweiten Wert und eine Beschreibung fÃ¼r z.B. tÃ¤gliche Zusammenfassung (Farben kÃ¶nnen auch definiert werden) zur Produktion, zusÃ¤tzliche Produktion, Verbrauch und Gitter hinzuzufÃ¼gen. Swap-Zeit kann definiert werden und ein Klick auf ein Element Ã¤ndert die Werte und Beschreibungen einmal und wird danach zum Timer zurÃ¼ckkehren\nautomatische Animationsgeschwindigkeit kann verwendet werden, um den hÃ¶chsten Verbrauch innerhalb der benutzerdefinierten Elemente 1 bis 11 leicht zu identifizieren. HÃ¶chster Verbrauch wird die Geschwindigkeit der Animation verwenden, niedriger Verbrauch wird den Multiplikator von +1000 der definierten Animationsgeschwindigkeit verwenden\nwiki Link zu admin\naktualisierung der Ã¼bersetzungen\neinige zusÃ¤tzliche hintergrundÃ¤nderungen fÃ¼r das hinzufÃ¼gen von adapter zu iobroker repository",
+                "ru": "Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»Ð¸Ñ‚ÑŒ Ñ‚ÐµÐ½Ð¸ Ð´Ð»Ñ Ñ‚ÐµÐºÑÑ‚Ð°, Ñ†ÐµÐ½Ð½Ð¾ÑÑ‚Ð¸, Ð¿Ñ€Ð¾Ñ†ÐµÐ½Ñ‚Ð¾Ð² Ð¸ Ð¸ÐºÐ¾Ð½ÐºÐ¸\nÑÐºÑ€Ñ‹Ñ‚ÑŒ Ð»Ð¸Ð½Ð¸Ð¸, ÐµÑÐ»Ð¸ Ð½Ðµ Ð°Ð½Ð¸Ð¼Ð°Ñ†Ð¸Ñ Ð¿Ñ€Ð¸ÑÑƒÑ‚ÑÑ‚Ð²ÑƒÐµÑ‚ Ð½Ð° Ð»Ð¸Ð½Ð¸Ð¸\nÐ²Ð¾Ð·Ð¼Ð¾Ð¶Ð½Ð¾ÑÑ‚ÑŒ, Ð´Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð²Ñ‚Ð¾Ñ€Ð¾Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ð¸ Ð¾Ð¿Ð¸ÑÐ°Ð½Ð¸Ðµ Ð´Ð»Ñ Ðµ.Ð³ ÐµÐ¶ÐµÐ´Ð½ÐµÐ²Ð½Ð¾Ðµ Ñ€ÐµÐ·ÑŽÐ¼Ðµ (Ñ†Ð²ÐµÑ‚Ñ‹ Ð¼Ð¾Ð³ÑƒÑ‚ Ð±Ñ‹Ñ‚ÑŒ Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ñ‹ Ñ‚Ð°ÐºÐ¶Ðµ) Ð´Ð»Ñ Ð¿Ñ€Ð¾Ð¸Ð·Ð²Ð¾Ð´ÑÑ‚Ð²Ð°, Ð´Ð¾Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð¾Ð³Ð¾ Ð¿Ñ€Ð¾Ð¸Ð·Ð²Ð¾Ð´ÑÑ‚Ð²Ð°, Ð¿Ð¾Ñ‚Ñ€ÐµÐ±Ð»ÐµÐ½Ð¸Ñ Ð¸ ÑÐµÑ‚ÐºÐ¸. Ð’Ñ€ÐµÐ¼Ñ ÑÐ²Ð¾Ð¿Ð° Ð¼Ð¾Ð¶ÐµÑ‚ Ð±Ñ‹Ñ‚ÑŒ Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð¾ Ð¸ Ð½Ð°Ð¶Ð°Ð² Ð½Ð° ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚ Ð¸Ð·Ð¼ÐµÐ½Ð¸Ñ‚ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ñ Ð¸ Ð¾Ð¿Ð¸ÑÐ°Ð½Ð¸Ñ Ð¾Ð´Ð¸Ð½ Ñ€Ð°Ð· Ð¸ Ð²ÐµÑ€Ð½ÐµÑ‚ÑÑ Ðº Ñ‚Ð°Ð¹Ð¼ÐµÑ€Ñƒ Ð¿Ð¾ÑÐ»Ðµ\nÐ°Ð²Ñ‚Ð¾Ð¼Ð°Ñ‚Ð¸Ñ‡ÐµÑÐºÐ°Ñ ÑÐºÐ¾Ñ€Ð¾ÑÑ‚ÑŒ Ð°Ð½Ð¸Ð¼Ð°Ñ†Ð¸Ð¸ Ð¼Ð¾Ð¶ÐµÑ‚ Ð±Ñ‹Ñ‚ÑŒ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ð½Ð° Ð´Ð»Ñ Ð»ÐµÐ³ÐºÐ¾Ð³Ð¾ Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð¸Ñ ÑÐ°Ð¼Ð¾Ð³Ð¾ Ð²Ñ‹ÑÐ¾ÐºÐ¾Ð³Ð¾ Ð¿Ð¾Ñ‚Ñ€ÐµÐ±Ð»ÐµÐ½Ð¸Ñ Ð² Ð¿Ñ€ÐµÐ´ÐµÐ»Ð°Ñ… Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŒÑÐºÐ¸Ñ… ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¾Ð² 1 Ð´Ð¾ 11. Ð¡Ð°Ð¼Ð¾Ðµ Ð²Ñ‹ÑÐ¾ÐºÐ¾Ðµ Ð¿Ð¾Ñ‚Ñ€ÐµÐ±Ð»ÐµÐ½Ð¸Ðµ Ð±ÑƒÐ´ÐµÑ‚ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÑŒ ÑÐºÐ¾Ñ€Ð¾ÑÑ‚ÑŒ Ð°Ð½Ð¸Ð¼Ð°Ñ†Ð¸Ð¸, Ð±Ð¾Ð»ÐµÐµ Ð½Ð¸Ð·ÐºÐ¸Ðµ Ð¿Ð¾Ñ‚Ñ€ÐµÐ±Ð»ÐµÐ½Ð¸Ðµ Ð±ÑƒÐ´ÐµÑ‚ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÑŒ ÑƒÐ¼Ð½Ð¾Ð¶Ð¸Ñ‚ÐµÐ»ÑŒ +1000 Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð½Ð¾Ð¹ ÑÐºÐ¾Ñ€Ð¾ÑÑ‚Ð¸ Ð°Ð½Ð¸Ð¼Ð°Ñ†Ð¸Ð¸\nÐ´Ð¾Ð±Ð°Ð²Ð¸Ð» Wiki Link Ð² Ð°Ð´Ð¼Ð¸Ð½\nÐ¾Ð±Ð½Ð¾Ð²Ð»ÐµÐ½Ð½Ñ‹Ðµ Ð¿ÐµÑ€ÐµÐ²Ð¾Ð´Ñ‹\nÐ½ÐµÐºÐ¾Ñ‚Ð¾Ñ€Ñ‹Ðµ Ð´Ð¾Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ñ‹Ðµ Ð¸Ð·Ð¼ÐµÐ½ÐµÐ½Ð¸Ñ Ñ„Ð¾Ð½Ð° Ð´Ð»Ñ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ñ Ð°Ð´Ð°Ð¿Ñ‚ÐµÑ€Ð° Ðº iobroker repository",
+                "pt": "definir sombras para texto, valor, porcentagem e Ã­cone\nesconder linhas, se nenhuma animaÃ§Ã£o estÃ¡ presente na linha\npossibilidade, adicionar um segundo valor e descriÃ§Ã£o para, por exemplo, resumo diÃ¡rio (as cores tambÃ©m podem ser definidas) para a produÃ§Ã£o, produÃ§Ã£o adicional, consumo e grade. O tempo de troca pode ser definido e clicar em um elemento irÃ¡ alterar os valores e descriÃ§Ãµes uma vez e voltarÃ¡ ao temporizador depois\nvelocidade automÃ¡tica de animaÃ§Ã£o pode ser usado para identificar facilmente o consumo mais alto dentro de elementos personalizados 1 a 11. O consumo mais alto usarÃ¡ a velocidade da animaÃ§Ã£o, menores consumos usarÃ£o o multiplicador de +1000 da velocidade de animaÃ§Ã£o definida\nadicionado Wiki Link para admin\ntraduÃ§Ãµes atualizadas\nalgumas alteraÃ§Ãµes de fundo adicionais para adicionar adaptador ao repositÃ³rio iobroker",
                 "nl": "definieer schaduw voor tekst, waarde, percent en icon\nverberglijnen, als er geen animatie aanwezig is op de lijn\nmogelijk, om een tweede waarde en beschrijving toe te voegen voor E.G. dagelijkse samenvatting (kleuren kan ook gedefinieerd worden aan productie, extra productie, consumptie en grid. De wisseltijd kan worden gedefinieerd en geklikt op een element zal de waarden en beschrijvingen een keer veranderen en daarna terugkeren naar de timer\nautomatische snelheid van animatie kan gemakkelijk gebruikt worden om de hoogste consumptie te identificeren binnen de elementen 1 tot 11. Hoogste consumptie zal de snelheid van de animatie gebruiken, de lagere consumpties zullen de multiplicator van +1000 van de gedefinieerde animatiesnelheid gebruiken\nvoegde Wiki Link toe aan administratie\nvertaling:\nwat extra achtergrondverandering voor het toevoegen van de iobroker herberg",
-                "fr": "définir les ombres pour le texte, la valeur, le pourcentage et l'icône\ncacher des lignes, si aucune animation n'est présente sur la ligne\npossibilité d'ajouter une deuxième valeur et une description pour par exemple un résumé quotidien (les couleurs peuvent être définies aussi) à la production, production supplémentaire, consommation et grille. Le temps d'enroulement peut être défini et cliquer sur un élément changera les valeurs et les descriptions une fois et retournera au timer après\nla vitesse d'animation automatique peut être utilisée pour identifier facilement la plus grande consommation dans les éléments personnalisés 1 à 11. La consommation la plus élevée utilisera la vitesse de l'animation, les consommations inférieures utiliseront le multiplicateur de +1000 de la vitesse d'animation définie\najouté Wiki Lien pour admin\ntraductions mises à jour\nquelques changements de fond supplémentaires pour ajouter l'adaptateur au dépôt iobroker",
-                "it": "definire ombre per testo, valore, per cento e icona\nnascondere le linee, se nessuna animazione è presente sulla linea\npossibilità, di aggiungere un secondo valore e descrizione per esempio il riepilogo giornaliero (i colori possono essere definiti anche) alla produzione, produzione aggiuntiva, consumo e griglia. Il tempo di swap può essere definito e cliccando su un elemento cambierà i valori e le descrizioni una volta e tornerà al timer dopo\nvelocità automatica di animazione può essere utilizzato per identificare facilmente il consumo più alto all'interno di elementi personalizzati da 1 a 11. Il consumo più elevato userà la velocità dell'animazione, i consumi più bassi useranno il moltiplicatore di +1000 della velocità di animazione definita\naggiunto Wiki Link a admin\ntraduzioni aggiornate\nalcune modifiche di sfondo aggiuntive per l'aggiunta di adattatore al repository iobroker",
-                "es": "definir sombras para texto, valor, porcentaje e icono\nescondite líneas, si no hay animación presente en la línea\nposibilidad, añadir un segundo valor y descripción para, por ejemplo, resumen diario (los colores pueden definirse también) a la producción, producción adicional, consumo y rejilla. El tiempo de intercambio se puede definir y hacer clic en un elemento cambiará los valores y descripciones una vez y volverá al temporizador después\nla velocidad automática de la animación se puede utilizar para identificar fácilmente el consumo más alto dentro de los elementos personalizados 1 a 11. Consumo más alto utilizará la velocidad de la animación, menor consumo utilizará el multiplicador de +1000 de la velocidad de animación definida\nwiki Enlace a admin\ntraducciones actualizadas\nalgunos cambios de fondo adicionales para añadir adaptador a iobroker repository",
-                "pl": "określa cień dla tekstu, wartości, procent i ikon\nukrycia, jeśli animacja nie jest obecna na linii\nmożliwość dodawania drugiej wartości i opisu dla e.g daily summary (kolory mogą być również zdefiniowane) do produkcji, dodatkowej produkcji, konsumpcji i sieci. Czas Swapa można zdefiniować i kliknąć na elementu zmieniają wartości i opisy czasu, a następnie wracają do czasu\nszybkość animacji można łatwo zidentyfikować najwyższą konsumpcję w elementach 1 do 11. Najwyższy zużycie wykorzystuje szybkość animacji, niższe konsumpcje będą korzystać z mnożnika +1000 zdefiniowanej prędkości animacji\ndodano do niej Wiki Link\ntłumaczenia aktualizowane\nkolejne zmiany tła do dodawania adapter do repozytorium iobroker",
-                "uk": "визначення тіней для тексту, значення, відсотка та іконки\nприховати лінії, якщо немає анімації на лінії\nможливість, щоб додати другий значення і опис для наприклад, щоденного резюме (кольори можуть бути визначені занадто) до виробництва, додаткового виробництва, споживання і сітки. Час повернення може бути визначений і натискаючи на елемент зміни значень і описів одночасно і повернеться до таймера після\nавтоматична швидкість анімації може бути використана для легкого виявлення найвищого споживання в межах користувацьких елементів 1 до 11. Найвище споживання буде використовувати швидкість анімації, нижчі витрати будуть використовувати мультиплікатор +1000 виділеної швидкості анімації\nдодано Wiki Link до адміністратора\nоновлені переклади\nдеякі додаткові фонові зміни для додавання адаптера в iobroker репозиторію",
-                "zh-cn": "界定案文的阴影、价值、4%和icon\n隐瞒线,如果没有朝线进行任何破坏。\n有可能在生产、增加生产、消费和电网等方面增加第二值和说明,例如每日总表(可以界定过谁)。 时间可以确定和点击一个因素,这将改变价值和描述,并将回到后方。\n可以用自动推断速度来轻易地查明习俗要素1至11中的最高消费。 最高消费将使用降水的速度,减少消费将使用10 000美元的多倍的会议速度。\n增加Wiki的联系,以防急\n最新翻译\nb. 增加适应者加入碘化器的一些其他背景变化"
+                "fr": "dÃ©finir les ombres pour le texte, la valeur, le pourcentage et l'icÃ´ne\ncacher des lignes, si aucune animation n'est prÃ©sente sur la ligne\npossibilitÃ© d'ajouter une deuxiÃ¨me valeur et une description pour par exemple un rÃ©sumÃ© quotidien (les couleurs peuvent Ãªtre dÃ©finies aussi) Ã  la production, production supplÃ©mentaire, consommation et grille. Le temps d'enroulement peut Ãªtre dÃ©fini et cliquer sur un Ã©lÃ©ment changera les valeurs et les descriptions une fois et retournera au timer aprÃ¨s\nla vitesse d'animation automatique peut Ãªtre utilisÃ©e pour identifier facilement la plus grande consommation dans les Ã©lÃ©ments personnalisÃ©s 1 Ã  11. La consommation la plus Ã©levÃ©e utilisera la vitesse de l'animation, les consommations infÃ©rieures utiliseront le multiplicateur de +1000 de la vitesse d'animation dÃ©finie\najoutÃ© Wiki Lien pour admin\ntraductions mises Ã  jour\nquelques changements de fond supplÃ©mentaires pour ajouter l'adaptateur au dÃ©pÃ´t iobroker",
+                "it": "definire ombre per testo, valore, per cento e icona\nnascondere le linee, se nessuna animazione Ã¨ presente sulla linea\npossibilitÃ , di aggiungere un secondo valore e descrizione per esempio il riepilogo giornaliero (i colori possono essere definiti anche) alla produzione, produzione aggiuntiva, consumo e griglia. Il tempo di swap puÃ² essere definito e cliccando su un elemento cambierÃ  i valori e le descrizioni una volta e tornerÃ  al timer dopo\nvelocitÃ  automatica di animazione puÃ² essere utilizzato per identificare facilmente il consumo piÃ¹ alto all'interno di elementi personalizzati da 1 a 11. Il consumo piÃ¹ elevato userÃ  la velocitÃ  dell'animazione, i consumi piÃ¹ bassi useranno il moltiplicatore di +1000 della velocitÃ  di animazione definita\naggiunto Wiki Link a admin\ntraduzioni aggiornate\nalcune modifiche di sfondo aggiuntive per l'aggiunta di adattatore al repository iobroker",
+                "es": "definir sombras para texto, valor, porcentaje e icono\nescondite lÃ­neas, si no hay animaciÃ³n presente en la lÃ­nea\nposibilidad, aÃ±adir un segundo valor y descripciÃ³n para, por ejemplo, resumen diario (los colores pueden definirse tambiÃ©n) a la producciÃ³n, producciÃ³n adicional, consumo y rejilla. El tiempo de intercambio se puede definir y hacer clic en un elemento cambiarÃ¡ los valores y descripciones una vez y volverÃ¡ al temporizador despuÃ©s\nla velocidad automÃ¡tica de la animaciÃ³n se puede utilizar para identificar fÃ¡cilmente el consumo mÃ¡s alto dentro de los elementos personalizados 1 a 11. Consumo mÃ¡s alto utilizarÃ¡ la velocidad de la animaciÃ³n, menor consumo utilizarÃ¡ el multiplicador de +1000 de la velocidad de animaciÃ³n definida\nwiki Enlace a admin\ntraducciones actualizadas\nalgunos cambios de fondo adicionales para aÃ±adir adaptador a iobroker repository",
+                "pl": "okreÅ›la cieÅ„ dla tekstu, wartoÅ›ci, procent i ikon\nukrycia, jeÅ›li animacja nie jest obecna na linii\nmoÅ¼liwoÅ›Ä‡ dodawania drugiej wartoÅ›ci i opisu dla e.g daily summary (kolory mogÄ… byÄ‡ rÃ³wnieÅ¼ zdefiniowane) do produkcji, dodatkowej produkcji, konsumpcji i sieci. Czas Swapa moÅ¼na zdefiniowaÄ‡ i kliknÄ…Ä‡ na elementu zmieniajÄ… wartoÅ›ci i opisy czasu, a nastÄ™pnie wracajÄ… do czasu\nszybkoÅ›Ä‡ animacji moÅ¼na Å‚atwo zidentyfikowaÄ‡ najwyÅ¼szÄ… konsumpcjÄ™ w elementach 1 do 11. NajwyÅ¼szy zuÅ¼ycie wykorzystuje szybkoÅ›Ä‡ animacji, niÅ¼sze konsumpcje bÄ™dÄ… korzystaÄ‡ z mnoÅ¼nika +1000 zdefiniowanej prÄ™dkoÅ›ci animacji\ndodano do niej Wiki Link\ntÅ‚umaczenia aktualizowane\nkolejne zmiany tÅ‚a do dodawania adapter do repozytorium iobroker",
+                "uk": "Ð²Ð¸Ð·Ð½Ð°Ñ‡ÐµÐ½Ð½Ñ Ñ‚Ñ–Ð½ÐµÐ¹ Ð´Ð»Ñ Ñ‚ÐµÐºÑÑ‚Ñƒ, Ð·Ð½Ð°Ñ‡ÐµÐ½Ð½Ñ, Ð²Ñ–Ð´ÑÐ¾Ñ‚ÐºÐ° Ñ‚Ð° Ñ–ÐºÐ¾Ð½ÐºÐ¸\nÐ¿Ñ€Ð¸Ñ…Ð¾Ð²Ð°Ñ‚Ð¸ Ð»Ñ–Ð½Ñ–Ñ—, ÑÐºÑ‰Ð¾ Ð½ÐµÐ¼Ð°Ñ” Ð°Ð½Ñ–Ð¼Ð°Ñ†Ñ–Ñ— Ð½Ð° Ð»Ñ–Ð½Ñ–Ñ—\nÐ¼Ð¾Ð¶Ð»Ð¸Ð²Ñ–ÑÑ‚ÑŒ, Ñ‰Ð¾Ð± Ð´Ð¾Ð´Ð°Ñ‚Ð¸ Ð´Ñ€ÑƒÐ³Ð¸Ð¹ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð½Ñ Ñ– Ð¾Ð¿Ð¸Ñ Ð´Ð»Ñ Ð½Ð°Ð¿Ñ€Ð¸ÐºÐ»Ð°Ð´, Ñ‰Ð¾Ð´ÐµÐ½Ð½Ð¾Ð³Ð¾ Ñ€ÐµÐ·ÑŽÐ¼Ðµ (ÐºÐ¾Ð»ÑŒÐ¾Ñ€Ð¸ Ð¼Ð¾Ð¶ÑƒÑ‚ÑŒ Ð±ÑƒÑ‚Ð¸ Ð²Ð¸Ð·Ð½Ð°Ñ‡ÐµÐ½Ñ– Ð·Ð°Ð½Ð°Ð´Ñ‚Ð¾) Ð´Ð¾ Ð²Ð¸Ñ€Ð¾Ð±Ð½Ð¸Ñ†Ñ‚Ð²Ð°, Ð´Ð¾Ð´Ð°Ñ‚ÐºÐ¾Ð²Ð¾Ð³Ð¾ Ð²Ð¸Ñ€Ð¾Ð±Ð½Ð¸Ñ†Ñ‚Ð²Ð°, ÑÐ¿Ð¾Ð¶Ð¸Ð²Ð°Ð½Ð½Ñ Ñ– ÑÑ–Ñ‚ÐºÐ¸. Ð§Ð°Ñ Ð¿Ð¾Ð²ÐµÑ€Ð½ÐµÐ½Ð½Ñ Ð¼Ð¾Ð¶Ðµ Ð±ÑƒÑ‚Ð¸ Ð²Ð¸Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ð¹ Ñ– Ð½Ð°Ñ‚Ð¸ÑÐºÐ°ÑŽÑ‡Ð¸ Ð½Ð° ÐµÐ»ÐµÐ¼ÐµÐ½Ñ‚ Ð·Ð¼Ñ–Ð½Ð¸ Ð·Ð½Ð°Ñ‡ÐµÐ½ÑŒ Ñ– Ð¾Ð¿Ð¸ÑÑ–Ð² Ð¾Ð´Ð½Ð¾Ñ‡Ð°ÑÐ½Ð¾ Ñ– Ð¿Ð¾Ð²ÐµÑ€Ð½ÐµÑ‚ÑŒÑÑ Ð´Ð¾ Ñ‚Ð°Ð¹Ð¼ÐµÑ€Ð° Ð¿Ñ–ÑÐ»Ñ\nÐ°Ð²Ñ‚Ð¾Ð¼Ð°Ñ‚Ð¸Ñ‡Ð½Ð° ÑˆÐ²Ð¸Ð´ÐºÑ–ÑÑ‚ÑŒ Ð°Ð½Ñ–Ð¼Ð°Ñ†Ñ–Ñ— Ð¼Ð¾Ð¶Ðµ Ð±ÑƒÑ‚Ð¸ Ð²Ð¸ÐºÐ¾Ñ€Ð¸ÑÑ‚Ð°Ð½Ð° Ð´Ð»Ñ Ð»ÐµÐ³ÐºÐ¾Ð³Ð¾ Ð²Ð¸ÑÐ²Ð»ÐµÐ½Ð½Ñ Ð½Ð°Ð¹Ð²Ð¸Ñ‰Ð¾Ð³Ð¾ ÑÐ¿Ð¾Ð¶Ð¸Ð²Ð°Ð½Ð½Ñ Ð² Ð¼ÐµÐ¶Ð°Ñ… ÐºÐ¾Ñ€Ð¸ÑÑ‚ÑƒÐ²Ð°Ñ†ÑŒÐºÐ¸Ñ… ÐµÐ»ÐµÐ¼ÐµÐ½Ñ‚Ñ–Ð² 1 Ð´Ð¾ 11. ÐÐ°Ð¹Ð²Ð¸Ñ‰Ðµ ÑÐ¿Ð¾Ð¶Ð¸Ð²Ð°Ð½Ð½Ñ Ð±ÑƒÐ´Ðµ Ð²Ð¸ÐºÐ¾Ñ€Ð¸ÑÑ‚Ð¾Ð²ÑƒÐ²Ð°Ñ‚Ð¸ ÑˆÐ²Ð¸Ð´ÐºÑ–ÑÑ‚ÑŒ Ð°Ð½Ñ–Ð¼Ð°Ñ†Ñ–Ñ—, Ð½Ð¸Ð¶Ñ‡Ñ– Ð²Ð¸Ñ‚Ñ€Ð°Ñ‚Ð¸ Ð±ÑƒÐ´ÑƒÑ‚ÑŒ Ð²Ð¸ÐºÐ¾Ñ€Ð¸ÑÑ‚Ð¾Ð²ÑƒÐ²Ð°Ñ‚Ð¸ Ð¼ÑƒÐ»ÑŒÑ‚Ð¸Ð¿Ð»Ñ–ÐºÐ°Ñ‚Ð¾Ñ€ +1000 Ð²Ð¸Ð´Ñ–Ð»ÐµÐ½Ð¾Ñ— ÑˆÐ²Ð¸Ð´ÐºÐ¾ÑÑ‚Ñ– Ð°Ð½Ñ–Ð¼Ð°Ñ†Ñ–Ñ—\nÐ´Ð¾Ð´Ð°Ð½Ð¾ Wiki Link Ð´Ð¾ Ð°Ð´Ð¼Ñ–Ð½Ñ–ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ð°\nÐ¾Ð½Ð¾Ð²Ð»ÐµÐ½Ñ– Ð¿ÐµÑ€ÐµÐºÐ»Ð°Ð´Ð¸\nÐ´ÐµÑÐºÑ– Ð´Ð¾Ð´Ð°Ñ‚ÐºÐ¾Ð²Ñ– Ñ„Ð¾Ð½Ð¾Ð²Ñ– Ð·Ð¼Ñ–Ð½Ð¸ Ð´Ð»Ñ Ð´Ð¾Ð´Ð°Ð²Ð°Ð½Ð½Ñ Ð°Ð´Ð°Ð¿Ñ‚ÐµÑ€Ð° Ð² iobroker Ñ€ÐµÐ¿Ð¾Ð·Ð¸Ñ‚Ð¾Ñ€Ñ–ÑŽ",
+                "zh-cn": "ç•Œå®šæ¡ˆæ–‡çš„é˜´å½±ã€ä»·å€¼ã€4%å’Œicon\néšçž’çº¿,å¦‚æžœæ²¡æœ‰æœçº¿è¿›è¡Œä»»ä½•ç ´åã€‚\næœ‰å¯èƒ½åœ¨ç”Ÿäº§ã€å¢žåŠ ç”Ÿäº§ã€æ¶ˆè´¹å’Œç”µç½‘ç­‰æ–¹é¢å¢žåŠ ç¬¬äºŒå€¼å’Œè¯´æ˜Ž,ä¾‹å¦‚æ¯æ—¥æ€»è¡¨(å¯ä»¥ç•Œå®šè¿‡è°)ã€‚ æ—¶é—´å¯ä»¥ç¡®å®šå’Œç‚¹å‡»ä¸€ä¸ªå› ç´ ,è¿™å°†æ”¹å˜ä»·å€¼å’Œæè¿°,å¹¶å°†å›žåˆ°åŽæ–¹ã€‚\nå¯ä»¥ç”¨è‡ªåŠ¨æŽ¨æ–­é€Ÿåº¦æ¥è½»æ˜“åœ°æŸ¥æ˜Žä¹ ä¿—è¦ç´ 1è‡³11ä¸­çš„æœ€é«˜æ¶ˆè´¹ã€‚ æœ€é«˜æ¶ˆè´¹å°†ä½¿ç”¨é™æ°´çš„é€Ÿåº¦,å‡å°‘æ¶ˆè´¹å°†ä½¿ç”¨10 000ç¾Žå…ƒçš„å¤šå€çš„ä¼šè®®é€Ÿåº¦ã€‚\nå¢žåŠ Wikiçš„è”ç³»,ä»¥é˜²æ€¥\næœ€æ–°ç¿»è¯‘\nb. å¢žåŠ é€‚åº”è€…åŠ å…¥ç¢˜åŒ–å™¨çš„ä¸€äº›å…¶ä»–èƒŒæ™¯å˜åŒ–"
             },
             "3.2.0": {
                 "en": "added second production element\ntranslation fixes\nbasic data updated\nremoved some testing waste",
-                "de": "zweites produktionselement\nübersetzungskorrekturen\nbasisdaten aktualisiert\nentfernte testmüll",
-                "ru": "добавлен второй элемент производства\nисправления перевода\nосновные данные обновлены\nудалить некоторые испытания отходов",
-                "pt": "adicionado segundo elemento de produção\ncorreções de tradução\ndados básicos atualizados\nremoveu alguns resíduos de testes",
-                "nl": "tweede productie element\nvertaling\nbasic gegevens geüpdateerd\nverwijder wat testafval",
-                "fr": "deuxième élément de production\ntraduction\ndonnées de base mises à jour\ndes déchets d ' essai",
+                "de": "zweites produktionselement\nÃ¼bersetzungskorrekturen\nbasisdaten aktualisiert\nentfernte testmÃ¼ll",
+                "ru": "Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½ Ð²Ñ‚Ð¾Ñ€Ð¾Ð¹ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚ Ð¿Ñ€Ð¾Ð¸Ð·Ð²Ð¾Ð´ÑÑ‚Ð²Ð°\nÐ¸ÑÐ¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ñ Ð¿ÐµÑ€ÐµÐ²Ð¾Ð´Ð°\nÐ¾ÑÐ½Ð¾Ð²Ð½Ñ‹Ðµ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð¾Ð±Ð½Ð¾Ð²Ð»ÐµÐ½Ñ‹\nÑƒÐ´Ð°Ð»Ð¸Ñ‚ÑŒ Ð½ÐµÐºÐ¾Ñ‚Ð¾Ñ€Ñ‹Ðµ Ð¸ÑÐ¿Ñ‹Ñ‚Ð°Ð½Ð¸Ñ Ð¾Ñ‚Ñ…Ð¾Ð´Ð¾Ð²",
+                "pt": "adicionado segundo elemento de produÃ§Ã£o\ncorreÃ§Ãµes de traduÃ§Ã£o\ndados bÃ¡sicos atualizados\nremoveu alguns resÃ­duos de testes",
+                "nl": "tweede productie element\nvertaling\nbasic gegevens geÃ¼pdateerd\nverwijder wat testafval",
+                "fr": "deuxiÃ¨me Ã©lÃ©ment de production\ntraduction\ndonnÃ©es de base mises Ã  jour\ndes dÃ©chets d ' essai",
                 "it": "aggiunto secondo elemento di produzione\ncorrezioni di traduzione\ndati di base aggiornati\nrimosso alcuni rifiuti di prova",
-                "es": "segundo elemento de producción\ntraducción correcciones\ndatos básicos actualizados\nse eliminaron algunos desechos de prueba",
-                "pl": "dodanie drugiego elementu produkcyjnego\nnaprawa tłumaczenia\npodstawowa aktualizacja danych\nusunięte testy",
-                "uk": "додано другий елемент виробництва\nфіксатори перекладу\nбазові дані оновлені\nвидалення деяких контрольних відходів",
-                "zh-cn": "增加的第二个生产要素\n笔译\n更新的基本数据\n拆除一些试验废料"
+                "es": "segundo elemento de producciÃ³n\ntraducciÃ³n correcciones\ndatos bÃ¡sicos actualizados\nse eliminaron algunos desechos de prueba",
+                "pl": "dodanie drugiego elementu produkcyjnego\nnaprawa tÅ‚umaczenia\npodstawowa aktualizacja danych\nusuniÄ™te testy",
+                "uk": "Ð´Ð¾Ð´Ð°Ð½Ð¾ Ð´Ñ€ÑƒÐ³Ð¸Ð¹ ÐµÐ»ÐµÐ¼ÐµÐ½Ñ‚ Ð²Ð¸Ñ€Ð¾Ð±Ð½Ð¸Ñ†Ñ‚Ð²Ð°\nÑ„Ñ–ÐºÑÐ°Ñ‚Ð¾Ñ€Ð¸ Ð¿ÐµÑ€ÐµÐºÐ»Ð°Ð´Ñƒ\nÐ±Ð°Ð·Ð¾Ð²Ñ– Ð´Ð°Ð½Ñ– Ð¾Ð½Ð¾Ð²Ð»ÐµÐ½Ñ–\nÐ²Ð¸Ð´Ð°Ð»ÐµÐ½Ð½Ñ Ð´ÐµÑÐºÐ¸Ñ… ÐºÐ¾Ð½Ñ‚Ñ€Ð¾Ð»ÑŒÐ½Ð¸Ñ… Ð²Ñ–Ð´Ñ…Ð¾Ð´Ñ–Ð²",
+                "zh-cn": "å¢žåŠ çš„ç¬¬äºŒä¸ªç”Ÿäº§è¦ç´ \nç¬”è¯‘\næ›´æ–°çš„åŸºæœ¬æ•°æ®\næ‹†é™¤ä¸€äº›è¯•éªŒåºŸæ–™"
             },
             "3.1.0": {
                 "en": "fixed <br> alignment inside element\nadded new animation types to line-animation\ncleaned up some files for future handling",
-                "de": "fest <br> ausrichtung innerhalb des elements\nneue animationstypen zur line-animation hinzugefügt\neinige dateien für zukünftiges handling gereinigt",
-                "ru": "фиксированный <br> выравнивание внутри элемента\nдобавлены новые типы анимации в линейную анимацию\nочистить некоторые файлы для будущей обработки",
-                "pt": "fixo <br> alinhamento dentro do elemento\nadicionado novos tipos de animação para animação de linha\nlimpou alguns arquivos para manipulação futura",
+                "de": "fest <br> ausrichtung innerhalb des elements\nneue animationstypen zur line-animation hinzugefÃ¼gt\neinige dateien fÃ¼r zukÃ¼nftiges handling gereinigt",
+                "ru": "Ñ„Ð¸ÐºÑÐ¸Ñ€Ð¾Ð²Ð°Ð½Ð½Ñ‹Ð¹ <br> Ð²Ñ‹Ñ€Ð°Ð²Ð½Ð¸Ð²Ð°Ð½Ð¸Ðµ Ð²Ð½ÑƒÑ‚Ñ€Ð¸ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð°\nÐ´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ñ‹ Ð½Ð¾Ð²Ñ‹Ðµ Ñ‚Ð¸Ð¿Ñ‹ Ð°Ð½Ð¸Ð¼Ð°Ñ†Ð¸Ð¸ Ð² Ð»Ð¸Ð½ÐµÐ¹Ð½ÑƒÑŽ Ð°Ð½Ð¸Ð¼Ð°Ñ†Ð¸ÑŽ\nÐ¾Ñ‡Ð¸ÑÑ‚Ð¸Ñ‚ÑŒ Ð½ÐµÐºÐ¾Ñ‚Ð¾Ñ€Ñ‹Ðµ Ñ„Ð°Ð¹Ð»Ñ‹ Ð´Ð»Ñ Ð±ÑƒÐ´ÑƒÑ‰ÐµÐ¹ Ð¾Ð±Ñ€Ð°Ð±Ð¾Ñ‚ÐºÐ¸",
+                "pt": "fixo <br> alinhamento dentro do elemento\nadicionado novos tipos de animaÃ§Ã£o para animaÃ§Ã£o de linha\nlimpou alguns arquivos para manipulaÃ§Ã£o futura",
                 "nl": "_\nvoegde nieuwe animatietypes toe aan line-animatie\nik heb wat dossiers opgeruimd voor de toekomst",
-                "fr": "alignement horizontal fixe\najout de nouveaux types d'animation à line-animation\nnettoyer certains fichiers pour la manipulation future",
+                "fr": "alignement horizontal fixe\najout de nouveaux types d'animation Ã  line-animation\nnettoyer certains fichiers pour la manipulation future",
                 "it": "allineamento fisso\naggiunto nuovi tipi di animazione alla linea-animazione\npulire alcuni file per la gestione futura",
-                "es": "fijada en el elemento interior\nnuevos tipos de animación añadidos a line-animation\nlimpiar algunos archivos para el futuro manejo",
-                "pl": "zbiór stałych <br> w dopasowywaniu wewnątrz elementu\ndodano nowe typy animacji do animacji liniowej\nczyścić niektóre pliki dla przyszłej obsługi",
-                "uk": "фіксована <br> вирівнювання всередині елемента\nдодано нові типи анімації до лінійно-анімації\nочистити деякі файли для майбутнього обробки",
-                "zh-cn": "固定> 要素内的一致性\n增加新的降解类型\n对今后处理的一些档案进行清理"
+                "es": "fijada en el elemento interior\nnuevos tipos de animaciÃ³n aÃ±adidos a line-animation\nlimpiar algunos archivos para el futuro manejo",
+                "pl": "zbiÃ³r staÅ‚ych <br> w dopasowywaniu wewnÄ…trz elementu\ndodano nowe typy animacji do animacji liniowej\nczyÅ›ciÄ‡ niektÃ³re pliki dla przyszÅ‚ej obsÅ‚ugi",
+                "uk": "Ñ„Ñ–ÐºÑÐ¾Ð²Ð°Ð½Ð° <br> Ð²Ð¸Ñ€Ñ–Ð²Ð½ÑŽÐ²Ð°Ð½Ð½Ñ Ð²ÑÐµÑ€ÐµÐ´Ð¸Ð½Ñ– ÐµÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð°\nÐ´Ð¾Ð´Ð°Ð½Ð¾ Ð½Ð¾Ð²Ñ– Ñ‚Ð¸Ð¿Ð¸ Ð°Ð½Ñ–Ð¼Ð°Ñ†Ñ–Ñ— Ð´Ð¾ Ð»Ñ–Ð½Ñ–Ð¹Ð½Ð¾-Ð°Ð½Ñ–Ð¼Ð°Ñ†Ñ–Ñ—\nÐ¾Ñ‡Ð¸ÑÑ‚Ð¸Ñ‚Ð¸ Ð´ÐµÑÐºÑ– Ñ„Ð°Ð¹Ð»Ð¸ Ð´Ð»Ñ Ð¼Ð°Ð¹Ð±ÑƒÑ‚Ð½ÑŒÐ¾Ð³Ð¾ Ð¾Ð±Ñ€Ð¾Ð±ÐºÐ¸",
+                "zh-cn": "å›ºå®š> è¦ç´ å†…çš„ä¸€è‡´æ€§\nå¢žåŠ æ–°çš„é™è§£ç±»åž‹\nå¯¹ä»ŠåŽå¤„ç†çš„ä¸€äº›æ¡£æ¡ˆè¿›è¡Œæ¸…ç†"
             },
             "3.0.3": {
                 "en": "fixed custom line 9 coloring, which was not working\nadded own state in object browser for remaining accu\nfont size increased for some descriptions in admin panel",
-                "de": "feste benutzerdefinierte linie 9 färbung, die nicht funktioniert\nhinzugefügt eigenen zustand im objekt-browser für verbleibenden accu\nschriftgröße erhöht für einige beschreibungen in admin-panel",
-                "ru": "фиксированная линия 9 раскраски, которая не работала\nдобавлено собственное состояние в браузере объектов для оставшегося accu\nразмер шрифта увеличен для некоторых описаний в панели админ",
-                "pt": "linha personalizada fixa 9 coloração, que não estava funcionando\nadicionado próprio estado no navegador objeto para permanecer accu\ntamanho da fonte aumentou para algumas descrições no painel de admin",
+                "de": "feste benutzerdefinierte linie 9 fÃ¤rbung, die nicht funktioniert\nhinzugefÃ¼gt eigenen zustand im objekt-browser fÃ¼r verbleibenden accu\nschriftgrÃ¶ÃŸe erhÃ¶ht fÃ¼r einige beschreibungen in admin-panel",
+                "ru": "Ñ„Ð¸ÐºÑÐ¸Ñ€Ð¾Ð²Ð°Ð½Ð½Ð°Ñ Ð»Ð¸Ð½Ð¸Ñ 9 Ñ€Ð°ÑÐºÑ€Ð°ÑÐºÐ¸, ÐºÐ¾Ñ‚Ð¾Ñ€Ð°Ñ Ð½Ðµ Ñ€Ð°Ð±Ð¾Ñ‚Ð°Ð»Ð°\nÐ´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¾ ÑÐ¾Ð±ÑÑ‚Ð²ÐµÐ½Ð½Ð¾Ðµ ÑÐ¾ÑÑ‚Ð¾ÑÐ½Ð¸Ðµ Ð² Ð±Ñ€Ð°ÑƒÐ·ÐµÑ€Ðµ Ð¾Ð±ÑŠÐµÐºÑ‚Ð¾Ð² Ð´Ð»Ñ Ð¾ÑÑ‚Ð°Ð²ÑˆÐµÐ³Ð¾ÑÑ accu\nÑ€Ð°Ð·Ð¼ÐµÑ€ ÑˆÑ€Ð¸Ñ„Ñ‚Ð° ÑƒÐ²ÐµÐ»Ð¸Ñ‡ÐµÐ½ Ð´Ð»Ñ Ð½ÐµÐºÐ¾Ñ‚Ð¾Ñ€Ñ‹Ñ… Ð¾Ð¿Ð¸ÑÐ°Ð½Ð¸Ð¹ Ð² Ð¿Ð°Ð½ÐµÐ»Ð¸ Ð°Ð´Ð¼Ð¸Ð½",
+                "pt": "linha personalizada fixa 9 coloraÃ§Ã£o, que nÃ£o estava funcionando\nadicionado prÃ³prio estado no navegador objeto para permanecer accu\ntamanho da fonte aumentou para algumas descriÃ§Ãµes no painel de admin",
                 "nl": "vertaling:\nvoegde eigen staat toe in object browser voor het blijven van beschuldiging\nfont maat verhoogd voor beschrijvingen in administratie",
-                "fr": "la ligne 9 fixe, qui ne fonctionnait pas\najouté propre état dans le navigateur objet pour restant accu\ntaille de police augmentée pour certaines descriptions dans le panneau d'administration",
+                "fr": "la ligne 9 fixe, qui ne fonctionnait pas\najoutÃ© propre Ã©tat dans le navigateur objet pour restant accu\ntaille de police augmentÃ©e pour certaines descriptions dans le panneau d'administration",
                 "it": "fisso personalizzato linea 9 colorazione, che non funzionava\naggiunto proprio stato nel browser oggetto per rimanere accu\ndimensione del carattere aumentata per alcune descrizioni nel pannello di amministrazione",
-                "es": "línea fija personalizada 9 para colorear, que no estaba funcionando\nestado añadido en el navegador de objetos para el accu\ntamaño de fuente aumentado para algunas descripciones en el panel de administración",
-                "pl": "na bazie stacjonarnej linii 9 kolorów, które nie pracowały\ndodał własny stan przeglądarki obiektowej dla pozostałego przyspieszenia\nrozmiar czcionki wzrósł do niektórych opisów w panelach adminowych",
-                "uk": "фіксована замовна лінія 9 розмальовка, яка не працювала\nдодано власний стан в браузері об'єкта для решти accu\nрозмір шрифту збільшено на деякі описи в адмін панелі",
-                "zh-cn": "固定的习俗线9:没有工作。\n在剩余的拖车上添加自己的国家\n专案小组的一些说明数量增加"
+                "es": "lÃ­nea fija personalizada 9 para colorear, que no estaba funcionando\nestado aÃ±adido en el navegador de objetos para el accu\ntamaÃ±o de fuente aumentado para algunas descripciones en el panel de administraciÃ³n",
+                "pl": "na bazie stacjonarnej linii 9 kolorÃ³w, ktÃ³re nie pracowaÅ‚y\ndodaÅ‚ wÅ‚asny stan przeglÄ…darki obiektowej dla pozostaÅ‚ego przyspieszenia\nrozmiar czcionki wzrÃ³sÅ‚ do niektÃ³rych opisÃ³w w panelach adminowych",
+                "uk": "Ñ„Ñ–ÐºÑÐ¾Ð²Ð°Ð½Ð° Ð·Ð°Ð¼Ð¾Ð²Ð½Ð° Ð»Ñ–Ð½Ñ–Ñ 9 Ñ€Ð¾Ð·Ð¼Ð°Ð»ÑŒÐ¾Ð²ÐºÐ°, ÑÐºÐ° Ð½Ðµ Ð¿Ñ€Ð°Ñ†ÑŽÐ²Ð°Ð»Ð°\nÐ´Ð¾Ð´Ð°Ð½Ð¾ Ð²Ð»Ð°ÑÐ½Ð¸Ð¹ ÑÑ‚Ð°Ð½ Ð² Ð±Ñ€Ð°ÑƒÐ·ÐµÑ€Ñ– Ð¾Ð±'Ñ”ÐºÑ‚Ð° Ð´Ð»Ñ Ñ€ÐµÑˆÑ‚Ð¸ accu\nÑ€Ð¾Ð·Ð¼Ñ–Ñ€ ÑˆÑ€Ð¸Ñ„Ñ‚Ñƒ Ð·Ð±Ñ–Ð»ÑŒÑˆÐµÐ½Ð¾ Ð½Ð° Ð´ÐµÑÐºÑ– Ð¾Ð¿Ð¸ÑÐ¸ Ð² Ð°Ð´Ð¼Ñ–Ð½ Ð¿Ð°Ð½ÐµÐ»Ñ–",
+                "zh-cn": "å›ºå®šçš„ä¹ ä¿—çº¿9:æ²¡æœ‰å·¥ä½œã€‚\nåœ¨å‰©ä½™çš„æ‹–è½¦ä¸Šæ·»åŠ è‡ªå·±çš„å›½å®¶\nä¸“æ¡ˆå°ç»„çš„ä¸€äº›è¯´æ˜Žæ•°é‡å¢žåŠ "
             }
         },
         "titleLang": {
             "en": "Energiefluss",
             "de": "Energiefluss",
-            "ru": "Энергифлусс",
+            "ru": "Ð­Ð½ÐµÑ€Ð³Ð¸Ñ„Ð»ÑƒÑÑ",
             "pt": "Energiefluss",
             "nl": "Energiefluss",
             "fr": "Energiefluss",
             "it": "Flusso di energia",
             "es": "Energiefluss",
             "pl": "Energiefluss",
-            "zh-cn": "精力充沛",
-            "uk": "Енергієзлив"
+            "zh-cn": "ç²¾åŠ›å……æ²›",
+            "uk": "Ð•Ð½ÐµÑ€Ð³Ñ–Ñ”Ð·Ð»Ð¸Ð²"
         },
         "desc": {
             "en": "It provides an animated energy-flow for solar-panels, battery-charging, house-consumption, grid feed-in and car-charging.",
-            "de": "Es stellt einen animierten Energiefluss für Photovoltaik, Batterie, Hausverbrauch, Einspeisung und Auto-Ladung bereit.",
-            "ru": "Es stellt einen animierten Energiefluss für Photovoltaik, Batterie, Hausverbrauch, Einspeisung und Auto-Ladung bereit.",
-            "pt": "Es stellt einen animierten Energiefluss für Photovoltaik, Batterie, Hausverbrauch, Einspeisung und Auto-Ladung bereit.",
-            "nl": "Es stellt einen animierten Energiefluss für Photovoltaik, Batterie, Hausverbrauch, Einspeisung en Auto-Ladung bereit.",
-            "fr": "Es stellt einen animierten Energiefluss für Photovoltaik, Batterie, Hausverbrauch, Einspeisung und Auto-Ladung bereit.",
-            "it": "Es stellt einen animierten Energiefluss für Photovoltaik, Batterie, Hausverbrauch, Einspeisung und Auto-Ladung beit.",
-            "es": "Es stellt einen animierten Energiefluss für Photovoltaik, Batterie, Hausverbrauch, Einspeisung und Auto-Ladung bereit.",
-            "pl": "Es stellt einen animierten Energiefluss für Photovoltaik, Batterie, Hausverbrauch, Einspeisung und Auto-Ladung bereit.",
-            "zh-cn": "Es stellt einen animierten Energiefluss für Photovoltaik, Batterie, Hausverbrauch, Einspeisung und Auto-Ladung bereit。",
-            "uk": "Він забезпечує анімований потік енергії для сонячних панелей, заряджання акумулятора, домашнього споживання, підключення до мережі та заряджання автомобіля."
+            "de": "Es stellt einen animierten Energiefluss fÃ¼r Photovoltaik, Batterie, Hausverbrauch, Einspeisung und Auto-Ladung bereit.",
+            "ru": "Es stellt einen animierten Energiefluss fÃ¼r Photovoltaik, Batterie, Hausverbrauch, Einspeisung und Auto-Ladung bereit.",
+            "pt": "Es stellt einen animierten Energiefluss fÃ¼r Photovoltaik, Batterie, Hausverbrauch, Einspeisung und Auto-Ladung bereit.",
+            "nl": "Es stellt einen animierten Energiefluss fÃ¼r Photovoltaik, Batterie, Hausverbrauch, Einspeisung en Auto-Ladung bereit.",
+            "fr": "Es stellt einen animierten Energiefluss fÃ¼r Photovoltaik, Batterie, Hausverbrauch, Einspeisung und Auto-Ladung bereit.",
+            "it": "Es stellt einen animierten Energiefluss fÃ¼r Photovoltaik, Batterie, Hausverbrauch, Einspeisung und Auto-Ladung beit.",
+            "es": "Es stellt einen animierten Energiefluss fÃ¼r Photovoltaik, Batterie, Hausverbrauch, Einspeisung und Auto-Ladung bereit.",
+            "pl": "Es stellt einen animierten Energiefluss fÃ¼r Photovoltaik, Batterie, Hausverbrauch, Einspeisung und Auto-Ladung bereit.",
+            "zh-cn": "Es stellt einen animierten Energiefluss fÃ¼r Photovoltaik, Batterie, Hausverbrauch, Einspeisung und Auto-Ladung bereitã€‚",
+            "uk": "Ð’Ñ–Ð½ Ð·Ð°Ð±ÐµÐ·Ð¿ÐµÑ‡ÑƒÑ” Ð°Ð½Ñ–Ð¼Ð¾Ð²Ð°Ð½Ð¸Ð¹ Ð¿Ð¾Ñ‚Ñ–Ðº ÐµÐ½ÐµÑ€Ð³Ñ–Ñ— Ð´Ð»Ñ ÑÐ¾Ð½ÑÑ‡Ð½Ð¸Ñ… Ð¿Ð°Ð½ÐµÐ»ÐµÐ¹, Ð·Ð°Ñ€ÑÐ´Ð¶Ð°Ð½Ð½Ñ Ð°ÐºÑƒÐ¼ÑƒÐ»ÑÑ‚Ð¾Ñ€Ð°, Ð´Ð¾Ð¼Ð°ÑˆÐ½ÑŒÐ¾Ð³Ð¾ ÑÐ¿Ð¾Ð¶Ð¸Ð²Ð°Ð½Ð½Ñ, Ð¿Ñ–Ð´ÐºÐ»ÑŽÑ‡ÐµÐ½Ð½Ñ Ð´Ð¾ Ð¼ÐµÑ€ÐµÐ¶Ñ– Ñ‚Ð° Ð·Ð°Ñ€ÑÐ´Ð¶Ð°Ð½Ð½Ñ Ð°Ð²Ñ‚Ð¾Ð¼Ð¾Ð±Ñ–Ð»Ñ."
         },
         "authors": [
             {
@@ -133,9 +120,11 @@
             "energie",
             "energiefluss"
         ],
-        "license": "MIT",
+        "licenseInformation": {
+            "license": "MIT",
+            "type": "free"
+        },
         "platform": "Javascript/Node.js",
-        "main": "main.js",
         "icon": "energiefluss.png",
         "enabled": true,
         "localLinks": {
@@ -145,33 +134,36 @@
         "readme": "https://github.com/SKB-CGN/ioBroker.energiefluss/blob/main/README.md",
         "loglevel": "info",
         "mode": "daemon",
+        "tier": 3,
         "type": "visualization",
         "compact": true,
         "connectionType": "local",
         "dataSource": "assumption",
-        "materialize": true,
-        "materializeTab": true,
+        "adminUI": {
+            "config": "materialize",
+            "tab": false
+        },
         "adminTab": {
             "singleton": false,
             "name": {
                 "en": "Energiefluss",
                 "de": "Energiefluss",
-                "ru": "Энергифлусс",
+                "ru": "Ð­Ð½ÐµÑ€Ð³Ð¸Ñ„Ð»ÑƒÑÑ",
                 "pt": "Energiefluss",
                 "nl": "Energiefluss",
                 "fr": "Energiefluss",
                 "it": "Flusso di energia",
                 "es": "Energiefluss",
                 "pl": "Energiefluss",
-                "zh-cn": "精力充沛"
+                "zh-cn": "ç²¾åŠ›å……æ²›"
             },
-            "link": "",
+            "link": "%web_protocol%://%ip%:%web_port%/energiefluss/index.html?instance=%instance%",
             "fa-icon": "info"
         },
         "supportCustoms": false,
         "dependencies": [
             {
-                "js-controller": ">=3.3.22",
+                "js-controller": ">=5.0.19",
                 "web": ">=3.0.12"
             }
         ],
@@ -479,6 +471,14 @@
     },
     "objects": [],
     "instanceObjects": [
+        {
+            "_id": "",
+            "type": "device",
+            "common": {
+                "name": "Energiefluss"
+            },
+            "native": {}
+        },
         {
             "_id": "configuration",
             "type": "state",
