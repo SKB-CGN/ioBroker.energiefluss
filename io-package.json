@@ -140,8 +140,7 @@
         "connectionType": "local",
         "dataSource": "assumption",
         "adminUI": {
-            "config": "materialize",
-            "tab": false
+            "config": "materialize"
         },
         "adminTab": {
             "singleton": false,
