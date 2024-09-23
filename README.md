@@ -38,7 +38,7 @@ If you like my work und you would like to support me, you can do so here:
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 3.6.1 (2024-09-23)
 - Dependencies updated
 
 ### 3.6.0 (2023-02-24)
