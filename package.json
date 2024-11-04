@@ -23,7 +23,7 @@
     "node": ">= 18"
   },
   "dependencies": {
-    "@iobroker/adapter-core": "^3.1.6"
+    "@iobroker/adapter-core": "^3.2.2"
   },
   "devDependencies": {
     "@alcalzone/release-script": "^3.8.0",
@@ -33,20 +33,20 @@
     "@iobroker/adapter-dev": "^1.3.0",
     "@iobroker/testing": "^5.0.0",
     "@types/chai": "^4.3.11",
-    "@types/chai-as-promised": "^8.0.0",
-    "@types/mocha": "^10.0.8",
-    "@types/node": "^22.5.5",
+    "@types/chai-as-promised": "^8.0.1",
+    "@types/mocha": "^10.0.9",
+    "@types/node": "^22.8.7",
     "@types/proxyquire": "^1.3.31",
     "@types/sinon": "^17.0.3",
     "@types/sinon-chai": "^3.2.12",
     "chai": "^4.5.0",
     "chai-as-promised": "^8.0.0",
     "eslint": "^8.57.0",
-    "mocha": "^10.7.3",
+    "mocha": "^10.8.2",
     "proxyquire": "^2.1.3",
-    "sinon": "^18.0.0",
+    "sinon": "^19.0.2",
     "sinon-chai": "^3.7.0",
-    "typescript": "~5.6.2"
+    "typescript": "~5.6.3"
   },
   "main": "main.js",
   "files": [
