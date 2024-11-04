@@ -305,7 +305,7 @@ class Energiefluss extends utils.Adapter {
 		});
 
 		// Delete old State HTML
-		await this.deleteStateAsync('HTML');
+		await this.delObject('HTML');
 
 		/* Build Parameter */
 		// Colors of the Elements
