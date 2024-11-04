@@ -358,6 +358,22 @@
 		.minicolors-with-opacity {
 			width: 220px !important;
 		}
+
+		.m .row {
+			margin-left: auto !important;
+			margin-right: auto !important;
+		}
+
+		/* Style for small Screens */
+		@media screen and (max-width: 768px) {
+			.adapter-body {
+				overflow: auto;
+			}
+
+			.m .tabs {
+				overflow-x: hidden;
+			}
+		}
 	</style>
 
 </head>
@@ -367,13 +383,13 @@
 		<div class="row">
 			<div class="col s12">
 				<ul class="tabs">
-					<li class="tab col"><a href="#tab-main" class="translate active">Main settings</a></li>
-					<li class="tab col"><a href="#tab-color" class="translate" data-lang="color-settings">Color
+					<li class="tab col s3"><a href="#tab-main" class="translate active">Main settings</a></li>
+					<li class="tab col s3"><a href="#tab-color" class="translate" data-lang="color-settings">Color
 							settings</a></li>
-					<li class="tab col"><a href="#tab-fonts" class="translate" data-lang="font-and-line">font and
+					<li class="tab col s3"><a href="#tab-fonts" class="translate" data-lang="font-and-line">font and
 							line</a></li>
-					<li class="tab col"><a href="#tab-other" class="translate" data-lang="other">Other</a></li>
-					<li class="tab col"><a href="https://github.com/SKB-CGN/ioBroker.energiefluss/wiki" target="_blank"
+					<li class="tab col s2"><a href="#tab-other" class="translate" data-lang="other">Other</a></li>
+					<li class="tab col s1"><a href="https://github.com/SKB-CGN/ioBroker.energiefluss/wiki" target="_blank"
 							class="translate" data-lang="wiki">Wiki</a></li>
 				</ul>
 			</div>
