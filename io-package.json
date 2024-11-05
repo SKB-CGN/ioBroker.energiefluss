@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "energiefluss",
-    "version": "3.6.1",
+    "version": "3.6.2",
     "news": {
+      "3.6.2": {
+        "en": "Dependencies updated\nResponsive Design added (#406)",
+        "de": "Ausgaben aktualisiert\nResponsive Design hinzugefügt (#406)",
+        "ru": "Обновленные данные о зависимостях\nResponsive Design added (#406)",
+        "pt": "Dependências atualizadas\nDesign responsivo adicionado (#406)",
+        "nl": "Afhankelijkheden bijgewerkt\nResponsive Design toegevoegd (#406)",
+        "fr": "Dépendances actualisées\nConception sensible ajoutée (#406)",
+        "it": "Dipendenze aggiornate\nResponsive Design aggiunto (#406)",
+        "es": "Actualización de las dependencias\nDiseño responsable añadido (#406)",
+        "pl": "Aktualizacja zależności\nDodano projekt odpowiedzi (# 406)",
+        "uk": "Залежність оновлено\nДодано адаптивний дизайн (#406)",
+        "zh-cn": "更新的依赖关系\n反应设计增加(# 406)"
+      },
       "3.6.1": {
         "en": "Dependencies updated",
         "de": "Ausgaben aktualisiert",
@@ -80,19 +93,6 @@
         "pl": "zbiÃ³r staÅ‚ych <br> w dopasowywaniu wewnÄ…trz elementu\ndodano nowe typy animacji do animacji liniowej\nczyÅ›ciÄ‡ niektÃ³re pliki dla przyszÅ‚ej obsÅ‚ugi",
         "uk": "Ñ„Ñ–ÐºÑÐ¾Ð²Ð°Ð½Ð° <br> Ð²Ð¸Ñ€Ñ–Ð²Ð½ÑŽÐ²Ð°Ð½Ð½Ñ Ð²ÑÐµÑ€ÐµÐ´Ð¸Ð½Ñ– ÐµÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð°\nÐ´Ð¾Ð´Ð°Ð½Ð¾ Ð½Ð¾Ð²Ñ– Ñ‚Ð¸Ð¿Ð¸ Ð°Ð½Ñ–Ð¼Ð°Ñ†Ñ–Ñ— Ð´Ð¾ Ð»Ñ–Ð½Ñ–Ð¹Ð½Ð¾-Ð°Ð½Ñ–Ð¼Ð°Ñ†Ñ–Ñ—\nÐ¾Ñ‡Ð¸ÑÑ‚Ð¸Ñ‚Ð¸ Ð´ÐµÑÐºÑ– Ñ„Ð°Ð¹Ð»Ð¸ Ð´Ð»Ñ Ð¼Ð°Ð¹Ð±ÑƒÑ‚Ð½ÑŒÐ¾Ð³Ð¾ Ð¾Ð±Ñ€Ð¾Ð±ÐºÐ¸",
         "zh-cn": "å›ºå®š> è¦ç´ å†…çš„ä¸€è‡´æ€§\nå¢žåŠ æ–°çš„é™è§£ç±»åž‹\nå¯¹ä»ŠåŽå¤„ç†çš„ä¸€äº›æ¡£æ¡ˆè¿›è¡Œæ¸…ç†"
-      },
-      "3.0.3": {
-        "en": "fixed custom line 9 coloring, which was not working\nadded own state in object browser for remaining accu\nfont size increased for some descriptions in admin panel",
-        "de": "feste benutzerdefinierte linie 9 fÃ¤rbung, die nicht funktioniert\nhinzugefÃ¼gt eigenen zustand im objekt-browser fÃ¼r verbleibenden accu\nschriftgrÃ¶ÃŸe erhÃ¶ht fÃ¼r einige beschreibungen in admin-panel",
-        "ru": "Ñ„Ð¸ÐºÑÐ¸Ñ€Ð¾Ð²Ð°Ð½Ð½Ð°Ñ Ð»Ð¸Ð½Ð¸Ñ 9 Ñ€Ð°ÑÐºÑ€Ð°ÑÐºÐ¸, ÐºÐ¾Ñ‚Ð¾Ñ€Ð°Ñ Ð½Ðµ Ñ€Ð°Ð±Ð¾Ñ‚Ð°Ð»Ð°\nÐ´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¾ ÑÐ¾Ð±ÑÑ‚Ð²ÐµÐ½Ð½Ð¾Ðµ ÑÐ¾ÑÑ‚Ð¾ÑÐ½Ð¸Ðµ Ð² Ð±Ñ€Ð°ÑƒÐ·ÐµÑ€Ðµ Ð¾Ð±ÑŠÐµÐºÑ‚Ð¾Ð² Ð´Ð»Ñ Ð¾ÑÑ‚Ð°Ð²ÑˆÐµÐ³Ð¾ÑÑ accu\nÑ€Ð°Ð·Ð¼ÐµÑ€ ÑˆÑ€Ð¸Ñ„Ñ‚Ð° ÑƒÐ²ÐµÐ»Ð¸Ñ‡ÐµÐ½ Ð´Ð»Ñ Ð½ÐµÐºÐ¾Ñ‚Ð¾Ñ€Ñ‹Ñ… Ð¾Ð¿Ð¸ÑÐ°Ð½Ð¸Ð¹ Ð² Ð¿Ð°Ð½ÐµÐ»Ð¸ Ð°Ð´Ð¼Ð¸Ð½",
-        "pt": "linha personalizada fixa 9 coloraÃ§Ã£o, que nÃ£o estava funcionando\nadicionado prÃ³prio estado no navegador objeto para permanecer accu\ntamanho da fonte aumentou para algumas descriÃ§Ãµes no painel de admin",
-        "nl": "vertaling:\nvoegde eigen staat toe in object browser voor het blijven van beschuldiging\nfont maat verhoogd voor beschrijvingen in administratie",
-        "fr": "la ligne 9 fixe, qui ne fonctionnait pas\najoutÃ© propre Ã©tat dans le navigateur objet pour restant accu\ntaille de police augmentÃ©e pour certaines descriptions dans le panneau d'administration",
-        "it": "fisso personalizzato linea 9 colorazione, che non funzionava\naggiunto proprio stato nel browser oggetto per rimanere accu\ndimensione del carattere aumentata per alcune descrizioni nel pannello di amministrazione",
-        "es": "lÃ­nea fija personalizada 9 para colorear, que no estaba funcionando\nestado aÃ±adido en el navegador de objetos para el accu\ntamaÃ±o de fuente aumentado para algunas descripciones en el panel de administraciÃ³n",
-        "pl": "na bazie stacjonarnej linii 9 kolorÃ³w, ktÃ³re nie pracowaÅ‚y\ndodaÅ‚ wÅ‚asny stan przeglÄ…darki obiektowej dla pozostaÅ‚ego przyspieszenia\nrozmiar czcionki wzrÃ³sÅ‚ do niektÃ³rych opisÃ³w w panelach adminowych",
-        "uk": "Ñ„Ñ–ÐºÑÐ¾Ð²Ð°Ð½Ð° Ð·Ð°Ð¼Ð¾Ð²Ð½Ð° Ð»Ñ–Ð½Ñ–Ñ 9 Ñ€Ð¾Ð·Ð¼Ð°Ð»ÑŒÐ¾Ð²ÐºÐ°, ÑÐºÐ° Ð½Ðµ Ð¿Ñ€Ð°Ñ†ÑŽÐ²Ð°Ð»Ð°\nÐ´Ð¾Ð´Ð°Ð½Ð¾ Ð²Ð»Ð°ÑÐ½Ð¸Ð¹ ÑÑ‚Ð°Ð½ Ð² Ð±Ñ€Ð°ÑƒÐ·ÐµÑ€Ñ– Ð¾Ð±'Ñ”ÐºÑ‚Ð° Ð´Ð»Ñ Ñ€ÐµÑˆÑ‚Ð¸ accu\nÑ€Ð¾Ð·Ð¼Ñ–Ñ€ ÑˆÑ€Ð¸Ñ„Ñ‚Ñƒ Ð·Ð±Ñ–Ð»ÑŒÑˆÐµÐ½Ð¾ Ð½Ð° Ð´ÐµÑÐºÑ– Ð¾Ð¿Ð¸ÑÐ¸ Ð² Ð°Ð´Ð¼Ñ–Ð½ Ð¿Ð°Ð½ÐµÐ»Ñ–",
-        "zh-cn": "å›ºå®šçš„ä¹ ä¿—çº¿9:æ²¡æœ‰å·¥ä½œã€‚\nåœ¨å‰©ä½™çš„æ‹–è½¦ä¸Šæ·»åŠ è‡ªå·±çš„å›½å®¶\nä¸“æ¡ˆå°ç»„çš„ä¸€äº›è¯´æ˜Žæ•°é‡å¢žåŠ "
       }
     },
     "titleLang": {
