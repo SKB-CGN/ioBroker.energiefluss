@@ -38,6 +38,10 @@ If you like my work und you would like to support me, you can do so here:
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+- Dependencies updated
+- Responsive Design added (#406) 
+
 ### 3.6.1 (2024-09-23)
 - Dependencies updated
 
