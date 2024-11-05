@@ -42,7 +42,6 @@
 						.on('keyup', () => onChange());
 				}
 			});
-			responsiveFix();
 
 			onChange(false);
 			// reinitialize all the Materialize labels on the page if you are dynamically adding inputs:
@@ -109,33 +108,27 @@
 			}
 		}
 
-		function responsiveFix() {
-			const sClasses = ['s12'];
+		document.addEventListener('DOMContentLoaded', function () {
+            setTimeout(function () {
+                const buttons = document.querySelectorAll('.buttonS1');
 
-			const buttons = document.querySelectorAll('.buttonS1');
-
-            buttons.forEach(button => {
-                sClasses.forEach(sClass => {
-                    if (button.classList.contains(sClass)) {
-                        button.classList.remove(sClass);
+                buttons.forEach(button => {
+                    if (button.classList.contains('s12')) {
+                        button.classList.remove('s12');
+                        button.classList.add('s1');
                     }
                 });
 
-                button.classList.add('s1');
-            });
+				const inputs = document.querySelectorAll('.inputS10');
 
-			const inputs = document.querySelectorAll('.inputS10');
-
-            inputs.forEach(input => {
-                sClasses.forEach(sClass => {
-                    if (input.classList.contains(sClass)) {
-                        input.classList.remove(sClass);
+                inputs.forEach(input => {
+                    if (input.classList.contains('s12')) {
+                        input.classList.remove('s12');
+                        input.classList.add('s10');
                     }
                 });
-
-                input.classList.add('s10');
-            });
-		}
+            }, 1000);
+        });
 
 		// This will be called by the admin adapter when the user presses the save button
 		function save(callback) {
@@ -640,12 +633,12 @@
 						<label for="label_house" class="translate" data-lang="label">Label:</label>
 						<span class="translate" data-lang="ex_label">label inside the element</span>
 					</div>
-					<div class="input-field col s12 m8 l4">
+					<div class="input-field col s12 m8 l4 inputS10">
 						<input class="value dp" id="consumption" type="text" />
 						<label for="consumption" class="translate" data-lang="consumption">Consumption state:</label>
 						<span class="translate" data-lang="ex_consumption">Data point of your house consumption</span>
 					</div>
-					<div class="input-field col s1">
+					<div class="input-field col s1 buttonS1">
 						<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
 								class="material-icons">search</i></a>
 					</div>
@@ -708,7 +701,7 @@
 						<label for="label_grid" class="translate" data-lang="label">Label:</label>
 						<span class="translate" data-lang="ex_label">label inside the element</span>
 					</div>
-					<div class="input-field col s12 m8 l4">
+					<div class="input-field col s12 m8 l4 inputS10">
 						<input class="value dp" id="grid_feed" type="text" />
 						<label for="grid_feed" class="translate" data-lang="grid_feed">Grid feed-in:</label>
 						<span class="translate" data-lang="ex_grid_feed">Data point of your grid feeder<br><br>(This is
@@ -718,7 +711,7 @@
 							other
 							state on)</span>
 					</div>
-					<div class="input-field col s1">
+					<div class="input-field col s1 buttonS1">
 						<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
 								class="material-icons">search</i></a>
 					</div>
@@ -749,12 +742,12 @@
 				</div>
 				<div class="row">
 					<div class="input-field col s12 m8 l4"></div>
-					<div class="input-field col s10 m8 l4">
+					<div class="input-field col s10 m8 l4 inputS10">
 						<input class="value dp" id="grid_consuming" type="text" />
 						<label for="grid_consuming" class="translate" data-lang="grid_consumption">Grid consuming</label>
 						<span class="translate" data-lang="ex_grid_consumption">Data point of your grid consumption</span>
 					</div>
-					<div class="input-field col s1">
+					<div class="input-field col s1 buttonS1">
 						<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
 								class="material-icons">search</i></a>
 					</div>
@@ -812,7 +805,7 @@
 						<label for="label_battery" class="translate" data-lang="label">Label:</label>
 						<span class="translate" data-lang="ex_label">label inside the element</span>
 					</div>
-					<div class="input-field col s12 m8 l4">
+					<div class="input-field col s12 m8 l4 inputS10">
 						<input class="value dp" id="battery_charge" type="text" />
 						<label for="battery_charge" class="translate" data-lang="battery_charge_state">Charge
 							battery:</label>
@@ -824,7 +817,7 @@
 							other
 							state on)</span>
 					</div>
-					<div class="input-field col s1">
+					<div class="input-field col s1 buttonS1">
 						<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
 								class="material-icons">search</i></a>
 					</div>
@@ -851,14 +844,14 @@
 						<span class="translate" data-lang="ex_fraction">If zero, the value will be rounded to the next
 							possible integer.</span>
 					</div>
-					<div class="input-field col s12 m8 l4">
+					<div class="input-field col s12 m8 l4 inputS10">
 						<input class="value dp" id="battery_discharge" type="text" />
 						<label for="battery_discharge" class="translate" data-lang="battery_discharge">Discharge
 							battery:</label>
 						<span class="translate" data-lang="ex_battery_discharge">Data point for discharging your
 							battery</span>
 					</div>
-					<div class="input-field col s1">
+					<div class="input-field col s1 buttonS1">
 						<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
 								class="material-icons">search</i></a>
 					</div>
@@ -902,7 +895,7 @@
 						<label for="label_battery_remaining" class="translate" data-lang="label">Label:</label>
 						<span class="translate" data-lang="ex_label_remaining">label for remaining time</span>
 					</div>
-					<div class="input-field col s12 m8 l4">
+					<div class="input-field col s12 m8 l4 inputS10">
 						<input class="value dp" id="battery_percent" type="text" />
 						<label for="battery_percent" class="translate" data-lang="battery_percent">accu
 							level:</label>
@@ -910,7 +903,7 @@
 							charge-level
 							in %</span>
 					</div>
-					<div class="input-field col s1">
+					<div class="input-field col s1 buttonS1">
 						<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
 								class="material-icons">search</i></a>
 					</div>
@@ -945,7 +938,7 @@
 						<label for="label_custom10" class="translate" data-lang="label">Label:</label>
 						<span class="translate" data-lang="ex_label">label inside the element</span>
 					</div>
-					<div class="input-field col s12 m8 l4">
+					<div class="input-field col s12 m8 l4 inputS10">
 						<input class="value dp" id="custom10" type="text" />
 						<label for="custom10" class="translate" data-lang="custom" id="custom10_car_element">custom
 							element</label>
@@ -953,7 +946,7 @@
 							custom
 							element</span>
 					</div>
-					<div class="input-field col s1">
+					<div class="input-field col s1 buttonS1">
 						<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
 								class="material-icons">search</i></a>
 					</div>
@@ -977,25 +970,25 @@
 					</div>
 				</div>
 				<div class="row custom10_car">
-					<div class="input-field col s10 m8 l4">
+					<div class="input-field col s10 m8 l4 inputS10">
 						<input class="value dp" id="car_custom10_percent" type="text" />
 						<label for="car_custom10_percent" class="translate" data-lang="car_battery_charge">Car accu level
 							state:</label>
 						<span class="translate" data-lang="ex_car_battery">Data point of your car accu in %</span>
 					</div>
-					<div class="input-field col s1">
+					<div class="input-field col s1 buttonS1">
 						<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
 								class="material-icons">search</i></a>
 					</div>
 				</div>
 				<div class="row custom10_car">
-					<div class="input-field col s10 m8 l4">
+					<div class="input-field col s10 m8 l4 inputS10">
 						<input class="value dp" id="car_custom10_plugged" type="text" />
 						<label for="car_custom_plugged" class="translate" data-lang="car_plugged">car charger plugged
 							in:</label>
 						<span class="translate" data-lang="ex_car_plugged">Data point car charger plugged in</span>
 					</div>
-					<div class="input-field col s1">
+					<div class="input-field col s1 buttonS1">
 						<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
 								class="material-icons">search</i></a>
 					</div>
@@ -1037,14 +1030,14 @@
 						<label for="label_custom" class="translate" data-lang="label">Label:</label>
 						<span class="translate" data-lang="ex_label">label inside the element</span>
 					</div>
-					<div class="input-field col s12 m8 l4">
+					<div class="input-field col s12 m8 l4 inputS10">
 						<input class="value dp" id="custom0" type="text" />
 						<label for="custom0" class="translate" data-lang="custom" id="custom_car_element">custom
 							element</label>
 						<span class="translate" data-lang="ex_custom" id="ex_custom_car_element">Data point of your custom
 							element</span>
 					</div>
-					<div class="input-field col s1">
+					<div class="input-field col s1 buttonS1">
 						<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
 								class="material-icons">search</i></a>
 					</div>
@@ -1067,26 +1060,26 @@
 				</div>
 				<div class="row custom_car">
 					<div class="input-field col s12 m8 l4"></div>
-					<div class="input-field col s12 m8 l4">
+					<div class="input-field col s12 m8 l4 inputS10">
 						<input class="value dp" id="car_custom_percent" type="text" />
 						<label for="car_custom_percent" class="translate" data-lang="car_battery_charge">Car accu level
 							state:</label>
 						<span class="translate" data-lang="ex_car_battery">Data point of your car accu in %</span>
 					</div>
-					<div class="input-field col s1">
+					<div class="input-field col s1 buttonS1">
 						<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
 								class="material-icons">search</i></a>
 					</div>
 				</div>
 				<div class="row custom_car">
 					<div class="input-field col s12 m8 l4"></div>
-					<div class="input-field col s12 m8 l4">
+					<div class="input-field col s12 m8 l4 inputS10">
 						<input class="value dp" id="car_custom_plugged" type="text" />
 						<label for="car_custom_plugged" class="translate" data-lang="car_plugged">car charger plugged
 							in:</label>
 						<span class="translate" data-lang="ex_car_plugged">Data point car charger plugged in</span>
 					</div>
-					<div class="input-field col s1">
+					<div class="input-field col s1 buttonS1">
 						<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
 								class="material-icons">search</i></a>
 					</div>
@@ -1128,12 +1121,12 @@
 						<label for="label_custom1" class="translate" data-lang="label">Label:</label>
 						<span class="translate" data-lang="ex_label">label inside the element</span>
 					</div>
-					<div class="input-field col s12 m8 l4">
+					<div class="input-field col s12 m8 l4 inputS10">
 						<input class="value dp" id="custom1" type="text" />
 						<label for="custom1" class="translate" data-lang="custom">custom element</label>
 						<span class="translate" data-lang="ex_custom">Data point of your custom element</span>
 					</div>
-					<div class="input-field col s1">
+					<div class="input-field col s1 buttonS1">
 						<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
 								class="material-icons">search</i></a>
 					</div>
@@ -1179,12 +1172,12 @@
 						<label for="label_custom2" class="translate" data-lang="label">Label:</label>
 						<span class="translate" data-lang="ex_label">label inside the element</span>
 					</div>
-					<div class="input-field col s12 m8 l4">
+					<div class="input-field col s12 m8 l4 inputS10">
 						<input class="value dp" id="custom2" type="text" />
 						<label for="custom2" class="translate" data-lang="custom">custom element</label>
 						<span class="translate" data-lang="ex_custom">Data point of your custom element</span>
 					</div>
-					<div class="input-field col s1">
+					<div class="input-field col s1 buttonS1">
 						<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
 								class="material-icons">search</i></a>
 					</div>
@@ -1230,12 +1223,12 @@
 						<label for="label_custom3" class="translate" data-lang="label">Label:</label>
 						<span class="translate" data-lang="ex_label">label inside the element</span>
 					</div>
-					<div class="input-field col s12 m8 l4">
+					<div class="input-field col s12 m8 l4 inputS10">
 						<input class="value dp" id="custom3" type="text" />
 						<label for="custom3" class="translate" data-lang="custom">custom element</label>
 						<span class="translate" data-lang="ex_custom">Data point of your custom element</span>
 					</div>
-					<div class="input-field col s1">
+					<div class="input-field col s1 buttonS1">
 						<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
 								class="material-icons">search</i></a>
 					</div>
@@ -1281,12 +1274,12 @@
 						<label for="label_custom4" class="translate" data-lang="label">Label:</label>
 						<span class="translate" data-lang="ex_label">label inside the element</span>
 					</div>
-					<div class="input-field col s12 m8 l4">
+					<div class="input-field col s12 m8 l4 inputS10">
 						<input class="value dp" id="custom4" type="text" />
 						<label for="custom4" class="translate" data-lang="custom">custom element</label>
 						<span class="translate" data-lang="ex_custom">Data point of your custom element</span>
 					</div>
-					<div class="input-field col s1">
+					<div class="input-field col s1 buttonS1">
 						<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
 								class="material-icons">search</i></a>
 					</div>
@@ -1339,12 +1332,12 @@
 						<label for="label_custom5" class="translate" data-lang="label">Label:</label>
 						<span class="translate" data-lang="ex_label">label inside the element</span>
 					</div>
-					<div class="input-field col s12 m8 l4">
+					<div class="input-field col s12 m8 l4 inputS10">
 						<input class="value dp" id="custom5" type="text" />
 						<label for="custom5" class="translate" data-lang="custom">custom element</label>
 						<span class="translate" data-lang="ex_custom">Data point of your custom element</span>
 					</div>
-					<div class="input-field col s1">
+					<div class="input-field col s1 buttonS1">
 						<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
 								class="material-icons">search</i></a>
 					</div>
@@ -1390,12 +1383,12 @@
 						<label for="label_custom6" class="translate" data-lang="label">Label:</label>
 						<span class="translate" data-lang="ex_label">label inside the element</span>
 					</div>
-					<div class="input-field col s12 m8 l4">
+					<div class="input-field col s12 m8 l4 inputS10">
 						<input class="value dp" id="custom6" type="text" />
 						<label for="custom6" class="translate" data-lang="custom">custom element</label>
 						<span class="translate" data-lang="ex_custom">Data point of your custom element</span>
 					</div>
-					<div class="input-field col s1">
+					<div class="input-field col s1 buttonS1">
 						<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
 								class="material-icons">search</i></a>
 					</div>
@@ -1441,12 +1434,12 @@
 						<label for="label_custom7" class="translate" data-lang="label">Label:</label>
 						<span class="translate" data-lang="ex_label">label inside the element</span>
 					</div>
-					<div class="input-field col s12 m8 l4">
+					<div class="input-field col s12 m8 l4 inputS10">
 						<input class="value dp" id="custom7" type="text" />
 						<label for="custom7" class="translate" data-lang="custom">custom element</label>
 						<span class="translate" data-lang="ex_custom">Data point of your custom element</span>
 					</div>
-					<div class="input-field col s1">
+					<div class="input-field col s1 buttonS1">
 						<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
 								class="material-icons">search</i></a>
 					</div>
@@ -1492,12 +1485,12 @@
 						<label for="label_custom8" class="translate" data-lang="label">Label:</label>
 						<span class="translate" data-lang="ex_label">label inside the element</span>
 					</div>
-					<div class="input-field col s12 m8 l4">
+					<div class="input-field col s12 m8 l4 inputS10">
 						<input class="value dp" id="custom8" type="text" />
 						<label for="custom8" class="translate" data-lang="custom">custom element</label>
 						<span class="translate" data-lang="ex_custom">Data point of your custom element</span>
 					</div>
-					<div class="input-field col s1">
+					<div class="input-field col s1 buttonS1">
 						<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
 								class="material-icons">search</i></a>
 					</div>
@@ -1543,12 +1536,12 @@
 						<label for="label_custom9" class="translate" data-lang="label">Label:</label>
 						<span class="translate" data-lang="ex_label">label inside the element</span>
 					</div>
-					<div class="input-field col s12 m8 l4">
+					<div class="input-field col s12 m8 l4 inputS10">
 						<input class="value dp" id="custom9" type="text" />
 						<label for="custom9" class="translate" data-lang="custom">custom element</label>
 						<span class="translate" data-lang="ex_custom">Data point of your custom element</span>
 					</div>
-					<div class="input-field col s1">
+					<div class="input-field col s1 buttonS1">
 						<a class="btn-floating waves-effect waves-light blue table-button-add input-field datasource"><i
 								class="material-icons">search</i></a>
 					</div>
