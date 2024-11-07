@@ -292,6 +292,10 @@
 		}
 	</script>
 	<style>
+		.adapter-body {
+			overflow: hidden !important;
+		}
+
 		.minicolors-swatch {
 			top: 15px !important;
 			left: auto !important;
@@ -383,10 +387,10 @@
 
 <body>
 	<div class="m adapter-container ">
-		<div class="row">
+		<div class="row" style="height: 100%;">
 			<div class="col s12">
 				<ul class="tabs">
-					<li class="tab col s3"><a href="#tab-main" class="translate active">Main settings</a></li>
+					<li class="tab col s3"><a href="#tab-main" class="translate">Main settings</a></li>
 					<li class="tab col s3"><a href="#tab-color" class="translate" data-lang="color-settings">Color
 							settings</a></li>
 					<li class="tab col s3"><a href="#tab-fonts" class="translate" data-lang="font-and-line">font and
@@ -396,7 +400,7 @@
 							class="translate" data-lang="wiki">Wiki</a></li>
 				</ul>
 			</div>
-			<div id="tab-main" class="col s12">
+			<div id="tab-main" class="col s12 page">
 				<div class="row">
 					<div class="input-field col s6">
 						<img src="energiefluss.png" class="logo">
@@ -1563,7 +1567,7 @@
 				</div>
 			</div>
 			<!-- TAB Color -->
-			<div id="tab-color" class="col s12">
+			<div id="tab-color" class="col s12 page">
 				<div class="row">
 					<div class="col s12">
 						<h6 class="title translate" data-lang="consuming">consuming</h6>
@@ -2582,7 +2586,7 @@
 				</div>
 			</div>
 			<!-- TAB Font -->
-			<div id="tab-fonts" class="col s12">
+			<div id="tab-fonts" class="col s12 page">
 				<div class="row">
 					<div class="col s12">
 						<h6 class="title translate" data-lang="font">font</h6>
@@ -2907,7 +2911,7 @@
 				</div>
 			</div>
 			<!-- TAB Other-->
-			<div id="tab-other" class="col s12">
+			<div id="tab-other" class="col s12 page">
 				<div class="row">
 					<div class="col s12">
 						<h6 class="title translate" data-lang="title_unit">unit</h6>
