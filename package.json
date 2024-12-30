@@ -17,7 +17,7 @@
     "url": "git+https://github.com/SKB-CGN/ioBroker.energiefluss.git"
   },
   "optionalDependencies": {
-    "canvas": "^2.11.2"
+    "canvas": "^3.0.0"
   },
   "engines": {
     "node": ">= 18"
