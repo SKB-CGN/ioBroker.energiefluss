@@ -177,12 +177,12 @@
     "dependencies": [
       {
         "js-controller": ">=5.0.19",
-        "web": ">=3.0.12"
+        "web": ">=6.1.10"
       }
     ],
     "globalDependencies": [
       {
-        "admin": ">=5.1.28"
+        "admin": ">=6.0.0"
       }
     ]
   },
