@@ -170,8 +170,7 @@
         "pl": "Energiefluss",
         "zh-cn": "ç²¾åŠ›å……æ²›"
       },
-      "link": "%web_protocol%://%ip%:%web_port%/energiefluss/index.html?instance=%instance%",
-      "fa-icon": "info"
+      "link": "%web_protocol%://%ip%:%web_port%/energiefluss/index.html?instance=%instance%"
     },
     "supportCustoms": false,
     "dependencies": [
