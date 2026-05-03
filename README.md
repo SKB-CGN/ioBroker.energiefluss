@@ -327,6 +327,8 @@ If you like my work und you would like to support me, you can do so here:
 ### 0.0.2 (2022-06-14)
 * initial release
 
+[Older changelogs can be found there](CHANGELOG_OLD.md)
+
 ## License
 MIT License
 
