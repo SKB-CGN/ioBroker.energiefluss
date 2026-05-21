@@ -38,6 +38,10 @@ If you like my work und you would like to support me, you can do so here:
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
 -->
+
+### **WORK IN PROGRESS**
+- (ioBroker-Bot) Adapter requires js-controller >= 6.0.11 now.
+
 ### 3.6.2 (2024-11-05)
 - Dependencies updated
 - Responsive Design added (#406)
