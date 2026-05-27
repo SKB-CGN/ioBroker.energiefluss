@@ -1,12 +1,19 @@
 version: 2
 updates:
-- package-ecosystem: npm
-  directory: "/"
-  schedule:
-    interval: weekly
-    time: "04:00"
-    timezone: Europe/Berlin
-  open-pull-requests-limit: 20
-  assignees:
-  - SKB-CGN
-  versioning-strategy: increase
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: weekly
+      time: "04:00"
+      timezone: Europe/Berlin
+    open-pull-requests-limit: 20
+    assignees:
+      - SKB-CGN
+    versioning-strategy: increase
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    schedule:
+      interval: 'cron'
+      timezone: 'Europe/Berlin'
+      cronjob: '44 2 21 * *'
+    open-pull-requests-limit: 15
