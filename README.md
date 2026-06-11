@@ -24,7 +24,7 @@
 It provides an animated energyflow of the current consumption for photovoltaics, battery, house-consumption, grid-feed-in (grid-consumption), car charge and up to 10 possible elements (circle or rectangle).
 
 ## Installation
-Installation via Github Cat possible. To do this, go to custom and enter the Github address from here.
+Installation should be performed using standard ioBroker repositories.
 
 ## Support
 If you like my work und you would like to support me, you can do so here:
