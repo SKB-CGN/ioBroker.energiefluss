@@ -34,6 +34,9 @@ If you like my work und you would like to support me, you can do so here:
 - Safari browser or some webkit of Apple Inc. iOS is not fully supported. Doesn't display the animated battery icon and remaining charging/discharging time (no fix available)
 
 ## Changelog
+
+### **WORK IN PROGRESS**
+- (iobroker-bot) Adapter requires node.js >= 22 now.
 <!--
 	Placeholder for the next version (at the beginning of the line):
 	### **WORK IN PROGRESS**
